@@ -48,10 +48,27 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.user();
 };
 
-export const userCreate = () => {
-  console.log("create user");
+export const userCreate = ({ name, phone, shift }) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users`)
+      .push({
+        userName: "Devin",
+        userPhone: "555-5555",
+        userPassword: "password"
+      })
+      .then(() => {
+        console.log("success");
+      });
+  };
 };
 
-export const userUpdate = () => {
-  console.log("user update");
+export const employeeUpdate = ({ prop, value }) => {
+  return {
+    type: EMPLOYEE_UPDATE,
+    payload: { prop, value }
+  };
 };
