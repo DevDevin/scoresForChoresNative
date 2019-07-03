@@ -2,6 +2,7 @@ import React from "react";
 import { Scene, Router, Actions } from "react-native-router-flux";
 import ChooseUser from "./components/ChooseUser";
 import LoginForm from "./components/LoginForm";
+import UserCreate from "./components/UserCreate";
 
 const RouterComponent = () => {
   return (
@@ -15,12 +16,21 @@ const RouterComponent = () => {
             initial
           />
         </Scene>
-        <Scene key="chooseUser">
+        <Scene key="user">
           <Scene
-            key="login"
+            rightTitle="New User"
+            onRight={() => {
+              Actions.userCreate();
+            }}
+            key="chooseUser"
             component={ChooseUser}
             title="Choose User"
             initial
+          />
+          <Scene
+            key="userCreate"
+            component={UserCreate}
+            title="Create Employee"
           />
         </Scene>
       </Scene>

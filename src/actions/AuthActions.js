@@ -45,5 +45,13 @@ const loginUserSuccess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
 
   // Navigate to the choose user screen
-  Actions.chooseUser();
+  Actions.user();
+};
+
+export const userCreate = () => {
+  console.log("create user");
+};
+
+export const userUpdate = () => {
+  console.log("user update");
 };
