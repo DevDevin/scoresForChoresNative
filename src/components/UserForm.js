@@ -57,7 +57,7 @@ class UserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1 } = state.user;
+  const { name, phone, password1 } = state.userForm;
 
   return { name, phone, password1 };
 };

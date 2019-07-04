@@ -6,7 +6,7 @@ import UserForm from "./UserForm";
 
 class UserCreate extends Component {
   componentDidMount() {
-    console.log("user", this.props.name);
+    console.log("user", this.props.phone);
   }
   onButtonPress() {
     const { name, phone, password1 } = this.props;
@@ -27,7 +27,7 @@ class UserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1 } = state.user;
+  const { name, phone, password1 } = state.userForm;
 
   return { name, phone, password1 };
 };

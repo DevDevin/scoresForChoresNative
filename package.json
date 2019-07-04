@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "firebase": "^6.2.3",
+    "lodash": "^4.17.11",
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-router-flux": "^4.0.6",

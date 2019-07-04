@@ -1,7 +1,7 @@
 import { USER_UPDATE, USER_CREATE, USER_SAVE_SUCCESS } from "../actions/types";
 
 const INITIAL_STATE = {
-  name: "name",
+  name: "",
   phone: "",
   password1: "",
   password2: ""

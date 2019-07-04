@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  USER_UPDATE
+  USER_UPDATE,
+  USER_FETCH_SUCCESS
 } from "./types";
 
 export const emailChanged = text => {
@@ -33,6 +34,11 @@ export const loginUser = ({ email, password }) => {
       .then(user => loginUserSuccess(dispatch, user))
       .catch(error => {
         console.log(error);
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(user => loginUserSuccess(dispatch, user))
+          .catch(() => LoginUserFail(dispatch));
       });
   };
 };
@@ -71,5 +77,19 @@ export const userUpdate = ({ prop, value }) => {
   return {
     type: USER_UPDATE,
     payload: { prop, value }
+  };
+};
+
+export const usersFetch = () => {
+  const { currentUser } = firebase.auth();
+  console.log("currentUser: ", currentUser);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users`)
+      .on("value", snapshot => {
+        dispatch({ type: USER_FETCH_SUCCESS, payload: snapshot.val() });
+      });
   };
 };
