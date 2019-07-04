@@ -5,7 +5,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  USER_UPDATE
 } from "./types";
 
 export const emailChanged = text => {
@@ -48,7 +49,7 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.user();
 };
 
-export const userCreate = ({ name, phone, shift }) => {
+export const userCreate = ({ name, phone, password1 }) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -56,9 +57,9 @@ export const userCreate = ({ name, phone, shift }) => {
       .database()
       .ref(`/users/${currentUser.uid}/users`)
       .push({
-        userName: "Devin",
-        userPhone: "555-5555",
-        userPassword: "password"
+        name: name,
+        phone: phone,
+        password: password1
       })
       .then(() => {
         console.log("success");
@@ -66,9 +67,9 @@ export const userCreate = ({ name, phone, shift }) => {
   };
 };
 
-export const employeeUpdate = ({ prop, value }) => {
+export const userUpdate = ({ prop, value }) => {
   return {
-    type: EMPLOYEE_UPDATE,
+    type: USER_UPDATE,
     payload: { prop, value }
   };
 };

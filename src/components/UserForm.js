@@ -34,7 +34,7 @@ class UserForm extends Component {
           <Input
             label="password"
             placeholder="password"
-            value={this.props.phone}
+            value={this.props.password1}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password1", value })
             }
@@ -45,7 +45,7 @@ class UserForm extends Component {
           <Input
             label="passwordConfirm"
             placeholder="confirm password"
-            value={this.props.phone}
+            value={this.props.password2}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password2", value })
             }
@@ -57,10 +57,9 @@ class UserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  // const { name, phone, shift } = state.UserForm;
+  const { name, phone, password1 } = state.user;
 
-  // return { name, phone, shift };
-  return {};
+  return { name, phone, password1 };
 };
 
 export default connect(
