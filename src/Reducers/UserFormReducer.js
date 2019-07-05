@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   name: "",
   phone: "",
   password1: "",
-  password2: ""
+  password2: "",
+  status: ""
 };
 
 export default (state = INITIAL_STATE, action) => {

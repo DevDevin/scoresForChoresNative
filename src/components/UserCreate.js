@@ -9,9 +9,9 @@ class UserCreate extends Component {
     console.log("user", this.props.phone);
   }
   onButtonPress() {
-    const { name, phone, password1 } = this.props;
+    const { name, phone, password1, status } = this.props;
 
-    this.props.userCreate({ name, phone, password1 });
+    this.props.userCreate({ name, phone, password1, status });
   }
 
   render() {

@@ -51,15 +51,28 @@ class UserForm extends Component {
             }
           />
         </CardSection>
+        <CardSection>
+          <Picker
+            selectedValue={this.props.status}
+            style={{ height: 50, width: 100, position: "relative" }}
+            onValueChange={itemValue => {
+              console.log("itemValue: ", itemValue);
+              this.props.userUpdate({ prop: "status", itemValue });
+            }}
+          >
+            <Picker.Item label="Parent" value="parent" />
+            <Picker.Item label="Child" value="Child" />
+          </Picker>
+        </CardSection>
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1 } = state.userForm;
+  const { name, phone, password1, status } = state.userForm;
 
-  return { name, phone, password1 };
+  return { name, phone, password1, status };
 };
 
 export default connect(

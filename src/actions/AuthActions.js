@@ -55,7 +55,7 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.user();
 };
 
-export const userCreate = ({ name, phone, password1 }) => {
+export const userCreate = ({ name, phone, password1, status }) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -65,7 +65,8 @@ export const userCreate = ({ name, phone, password1 }) => {
       .push({
         name: name,
         phone: phone,
-        password: password1
+        password: password1,
+        status: status
       })
       .then(() => {
         console.log("success");
