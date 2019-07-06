@@ -21,6 +21,17 @@ class UserForm extends Component {
 
         <CardSection>
           <Input
+            label="Email"
+            placeholder="johndoe@gmail.com"
+            value={this.props.email}
+            onChangeText={value =>
+              this.props.userUpdate({ prop: "email", value })
+            }
+          />
+        </CardSection>
+
+        <CardSection>
+          <Input
             label="Phone"
             placeholder="555-555-5555"
             value={this.props.phone}
@@ -55,13 +66,13 @@ class UserForm extends Component {
           <Picker
             selectedValue={this.props.status}
             style={{ height: 50, width: 100, position: "relative" }}
-            onValueChange={itemValue => {
-              console.log("itemValue: ", itemValue);
-              this.props.userUpdate({ prop: "status", itemValue });
+            onValueChange={value => {
+              console.log("itemValue: ", value);
+              this.props.userUpdate({ prop: "status", value });
             }}
           >
             <Picker.Item label="Parent" value="parent" />
-            <Picker.Item label="Child" value="Child" />
+            <Picker.Item label="Child" value="child" />
           </Picker>
         </CardSection>
       </View>
@@ -70,9 +81,9 @@ class UserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status } = state.userForm;
+  const { name, phone, password1, status, email } = state.userForm;
 
-  return { name, phone, password1, status };
+  return { name, phone, password1, status, email };
 };
 
 export default connect(

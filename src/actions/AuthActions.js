@@ -55,26 +55,29 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.user();
 };
 
-export const userCreate = ({ name, phone, password1, status }) => {
+export const userCreate = ({ name, phone, password1, status, email }) => {
   const { currentUser } = firebase.auth();
 
+  console.log("status: ", status);
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users`)
       .push({
         name: name,
+        email: email,
         phone: phone,
         password: password1,
         status: status
       })
       .then(() => {
-        console.log("success");
+        Actions.chooseUser();
       });
   };
 };
 
 export const userUpdate = ({ prop, value }) => {
+  console.log("value: ", value);
   return {
     type: USER_UPDATE,
     payload: { prop, value }

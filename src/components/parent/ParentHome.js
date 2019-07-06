@@ -19,6 +19,7 @@ class ParentHome extends Component {
   render() {
     return (
       <Card>
+        <Text>Hello {this.props.name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>
             <Text>Chore List</Text>

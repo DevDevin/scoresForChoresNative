@@ -5,13 +5,11 @@ import { userCreate } from "../actions/AuthActions";
 import UserForm from "./UserForm";
 
 class UserCreate extends Component {
-  componentDidMount() {
-    console.log("user", this.props.phone);
-  }
+  componentDidMount() {}
   onButtonPress() {
-    const { name, phone, password1, status } = this.props;
+    const { name, phone, password1, status, email } = this.props;
 
-    this.props.userCreate({ name, phone, password1, status });
+    this.props.userCreate({ name, phone, password1, status, email });
   }
 
   render() {
@@ -27,9 +25,9 @@ class UserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1 } = state.userForm;
+  const { name, phone, password1, status, email } = state.userForm;
 
-  return { name, phone, password1 };
+  return { name, phone, password1, status, email };
 };
 
 export default connect(
