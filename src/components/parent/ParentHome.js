@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
 import { CardSection, Card } from "../common/index";
+import { setActiveUser } from "../../actions/AuthActions";
 
 class ParentHome extends Component {
   onChoreListPress() {
@@ -17,9 +19,11 @@ class ParentHome extends Component {
   }
 
   render() {
+    const { name } = this.props.activeUser;
+
     return (
       <Card>
-        <Text>Hello {this.props.name}</Text>
+        <Text>Hello {name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>
             <Text>Chore List</Text>
@@ -53,4 +57,14 @@ const styles = {
   }
 };
 
-export default ParentHome;
+const mapStateToProps = state => {
+  console.log("activeUserData: ", state.auth.activeUser.name);
+  return {
+    activeUser: state.auth.activeUser
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setActiveUser }
+)(ParentHome);

@@ -46,9 +46,6 @@ const mapStateToProps = state => {
     return { ...val, uid };
   });
   return { users };
-  // return {
-  //   users: state.users
-  // };
 };
 
 export default connect(

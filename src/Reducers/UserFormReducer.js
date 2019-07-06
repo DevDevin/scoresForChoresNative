@@ -10,6 +10,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log("entered user form reducer");
   switch (action.type) {
     case USER_UPDATE:
       // action.payload === {prop: "name", value: "jane"}

@@ -7,3 +7,4 @@ export const USER_UPDATE = "user_update";
 export const USER_CREATE = "user_create";
 export const USER_SAVE_SUCCESS = "user_save_success";
 export const USER_FETCH_SUCCESS = "user_etch_success";
+export const SET_ACTIVE_USER = "set_active_user";

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { CardSection } from "./common";
+import { usersFetch, setActiveUser } from "../actions/AuthActions";
 
 class ListItem extends Component {
-  onRowPress(name) {
-    console.log("touchable works");
-    console.log("name: ", name);
+  onRowPress(activeUser) {
+    // redirect to parent or child depending on the user status
+    this.props.setActiveUser(activeUser.uid);
 
-    // Actions.child({ user: this.props.user });
-    Actions.parent({ User: this.props.user });
+    if (activeUser.status === "parent") {
+      Actions.parent();
+    } else {
+      Actions.child();
+    }
   }
 
   render() {
@@ -18,7 +23,7 @@ class ListItem extends Component {
     return (
       <TouchableWithoutFeedback
         value={this.props.user.name}
-        onPress={this.onRowPress.bind(this, this.props.user.name)}
+        onPress={this.onRowPress.bind(this, this.props.user)}
       >
         <View>
           <CardSection>
@@ -37,4 +42,7 @@ const styles = {
   }
 };
 
-export default ListItem;
+export default connect(
+  null,
+  { usersFetch, setActiveUser }
+)(ListItem);

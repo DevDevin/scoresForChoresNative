@@ -7,7 +7,8 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   USER_UPDATE,
-  USER_FETCH_SUCCESS
+  USER_FETCH_SUCCESS,
+  SET_ACTIVE_USER
 } from "./types";
 
 export const emailChanged = text => {
@@ -94,6 +95,20 @@ export const usersFetch = () => {
       .ref(`/users/${currentUser.uid}/users`)
       .on("value", snapshot => {
         dispatch({ type: USER_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+export const setActiveUser = activeUserId => {
+  const { currentUser } = firebase.auth();
+  console.log("activeUserID: ", activeUserId);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${activeUserId}`)
+      .on("value", snapshot => {
+        dispatch({ type: SET_ACTIVE_USER, payload: snapshot.val() });
       });
   };
 };
