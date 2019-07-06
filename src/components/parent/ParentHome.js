@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
-import { CardSection, Card } from "../common/index";
-import { setActiveUser } from "../../actions/AuthActions";
+import { Card } from "../common/index";
 
 class ParentHome extends Component {
   onChoreListPress() {
@@ -66,5 +65,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setActiveUser }
+  {}
 )(ParentHome);
