@@ -10,6 +10,7 @@ import ParentRewardList from "./components/parent/ParentRewardList";
 import CompletionRequests from "./components/parent/CompletionRequests";
 import ChildChoreList from "./components/child/ChildChoreList";
 import ChildRewardStore from "./components/child/ChildRewardStore";
+import ChoreCreate from "./components/parent/ChoreCreate";
 
 const RouterComponent = () => {
   return (
@@ -56,6 +57,10 @@ const RouterComponent = () => {
         <Scene key="parent">
           <Scene key="parentHome" component={ParentHome} title="Parent Home" />
           <Scene
+            rightTitle="Add Chore"
+            onRight={() => {
+              Actions.choreCreate();
+            }}
             key="parentChoreList"
             component={ParentChoreList}
             title="Parent Chore List"
@@ -70,6 +75,7 @@ const RouterComponent = () => {
             component={CompletionRequests}
             title="Completion Requests"
           />
+          <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />
         </Scene>
       </Scene>
     </Router>

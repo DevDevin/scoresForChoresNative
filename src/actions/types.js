@@ -8,3 +8,6 @@ export const USER_CREATE = "user_create";
 export const USER_SAVE_SUCCESS = "user_save_success";
 export const USER_FETCH_SUCCESS = "user_etch_success";
 export const SET_ACTIVE_USER = "set_active_user";
+export const CHORE_UPDATE = "chore_update";
+export const CHORE_CREATE = "chore_create";
+export const CHORE_SAVE_SUCCESS = "chore_save_success";
