@@ -7,7 +7,8 @@ import {
 const INITIAL_STATE = {
   choreName: "",
   description: "",
-  day: ""
+  day: "",
+  child: ""
 };
 
 export default (state = INITIAL_STATE, action) => {

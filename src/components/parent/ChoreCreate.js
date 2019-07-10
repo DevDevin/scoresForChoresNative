@@ -4,12 +4,17 @@ import { Card, CardSection, Button } from "../common/index";
 import { choreCreate } from "../../actions/ParentActions";
 import ChoreForm from "./ChoreForm";
 
-class UserCreate extends Component {
+class ChoreCreate extends Component {
   componentDidMount() {}
   onButtonPress() {
-    const { name, phone, password1, status, email } = this.props;
+    const { choreName, description, day, child } = this.props;
 
-    this.props.userCreate({ name, phone, password1, status, email });
+    this.props.choreCreate({
+      choreName: choreName,
+      description: description,
+      day: day,
+      child: child
+    });
   }
 
   render() {
@@ -25,9 +30,9 @@ class UserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.userForm;
+  const { choreName, description, day, child } = state.choreForm;
 
-  return { name, phone, password1, status, email };
+  return { choreName, description, day, child };
 };
 
 export default connect(
@@ -35,4 +40,4 @@ export default connect(
   {
     choreCreate
   }
-)(UserCreate);
+)(ChoreCreate);

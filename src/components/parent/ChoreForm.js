@@ -31,6 +31,17 @@ class ChoreForm extends Component {
         </CardSection>
 
         <CardSection>
+          <Input
+            label="Child"
+            placeholder="Child the chore is assigned to."
+            value={this.props.child}
+            onChangeText={value =>
+              this.props.choreUpdate({ prop: "child", value: value })
+            }
+          />
+        </CardSection>
+
+        <CardSection>
           <Picker
             selectedValue={this.props.status}
             style={{ height: 50, flex: 1, position: "relative" }}
@@ -53,9 +64,9 @@ class ChoreForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { choreName, description, day } = state.choreForm;
+  const { choreName, description, day, child } = state.choreForm;
 
-  return { choreName, description, day };
+  return { choreName, description, day, child };
 };
 
 export default connect(
