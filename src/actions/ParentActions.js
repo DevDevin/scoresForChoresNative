@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import { Actions } from "react-native-router-flux";
-import { CHORE_UPDATE } from "./types";
+import { CHORE_UPDATE, CHORE_FETCH_SUCCESS } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
   console.log("value: ", value);
@@ -41,9 +41,9 @@ export const choresFetch = () => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users`)
+      .ref(`/users/${currentUser.uid}/users/chores`)
       .on("value", snapshot => {
-        dispatch({ type: USER_FETCH_SUCCESS, payload: snapshot.val() });
+        dispatch({ type: CHORE_FETCH_SUCCESS, payload: snapshot.val() });
       });
   };
 };

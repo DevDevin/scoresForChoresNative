@@ -11,3 +11,4 @@ export const SET_ACTIVE_USER = "set_active_user";
 export const CHORE_UPDATE = "chore_update";
 export const CHORE_CREATE = "chore_create";
 export const CHORE_SAVE_SUCCESS = "chore_save_success";
+export const CHORE_FETCH_SUCCESS = "chore_fetch_success";
