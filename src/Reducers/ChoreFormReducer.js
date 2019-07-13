@@ -12,10 +12,8 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log("entered CHORE form reducer");
   switch (action.type) {
     case CHORE_UPDATE:
-      console.log("entered CHORE_UDPATE");
       return { ...state, [action.payload.prop]: action.payload.value };
     case CHORE_CREATE:
       return INITIAL_STATE;

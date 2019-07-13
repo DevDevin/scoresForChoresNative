@@ -5,7 +5,7 @@ import { Actions } from "react-native-router-flux";
 import { CardSection } from "./common";
 import { usersFetch, setActiveUser } from "../actions/AuthActions";
 
-class ListItem extends Component {
+class UserListItem extends Component {
   onRowPress(activeUser) {
     // redirect to parent or child depending on the user status
     this.props.setActiveUser(activeUser.uid);
@@ -45,4 +45,4 @@ const styles = {
 export default connect(
   null,
   { usersFetch, setActiveUser }
-)(ListItem);
+)(UserListItem);

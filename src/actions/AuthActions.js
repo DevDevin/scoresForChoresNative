@@ -49,7 +49,6 @@ const loginUserFail = dispatch => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log("entered loginUserSuccess");
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
 
   // Navigate to the choose user screen
@@ -59,7 +58,6 @@ const loginUserSuccess = (dispatch, user) => {
 export const userCreate = ({ name, phone, password1, status, email }) => {
   const { currentUser } = firebase.auth();
 
-  console.log("status: ", status);
   return dispatch => {
     firebase
       .database()
@@ -78,7 +76,6 @@ export const userCreate = ({ name, phone, password1, status, email }) => {
 };
 
 export const userUpdate = ({ prop, value }) => {
-  console.log("value: ", value);
   return {
     type: USER_UPDATE,
     payload: { prop, value }
@@ -87,7 +84,6 @@ export const userUpdate = ({ prop, value }) => {
 
 export const usersFetch = () => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser: ", currentUser);
 
   return dispatch => {
     firebase
@@ -101,7 +97,6 @@ export const usersFetch = () => {
 
 export const setActiveUser = activeUserId => {
   const { currentUser } = firebase.auth();
-  console.log("activeUserID: ", activeUserId);
 
   return dispatch => {
     firebase

@@ -1,15 +1,16 @@
-import React, { Component } from "react";
 import _ from "lodash";
-import { ListView } from "react-native";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View } from "react-native";
-import ListItem from "../common";
+import { ListView } from "react-native";
 import { choresFetch } from "../../actions/ParentActions";
+import ChoreListItem from "../ChoreListItem";
+import { Text, View } from "react-native";
 
 class ParentChoreList extends Component {
   componentWillMount() {
     this.props.choresFetch();
-    console.log(this.props);
+
+    this.createDataSource(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,10 +26,12 @@ class ParentChoreList extends Component {
   }
 
   renderRow(chore) {
-    return <ListItem chore={chore} />;
+    return <ChoreListItem chore={chore} />;
   }
 
   render() {
+    const chores = this.props.chores;
+
     return (
       <ListView
         enableEmptySections
@@ -40,11 +43,10 @@ class ParentChoreList extends Component {
 }
 
 const mapStateToProps = state => {
-  const chores = _.map(state.chores, (val, uid) => {
-    // return { ...val, uid };
-    console.log("state.chores: ", ...val, uid);
+  const chores = _.map(state.chores, (val, cid) => {
+    return { ...val, cid };
   });
-  return { chores };
+  return { chores: chores };
 };
 
 export default connect(

@@ -57,7 +57,6 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  console.log("activeUserData: ", state.auth.activeUser.name);
   return {
     activeUser: state.auth.activeUser
   };

@@ -3,13 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
 import { usersFetch } from "../actions/AuthActions";
-import ListItem from "./ListItem";
+import UserListItem from "./UserListItem";
 import { Text } from "react-native";
 
 class ChooseUser extends Component {
   componentWillMount() {
     this.props.usersFetch();
-    console.log("users: ", this.props);
 
     this.createDataSource(this.props);
   }
@@ -27,7 +26,7 @@ class ChooseUser extends Component {
   }
 
   renderRow(user) {
-    return <ListItem user={user} />;
+    return <UserListItem user={user} />;
   }
 
   render() {

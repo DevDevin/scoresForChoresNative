@@ -3,7 +3,6 @@ import { Actions } from "react-native-router-flux";
 import { CHORE_UPDATE, CHORE_FETCH_SUCCESS } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
-  console.log("value: ", value);
   return {
     type: CHORE_UPDATE,
     payload: { prop, value }
@@ -21,7 +20,7 @@ export const choreCreate = ({
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users/chores`)
+      .ref(`/users/${currentUser.uid}/chores`)
       .push({
         choreName: choreName,
         description: description,
@@ -36,12 +35,11 @@ export const choreCreate = ({
 
 export const choresFetch = () => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser: ", currentUser);
 
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users/chores`)
+      .ref(`/users/${currentUser.uid}/chores`)
       .on("value", snapshot => {
         dispatch({ type: CHORE_FETCH_SUCCESS, payload: snapshot.val() });
       });

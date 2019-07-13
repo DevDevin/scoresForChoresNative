@@ -67,7 +67,6 @@ class UserForm extends Component {
             selectedValue={this.props.status}
             style={{ height: 50, width: 100, position: "relative" }}
             onValueChange={value => {
-              console.log("itemValue: ", value);
               this.props.userUpdate({ prop: "status", value });
             }}
           >

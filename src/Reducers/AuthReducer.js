@@ -16,8 +16,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log("entered AuthReducer");
-  console.log(action);
   switch (action.type) {
     case EMAIL_CHANGED:
       return {
@@ -30,7 +28,6 @@ export default (state = INITIAL_STATE, action) => {
         password: action.payload
       };
     case LOGIN_USER_SUCCESS:
-      console.log("entered LOGIN_USER_SUCCESS");
       return {
         ...state,
         user: action.payload,
@@ -50,7 +47,6 @@ export default (state = INITIAL_STATE, action) => {
         error: ""
       };
     case SET_ACTIVE_USER:
-      console.log("activeUserData: ", action.payload);
       return {
         ...state,
         activeUser: action.payload
