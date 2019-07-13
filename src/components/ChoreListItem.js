@@ -11,16 +11,19 @@ class ChoreListItem extends Component {
   }
 
   render() {
-    const child = this.props.chore.child;
+    const choreName = this.props.chore.choreName;
+    const day = this.props.chore.day;
 
     return (
       <TouchableWithoutFeedback
-        value={this.props.chore.child}
+        value={this.props.chore.choreName}
         onPress={this.onRowPress.bind(this, this.props.chore)}
       >
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>{child}</Text>
+            <Text style={styles.titleStyle}>
+              {choreName} : {day}
+            </Text>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>

@@ -12,3 +12,4 @@ export const CHORE_UPDATE = "chore_update";
 export const CHORE_CREATE = "chore_create";
 export const CHORE_SAVE_SUCCESS = "chore_save_success";
 export const CHORE_FETCH_SUCCESS = "chore_fetch_success";
+export const CHILD_CHORES_FETCH_SUCCESS = "child_chores_fetch_success";

@@ -43,6 +43,7 @@ class ParentChoreList extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("state.auth.activeUser.name", state.auth.activeUser.name);
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });
