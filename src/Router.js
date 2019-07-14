@@ -11,6 +11,7 @@ import CompletionRequests from "./components/parent/CompletionRequests";
 import ChildChoreList from "./components/child/ChildChoreList";
 import ChildRewardStore from "./components/child/ChildRewardStore";
 import ChoreCreate from "./components/parent/ChoreCreate";
+import RewardCreate from "./components/parent/RewardCreate";
 
 const RouterComponent = () => {
   return (
@@ -66,6 +67,10 @@ const RouterComponent = () => {
             title="Parent Chore List"
           />
           <Scene
+            rightTitle="Add Reward"
+            onRight={() => {
+              Actions.rewardCreate();
+            }}
             key="parentRewardList"
             component={ParentRewardList}
             title="Parent Reward List"
@@ -76,6 +81,11 @@ const RouterComponent = () => {
             title="Completion Requests"
           />
           <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />
+          <Scene
+            key="rewardCreate"
+            component={RewardCreate}
+            title="New New Reward"
+          />
         </Scene>
       </Scene>
     </Router>

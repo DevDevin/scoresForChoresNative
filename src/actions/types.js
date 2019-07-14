@@ -13,3 +13,7 @@ export const CHORE_CREATE = "chore_create";
 export const CHORE_SAVE_SUCCESS = "chore_save_success";
 export const CHORE_FETCH_SUCCESS = "chore_fetch_success";
 export const CHILD_CHORES_FETCH_SUCCESS = "child_chores_fetch_success";
+export const REWARD_UPDATE = "reward_update";
+export const REWARD_CREATE = "reward_create";
+export const REWARD_SAVE_SUCCESS = "reward_save_success";
+export const REWARD_FETCH_SUCCESS = "reward_fetch_success";
