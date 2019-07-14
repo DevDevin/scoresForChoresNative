@@ -82,7 +82,8 @@ export const rewardUpdate = ({ prop, value }) => {
   };
 };
 
-export const rewardFetch = () => {
+export const rewardsFetch = () => {
+  console.log("inside rewards fetch in parent actions");
   const { currentUser } = firebase.auth();
 
   return dispatch => {

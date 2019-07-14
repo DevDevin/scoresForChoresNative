@@ -14,5 +14,5 @@ export default combineReducers({
   choreForm: ChoreFormReducer,
   chores: ChoreReducer,
   rewardForm: RewardFormReducer,
-  reward: RewardReducer
+  rewards: RewardReducer
 });
