@@ -14,7 +14,7 @@ class ParentHome extends Component {
   }
 
   onCompletionRequestPress() {
-    Actions.completionRequests();
+    Actions.completionRequestList();
   }
 
   render() {

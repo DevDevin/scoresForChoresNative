@@ -17,3 +17,5 @@ export const REWARD_UPDATE = "reward_update";
 export const REWARD_CREATE = "reward_create";
 export const REWARD_SAVE_SUCCESS = "reward_save_success";
 export const REWARD_FETCH_SUCCESS = "reward_fetch_success";
+export const COMPLETION_REQUESTS_FETCH_SUCCESS =
+  "completion_requests_fetch_success";

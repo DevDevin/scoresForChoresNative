@@ -4,7 +4,8 @@ import {
   CHORE_UPDATE,
   CHORE_FETCH_SUCCESS,
   REWARD_UPDATE,
-  REWARD_FETCH_SUCCESS
+  REWARD_FETCH_SUCCESS,
+  COMPLETION_REQUESTS_FETCH_SUCCESS
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
@@ -59,6 +60,7 @@ export const rewardCreate = ({
   pointsValue: pointsValue
 }) => {
   const { currentUser } = firebase.auth();
+  console.log("currentUser: ", currentUser);
 
   return dispatch => {
     firebase
@@ -92,6 +94,22 @@ export const rewardsFetch = () => {
       .ref(`/users/${currentUser.uid}/rewards`)
       .on("value", snapshot => {
         dispatch({ type: REWARD_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+export const completionRequestsFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/completionRequests`)
+      .on("value", snapshot => {
+        dispatch({
+          type: COMPLETION_REQUESTS_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
       });
   };
 };

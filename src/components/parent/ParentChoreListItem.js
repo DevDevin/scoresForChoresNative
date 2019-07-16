@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Text, TouchableWithoutFeedback, View } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { CardSection } from "./common";
-import { choresFetch } from "../actions/ParentActions";
-import { Button } from "../components/common";
+import { choresFetch } from "../../actions/ParentActions";
+import { Button, CardSection } from "../common";
 
-class ChoreListItem extends Component {
+class ParentChoreListItem extends Component {
   onRowPress(activeUser) {
     // actions.something
   }
@@ -15,21 +14,9 @@ class ChoreListItem extends Component {
     const choreName = this.props.chore.choreName;
     const day = this.props.chore.day;
 
-    let CompletionRequestButtons;
-    let childName = "";
+    const childName = this.props.chore.child;
     console.log(this.props.activeUser.status);
 
-    if (this.props.activeUser.status === "child") {
-      CompletionRequestButtons = <Button>Complete</Button>;
-    } else if (this.props.activeUser.status === "parent") {
-      childName = this.props.chore.child;
-      CompletionRequestButtons = (
-        <View>
-          <Button>Accept</Button>
-          <Button>Reject</Button>
-        </View>
-      );
-    }
     return (
       <TouchableWithoutFeedback
         value={this.props.chore.choreName}
@@ -40,7 +27,7 @@ class ChoreListItem extends Component {
             <Text style={styles.titleStyle}>
               {choreName} : {day} : {childName}
             </Text>
-            {CompletionRequestButtons}
+            <Button>Edit</Button>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
@@ -64,4 +51,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { choresFetch }
-)(ChoreListItem);
+)(ParentChoreListItem);

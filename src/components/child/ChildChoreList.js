@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
-import ChoreListItem from "../ChoreListItem";
+import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View } from "react-native";
 
 class ChildChoreList extends Component {
@@ -26,7 +26,7 @@ class ChildChoreList extends Component {
   }
 
   renderRow(childChore) {
-    return <ChoreListItem chore={childChore} />;
+    return <ChildChoreListItem chore={childChore} />;
   }
 
   render() {

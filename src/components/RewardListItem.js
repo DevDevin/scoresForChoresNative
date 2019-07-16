@@ -13,6 +13,7 @@ class RewardListItem extends Component {
 
   render() {
     const rewardName = this.props.reward.rewardName;
+    const pointsValue = this.props.reward.pointsValue;
 
     return (
       <TouchableWithoutFeedback
@@ -21,7 +22,9 @@ class RewardListItem extends Component {
       >
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>{rewardName}</Text>
+            <Text style={styles.titleStyle}>
+              {rewardName} Points: {pointsValue}
+            </Text>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>

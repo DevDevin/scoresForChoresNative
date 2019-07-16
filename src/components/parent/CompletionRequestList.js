@@ -2,13 +2,13 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
-import { choresFetch } from "../../actions/ParentActions";
-import ParentChoreListItem from "./ParentChoreListItem";
+import { completionRequestsFetch } from "../../actions/ParentActions";
+import CompletionRequestListItem from "./CompletionRequestListItem";
 import { Text, View } from "react-native";
 
-class ParentChoreList extends Component {
+class CompletionRequestList extends Component {
   componentWillMount() {
-    this.props.choresFetch();
+    this.props.completionRequestsFetch();
 
     this.createDataSource(this.props);
   }
@@ -17,20 +17,20 @@ class ParentChoreList extends Component {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ chores }) {
+  createDataSource({ completionRequests }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(chores);
+    this.dataSource = ds.cloneWithRows(completionRequests);
   }
 
-  renderRow(chore) {
-    return <ParentChoreListItem chore={chore} />;
+  renderRow(completionRequest) {
+    return <CompletionRequestListItem completionRequest={completionRequest} />;
   }
 
   render() {
-    const chores = this.props.chores;
+    const completionRequests = this.props.completionRequests;
 
     return (
       <ListView
@@ -43,14 +43,13 @@ class ParentChoreList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state.auth.activeUser.name", state.auth.activeUser.name);
-  const chores = _.map(state.chores, (val, cid) => {
+  const completionRequests = _.map(state.completionRequests, (val, cid) => {
     return { ...val, cid };
   });
-  return { chores: chores };
+  return { completionRequests: completionRequests };
 };
 
 export default connect(
   mapStateToProps,
-  { choresFetch }
-)(ParentChoreList);
+  { completionRequestsFetch }
+)(CompletionRequestList);

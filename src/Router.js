@@ -7,7 +7,7 @@ import ChildHome from "./components/child/ChildHome";
 import ParentHome from "./components/parent/ParentHome";
 import ParentChoreList from "./components/parent/ParentChoreList";
 import ParentRewardList from "./components/parent/ParentRewardList";
-import CompletionRequests from "./components/parent/CompletionRequests";
+import CompletionRequestList from "./components/parent/CompletionRequestList";
 import ChildChoreList from "./components/child/ChildChoreList";
 import ChildRewardStore from "./components/child/ChildRewardStore";
 import ChoreCreate from "./components/parent/ChoreCreate";
@@ -76,8 +76,8 @@ const RouterComponent = () => {
             title="Parent Reward List"
           />
           <Scene
-            key="completionRequests"
-            component={CompletionRequests}
+            key="completionRequestList"
+            component={CompletionRequestList}
             title="Completion Requests"
           />
           <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />

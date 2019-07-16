@@ -6,6 +6,7 @@ import ChoreReducer from "./ChoreReducer";
 import ChoreFormReducer from "./ChoreFormReducer";
 import RewardReducer from "./RewardReducer";
 import RewardFormReducer from "./RewardFormReducer";
+import CompletionRequestReducer from "./CompletionRequestReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   choreForm: ChoreFormReducer,
   chores: ChoreReducer,
   rewardForm: RewardFormReducer,
-  rewards: RewardReducer
+  rewards: RewardReducer,
+  completionRequests: CompletionRequestReducer
 });
