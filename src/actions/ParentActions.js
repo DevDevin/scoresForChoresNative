@@ -5,7 +5,8 @@ import {
   CHORE_FETCH_SUCCESS,
   REWARD_UPDATE,
   REWARD_FETCH_SUCCESS,
-  COMPLETION_REQUESTS_FETCH_SUCCESS
+  COMPLETION_REQUESTS_FETCH_SUCCESS,
+  CHORE_SAVE_SUCCESS
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
@@ -19,7 +20,8 @@ export const choreCreate = ({
   choreName: choreName,
   description: description,
   day: day,
-  child: child
+  child: child,
+  pointsValue: pointsValue
 }) => {
   const { currentUser } = firebase.auth();
 
@@ -31,7 +33,9 @@ export const choreCreate = ({
         choreName: choreName,
         description: description,
         day: day,
-        child: child
+        child: child,
+        pointsValue: pointsValue,
+        status: "In-Progress"
       })
       .then(() => {
         Actions.parentChoreList();
@@ -110,6 +114,43 @@ export const completionRequestsFetch = () => {
           type: COMPLETION_REQUESTS_FETCH_SUCCESS,
           payload: snapshot.val()
         });
+      });
+  };
+};
+
+export const choreSave = ({
+  child,
+  choreName,
+  description,
+  cid,
+  pointsValue,
+  day
+}) => {
+  const { currentUser } = firebase.auth();
+  console.log("cid: ", cid);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({ child, choreName, description, pointsValue, day })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+        Actions.parentChoreList({ type: "reset" });
+      });
+  };
+};
+
+export const choreDelete = ({ cid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .remove()
+      .then(() => {
+        Actions.employeeList({ type: "reset" });
       });
   };
 };

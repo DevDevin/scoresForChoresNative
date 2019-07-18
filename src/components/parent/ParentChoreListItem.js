@@ -7,7 +7,12 @@ import { Button, CardSection } from "../common";
 
 class ParentChoreListItem extends Component {
   onRowPress(activeUser) {
-    // actions.something
+    // Actions.choreEdit({ chore: this.props.chore });
+  }
+
+  onEditPress() {
+    // edit the chore
+    Actions.choreEdit({ chore: this.props.chore });
   }
 
   render() {
@@ -27,7 +32,9 @@ class ParentChoreListItem extends Component {
             <Text style={styles.titleStyle}>
               {choreName} : {day} : {childName}
             </Text>
-            <Button>Edit</Button>
+            <Button style={{ width: 20 }} onPress={this.onEditPress.bind(this)}>
+              Edit
+            </Button>
           </CardSection>
         </View>
       </TouchableWithoutFeedback>

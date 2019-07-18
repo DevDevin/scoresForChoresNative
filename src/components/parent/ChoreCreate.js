@@ -7,13 +7,14 @@ import ChoreForm from "./ChoreForm";
 class ChoreCreate extends Component {
   componentDidMount() {}
   onButtonPress() {
-    const { choreName, description, day, child } = this.props;
+    const { choreName, description, day, child, pointsValue } = this.props;
 
     this.props.choreCreate({
       choreName: choreName,
       description: description,
       day: day,
-      child: child
+      child: child,
+      pointsValue: pointsValue
     });
   }
 
@@ -30,9 +31,9 @@ class ChoreCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { choreName, description, day, child } = state.choreForm;
+  const { choreName, description, day, child, pointsValue } = state.choreForm;
 
-  return { choreName, description, day, child };
+  return { choreName, description, day, child, pointsValue };
 };
 
 export default connect(

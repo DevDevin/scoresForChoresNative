@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   choreName: "",
   description: "",
   day: "",
-  child: ""
+  child: "",
+  pointsValue: ""
 };
 
 export default (state = INITIAL_STATE, action) => {

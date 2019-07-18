@@ -12,6 +12,7 @@ import ChildChoreList from "./components/child/ChildChoreList";
 import ChildRewardStore from "./components/child/ChildRewardStore";
 import ChoreCreate from "./components/parent/ChoreCreate";
 import RewardCreate from "./components/parent/RewardCreate";
+import ChoreEdit from "./components/parent/ChoreEdit";
 
 const RouterComponent = () => {
   return (
@@ -36,11 +37,7 @@ const RouterComponent = () => {
             title="Choose User"
             initial
           />
-          <Scene
-            key="userCreate"
-            component={UserCreate}
-            title="Create Employee"
-          />
+          <Scene key="userCreate" component={UserCreate} title="Create User" />
         </Scene>
         <Scene key="child">
           <Scene key="childHome" component={ChildHome} title="Child Home" />
@@ -81,6 +78,7 @@ const RouterComponent = () => {
             title="Completion Requests"
           />
           <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />
+          <Scene key="choreEdit" component={ChoreEdit} title="Edit Chore" />
           <Scene
             key="rewardCreate"
             component={RewardCreate}
