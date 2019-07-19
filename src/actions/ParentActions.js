@@ -102,7 +102,7 @@ export const rewardsFetch = () => {
   };
 };
 
-export const completionRequestsFetch = () => {
+export const completionRequestsFetch2 = () => {
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -151,6 +151,86 @@ export const choreDelete = ({ cid }) => {
       .remove()
       .then(() => {
         Actions.employeeList({ type: "reset" });
+      });
+  };
+};
+
+// completion request handling
+
+export const requestAccept = (
+  cid,
+  choreName,
+  day,
+  child,
+  description,
+  pointsValue
+) => {
+  const { currentUser } = firebase.auth();
+  console.log("cid: ", cid);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({
+        status: "Complete",
+        choreName: choreName,
+        day: day,
+        child: child,
+        description: description,
+        pointsValue: pointsValue
+      })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+        Actions.completionRequestList({ type: "reset" });
+      });
+  };
+};
+
+export const requestReject = (
+  cid,
+  choreName,
+  day,
+  child,
+  description,
+  pointsValue
+) => {
+  const { currentUser } = firebase.auth();
+  console.log("cid: ", cid);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({
+        status: "Rework",
+        choreName: choreName,
+        day: day,
+        child: child,
+        description: description,
+        pointsValue: pointsValue
+      })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+        Actions.completionRequestList({ type: "reset" });
+      });
+  };
+};
+
+// fOR THE COMPLETION request we will fetch by the status of the chore rather than creating a new request ojbect
+export const completionRequestsFetch = () => {
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .orderByChild("status")
+      .equalTo("Submitted")
+      .on("value", snapshot => {
+        dispatch({
+          type: COMPLETION_REQUESTS_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
       });
   };
 };
