@@ -1,11 +1,10 @@
 --in the chore list I need to update the status of the chore to be submitted and change the complete button
 to a rework or undo button. 
--- complete functionality to allow parent to accept or reject completion request
 -- complete functionality to add points when parent accepts completion request
 -- complete functionality to submit reward request
--- complete functionality for parents to edit chores
 -- add logout and home button/links
 -- add a modal that shows more information about the chore when it is touched
+-- submit completion request
 
 
 

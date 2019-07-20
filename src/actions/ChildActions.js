@@ -35,22 +35,32 @@ export const rewardsFetch = () => {
   };
 };
 
-export const completionRequestCreate = ({
-  choreName: choreName,
-  day: day,
-  child: child
-}) => {
+export const completionRequestSend = (
+  choreName,
+  child,
+  day,
+  description,
+  pointsValue,
+  cid
+) => {
   const { currentUser } = firebase.auth();
+  console.log("cid: ", cid);
 
-  firebase
-    .database()
-    .ref(`/users/${currentUser.uid}/completionRequests`)
-    .push({
-      choreName: choreName,
-      day: day,
-      child: child
-    })
-    .then(() => {
-      Actions.parentChoreList();
-    });
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({
+        status: "Submitted",
+        choreName: choreName,
+        day: day,
+        child: child,
+        description: description,
+        pointsValue: pointsValue
+      })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+        Actions.completionRequestList({ type: "reset" });
+      });
+  };
 };
