@@ -32,6 +32,7 @@ class ChooseUser extends Component {
   render() {
     return (
       <ListView
+        style={{ flex: 1, flexDirection: "row" }}
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}

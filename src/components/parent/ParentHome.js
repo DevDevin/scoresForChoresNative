@@ -21,7 +21,7 @@ class ParentHome extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <Card>
+      <Card style={{ backgroundColor: "red" }}>
         <Text>Hello {name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>

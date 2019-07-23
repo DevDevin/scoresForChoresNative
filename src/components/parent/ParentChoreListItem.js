@@ -6,13 +6,13 @@ import { choresFetch } from "../../actions/ParentActions";
 import { Button, CardSection } from "../common";
 
 class ParentChoreListItem extends Component {
-  onRowPress(activeUser) {
-    // Actions.choreEdit({ chore: this.props.chore });
-  }
-
   onEditPress() {
     // edit the chore
     Actions.choreEdit({ chore: this.props.chore });
+  }
+
+  onRowPress(activeUser) {
+    // Actions.choreEdit({ chore: this.props.chore });
   }
 
   render() {
@@ -23,21 +23,26 @@ class ParentChoreListItem extends Component {
     console.log(this.props.activeUser.status);
 
     return (
-      <TouchableWithoutFeedback
-        value={this.props.chore.choreName}
-        onPress={this.onRowPress.bind(this, this.props.chore)}
-      >
-        <View>
-          <CardSection>
-            <Text style={styles.titleStyle}>
-              {choreName} : {day} : {childName}
-            </Text>
-            <Button style={{ width: 20 }} onPress={this.onEditPress.bind(this)}>
-              Edit
-            </Button>
-          </CardSection>
-        </View>
-      </TouchableWithoutFeedback>
+      <View>
+        <TouchableWithoutFeedback
+          value={this.props.chore.choreName}
+          onPress={this.onRowPress.bind(this, this.props.chore)}
+        >
+          <View>
+            <CardSection>
+              <Text style={styles.titleStyle}>
+                {choreName} : {day} : {childName}
+              </Text>
+              <Button
+                style={{ width: 20 }}
+                onPress={this.onEditPress.bind(this)}
+              >
+                Edit
+              </Button>
+            </CardSection>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }

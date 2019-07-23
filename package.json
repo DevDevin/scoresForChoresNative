@@ -11,6 +11,8 @@
     "lodash": "^4.17.11",
     "react": "16.8.3",
     "react-native": "0.59.9",
+    "react-native-home-pressed": "^1.1.4",
+    "react-native-material-menu": "^0.6.5",
     "react-native-router-flux": "^4.0.6",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
