@@ -21,8 +21,8 @@ class ParentHome extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <Card style={{ backgroundColor: "red" }}>
-        <Text>Hello {name}</Text>
+      <View style={{ flex: 1, flexDirection: "column" }}>
+        <Text style={{ flex: 0.5 }}>Hello {name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>
             <Text>Chore List</Text>
@@ -40,7 +40,7 @@ class ParentHome extends Component {
             <Text>Completion Requests</Text>
           </View>
         </TouchableWithoutFeedback>
-      </Card>
+      </View>
     );
   }
 }
@@ -52,7 +52,8 @@ const styles = {
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
-    paddingLeft: 15
+    paddingLeft: 15,
+    flex: 1
   }
 };
 

@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, TouchableWithoutFeedback, View, Dimensions } from "react-native";
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Dimensions,
+  ScrollView
+} from "react-native";
 import { Actions } from "react-native-router-flux";
 import { CardSection } from "./common";
 import { usersFetch, setActiveUser } from "../actions/AuthActions";
