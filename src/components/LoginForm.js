@@ -39,16 +39,22 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <Card>
-        <CardSection>
+      <View style={styles.ContainerStyle}>
+        <View style={styles.titleStyle}>
+          <Text style={styles.textStyle}>Scores 4 Chores</Text>
+          <Text style={styles.textStyle}>
+            A job Manager for Parents and children
+          </Text>
+        </View>
+        <View style={styles.cardSectionStyle}>
           <Input
             label="Email"
             placeholder="email@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
             value={this.props.email}
           />
-        </CardSection>
-        <CardSection>
+        </View>
+        <View style={styles.cardSectionStyle}>
           <Input
             secureTextEntry
             label="Password"
@@ -56,10 +62,16 @@ class LoginForm extends Component {
             onChangeText={this.onPasswordChange.bind(this)}
             value={this.props.password}
           />
-        </CardSection>
+        </View>
         {this.rendorError()}
-        <CardSection>{this.renderButton()}</CardSection>
-      </Card>
+        <View style={styles.cardSectionStyle}>{this.renderButton()}</View>
+        <View style={styles.titleStyle}>
+          <Text style={styles.textStyle}>Scores 4 Chores</Text>
+          <Text style={styles.textStyle}>
+            A job Manager for Parents and children
+          </Text>
+        </View>
+      </View>
     );
   }
 }
@@ -69,6 +81,50 @@ const styles = {
     fontSize: 20,
     alignSelf: "center",
     color: "red"
+  },
+  ContainerStyle: {
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: "#ddd",
+    borderBottomWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+    flex: 5,
+    flexDirection: "column"
+    // justifyContent: "center",
+    // alignItems: "stretch"
+  },
+  cardSectionStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative"
+  },
+  titleStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    // justifyContent: "flex-start",
+    // flexDirection: "row",
+    borderColor: "#ddd"
+    // position: "relative"
+  },
+  textStyle: {
+    alignSelf: "center",
+    color: "#007aff",
+    fontSize: 16,
+    fontWeight: "600",
+    paddingTop: 10,
+    paddingBottom: 10
   }
 };
 

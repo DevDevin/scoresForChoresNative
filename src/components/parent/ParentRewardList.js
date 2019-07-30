@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { ListView } from "react-native";
 import { rewardsFetch } from "../../actions/ParentActions";
 import RewardListItem from "../RewardListItem";
-import { Text, View } from "react-native";
 
 class ParentRewardList extends Component {
   componentWillMount() {

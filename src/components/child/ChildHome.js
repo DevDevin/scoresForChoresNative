@@ -17,7 +17,7 @@ class ChildHome extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <Card>
+      <View style={{ flex: 1, flexDirection: "column" }}>
         <Text>Hello {name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>
@@ -29,7 +29,7 @@ class ChildHome extends Component {
             <Text>Rewards Store</Text>
           </View>
         </TouchableWithoutFeedback>
-      </Card>
+      </View>
     );
   }
 }
@@ -41,7 +41,9 @@ const styles = {
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
-    paddingLeft: 15
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15
   }
 };
 
