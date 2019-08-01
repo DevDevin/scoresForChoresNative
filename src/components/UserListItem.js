@@ -63,6 +63,7 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
+    backgroundColor: "powderblue",
     width: Dimensions.get("window").width
   },
   cardSectionStyle: {

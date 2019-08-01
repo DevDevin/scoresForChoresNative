@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
+import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
 import { Card } from "../common/index";
 
 class ChildHome extends Component {
@@ -18,15 +18,44 @@ class ChildHome extends Component {
 
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
-        <Text>Hello {name}</Text>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#d67d72",
+            flex: 0.5
+          }}
+        >
+          <Text style={{ fontSize: 24 }}>Hello {name}</Text>
+        </View>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
-          <View style={styles.viewStyle}>
-            <Text>Chore List</Text>
+          <View style={styles.choreListStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 22 }}>Chore List</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
-          <View style={styles.viewStyle}>
-            <Text>Rewards Store</Text>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/rewardList.png")} />
+              <Text style={{ fontSize: 22 }}>Reward List</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -35,7 +64,7 @@ class ChildHome extends Component {
 }
 
 const styles = {
-  viewStyle: {
+  choreListStyle: {
     height: 100,
     borderRadius: 4,
     borderWidth: 2,
@@ -43,7 +72,19 @@ const styles = {
     fontSize: 30,
     paddingLeft: 15,
     flex: 1,
-    paddingBottom: 15
+    paddingBottom: 15,
+    backgroundColor: "powderblue"
+  },
+  rewardStoreStyle: {
+    height: 100,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#d6d7da",
+    fontSize: 30,
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15,
+    backgroundColor: "skyblue"
   }
 };
 
