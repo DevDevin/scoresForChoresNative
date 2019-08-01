@@ -21,7 +21,9 @@ class ParentHome extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <View style={{ flex: 1, flexDirection: "column" }}>
+      <View
+        style={{ flex: 1, flexDirection: "column", backgroundColor: "#d67d72" }}
+      >
         <Text style={{ flex: 0.5 }}>Hello {name}</Text>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.viewStyle}>

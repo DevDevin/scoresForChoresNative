@@ -34,6 +34,7 @@ class ParentChoreList extends Component {
 
     return (
       <ListView
+        style={{ backgroundColor: "powderblue" }}
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}

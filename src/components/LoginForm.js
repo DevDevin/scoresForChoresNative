@@ -27,12 +27,19 @@ class LoginForm extends Component {
     if (this.props.loading) {
       return <Spinner />;
     }
-    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
+    return (
+      <Button
+        style={{ backgroundColor: "skyblue" }}
+        onPress={this.onButtonPress.bind(this)}
+      >
+        Login
+      </Button>
+    );
   }
 
   rendorError() {
     return (
-      <View style={{ backgroundColor: "white" }}>
+      <View style={{ backgroundColor: "skyblue" }}>
         <Text style={styles.errorTextStyle}>{this.props.error}</Text>
       </View>
     );
@@ -40,12 +47,6 @@ class LoginForm extends Component {
   render() {
     return (
       <View style={styles.ContainerStyle}>
-        <View style={styles.titleStyle}>
-          <Text style={styles.textStyle}>Scores 4 Chores</Text>
-          <Text style={styles.textStyle}>
-            A job Manager for Parents and children
-          </Text>
-        </View>
         <View style={styles.cardSectionStyle}>
           <Input
             label="Email"
@@ -64,13 +65,7 @@ class LoginForm extends Component {
           />
         </View>
         {this.rendorError()}
-        <View style={styles.cardSectionStyle}>{this.renderButton()}</View>
-        <View style={styles.titleStyle}>
-          <Text style={styles.textStyle}>Scores 4 Chores</Text>
-          <Text style={styles.textStyle}>
-            A job Manager for Parents and children
-          </Text>
-        </View>
+        <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
       </View>
     );
   }
@@ -96,27 +91,26 @@ const styles = {
     marginRight: 5,
     marginTop: 10,
     flex: 5,
-    flexDirection: "column"
-    // justifyContent: "center",
-    // alignItems: "stretch"
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "#d67d72"
   },
   cardSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "#fff",
+    backgroundColor: "powderblue",
     justifyContent: "flex-start",
     flexDirection: "row",
     borderColor: "#ddd",
     position: "relative"
   },
-  titleStyle: {
+  buttonSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "#fff",
-    // justifyContent: "flex-start",
-    // flexDirection: "row",
-    borderColor: "#ddd"
-    // position: "relative"
+    backgroundColor: "skyblue",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative"
   },
   textStyle: {
     alignSelf: "center",

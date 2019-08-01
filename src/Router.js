@@ -13,6 +13,7 @@ import ChildRewardStore from "./components/child/ChildRewardStore";
 import ChoreCreate from "./components/parent/ChoreCreate";
 import RewardCreate from "./components/parent/RewardCreate";
 import ChoreEdit from "./components/parent/ChoreEdit";
+import StartupPage from "./components/StartupPage";
 
 const RouterComponent = () => {
   return (
@@ -20,11 +21,12 @@ const RouterComponent = () => {
       <Scene key="root" hideNavBar>
         <Scene key="auth">
           <Scene
-            key="login"
-            component={LoginForm}
-            title="Please Login"
+            key="startup"
+            component={StartupPage}
+            title="Scores For Chores"
             initial
           />
+          <Scene key="login" component={LoginForm} title="Please Login" />
         </Scene>
         <Scene key="user">
           <Scene
