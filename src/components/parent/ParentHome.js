@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
+import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
 import { Card } from "../common/index";
 
 class ParentHome extends Component {
@@ -37,19 +37,49 @@ class ParentHome extends Component {
         </View>
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.choreListStyle}>
-            <Text>Chore List</Text>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 22 }}>Chore List</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
           <View style={styles.rewardListStyle}>
-            <Text>Reward List</Text>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/rewardList.png")} />
+              <Text style={{ fontSize: 22 }}>Reward List</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
           onPress={this.onCompletionRequestPress.bind(this)}
         >
           <View style={styles.completionRequestsStyle}>
-            <Text>Completion Requests</Text>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/completionRequest.png")} />
+              <Text style={{ fontSize: 22 }}>Completion Requests</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>

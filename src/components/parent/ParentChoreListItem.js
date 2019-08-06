@@ -29,17 +29,19 @@ class ParentChoreListItem extends Component {
           onPress={this.onRowPress.bind(this, this.props.chore)}
         >
           <View>
-            <CardSection>
-              <Text style={styles.titleStyle}>
-                {choreName} : {day} : {childName}
+            <View style={styles.choreStyle}>
+              <Text style={styles.choreNameStyle}>{choreName}</Text>
+              <Text style={styles.choreInfoStyle}>
+                {day}: {childName}
               </Text>
-              <Button
+
+              {/* <Button
                 style={{ width: 20 }}
                 onPress={this.onEditPress.bind(this)}
               >
                 Edit
-              </Button>
-            </CardSection>
+              </Button> */}
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -48,9 +50,30 @@ class ParentChoreListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
+  choreNameStyle: {
+    fontSize: 26,
+    paddingLeft: 15,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: "bold"
+  },
+  choreInfoStyle: {
     fontSize: 18,
-    paddingLeft: 15
+    paddingLeft: 15,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  choreStyle: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: "#d67d72",
+    alignItems: "center",
+    borderColor: "#ddd"
   }
 };
 

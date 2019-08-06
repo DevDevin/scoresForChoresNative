@@ -5,7 +5,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Image
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { CardSection } from "./common";
@@ -36,6 +37,7 @@ class UserListItem extends Component {
       >
         <View style={styles.childStyle}>
           <View style={styles.cardSectionStyle}>
+            <Image source={require("../Images/genericUser.png")} />
             <Text style={styles.titleStyle}>{name}</Text>
           </View>
         </View>
@@ -46,8 +48,7 @@ class UserListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+    fontSize: 24
   },
   childStyle: {
     flex: 1,
@@ -67,13 +68,12 @@ const styles = {
     width: Dimensions.get("window").width
   },
   cardSectionStyle: {
-    // borderBottomWidth: 1
-    // padding: 5,
-    // backgroundColor: "#fff",
-    // justifyContent: "flex-start",
-    // flexDirection: "row",
-    // borderColor: "#ddd"
-    // position: "relative"
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    // backgroundColor: "#d67d72",
+
+    alignItems: "center"
   }
 };
 
