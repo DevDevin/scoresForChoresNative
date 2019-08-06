@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import {
   emailChanged,
@@ -28,12 +28,12 @@ class LoginForm extends Component {
       return <Spinner />;
     }
     return (
-      <Button
-        style={{ backgroundColor: "skyblue" }}
+      <TouchableOpacity
         onPress={this.onButtonPress.bind(this)}
+        style={styles.buttonStyle}
       >
-        Login
-      </Button>
+        <Text style={styles.textStyle}>Login</Text>
+      </TouchableOpacity>
     );
   }
 
@@ -110,15 +110,33 @@ const styles = {
     backgroundColor: "skyblue",
     flexDirection: "row",
     borderColor: "#ddd",
-    position: "relative"
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center"
   },
+  // textStyle: {
+  //   alignSelf: "center",
+  //   color: "#007aff",
+  //   fontSize: 16,
+  //   fontWeight: "600",
+  //   paddingTop: 10,
+  //   paddingBottom: 10
+  // },
   textStyle: {
     alignSelf: "center",
-    color: "#007aff",
     fontSize: 16,
     fontWeight: "600",
     paddingTop: 10,
     paddingBottom: 10
+  },
+  buttonStyle: {
+    width: 200,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#007aff",
+    marginLeft: 5,
+    marginRight: 5
   }
 };
 
