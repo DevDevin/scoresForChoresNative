@@ -39,7 +39,7 @@ class LoginForm extends Component {
 
   rendorError() {
     return (
-      <View style={{ backgroundColor: "skyblue" }}>
+      <View style={{ backgroundColor: "#d67d72" }}>
         <Text style={styles.errorTextStyle}>{this.props.error}</Text>
       </View>
     );
@@ -64,8 +64,8 @@ class LoginForm extends Component {
             value={this.props.password}
           />
         </View>
-        {this.rendorError()}
         <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
+        {this.rendorError()}
       </View>
     );
   }
