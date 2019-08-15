@@ -42,12 +42,11 @@ class RewardListItem extends Component {
           value={this.props.reward.rewardName}
           onPress={this.toggleModal}
         >
-          <View>
-            <CardSection>
-              <Text style={styles.titleStyle}>
-                {rewardName} Points: {pointsValue}
-              </Text>
-            </CardSection>
+          <View style={styles.childStyle}>
+            <View style={styles.choreStyle}>
+              <Text style={styles.choreNameStyle}>{rewardName}</Text>
+              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <Modal isVisible={this.state.isModalVisible}>

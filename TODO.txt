@@ -1,9 +1,13 @@
--- complete functionality to add points when parent accepts completion request
+-- add points when parent accepts completion request
 -- complete functionality to submit reward request
 -- add logout and home button/links
--- add a modal that shows more information about the chore when it is touched
--- make sure edit chore is working properly
--- hamburger menu in parent chore view that will filter based on day or child
+-- earned rewards view for children
+-- requested rewards view for parents
+-- subtract points when parent accepts reward request
+-- backgroundColor on all lists powder blue
+
+
+
 
 
 

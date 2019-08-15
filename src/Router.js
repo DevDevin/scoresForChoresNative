@@ -14,6 +14,7 @@ import ChoreCreate from "./components/parent/ChoreCreate";
 import RewardCreate from "./components/parent/RewardCreate";
 import ChoreEdit from "./components/parent/ChoreEdit";
 import StartupPage from "./components/StartupPage";
+import EarnedRewards from "./components/child/EarnedRewards";
 
 const RouterComponent = () => {
   return (
@@ -52,6 +53,15 @@ const RouterComponent = () => {
             key="childRewardStore"
             component={ChildRewardStore}
             title="Child Reward Store"
+            rightTitle="Earned Rewards"
+            onRight={() => {
+              Actions.earnedRewards();
+            }}
+          />
+          <Scene
+            key="earnedRewards"
+            component={EarnedRewards}
+            title="Earned Rewards"
           />
         </Scene>
         <Scene key="parent">
