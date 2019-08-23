@@ -5,6 +5,15 @@
 -- requested rewards view for parents
 -- subtract points when parent accepts reward request
 -- backgroundColor on all lists powder blue
+-- make a daily chore option when assigning chores
+-- add reason for rejection of completion request
+-- delete chores from child chore list once accepted
+-- add functionality for recurring chores
+-- show a list of earned rewards
+-- notifications for users
+
+
+
 
 
 

@@ -1,6 +1,10 @@
 import firebase from "firebase";
 import { Actions } from "react-native-router-flux";
-import { CHORE_FETCH_SUCCESS, REWARD_FETCH_SUCCESS } from "./types";
+import {
+  CHORE_FETCH_SUCCESS,
+  REWARD_FETCH_SUCCESS,
+  CHORE_SAVE_SUCCESS
+} from "./types";
 
 export const childChoresFetch = activeUser => {
   const { currentUser } = firebase.auth();
@@ -37,11 +41,12 @@ export const rewardsFetch = () => {
 
 export const completionRequestSend = (
   choreName,
-  child,
   day,
   description,
   pointsValue,
-  cid
+  cid,
+  child,
+  uid
 ) => {
   const { currentUser } = firebase.auth();
   console.log("cid: ", cid);
@@ -56,11 +61,15 @@ export const completionRequestSend = (
         day: day,
         child: child,
         description: description,
-        pointsValue: pointsValue
+        pointsValue: pointsValue,
+        uid: uid
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
-        Actions.completionRequestList({ type: "reset" });
+        Actions.childChoreList({ type: "reset" });
       });
   };
 };
+
+// somewhere the completion request is saved as state data. If I can find how the id is saved then I can
+//probably do the same thing for users. Also I could always use a find by field name function. I think firebase can do that too.

@@ -181,6 +181,21 @@ export const requestAccept = (
         pointsValue: pointsValue
       })
       .then(() => {
+        console.log("inside earned points changer", child);
+        return dispatch => {
+          firebase.database
+            .ref(`/users/${currentUser.uid}/users/${child}`)
+            .set({
+              pointsEarned: 5,
+              email: "test@test.com",
+              name: "Brinlee",
+              password: "password",
+              phone: "44444444",
+              status: "child"
+            });
+        };
+      })
+      .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
         Actions.completionRequestList({ type: "reset" });
       });

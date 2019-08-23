@@ -29,6 +29,7 @@ class CompletionRequestListItem extends Component {
   }
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
+    console.log("id: ", this.props);
     this.props.requestAccept(
       cid,
       choreName,

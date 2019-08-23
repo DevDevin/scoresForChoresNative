@@ -29,15 +29,17 @@ class ChildChoreListItem extends Component {
     Actions.choreEdit({ chore: this.props.chore });
   }
 
-  onButtonPress(choreName, day, description, pointsValue, cid, child) {
-    // submit a completion request
+  onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
+    // submit a completion
+    console.log("completion request child id: ", uid);
     this.props.completionRequestSend(
       choreName,
-      child,
       day,
       description,
       pointsValue,
-      cid
+      cid,
+      child,
+      uid
     );
   }
 
@@ -46,6 +48,7 @@ class ChildChoreListItem extends Component {
     const day = this.props.chore.day;
     const status = this.props.chore.status;
     const { description, pointsValue, cid, child } = this.props.chore;
+    const uid = this.props.activeUser.uid;
 
     let submitOption;
 
@@ -59,7 +62,8 @@ class ChildChoreListItem extends Component {
             description,
             pointsValue,
             cid,
-            child
+            child,
+            uid
           )}
           style={styles.buttonStyle}
         >

@@ -15,7 +15,8 @@ import { usersFetch, setActiveUser } from "../actions/AuthActions";
 class UserListItem extends Component {
   onRowPress(activeUser) {
     // redirect to parent or child depending on the user status
-    this.props.setActiveUser(activeUser.uid);
+    console.log(console.log("activeUser.uid", activeUser.uid));
+    this.props.setActiveUser(activeUser);
 
     if (activeUser.status === "parent") {
       Actions.parent();

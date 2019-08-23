@@ -5,6 +5,10 @@ import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
 import { Card } from "../common/index";
 
 class ChildHome extends Component {
+  componentDidMount() {
+    console.log(this.props.activeUser.uid);
+  }
+
   onChoreListPress() {
     Actions.childChoreList();
   }
