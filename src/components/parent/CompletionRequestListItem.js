@@ -29,14 +29,15 @@ class CompletionRequestListItem extends Component {
   }
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
-    console.log("id: ", this.props);
+    console.log("uid: ", this.props.completionRequest.uid);
     this.props.requestAccept(
       cid,
       choreName,
       day,
       child,
       description,
-      pointsValue
+      pointsValue,
+      this.props.completionRequest.uid
     );
   }
 
@@ -57,6 +58,7 @@ class CompletionRequestListItem extends Component {
     const cid = this.props.completionRequest.cid;
     const { description, pointsValue } = this.props.completionRequest;
     const child = this.props.completionRequest.child;
+    const uid = this.props.completionRequest.uid;
 
     return (
       <View style={{ flex: 1 }}>

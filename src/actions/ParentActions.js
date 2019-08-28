@@ -163,12 +163,33 @@ export const requestAccept = (
   day,
   child,
   description,
-  pointsValue
+  pointsValue,
+  uid
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("cid: ", cid);
+  let totalPoints;
+  let email, name, password, phone, status;
 
+  // use the database to grab the earned points of the current user
+  // then use a variable to add the old and the new together for the new total
   return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .on("value", snapshot => {
+        console.log("snapshot: ", snapshot.val().earnedPoints);
+
+        // set values for updating the child from the snapshot
+        totalPoints =
+          parseInt(snapshot.val().earnedPoints) + parseInt(pointsValue);
+        email = snapshot.val().email;
+        name = snapshot.val().name;
+        password = snapshot.val().password;
+        phone = snapshot.val().phone;
+        status = snapshot.val().status;
+
+        console.log("totalPoints: ", totalPoints);
+      });
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/chores/${cid}`)
@@ -179,21 +200,17 @@ export const requestAccept = (
         child: child,
         description: description,
         pointsValue: pointsValue
-      })
-      .then(() => {
-        console.log("inside earned points changer", child);
-        return dispatch => {
-          firebase.database
-            .ref(`/users/${currentUser.uid}/users/${child}`)
-            .set({
-              pointsEarned: 5,
-              email: "test@test.com",
-              name: "Brinlee",
-              password: "password",
-              phone: "44444444",
-              status: "child"
-            });
-        };
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .set({
+        email: email,
+        name: name,
+        password: password,
+        phone: phone,
+        status: status,
+        earnedPoints: totalPoints
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
