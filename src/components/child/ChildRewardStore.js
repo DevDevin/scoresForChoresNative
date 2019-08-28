@@ -1,9 +1,9 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ListView } from "react-native";
+import { ListView, View, Text } from "react-native";
 import { rewardsFetch } from "../../actions/ChildActions";
-import RewardListItem from "../RewardListItem";
+import RewardListItem from "./ChildRewardListItem";
 
 class ChildRewardStore extends Component {
   componentWillMount() {
@@ -31,13 +31,26 @@ class ChildRewardStore extends Component {
   render() {
     const rewards = this.props.rewards;
     console.log("rewards: ", rewards);
+    const earnedPoints = this.props.activeUser.earnedPoints;
 
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#d67d72"
+          }}
+        >
+          <Text style={{ fontSize: 24 }}>Points Earned: {earnedPoints} </Text>
+        </View>
+
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+      </View>
     );
   }
 }
@@ -46,7 +59,7 @@ const mapStateToProps = state => {
   const rewards = _.map(state.rewards, (val, cid) => {
     return { ...val, cid };
   });
-  return { rewards: rewards };
+  return { rewards: rewards, activeUser: state.auth.activeUser };
 };
 
 export default connect(

@@ -1,4 +1,3 @@
--- add points when parent accepts completion request
 -- complete functionality to submit reward request
 -- add logout and home button/links
 -- earned rewards view for children
@@ -8,7 +7,10 @@
 -- make a daily chore option when assigning chores
 -- add reason for rejection of completion request
 -- delete chores from child chore list once accepted
+	-with the deletion add the completed chore to a completed chore list that can be seen by child
+	-Or instead of deleting I could just have a toggle option to hide completed chores. 
 -- add functionality for recurring chores
+	-- each weekreset chores marked as recurring to be "In-Progress" and delete the ones that aren't recurring
 -- show a list of earned rewards
 -- notifications for users
 

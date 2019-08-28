@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
 import { rewardsFetch } from "../../actions/ParentActions";
-import RewardListItem from "../RewardListItem";
+import RewardListItem from "../child/ChildRewardListItem";
 
 class ParentRewardList extends Component {
   componentWillMount() {

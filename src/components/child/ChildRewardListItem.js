@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
-import { CardSection } from "./common";
-import { rewardFetch } from "../actions/ParentActions";
-import { Button } from "../components/common";
+import { CardSection } from "../common";
+import { rewardFetch } from "../../actions/ParentActions";
+import { Button } from "../common";
 
 class RewardListItem extends Component {
   state = {
