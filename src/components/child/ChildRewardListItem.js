@@ -9,9 +9,8 @@ import {
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
-import { CardSection } from "../common";
 import { rewardFetch } from "../../actions/ParentActions";
-import { Button } from "../common";
+import { rewardRequestSend } from "../../actions/ChildActions";
 
 class RewardListItem extends Component {
   state = {
@@ -28,13 +27,21 @@ class RewardListItem extends Component {
     Actions.choreEdit({ chore: this.props.chore });
   }
 
-  onRowPress(activeUser) {
-    // actions.something
+  onButtonPress(activeUserName, uid, pointsValue, rid) {
+    // submit a completion
+    console.log("completion request child id: ", uid);
+    this.props.rewardRequestSend(activeUserName, uid, pointsValue, rid);
   }
 
   render() {
     const rewardName = this.props.reward.rewardName;
     const pointsValue = this.props.reward.pointsValue;
+    const rid = this.props.reward.rid;
+    const uid = this.props.activeUser.uid;
+    const activeUserName = this.props.activeUser.name;
+    console.log("test", this.props.activeUser);
+    console.log("uid: ", uid);
+    console.log("name: ", activeUserName);
 
     return (
       <View style={{ flex: 1 }}>
@@ -46,6 +53,18 @@ class RewardListItem extends Component {
             <View style={styles.choreStyle}>
               <Text style={styles.choreNameStyle}>{rewardName}</Text>
               <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+              <TouchableOpacity
+                onPress={this.onButtonPress.bind(
+                  this,
+                  activeUserName,
+                  uid,
+                  pointsValue,
+                  rid
+                )}
+                style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Submit</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -179,5 +198,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardFetch }
+  { rewardFetch, rewardRequestSend }
 )(RewardListItem);

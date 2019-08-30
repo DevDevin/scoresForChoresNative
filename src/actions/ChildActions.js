@@ -71,5 +71,25 @@ export const completionRequestSend = (
   };
 };
 
-// somewhere the completion request is saved as state data. If I can find how the id is saved then I can
-//probably do the same thing for users. Also I could always use a find by field name function. I think firebase can do that too.
+// maybe i can combine the child name/id and the rid to make it unique
+export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
+  const { currentUser } = firebase.auth();
+  console.log("activeUserName: ", activeUserName);
+  console.log("uid: ", uid);
+  console.log("pointsValue: ", pointsValue);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequest/${rid + uid}`)
+      .set({
+        childName: activeUserName,
+        uid: uid,
+        pointsValue: pointsValue
+      })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+        Actions.childRewardStore({ type: "reset" });
+      });
+  };
+};

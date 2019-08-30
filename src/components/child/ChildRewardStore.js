@@ -56,8 +56,8 @@ class ChildRewardStore extends Component {
 }
 
 const mapStateToProps = state => {
-  const rewards = _.map(state.rewards, (val, cid) => {
-    return { ...val, cid };
+  const rewards = _.map(state.rewards, (val, rid) => {
+    return { ...val, rid };
   });
   return { rewards: rewards, activeUser: state.auth.activeUser };
 };
