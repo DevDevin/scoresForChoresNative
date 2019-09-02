@@ -20,3 +20,7 @@ export const REWARD_FETCH_SUCCESS = "reward_fetch_success";
 export const COMPLETION_REQUESTS_FETCH_SUCCESS =
   "completion_requests_fetch_success";
 export const SET_ACTIVE_USER_ID = "set_active_user_id";
+export const REWARD_REQUESTS_FETCH_SUCCESS = "reward_request_fetch_success";
+export const REWARD_REQUEST_UPDATE = "reward_request_update";
+export const REWARD_REQUEST_CREATE = "reward_request_create";
+export const REWARD_REQUEST_SAVE_SUCCESS = "reward_request_save_success";

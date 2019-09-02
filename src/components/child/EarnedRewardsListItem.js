@@ -8,13 +8,9 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import {
-  rewardRequestsFetch,
-  rewardRequestAccept,
-  rewardRequestReject
-} from "../../actions/ParentActions";
+import { earnedRewardsFetch } from "../../actions/ChildActions";
 
-class RewardRequestListItem extends Component {
+class EarnedRewardListItem extends Component {
   state = {
     isModalVisible: false
   };
@@ -177,5 +173,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch, rewardRequestAccept, rewardRequestReject }
-)(RewardRequestListItem);
+  { earnedRewardsFetch }
+)(EarnedRewardListItem);

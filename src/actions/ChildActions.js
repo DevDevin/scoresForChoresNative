@@ -72,6 +72,7 @@ export const completionRequestSend = (
 };
 
 // maybe i can combine the child name/id and the rid to make it unique
+// i need to add the reward name so that I can use it further down when an earned reward is created.
 export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
   const { currentUser } = firebase.auth();
   console.log("activeUserName: ", activeUserName);
@@ -81,7 +82,7 @@ export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rewardRequest/${rid + uid}`)
+      .ref(`/users/${currentUser.uid}/rewardRequests/${rid + uid}`)
       .set({
         childName: activeUserName,
         uid: uid,
@@ -90,6 +91,24 @@ export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
         Actions.childRewardStore({ type: "reset" });
+      });
+  };
+};
+
+export const earnedRewardsFetch = activeUser => {
+  const { currentUser } = firebase.auth();
+  const child = activeUser;
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewards/Earned`)
+      .orderByChild("child")
+      .equalTo(child)
+      .on("value", snapshot => {
+        dispatch({
+          type: CHORE_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
       });
   };
 };

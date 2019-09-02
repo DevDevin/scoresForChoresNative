@@ -17,6 +17,10 @@ class ParentHome extends Component {
     Actions.completionRequestList();
   }
 
+  onRewardRequestPress() {
+    Actions.rewardRequestList();
+  }
+
   render() {
     const { name } = this.props.activeUser;
 
@@ -79,6 +83,23 @@ class ParentHome extends Component {
             >
               <Image source={require("../../Images/completionRequest.png")} />
               <Text style={{ fontSize: 22 }}>Completion Requests</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={this.onRewardRequestPress.bind(this)}
+        >
+          <View style={styles.completionRequestsStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/completionRequest.png")} />
+              <Text style={{ fontSize: 22 }}>Reward Requests</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

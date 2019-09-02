@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
-import RewardRequestListItem from "./RewardRequestListItem";
+import EarnedRewardsListItem from "./EarnedRewardsListItem";
 
-class RewardRequestList extends Component {
+class EarnedRewardsList extends Component {
   componentWillMount() {
     this.props.rewardRequestsFetch();
 
@@ -25,7 +25,7 @@ class RewardRequestList extends Component {
   }
 
   renderRow(rewardRequest) {
-    return <RewardRequestListItem rewardRequest={rewardRequest} />;
+    return <EarnedRewardsListItem rewardRequest={rewardRequest} />;
   }
 
   render() {
@@ -51,4 +51,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { rewardRequestsFetch }
-)(RewardRequestList);
+)(EarnedRewardsList);
