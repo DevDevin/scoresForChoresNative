@@ -8,7 +8,10 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { earnedRewardsFetch } from "../../actions/ChildActions";
+import {
+  earnedRewardsFetch,
+  earnedRewardSpend
+} from "../../actions/ChildActions";
 
 class EarnedRewardListItem extends Component {
   state = {
@@ -19,24 +22,11 @@ class EarnedRewardListItem extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  onRowPress(activeUser) {
-    // actions.something
-  }
-
-  onAccept(childName, uid, pointsValue, rid, rewardName) {
-    console.log("uid: ", uid);
-    console.log("childName: ", childName);
-    this.props.rewardRequestAccept(
-      childName,
-      uid,
-      pointsValue,
-      rid,
-      rewardName
-    );
-  }
-  s;
-  onReject(childName, uid, pointsValue) {
-    this.props.requestReject(childName, uid, pointsValue);
+  completeReward(rid, uid) {
+    const rewardId = rid + uid;
+    console.log(rid, " ", uid);
+    console.log(rewardId);
+    this.props.earnedRewardSpend(rewardId);
   }
 
   render() {
@@ -63,29 +53,10 @@ class EarnedRewardListItem extends Component {
                 }}
               >
                 <TouchableOpacity
-                  onPress={this.onAccept.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName
-                  )}
+                  onPress={this.completeReward.bind(this, rid, uid)}
                   style={styles.buttonStyle}
                 >
-                  <Text style={styles.textStyle}>Accept</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={this.onReject.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Reject</Text>
+                  <Text style={styles.textStyle}>Spend rewardName</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -173,5 +144,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { earnedRewardsFetch }
+  { earnedRewardsFetch, earnedRewardSpend }
 )(EarnedRewardListItem);

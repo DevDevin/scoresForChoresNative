@@ -27,10 +27,16 @@ class RewardListItem extends Component {
     Actions.choreEdit({ chore: this.props.chore });
   }
 
-  onButtonPress(activeUserName, uid, pointsValue, rid) {
+  onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
     // submit a completion
     console.log("completion request child id: ", uid);
-    this.props.rewardRequestSend(activeUserName, uid, pointsValue, rid);
+    this.props.rewardRequestSend(
+      activeUserName,
+      uid,
+      pointsValue,
+      rid,
+      rewardName
+    );
   }
 
   render() {
@@ -59,7 +65,8 @@ class RewardListItem extends Component {
                   activeUserName,
                   uid,
                   pointsValue,
-                  rid
+                  rid,
+                  rewardName
                 )}
                 style={styles.buttonStyle}
               >

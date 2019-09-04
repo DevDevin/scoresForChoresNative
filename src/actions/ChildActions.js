@@ -3,7 +3,8 @@ import { Actions } from "react-native-router-flux";
 import {
   CHORE_FETCH_SUCCESS,
   REWARD_FETCH_SUCCESS,
-  CHORE_SAVE_SUCCESS
+  CHORE_SAVE_SUCCESS,
+  EARNED_REWARD_FETCH_SUCCESS
 } from "./types";
 
 export const childChoresFetch = activeUser => {
@@ -73,7 +74,13 @@ export const completionRequestSend = (
 
 // maybe i can combine the child name/id and the rid to make it unique
 // i need to add the reward name so that I can use it further down when an earned reward is created.
-export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
+export const rewardRequestSend = (
+  activeUserName,
+  uid,
+  pointsValue,
+  rid,
+  rewardName
+) => {
   const { currentUser } = firebase.auth();
   console.log("activeUserName: ", activeUserName);
   console.log("uid: ", uid);
@@ -86,7 +93,8 @@ export const rewardRequestSend = (activeUserName, uid, pointsValue, rid) => {
       .set({
         childName: activeUserName,
         uid: uid,
-        pointsValue: pointsValue
+        pointsValue: pointsValue,
+        rewardName: rewardName
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
@@ -101,14 +109,29 @@ export const earnedRewardsFetch = activeUser => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rewards/Earned`)
+      .ref(`/users/${currentUser.uid}/rewardsEarned`)
       .orderByChild("child")
       .equalTo(child)
       .on("value", snapshot => {
         dispatch({
-          type: CHORE_FETCH_SUCCESS,
+          type: EARNED_REWARD_FETCH_SUCCESS,
           payload: snapshot.val()
         });
+      });
+  };
+};
+
+export const earnedRewardSpend = rewardId => {
+  const { currentUser } = firebase.auth();
+  console.log("rewardId: ", rewardId);
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardsEarned/${rewardId}`)
+      .remove()
+      .then(() => {
+        Actions.earnedRewards({ type: "reset" });
       });
   };
 };

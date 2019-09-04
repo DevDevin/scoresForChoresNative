@@ -296,6 +296,8 @@ export const rewardRequestAccept = (
 ) => {
   const { currentUser } = firebase.auth();
   console.log("rewardRequestAccepts");
+  console.log("rid: ", rid);
+  console.log("rewardName: ", rewardName);
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -338,7 +340,7 @@ export const rewardRequestAccept = (
       .set({
         rewardName: rewardName,
         uid: uid,
-        childName
+        childName: childName
       })
       .then(() => {
         dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
