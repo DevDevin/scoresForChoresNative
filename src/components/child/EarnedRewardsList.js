@@ -2,12 +2,12 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView } from "react-native";
-import { rewardRequestsFetch } from "../../actions/ParentActions";
+import { earnedRewardsFetch } from "../../actions/ChildActions";
 import EarnedRewardsListItem from "./EarnedRewardsListItem";
 
 class EarnedRewardsList extends Component {
   componentWillMount() {
-    this.props.rewardRequestsFetch();
+    this.props.earnedRewardsFetch(this.props.activeUser.name);
 
     this.createDataSource(this.props);
   }
@@ -16,20 +16,20 @@ class EarnedRewardsList extends Component {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ rewardRequests }) {
+  createDataSource({ earnedRewards }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(rewardRequests);
+    this.dataSource = ds.cloneWithRows(earnedRewards);
   }
 
-  renderRow(rewardRequest) {
-    return <EarnedRewardsListItem rewardRequest={rewardRequest} />;
+  renderRow(earnedReward) {
+    return <EarnedRewardsListItem earnedReward={earnedReward} />;
   }
 
   render() {
-    const rewardRequests = this.props.rewardRequests;
+    const earnedRewards = this.props.earnedRewards;
 
     return (
       <ListView
@@ -42,13 +42,13 @@ class EarnedRewardsList extends Component {
 }
 
 const mapStateToProps = state => {
-  const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
+  const earnedRewards = _.map(state.earnedRewards, (val, rid) => {
     return { ...val, rid };
   });
-  return { rewardRequests: rewardRequests };
+  return { earnedRewards: earnedRewards, activeUser: state.auth.activeUser };
 };
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch }
+  { earnedRewardsFetch }
 )(EarnedRewardsList);

@@ -104,15 +104,18 @@ export const rewardRequestSend = (
 };
 
 export const earnedRewardsFetch = activeUser => {
+  console.log("inside earned rewards fetch");
   const { currentUser } = firebase.auth();
-  const child = activeUser;
+  const childName = activeUser;
+  console.log("child: ", childName);
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/rewardsEarned`)
-      .orderByChild("child")
-      .equalTo(child)
+      .orderByChild("childName")
+      .equalTo(childName)
       .on("value", snapshot => {
+        console.log(snapshot.val());
         dispatch({
           type: EARNED_REWARD_FETCH_SUCCESS,
           payload: snapshot.val()

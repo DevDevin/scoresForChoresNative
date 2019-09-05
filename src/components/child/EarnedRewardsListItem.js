@@ -30,20 +30,18 @@ class EarnedRewardListItem extends Component {
   }
 
   render() {
-    const childName = this.props.rewardRequest.childName;
-    const pointsValue = this.props.rewardRequest.pointsValue;
-    const uid = this.props.rewardRequest.uid;
-    const rid = this.props.rewardRequest.rid;
-    const rewardName = this.props.rewardRequest.rewardName;
-    console.log("rewardName: ", this.props.rewardRequest);
+    const childName = this.props.earnedReward.childName;
+    const uid = this.props.earnedReward.uid;
+    const rid = this.props.earnedReward.rid;
+    const rewardName = this.props.earnedReward.rewardName;
+    console.log("rewardName: ", this.props.earnedReward);
 
     return (
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
             <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{childName}</Text>
-              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+              <Text style={styles.choreNameStyle}>{rewardName}</Text>
               <View
                 style={{
                   flex: 1,
@@ -56,7 +54,7 @@ class EarnedRewardListItem extends Component {
                   onPress={this.completeReward.bind(this, rid, uid)}
                   style={styles.buttonStyle}
                 >
-                  <Text style={styles.textStyle}>Spend rewardName</Text>
+                  <Text style={styles.textStyle}>Spend</Text>
                 </TouchableOpacity>
               </View>
             </View>
