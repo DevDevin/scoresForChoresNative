@@ -1,5 +1,4 @@
 -- add logout and home button/links
--- sign up functionality
 -- backgroundColor on all lists powder blue
 -- make a daily chore option when assigning chores
 -- add reason for rejection of completion request

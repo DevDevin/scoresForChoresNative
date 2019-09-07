@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import Modal from "react-native-modal";
+import { Actions } from "react-native-router-flux";
 import {
   emailChanged,
   passwordChanged,
@@ -29,17 +30,15 @@ class LoginForm extends Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
+    Actions.login();
   };
 
   onButtonPress() {
     const { email, password, password2, modalFlag } = this.props;
-    console.log("modal flag before: ", modalFlag);
 
     this.props.createAccount({ email, password, password2 });
     // this needs to be asynchronus because it's hitting set state before the state data actually changes
-    this.setState({ isModalVisible: modalFlag });
-
-    console.log("modal flag after: ", modalFlag);
+    if (password === password2) this.setState({ isModalVisible: true });
   }
 
   onGoToLogIn() {
@@ -113,7 +112,7 @@ class LoginForm extends Component {
                 fontWeight: "bold"
               }}
             >
-              Account Successfully Created. Please log in.
+              Account Successfully Created.
             </Text>
             <View
               style={{
