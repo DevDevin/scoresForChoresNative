@@ -336,7 +336,7 @@ export const rewardRequestAccept = (
       });
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rewardsEarned/${rid + uid}`)
+      .ref(`/users/${currentUser.uid}/rewardsEarned/${rid}`)
       .set({
         rewardName: rewardName,
         uid: uid,

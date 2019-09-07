@@ -1,8 +1,5 @@
--- complete functionality to submit reward request
 -- add logout and home button/links
--- earned rewards view for children
--- requested rewards view for parents
--- subtract points when parent accepts reward request
+-- sign up functionality
 -- backgroundColor on all lists powder blue
 -- make a daily chore option when assigning chores
 -- add reason for rejection of completion request
@@ -11,11 +8,10 @@
 	-Or instead of deleting I could just have a toggle option to hide completed chores. 
 -- add functionality for recurring chores
 	-- each weekreset chores marked as recurring to be "In-Progress" and delete the ones that aren't recurring
--- show a list of earned rewards
 -- notifications for users
+-- step for creating admin user after creating an account
 
 
--Ll_0FRVTzxj_PqfJSwP-Lj4TDCblG5JXg24DNt7-Lj4TDCblG5JXg24DNt7
 
 
 

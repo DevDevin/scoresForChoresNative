@@ -8,7 +8,10 @@ import {
   LOGIN_USER,
   USER_UPDATE,
   USER_FETCH_SUCCESS,
-  SET_ACTIVE_USER
+  SET_ACTIVE_USER,
+  PASSWORD2_CHANGED,
+  PASSWORD_MISMATCH,
+  CREATE_USER_SUCCESS
 } from "./types";
 
 export const emailChanged = text => {
@@ -21,6 +24,13 @@ export const emailChanged = text => {
 export const passwordChanged = text => {
   return {
     type: PASSWORD_CHANGED,
+    payload: text
+  };
+};
+
+export const password2Changed = text => {
+  return {
+    type: PASSWORD2_CHANGED,
     payload: text
   };
 };
@@ -39,13 +49,37 @@ export const loginUser = ({ email, password }) => {
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user))
-          .catch(() => LoginUserFail(dispatch));
+          .catch(() => loginUserFail(dispatch));
       });
+  };
+};
+
+export const createAccount = ({ email, password, password2 }) => {
+  return dispatch => {
+    if (password != password2) {
+      console.log("password mismatch");
+      passwordMismatch(dispatch);
+    } else {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          createUserSuccess(dispatch);
+        });
+    }
   };
 };
 
 const loginUserFail = dispatch => {
   dispatch({ type: LOGIN_USER_FAIL });
+};
+
+const passwordMismatch = dispatch => {
+  dispatch({ type: PASSWORD_MISMATCH });
+};
+
+const createUserSuccess = dispatch => {
+  dispatch({ type: CREATE_USER_SUCCESS });
 };
 
 const loginUserSuccess = (dispatch, user) => {

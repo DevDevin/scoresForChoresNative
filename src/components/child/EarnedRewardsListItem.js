@@ -22,11 +22,8 @@ class EarnedRewardListItem extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  completeReward(rid, uid) {
-    const rewardId = rid + uid;
-    console.log(rid, " ", uid);
-    console.log(rewardId);
-    this.props.earnedRewardSpend(rewardId);
+  spendReward(rid) {
+    this.props.earnedRewardSpend(rid);
   }
 
   render() {
@@ -51,7 +48,7 @@ class EarnedRewardListItem extends Component {
                 }}
               >
                 <TouchableOpacity
-                  onPress={this.completeReward.bind(this, rid, uid)}
+                  onPress={this.spendReward.bind(this, rid)}
                   style={styles.buttonStyle}
                 >
                   <Text style={styles.textStyle}>Spend</Text>

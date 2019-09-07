@@ -8,6 +8,10 @@ class StartupPage extends Component {
     Actions.login();
   }
 
+  onSignUpPress() {
+    Actions.signUp();
+  }
+
   render() {
     return (
       <View
@@ -53,8 +57,11 @@ class StartupPage extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity style={styles.buttonStyle}>
-            <Text style={styles.textStyle}>Sign In</Text>
+          <TouchableOpacity
+            onPress={this.onSignUpPress.bind(this)}
+            style={styles.buttonStyle}
+          >
+            <Text style={styles.textStyle}>Create Account</Text>
           </TouchableOpacity>
         </View>
       </View>

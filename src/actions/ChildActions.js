@@ -126,6 +126,7 @@ export const earnedRewardsFetch = activeUser => {
 
 export const earnedRewardSpend = rewardId => {
   const { currentUser } = firebase.auth();
+  console.log("inside earnedRewardSpend");
   console.log("rewardId: ", rewardId);
 
   return () => {

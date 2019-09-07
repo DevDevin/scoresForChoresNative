@@ -16,6 +16,7 @@ import ChoreEdit from "./components/parent/ChoreEdit";
 import StartupPage from "./components/StartupPage";
 import EarnedRewardsList from "./components/child/EarnedRewardsList";
 import RewardRequestList from "./components/parent/RewardRequestList";
+import SignUpForm from "./components/SignUpForm";
 
 const RouterComponent = () => {
   return (
@@ -29,6 +30,11 @@ const RouterComponent = () => {
             initial
           />
           <Scene key="login" component={LoginForm} title="Please Login" />
+          <Scene
+            key="signUp"
+            component={SignUpForm}
+            title="Create an Account"
+          />
         </Scene>
         <Scene key="user">
           <Scene
