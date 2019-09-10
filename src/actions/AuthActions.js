@@ -64,7 +64,12 @@ export const createAccount = ({ email, password, password2 }) => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          createUserSuccess(dispatch);
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then(() => {
+              createUserSuccess(dispatch);
+            });
         });
     }
   };
@@ -91,6 +96,7 @@ const loginUserSuccess = (dispatch, user) => {
 
 export const userCreate = ({ name, phone, password1, status, email }) => {
   const { currentUser } = firebase.auth();
+  console.log("inside userCreate");
 
   return dispatch => {
     firebase
@@ -104,6 +110,7 @@ export const userCreate = ({ name, phone, password1, status, email }) => {
         status: status
       })
       .then(() => {
+        console.log("user successfully create");
         Actions.chooseUser();
       });
   };

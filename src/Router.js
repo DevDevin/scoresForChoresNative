@@ -17,6 +17,9 @@ import StartupPage from "./components/StartupPage";
 import EarnedRewardsList from "./components/child/EarnedRewardsList";
 import RewardRequestList from "./components/parent/RewardRequestList";
 import SignUpForm from "./components/SignUpForm";
+import AdminUserCreate from "./components/parent/AdminUserCreate";
+
+// I can somehow use drawer for to create a dropdown with a logout and home button
 
 const RouterComponent = () => {
   return (
@@ -31,12 +34,15 @@ const RouterComponent = () => {
           />
           <Scene key="login" component={LoginForm} title="Please Login" />
           <Scene
+            key="adminUserCreate"
+            component={AdminUserCreate}
+            title="Please Create Admin User"
+          />
+          <Scene
             key="signUp"
             component={SignUpForm}
             title="Create an Account"
           />
-        </Scene>
-        <Scene key="user">
           <Scene
             rightTitle="New User"
             onRight={() => {
@@ -45,7 +51,6 @@ const RouterComponent = () => {
             key="chooseUser"
             component={ChooseUser}
             title="Choose User"
-            initial
           />
           <Scene key="userCreate" component={UserCreate} title="Create User" />
         </Scene>

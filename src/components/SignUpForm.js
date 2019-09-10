@@ -30,7 +30,7 @@ class LoginForm extends Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.login();
+    Actions.adminUserCreate();
   };
 
   onButtonPress() {
@@ -108,11 +108,10 @@ class LoginForm extends Component {
               style={{
                 alignSelf: "center",
                 fontSize: 28,
-                textDecorationLine: "underline",
                 fontWeight: "bold"
               }}
             >
-              Account Successfully Created.
+              Account Created.
             </Text>
             <View
               style={{

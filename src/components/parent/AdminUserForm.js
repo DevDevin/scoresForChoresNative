@@ -62,25 +62,13 @@ class AdminUserForm extends Component {
             }
           />
         </CardSection>
-        <CardSection>
-          <Picker
-            selectedValue={this.props.status}
-            style={{ height: 50, width: 100, position: "relative" }}
-            onValueChange={value => {
-              this.props.userUpdate({ prop: "status", value });
-            }}
-          >
-            <Picker.Item label="Parent" value="parent" />
-            <Picker.Item label="Child" value="child" />
-          </Picker>
-        </CardSection>
       </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.AdminUserForm;
+  const { name, phone, password1, status, email } = state.userForm;
 
   return { name, phone, password1, status, email };
 };

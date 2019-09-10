@@ -13,7 +13,7 @@ import {
 const INITIAL_STATE = {
   email: "test@test.com",
   password: "password",
-  password2: "",
+  password2: "password",
   user: null,
   error: "",
   loading: false,
