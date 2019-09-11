@@ -8,7 +8,7 @@
 -- add functionality for recurring chores
 	-- each weekreset chores marked as recurring to be "In-Progress" and delete the ones that aren't recurring
 -- notifications for users
-
+-- floating action for adding chores and rewards etc...
 
 
 

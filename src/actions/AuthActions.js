@@ -39,17 +39,13 @@ export const loginUser = ({ email, password }) => {
   return dispatch => {
     // dispatch({ type: LOGIN_USER });
     console.log("inside loginUser");
+    console.log("email: ", email, "password: ", password);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(error => {
         console.log("this is the error", error);
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then(user => loginUserSuccess(dispatch, user))
-          .catch(() => loginUserFail(dispatch));
       });
   };
 };
@@ -76,6 +72,7 @@ export const createAccount = ({ email, password, password2 }) => {
 };
 
 const loginUserFail = dispatch => {
+  console.log("inside loginUserFail");
   dispatch({ type: LOGIN_USER_FAIL });
 };
 
@@ -88,10 +85,11 @@ const createUserSuccess = dispatch => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
+  console.log("inside loginUserSuccess");
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
   console.log("user: ", user);
   // Navigate to the choose user screen
-  Actions.user();
+  Actions.chooseUser();
 };
 
 export const userCreate = ({ name, phone, password1, status, email }) => {
