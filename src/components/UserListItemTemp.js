@@ -25,8 +25,11 @@ class UserListItem extends Component {
     }
   }
 
+  onButtonPress() {
+    console.log("addUserPress");
+  }
+
   render() {
-    console.log("this.props.user: ", this.props.user);
     const { name } = this.props.user;
 
     var width = Dimensions.get("window").width; //full width
@@ -34,8 +37,21 @@ class UserListItem extends Component {
 
     return (
       <View>
-        <Text>User ListItem</Text>
-        <Text> {name} </Text>
+        <TouchableWithoutFeedback
+          value={this.props.user.name}
+          onPress={this.onRowPress.bind(this, this.props.user)}
+        >
+          <View style={styles.childStyle}>
+            <View style={styles.cardSectionStyle}>
+              <Image source={require("../Images/genericUser.png")} />
+              <Text style={styles.titleStyle}>{name}</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+        <ActionButton
+          buttonColor="rgba(231,76,60,1)"
+          onPress={this.onButtonPress.bind(this)}
+        />
       </View>
     );
   }

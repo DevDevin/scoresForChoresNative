@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
+
 import {
   emailChanged,
   passwordChanged,
   loginUser
 } from "../actions/AuthActions";
-import { Card, CardSection, Input, Button, Spinner } from "./common";
+import { Input, Spinner } from "./common";
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -66,6 +67,7 @@ class LoginForm extends Component {
         </View>
         <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
         {this.rendorError()}
+        {/* Rest of the app comes ABOVE the action button component !*/}
       </View>
     );
   }

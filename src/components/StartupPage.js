@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Card, CardSection } from "./common";
 import ActionButton from "react-native-action-button";
 
 class StartupPage extends Component {
@@ -13,6 +12,9 @@ class StartupPage extends Component {
     Actions.signUp();
   }
 
+  onButtonPress() {
+    console.log("onButtonPress");
+  }
   render() {
     return (
       <View
@@ -23,26 +25,6 @@ class StartupPage extends Component {
           backgroundColor: "#d67d72"
         }}
       >
-        <View style={{ flex: 1, backgroundColor: "#f3f3f3" }}>
-          {/* Rest of the app comes ABOVE the action button component !*/}
-          <ActionButton buttonColor="rgba(231,76,60,1)">
-            <ActionButton.Item
-              buttonColor="#9b59b6"
-              title="New Task"
-              onPress={() => console.log("notes tapped!")}
-            />
-            <ActionButton.Item
-              buttonColor="#3498db"
-              title="Notifications"
-              onPress={() => {}}
-            />
-            <ActionButton.Item
-              buttonColor="#1abc9c"
-              title="All Tasks"
-              onPress={() => {}}
-            />
-          </ActionButton>
-        </View>
         <View
           style={{
             height: 100,
@@ -85,6 +67,10 @@ class StartupPage extends Component {
             <Text style={styles.textStyle}>Create Account</Text>
           </TouchableOpacity>
         </View>
+        <ActionButton
+          buttonColor="rgba(231,76,60,1)"
+          onPress={this.onButtonPress.bind(this)}
+        />
       </View>
     );
   }
