@@ -9,7 +9,6 @@ import {
   Image
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import ActionButton from "react-native-action-button";
 import { usersFetch, setActiveUser } from "../actions/AuthActions";
 
 class UserListItem extends Component {
@@ -26,7 +25,6 @@ class UserListItem extends Component {
   }
 
   render() {
-    console.log("this.props.user: ", this.props.user);
     const { name } = this.props.user;
 
     var width = Dimensions.get("window").width; //full width
@@ -34,8 +32,17 @@ class UserListItem extends Component {
 
     return (
       <View>
-        <Text>User ListItem</Text>
-        <Text> {name} </Text>
+        <TouchableWithoutFeedback
+          value={this.props.user.name}
+          onPress={this.onRowPress.bind(this, this.props.user)}
+        >
+          <View style={styles.childStyle}>
+            <View style={styles.cardSectionStyle}>
+              <Image source={require("../Images/genericUser.png")} />
+              <Text style={styles.titleStyle}>{name}</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }

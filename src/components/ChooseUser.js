@@ -3,24 +3,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ListView, Text, View, FlatList, ListIt } from "react-native";
 import { usersFetch } from "../actions/AuthActions";
+import ActionButton from "react-native-action-button";
 import UserListItem from "./UserListItem";
 
 class ChooseUser extends Component {
   componentWillMount() {
     this.props.usersFetch();
-    console.log("this.props.users: ", this.props.users);
+  }
+
+  onButtonPress() {
+    console.log("addUserPress");
   }
 
   render() {
     const users = this.props.users;
-    console.log("users: ", users);
 
     return (
       <View>
-        <Text>Hello</Text>
-        <FlatList
-          data={users}
-          renderItem={({ item }) => <UserListItem user={item} />}
+        <View>
+          <FlatList
+            data={users}
+            renderItem={({ item }) => <UserListItem user={item} />}
+          />
+        </View>
+        <ActionButton
+          buttonColor="rgba(231,76,60,1)"
+          onPress={this.onButtonPress.bind(this)}
         />
       </View>
     );
