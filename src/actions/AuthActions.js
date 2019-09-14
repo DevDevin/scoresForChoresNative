@@ -154,3 +154,16 @@ export const setActiveUserId = activeUserId => {
 // either call a separate function that sets the active user id. Or instead of doing a snapshot I
 // I could just pass in all of the values to the function setActiveUser individually including the active user id.
 // the second option worked. Now whenever a child submits a completion request i need to also submit the uid which I will need // turn into a prop from the state data on the component where the child submits the completion request.
+
+export const logoutAuth = () => {
+  //////
+  // firebase.auth
+  //   .logoutAuth()
+  //   .then(() => {
+  //     Actions.startup();
+  //   })
+  //   .catch(err => {
+  //     console.log("error logging out: ", err);
+  //   });
+  console.log("logout auth");
+};

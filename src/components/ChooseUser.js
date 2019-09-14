@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 import { ListView, Text, View, FlatList, ListIt } from "react-native";
 import { usersFetch } from "../actions/AuthActions";
@@ -13,6 +14,7 @@ class ChooseUser extends Component {
 
   onButtonPress() {
     console.log("addUserPress");
+    Actions.userCreate();
   }
 
   render() {
