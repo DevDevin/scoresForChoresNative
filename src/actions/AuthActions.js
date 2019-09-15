@@ -156,14 +156,13 @@ export const setActiveUserId = activeUserId => {
 // the second option worked. Now whenever a child submits a completion request i need to also submit the uid which I will need // turn into a prop from the state data on the component where the child submits the completion request.
 
 export const logoutAuth = () => {
-  //////
-  // firebase.auth
-  //   .logoutAuth()
-  //   .then(() => {
-  //     Actions.startup();
-  //   })
-  //   .catch(err => {
-  //     console.log("error logging out: ", err);
-  //   });
-  console.log("logout auth");
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      Actions.startup();
+    })
+    .catch(err => {
+      console.log("sign out fail: ", err);
+    });
 };

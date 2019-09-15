@@ -20,6 +20,7 @@ import RewardRequestList from "./components/parent/RewardRequestList";
 import SignUpForm from "./components/SignUpForm";
 import AdminUserCreate from "./components/parent/AdminUserCreate";
 import ChildSideMenu from "./components/child/ChildSideMenu";
+import ParentSideMenu from "./components/parent/ParentSideMenu";
 import { logoutAuth } from "./actions/AuthActions";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
@@ -84,12 +85,26 @@ const RouterComponent = () => {
               component={EarnedRewardsList}
               title="Earned Rewards"
             />
+            <Scene
+              key="startup"
+              component={StartupPage}
+              title="Scores For Chores"
+            />
+            <Scene
+              rightTitle="Log Out"
+              onRight={() => {
+                logoutAuth();
+              }}
+              key="chooseUser"
+              component={ChooseUser}
+              title="Choose User"
+            />
           </Scene>
         </Drawer>
         <Drawer
           hideNavBar
           drawerPosition={"right"}
-          contentComponent={ChildSideMenu}
+          contentComponent={ParentSideMenu}
           drawerWidth={Dimensions.get("window").width * 0.4}
         >
           <Scene key="parent">
@@ -98,34 +113,41 @@ const RouterComponent = () => {
               component={ParentHome}
               title="Parent Home"
             />
-            <Scene
-              rightTitle="Add Chore"
-              onRight={() => {
-                Actions.choreCreate();
-              }}
-              key="parentChoreList"
-              component={ParentChoreList}
-              title="Parent Chore List"
-            />
-            <Scene
-              rightTitle="Add Reward"
-              onRight={() => {
-                Actions.rewardCreate();
-              }}
-              key="parentRewardList"
-              component={ParentRewardList}
-              title="Parent Reward List"
-            />
-            <Scene
-              key="rewardRequestList"
-              component={RewardRequestList}
-              title="Rewards Requests"
-            />
-            <Scene
-              key="completionRequestList"
-              component={CompletionRequestList}
-              title="Completion Requests"
-            />
+            <Drawer
+              hideNavBar
+              drawerPosition={"right"}
+              contentComponent={ChildSideMenu}
+              drawerWidth={Dimensions.get("window").width * 0.4}
+            >
+              <Scene
+                // rightTitle="Add Chore"
+                // onRight={() => {
+                //   Actions.choreCreate();
+                // }}
+                key="parentChoreList"
+                component={ParentChoreList}
+                title="Parent Chore List"
+              />
+              <Scene
+                rightTitle="Add Reward"
+                onRight={() => {
+                  Actions.rewardCreate();
+                }}
+                key="parentRewardList"
+                component={ParentRewardList}
+                title="Parent Reward List"
+              />
+              <Scene
+                key="rewardRequestList"
+                component={RewardRequestList}
+                title="Rewards Requests"
+              />
+              <Scene
+                key="completionRequestList"
+                component={CompletionRequestList}
+                title="Completion Requests"
+              />
+            </Drawer>
             <Scene
               key="choreCreate"
               component={ChoreCreate}
@@ -136,6 +158,20 @@ const RouterComponent = () => {
               key="rewardCreate"
               component={RewardCreate}
               title="New New Reward"
+            />
+            <Scene
+              key="startup"
+              component={StartupPage}
+              title="Scores For Chores"
+            />
+            <Scene
+              rightTitle="Log Out"
+              onRight={() => {
+                logoutAuth();
+              }}
+              key="chooseUser"
+              component={ChooseUser}
+              title="Choose User"
             />
           </Scene>
         </Drawer>

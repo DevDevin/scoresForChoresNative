@@ -1,11 +1,36 @@
 import React, { Component } from "react";
-import { View, Picker } from "react-native";
+import { View } from "react-native";
+import CheckBox from "react-native-check-box";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel
+} from "react-native-simple-radio-button";
 import { connect } from "react-redux";
 import { choreUpdate } from "../../actions/ParentActions";
 import { CardSection, Input } from "../common/index";
 
 class ChoreForm extends Component {
+  // Initital State Data
+  state = {
+    isOther: false,
+    isRecurring: false
+  };
+
   render() {
+    var radio_props = [
+      { label: "Daily", value: "Daily" },
+      { label: "Monday-Wednesday-Friday", value: "Monday-Wednesday-Friday" },
+      { label: "Tuesday-Thursday", value: "Tuesday-Thursday" },
+      { label: "Monday", value: "Monday" },
+      { label: "Tuesday", value: "Tuesday" },
+      { label: "Wednesday", value: "Wednesday" },
+      { label: "Thursday", value: "Thursday" },
+      { label: "Friday", value: "Friday" },
+      { label: "Saturday", value: "Saturday" },
+      { label: "Sunday", value: "Sunday" }
+    ];
+
     return (
       <View>
         <CardSection>
@@ -53,21 +78,40 @@ class ChoreForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Picker
-            selectedValue={this.props.status}
-            style={{ height: 50, flex: 1, position: "relative" }}
-            onValueChange={value => {
-              this.props.choreUpdate({ prop: "day", value });
+          <View>
+            <RadioForm
+              radio_props={radio_props}
+              initial={0}
+              onPress={value => {
+                console.log("radio value: ", value);
+                if (value === "other") {
+                  this.setState({ isOther: true });
+                }
+                this.props.choreUpdate({
+                  prop: "day",
+                  value: value
+                });
+              }}
+            />
+          </View>
+        </CardSection>
+
+        <CardSection>
+          <CheckBox
+            style={{ flex: 1, padding: 10 }}
+            onClick={() => {
+              this.setState({
+                isRecurring: !this.state.isRecurring
+              });
+              console.log("state.isRecurring: ", this.state.isRecurring);
+              this.props.choreUpdate({
+                prop: "isRecurring",
+                value: !this.state.isRecurring
+              });
             }}
-          >
-            <Picker.Item label="Monday" value="Monday" />
-            <Picker.Item label="Tuesday" value="Tuesday" />
-            <Picker.Item label="Wednesday" value="Wednesday" />
-            <Picker.Item label="Thursday" value="Thursday" />
-            <Picker.Item label="Friday" value="Friday" />
-            <Picker.Item label="Saturday" value="Saturday" />
-            <Picker.Item label="Sunday" value="Sunday" />
-          </Picker>
+            isChecked={this.state.isRecurring}
+            leftText={"Recurring"}
+          />
         </CardSection>
       </View>
     );
@@ -75,9 +119,23 @@ class ChoreForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { choreName, description, day, child, pointsValue } = state.choreForm;
+  const {
+    choreName,
+    description,
+    day,
+    child,
+    pointsValue,
+    isRecurring
+  } = state.choreForm;
 
-  return { choreName, description, day, child, pointsValue };
+  return {
+    choreName,
+    description,
+    day,
+    child,
+    pointsValue,
+    isRecurring
+  };
 };
 
 export default connect(

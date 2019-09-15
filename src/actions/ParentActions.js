@@ -12,6 +12,8 @@ import {
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
+  console.log("inside chore update");
+  console.log("prop: ", prop, "value: ", value);
   return {
     type: CHORE_UPDATE,
     payload: { prop, value }
@@ -23,7 +25,8 @@ export const choreCreate = ({
   description: description,
   day: day,
   child: child,
-  pointsValue: pointsValue
+  pointsValue: pointsValue,
+  isRecurring: isRecurring
 }) => {
   const { currentUser } = firebase.auth();
 
@@ -37,7 +40,8 @@ export const choreCreate = ({
         day: day,
         child: child,
         pointsValue: pointsValue,
-        status: "In-Progress"
+        status: "In-Progress",
+        isRecurring: isRecurring
       })
       .then(() => {
         Actions.parentChoreList();

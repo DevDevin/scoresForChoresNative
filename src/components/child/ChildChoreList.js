@@ -1,7 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { ListView } from "react-native";
+import { FlatList } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View } from "react-native";
@@ -9,24 +10,6 @@ import { Text, View } from "react-native";
 class ChildChoreList extends Component {
   componentWillMount() {
     this.props.childChoresFetch(this.props.activeUser.name);
-
-    this.createDataSource(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps);
-  }
-
-  createDataSource({ childChores }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
-    this.dataSource = ds.cloneWithRows(childChores);
-  }
-
-  renderRow(childChore) {
-    return <ChildChoreListItem chore={childChore} />;
   }
 
   render() {
@@ -34,11 +17,12 @@ class ChildChoreList extends Component {
     console.log("chores: ", chores);
 
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View>
+        <FlatList
+          data={chores}
+          renderItem={({ item }) => <ChildChoreListItem chore={item} />}
+        />
+      </View>
     );
   }
 }

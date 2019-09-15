@@ -8,7 +8,7 @@ class ChildSideMenu extends Component {
       <View>
         <TouchableOpacity
           onPress={() => {
-            Actions.childHome();
+            Actions.parentHome();
           }}
         >
           <View>
@@ -26,7 +26,7 @@ class ChildSideMenu extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            Actions.startup();
+            Actions.choreCreate();
           }}
         >
           <View>

@@ -7,14 +7,17 @@ import {
 const INITIAL_STATE = {
   choreName: "",
   description: "",
-  day: "",
+  day: "Daily",
   child: "",
-  pointsValue: ""
+  pointsValue: "",
+  isRecurring: true
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CHORE_UPDATE:
+      console.log("inside chore_update choreform reducer");
+      console.log("action.payload: ", action.payload);
       return { ...state, [action.payload.prop]: action.payload.value };
     case CHORE_CREATE:
       return INITIAL_STATE;

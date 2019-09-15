@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { ListView, Text, View, FlatList, ListIt } from "react-native";
+import { View, FlatList } from "react-native";
 import { usersFetch } from "../actions/AuthActions";
 import ActionButton from "react-native-action-button";
 import UserListItem from "./UserListItem";

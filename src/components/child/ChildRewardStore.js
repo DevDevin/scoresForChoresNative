@@ -1,31 +1,13 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ListView, View, Text } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { rewardsFetch } from "../../actions/ChildActions";
 import RewardListItem from "./ChildRewardListItem";
 
 class ChildRewardStore extends Component {
   componentWillMount() {
     this.props.rewardsFetch();
-
-    this.createDataSource(this.props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps);
-  }
-
-  createDataSource({ rewards }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
-    this.dataSource = ds.cloneWithRows(rewards);
-  }
-
-  renderRow(reward) {
-    return <RewardListItem reward={reward} />;
   }
 
   render() {
@@ -35,20 +17,10 @@ class ChildRewardStore extends Component {
 
     return (
       <View>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#d67d72"
-          }}
-        >
-          <Text style={{ fontSize: 24 }}>Points Earned: {earnedPoints} </Text>
-        </View>
-
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
+        <Text style={{ fontSize: 24 }}>Points Earned: {earnedPoints} </Text>
+        <FlatList
+          data={rewards}
+          renderItem={({ item }) => <RewardListItem reward={item} />}
         />
       </View>
     );
