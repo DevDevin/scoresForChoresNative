@@ -2,31 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   Text,
-  TouchableWithoutFeedback,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal,
+  TouchableHighlight,
+  TextInput
 } from "react-native";
-import { Actions } from "react-native-router-flux";
 import {
   completionRequestsFetch,
   requestAccept,
   requestReject
 } from "../../actions/ParentActions";
-import { Button, CardSection } from "../common";
+import { CardSection, Input, Button } from "../common/index";
 
 class CompletionRequestListItem extends Component {
   state = {
-    isModalVisible: false
+    modalVisible: false,
+    reason: ""
   };
 
-  toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
+  setModalVisible = () => {
+    this.setState({ modalVisible: !this.state.modalVisible });
   };
-
-  onRowPress(activeUser) {
-    // actions.something
-  }
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
     console.log("uid: ", this.props.completionRequest.uid);
@@ -41,15 +39,18 @@ class CompletionRequestListItem extends Component {
     );
   }
 
-  onReject(cid, choreName, day, child, description, pointsValue) {
+  onReject(cid, choreName, day, child, description, pointsValue, reason) {
+    console.log("reason: ", reason);
     this.props.requestReject(
       cid,
       choreName,
       day,
       child,
       description,
-      pointsValue
+      pointsValue,
+      reason
     );
+    this.setState({ modalVisible: !this.state.modalVisible });
   }
 
   render() {
@@ -59,39 +60,67 @@ class CompletionRequestListItem extends Component {
     const { description, pointsValue } = this.props.completionRequest;
     const child = this.props.completionRequest.child;
     const uid = this.props.completionRequest.uid;
+    const completionRequest = this.props.completionRequest;
 
     return (
       <View style={{ flex: 1 }}>
-        <TouchableWithoutFeedback onPress={this.toggleModal}>
-          <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{choreName}</Text>
-              <Text style={styles.choreInfoStyle}>{child}</Text>
-              <Text style={styles.choreInfoStyle}>{day}</Text>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
+        <View style={styles.childStyle}>
+          <View style={styles.choreStyle}>
+            <Text style={styles.choreNameStyle}>{choreName}</Text>
+            <Text style={styles.choreInfoStyle}>{child}</Text>
+            <Text style={styles.choreInfoStyle}>{day}</Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <TouchableOpacity
+                onPress={this.onAccept.bind(
+                  this,
+                  cid,
+                  choreName,
+                  day,
+                  child,
+                  description,
+                  pointsValue
+                )}
+                style={styles.buttonStyle}
               >
-                <TouchableOpacity
-                  onPress={this.onAccept.bind(
-                    this,
-                    cid,
-                    choreName,
-                    day,
-                    child,
-                    description,
-                    pointsValue
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Accept</Text>
-                </TouchableOpacity>
+                <Text style={styles.textStyle}>Accept</Text>
+              </TouchableOpacity>
 
-                <TouchableOpacity
+              <TouchableOpacity
+                onPress={this.setModalVisible}
+                style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Reject</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <CardSection>
+                <Input
+                  label="ChoreName"
+                  placeholder="Dishes"
+                  value={this.state.reason}
+                  onChangeText={value => this.setState({ reason: value })}
+                />
+              </CardSection>
+              <CardSection>
+                <Button
                   onPress={this.onReject.bind(
                     this,
                     cid,
@@ -99,16 +128,23 @@ class CompletionRequestListItem extends Component {
                     day,
                     child,
                     description,
-                    pointsValue
+                    pointsValue,
+                    this.state.reason
                   )}
-                  style={styles.buttonStyle}
                 >
-                  <Text style={styles.textStyle}>Reject</Text>
-                </TouchableOpacity>
-              </View>
+                  Yes
+                </Button>
+                <Button
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}
+                >
+                  Close
+                </Button>
+              </CardSection>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </Modal>
       </View>
     );
   }
@@ -157,7 +193,7 @@ const styles = {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "#d67d72",
+    backgroundColor: "powderblue",
     alignItems: "center",
     borderColor: "#ddd"
   },

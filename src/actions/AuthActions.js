@@ -105,7 +105,8 @@ export const userCreate = ({ name, phone, password1, status, email }) => {
         email: email,
         phone: phone,
         password: password1,
-        status: status
+        status: status,
+        earnedPoints: 0
       })
       .then(() => {
         console.log("user successfully create");

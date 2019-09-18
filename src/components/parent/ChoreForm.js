@@ -17,6 +17,17 @@ class ChoreForm extends Component {
     isRecurring: false
   };
 
+  onCheckBoxClicked() {
+    this.setState({
+      isRecurring: !this.state.isRecurring
+    });
+    this.props.choreUpdate({
+      prop: "isRecurring",
+      value: this.state.isRecurring
+    });
+    console.log("state.isRecurring: ", this.state.isRecurring);
+  }
+
   render() {
     var radio_props = [
       { label: "Daily", value: "Daily" },
@@ -99,16 +110,7 @@ class ChoreForm extends Component {
         <CardSection>
           <CheckBox
             style={{ flex: 1, padding: 10 }}
-            onClick={() => {
-              this.setState({
-                isRecurring: !this.state.isRecurring
-              });
-              console.log("state.isRecurring: ", this.state.isRecurring);
-              this.props.choreUpdate({
-                prop: "isRecurring",
-                value: !this.state.isRecurring
-              });
-            }}
+            onClick={this.onCheckBoxClicked}
             isChecked={this.state.isRecurring}
             leftText={"Recurring"}
           />

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, TouchableOpacity } from "react-native";
-import ActionButton from "react-native-action-button";
 
 class StartupPage extends Component {
   onLoginPress() {
@@ -12,9 +11,6 @@ class StartupPage extends Component {
     Actions.signUp();
   }
 
-  onButtonPress() {
-    console.log("onButtonPress");
-  }
   render() {
     return (
       <View
@@ -22,7 +18,7 @@ class StartupPage extends Component {
           flex: 1,
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: "#d67d72"
+          backgroundColor: "grey"
         }}
       >
         <View
@@ -67,10 +63,6 @@ class StartupPage extends Component {
             <Text style={styles.textStyle}>Create Account</Text>
           </TouchableOpacity>
         </View>
-        <ActionButton
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onButtonPress.bind(this)}
-        />
       </View>
     );
   }

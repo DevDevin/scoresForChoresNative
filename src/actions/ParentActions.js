@@ -231,7 +231,8 @@ export const requestReject = (
   day,
   child,
   description,
-  pointsValue
+  pointsValue,
+  reason
 ) => {
   const { currentUser } = firebase.auth();
   console.log("cid: ", cid);
@@ -246,7 +247,8 @@ export const requestReject = (
         day: day,
         child: child,
         description: description,
-        pointsValue: pointsValue
+        pointsValue: pointsValue,
+        rejectionReason: reason
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });

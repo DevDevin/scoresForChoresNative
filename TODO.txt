@@ -1,16 +1,13 @@
 -- add logout and home button/links
--- backgroundColor on all lists powder blue
--- make a daily chore option when assigning chores
--- add reason for rejection of completion request
--- delete chores from child chore list once accepted
-	-with the deletion add the completed chore to a completed chore list that can be seen by child
-	-Or instead of deleting I could just have a toggle option to hide completed chores. 
+-- fix colors and styling. 
+-- toggle completed chores on and off for children. 
 -- add functionality for recurring chores
 	-- each weekreset chores marked as recurring to be "In-Progress" and delete the ones that aren't recurring
--- notifications for users
 -- floating action for adding chores and rewards etc...
--- Get rid of red background
 -- Filters for chore list, rewardRequest list. 
+-- fix the is recurring functionality for chores 
+-- make the startup and login pages have a box around the main part. 
+-- show rejection reason if completion request is rejected. 
 
 
 

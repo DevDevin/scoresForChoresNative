@@ -26,7 +26,7 @@ class ChildHome extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#d67d72",
+            backgroundColor: "grey",
             flex: 0.5
           }}
         >
