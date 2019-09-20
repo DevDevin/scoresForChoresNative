@@ -13,39 +13,64 @@ import { Text, View } from "react-native";
 import { CardSection } from "../common/index";
 
 class ChildChoreList extends Component {
+  state = {
+    choreStatus: "All"
+  };
   componentWillMount() {
     this.props.childChoresFetch(this.props.activeUser.name);
+    console.log("this.state.choreStatus: ", this.state.choreStatus);
   }
 
-  toggleChores = () => {
+  toggleChores = e => {
     //////////
+    console.log("e.value: ", e);
+    this.setState({ choreStatus: e });
   };
 
   render() {
     var radio_props = [
-      { label: "In-Progress/Rework", value: "In-Progress/Rework" },
+      { label: "All", value: "All" },
+      { label: "In-Progress", value: "In-Progress" },
       { label: "Complete", value: "Complete" },
       { label: "Submitted", value: "Submitted" }
     ];
     const chores = this.props.childChores;
     console.log("chores: ", chores);
+    const choreStatus = this.state.choreStatus;
+
+    let filteredChores;
+    // need to find a way to pass this.state.choreStatus into this function
+    if (choreStatus === "All") {
+      filteredChores = chores;
+    } else {
+      filteredChores = _.filter(chores, function(e) {
+        console.log(choreStatus);
+        return e.status === choreStatus;
+      });
+    }
 
     return (
-      <View>
-        <CardSection>
-          <View>
-            <RadioForm
-              style={{ justifyContent: "center", alignItems: "center" }}
-              radio_props={radio_props}
-              formHorizontal={true}
-              initial={0}
-              labelHorizontal={true}
-              onPress={this.toggleChores}
-            />
-          </View>
-        </CardSection>
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: 5
+          }}
+        >
+          <RadioForm
+            radio_props={radio_props}
+            formHorizontal={true}
+            initial={0}
+            labelHorizontal={false}
+            onPress={e => {
+              this.toggleChores(e);
+            }}
+          />
+        </View>
+
         <FlatList
-          data={chores}
+          data={filteredChores}
           renderItem={({ item }) => <ChildChoreListItem chore={item} />}
         />
       </View>
@@ -54,53 +79,11 @@ class ChildChoreList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state.auth.activeUser.name", state.auth.activeUser.name);
-
-  // const childChores = _.map(state.chores, (val, cid) => {
-  //   // i could do the filtering for completed, in progress, and submitted chores in here.
-  //   console.log("val: ", val.child);
-  //   console.log("val: ", val);
-  //   if (val.status === "Rework") {
-  //     return { ...val, cid };
-  //   }
-  // });
-
-  console.log("filteredChores: ", filteredChores);
-
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });
 
-  const filteredChores = _.filter(chores, function(e) {
-    return e.status === "Rework";
-  });
-  // const filteredChores = _.map(childChores, val => {
-  //   // i could do the filtering for completed, in progress, and submitted chores in here.
-  //   // can i check to see if it's undefined before I run it through this. I think I can check for null
-  //   // or maybe i can use the .filter function either lodash or regular javascript
-  // or maybe I can in the render and not in map state to props.
-  //   console.log("filtered chores val: ", val);
-  //   if (val != null) {
-  //     if (val.status === "Rework") {
-  //       return {
-  //         childName: val.childName,
-  //         choreName: val.choreName,
-  //         cid: val.cid,
-  //         day: val.day,
-  //         description: val.description,
-  //         pointsValue: val.pointsValue,
-  //         rejectReason: val.rejectReason,
-  //         status: val.status
-  //       };
-  //     }
-  //   }
-  // });
-
-  // console.log("child chores after filter: ", childChores);
-
-  // const evenNumbers = _.filter(state.chores, function(e){ return e.status === "Rework"    ;
-
-  return { childChores: filteredChores, activeUser: state.auth.activeUser };
+  return { childChores: chores, activeUser: state.auth.activeUser };
 };
 export default connect(
   mapStateToProps,
