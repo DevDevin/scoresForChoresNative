@@ -57,6 +57,8 @@ class ParentChoreList extends Component {
       });
     }
 
+    // add one more filter below this that filters based on Day. It will be the same format as above.
+
     return (
       <View>
         <Picker
