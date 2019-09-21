@@ -1,23 +1,58 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList } from "react-native";
+import { FlatList, Picker } from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
 import { View } from "react-native";
+import { usersFetch } from "../../actions/AuthActions";
 
 class CompletionRequestList extends Component {
+  state = {
+    child: "All"
+  };
+
   componentWillMount() {
     this.props.completionRequestsFetch();
+    this.props.usersFetch();
   }
 
   render() {
     const completionRequests = this.props.completionRequests;
+    const users = this.props.users;
+    const children = _.filter(users, function(item) {
+      return item.status === "child";
+    });
+    const child = this.state.child;
+
+    let filteredRequests;
+    // need to find a way to pass this.state.choreStatus into this function
+    if (child === "All") {
+      console.log("inside if: ", child);
+      filteredRequests = completionRequests;
+    } else {
+      filteredRequests = _.filter(completionRequests, function(item) {
+        console.log("inside else: ", child);
+        return item.child === child;
+      });
+    }
 
     return (
       <View>
+        <Picker
+          selectedValue={this.state.child}
+          style={{ height: 50, width: 100 }}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({ child: itemValue })
+          }
+        >
+          <Picker.Item label="All" value="All" />
+          {children.map(function(child) {
+            return <Picker.Item label={child.name} value={child.name} />;
+          })}
+        </Picker>
         <FlatList
-          data={completionRequests}
+          data={filteredRequests}
           renderItem={({ item }) => (
             <CompletionRequestListItem completionRequest={item} />
           )}
@@ -31,10 +66,14 @@ const mapStateToProps = state => {
   const completionRequests = _.map(state.completionRequests, (val, cid) => {
     return { ...val, cid };
   });
-  return { completionRequests: completionRequests };
+
+  const users = _.map(state.users, (val, uid) => {
+    return { ...val, uid };
+  });
+  return { completionRequests: completionRequests, users: users };
 };
 
 export default connect(
   mapStateToProps,
-  { completionRequestsFetch }
+  { completionRequestsFetch, usersFetch }
 )(CompletionRequestList);

@@ -2,15 +2,22 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList } from "react-native";
+import { FlatList, Picker } from "react-native";
+import { Dropdown } from "react-native-material-dropdown";
 import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
 import { View, Text } from "react-native";
 import ActionButton from "react-native-action-button";
+import { usersFetch } from "../../actions/AuthActions";
 
 class ParentChoreList extends Component {
+  state = {
+    child: "All",
+    language: ""
+  };
   componentWillMount() {
     this.props.choresFetch();
+    this.props.usersFetch();
   }
 
   onButtonPress() {
@@ -18,15 +25,58 @@ class ParentChoreList extends Component {
     Actions.choreCreate();
   }
 
+  // const childArray = chores.
+
   render() {
     const chores = this.props.chores;
+    console.log("chores.childName: ", chores.name);
+    const users = this.props.users;
+    console.log("users: ", users);
+
+    // const pickerItem = _.map(users, function(item) {
+    //   console.log("item: ", item.name);
+    //   return item.name;
+    // });
+
+    var pickerItem = users.map(function(user) {
+      return { value: user.name };
+    });
+    console.log("pickerItem: ", pickerItem);
+    const child = this.state.child;
+    console.log("child: ", child);
+
+    let filteredChores;
+    // need to find a way to pass this.state.choreStatus into this function
+    if (child === "All") {
+      console.log("inside if: ", child);
+      filteredChores = chores;
+    } else {
+      filteredChores = _.filter(chores, function(item) {
+        console.log("inside else: ", child);
+        return item.child === child;
+      });
+    }
 
     return (
       <View>
+        <Picker
+          selectedValue={this.state.language}
+          style={{ height: 50, width: 100 }}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({ child: itemValue })
+          }
+        >
+          {users.map(function(user) {
+            return <Picker.Item label={user.name} value={user.name} />;
+          })}
+        </Picker>
+        {/* /*react native material dropdown */}
+        {/* <Dropdown label="Child" data={pickerItem} /> */}
+
         <Text>Chore Manager</Text>
         <View>
           <FlatList
-            data={chores}
+            data={filteredChores}
             renderItem={({ item }) => <ParentChoreListItem chore={item} />}
           />
         </View>
@@ -47,10 +97,16 @@ const mapStateToProps = state => {
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });
-  return { chores: chores };
+
+  ///bring in users
+  const users = _.map(state.users, (val, uid) => {
+    return { ...val, uid };
+  });
+
+  return { chores: chores, users: users };
 };
 
 export default connect(
   mapStateToProps,
-  { choresFetch }
+  { choresFetch, usersFetch }
 )(ParentChoreList);

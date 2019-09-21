@@ -82,6 +82,7 @@ export const rewardRequestSend = (
   rewardName
 ) => {
   const { currentUser } = firebase.auth();
+  console.log("inside reward request send");
   console.log("activeUserName: ", activeUserName);
   console.log("uid: ", uid);
   console.log("pointsValue: ", pointsValue);
