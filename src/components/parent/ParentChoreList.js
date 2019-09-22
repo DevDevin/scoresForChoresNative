@@ -13,7 +13,8 @@ import { usersFetch } from "../../actions/AuthActions";
 class ParentChoreList extends Component {
   state = {
     child: "All",
-    language: ""
+    language: "",
+    day: "All"
   };
   componentWillMount() {
     this.props.choresFetch();
@@ -33,6 +34,19 @@ class ParentChoreList extends Component {
     const users = this.props.users;
     console.log("users: ", users);
 
+    const days = [
+      { value: "Monday" },
+      { value: "Tuesday" },
+      { value: "Wednesday" },
+      { value: "Thursday" },
+      { value: "Friday" },
+      { value: "Saturday" },
+      { value: "Sunday" },
+      { value: "Monday-Wednesday-Friday" },
+      { value: "Tuesday-Thursday" },
+      { value: "Daily" }
+    ];
+
     // const pickerItem = _.map(users, function(item) {
     //   console.log("item: ", item.name);
     //   return item.name;
@@ -44,6 +58,8 @@ class ParentChoreList extends Component {
     console.log("pickerItem: ", pickerItem);
     const child = this.state.child;
     console.log("child: ", child);
+    const day = this.state.day;
+    console.log("this.state.day: ", day);
 
     let filteredChores;
     // need to find a way to pass this.state.choreStatus into this function
@@ -57,23 +73,49 @@ class ParentChoreList extends Component {
       });
     }
 
+    if (day === "All") {
+      console.log("inside if: ", child);
+      filteredChores = filteredChores;
+    } else {
+      console.log("inside second else: ", filteredChores);
+      filteredChores = _.filter(filteredChores, function(item) {
+        console.log("inside else days:  ", day, "item.value: ", item.value);
+        return item.value === day;
+      });
+      console.log("inside second else again ", filteredChores);
+    }
+
     // add one more filter below this that filters based on Day. It will be the same format as above.
 
     return (
       <View>
         <Picker
-          selectedValue={this.state.language}
+          selectedValue={this.state.child}
           style={{ height: 50, width: 100 }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({ child: itemValue })
           }
         >
+          <Picker.Item label={"All"} value={"All"} />
+
           {users.map(function(user) {
             return <Picker.Item label={user.name} value={user.name} />;
           })}
         </Picker>
-        {/* /*react native material dropdown */}
-        {/* <Dropdown label="Child" data={pickerItem} /> */}
+
+        <Picker
+          selectedValue={this.state.day}
+          style={{ height: 50, width: 100 }}
+          onValueChange={(itemValue, itemIndex) => {
+            console.log("inside of set state day: ", itemValue);
+            this.setState({ day: itemValue });
+          }}
+        >
+          <Picker.Item label={"All"} value={"All"} />
+          {days.map(function(day) {
+            return <Picker.Item label={day.value} value={day.value} />;
+          })}
+        </Picker>
 
         <Text>Chore Manager</Text>
         <View>
