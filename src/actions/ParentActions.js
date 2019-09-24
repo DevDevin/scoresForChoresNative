@@ -384,3 +384,20 @@ export const rewardRequestReject = (
       });
   };
 };
+
+export const choreReset = filteredChores => {
+  const { currentUser } = firebase.auth();
+  console.log("filteredChores: ", filteredChores);
+
+  console.log("state", state);
+
+  // return () => {
+  //   firebase
+  //     .database()
+  //     .ref(`/users/${currentUser.uid}/chores/${cid}`)
+  //     .remove()
+  //     .then(() => {
+  //       Actions.employeeList({ type: "reset" });
+  //     });
+  // };
+};

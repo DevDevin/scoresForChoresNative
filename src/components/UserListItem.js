@@ -18,9 +18,9 @@ class UserListItem extends Component {
     this.props.setActiveUser(activeUser);
 
     if (activeUser.status === "parent") {
-      Actions.parent();
+      Actions.parentHome();
     } else {
-      Actions.child();
+      Actions.childHome();
     }
   }
 

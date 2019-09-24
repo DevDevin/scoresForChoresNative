@@ -26,6 +26,15 @@ class ChildSideMenu extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            Actions.choreReset();
+          }}
+        >
+          <View>
+            <Text>Reset Chores</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             Actions.choreCreate();
           }}
         >
