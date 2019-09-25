@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import _ from "lodash";
 import { Actions } from "react-native-router-flux";
 import {
   CHORE_UPDATE,
@@ -41,7 +42,7 @@ export const choreCreate = ({
         child: child,
         pointsValue: pointsValue,
         status: "In-Progress",
-        isRecurring: isRecurring
+        recurring: "yes"
       })
       .then(() => {
         Actions.parentChoreList();
@@ -389,15 +390,30 @@ export const choreReset = filteredChores => {
   const { currentUser } = firebase.auth();
   console.log("filteredChores: ", filteredChores);
 
-  console.log("state", state);
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .remove();
 
-  // return () => {
-  //   firebase
-  //     .database()
-  //     .ref(`/users/${currentUser.uid}/chores/${cid}`)
-  //     .remove()
-  //     .then(() => {
-  //       Actions.employeeList({ type: "reset" });
-  //     });
-  // };
+    _.map(filteredChores, chore => {
+      console.log("iteration ", chore);
+
+      firebase
+        .database()
+        .ref(`/users/${currentUser.uid}/chores`)
+        .push({
+          child: chore.child,
+          choreName: chore.choreName,
+          day: chore.day,
+          description: chore.description,
+          pointsValue: chore.pointsValue,
+          recuring: "yes",
+          status: chore.status
+        })
+        .then(() => {
+          Actions.parentChoreList({ type: "reset" });
+        });
+    });
+  };
 };

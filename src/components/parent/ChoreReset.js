@@ -18,7 +18,15 @@ class ChoreReset extends Component {
     console.log("chores: ", chores);
 
     const filteredChores = _.filter(chores, function(item) {
-      return item.status != "Recurring";
+      console.log(
+        "inside else: ",
+        item.child,
+        item.choreName,
+        item.day,
+        item.status
+      );
+      console.log("item.isRecuring: ", item.recurring);
+      return item.recuring === "yes";
     });
     //change it to where recurring = false
 
