@@ -42,7 +42,7 @@ export const choreCreate = ({
         child: child,
         pointsValue: pointsValue,
         status: "In-Progress",
-        recurring: "yes"
+        recurring: isRecurring
       })
       .then(() => {
         Actions.parentChoreList();

@@ -74,13 +74,13 @@ class ParentChoreList extends Component {
     }
 
     if (day === "All") {
-      console.log("inside if: ", child);
+      console.log("day = all. Child: ", child);
       filteredChores = filteredChores;
     } else {
-      console.log("inside second else: ", filteredChores);
+      console.log("day does not = all: ", filteredChores);
       filteredChores = _.filter(filteredChores, function(item) {
-        console.log("inside else days:  ", day, "item.value: ", item.value);
-        return item.value === day;
+        console.log("const day:  ", day, "item.day: ", item.day);
+        return item.day === day;
       });
       console.log("inside second else again ", filteredChores);
     }

@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList } from "react-native";
+import { FlatList, Picker } from "react-native";
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
@@ -14,7 +14,8 @@ import { CardSection } from "../common/index";
 
 class ChildChoreList extends Component {
   state = {
-    choreStatus: "All"
+    choreStatus: "All",
+    day: "All"
   };
   componentWillMount() {
     this.props.childChoresFetch(this.props.activeUser.name);
@@ -37,6 +38,28 @@ class ChildChoreList extends Component {
     const chores = this.props.childChores;
     console.log("chores: ", chores);
     const choreStatus = this.state.choreStatus;
+    const day = this.state.day;
+    console.log("this.state.day: ", day);
+
+    const days = [
+      { value: "Monday" },
+      { value: "Tuesday" },
+      { value: "Wednesday" },
+      { value: "Thursday" },
+      { value: "Friday" },
+      { value: "Saturday" },
+      { value: "Sunday" },
+      { value: "Monday-Wednesday-Friday" },
+      { value: "Tuesday-Thursday" },
+      { value: "Daily" }
+    ];
+
+    const choreStatuses = [
+      { value: "All" },
+      { value: "In-Progress" },
+      { value: "Complete" },
+      { value: "Submited" }
+    ];
 
     let filteredChores;
     // need to find a way to pass this.state.choreStatus into this function
@@ -49,6 +72,18 @@ class ChildChoreList extends Component {
       });
     }
 
+    if (day === "All") {
+      console.log("day = all");
+      filteredChores = filteredChores;
+    } else {
+      console.log("day does not = all: ", filteredChores);
+      filteredChores = _.filter(filteredChores, function(item) {
+        console.log("const day:  ", day, "item.day: ", item.day);
+        return item.day === day;
+      });
+      console.log("inside second else again ", filteredChores);
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <View
@@ -58,7 +93,20 @@ class ChildChoreList extends Component {
             paddingTop: 5
           }}
         >
-          <RadioForm
+          <Picker
+            selectedValue={this.state.choreStatus}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) => {
+              console.log("inside of set state day: ", itemValue);
+              this.setState({ choreStatus: itemValue });
+            }}
+          >
+            <Picker.Item label={"All"} value={"All"} />
+            {choreStatuses.map(function(status) {
+              return <Picker.Item label={status.value} value={status.value} />;
+            })}
+          </Picker>
+          {/* <RadioForm
             radio_props={radio_props}
             formHorizontal={true}
             initial={0}
@@ -66,7 +114,21 @@ class ChildChoreList extends Component {
             onPress={e => {
               this.toggleChores(e);
             }}
-          />
+          /> */}
+
+          <Picker
+            selectedValue={this.state.day}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) => {
+              console.log("inside of set state day: ", itemValue);
+              this.setState({ day: itemValue });
+            }}
+          >
+            <Picker.Item label={"All"} value={"All"} />
+            {days.map(function(day) {
+              return <Picker.Item label={day.value} value={day.value} />;
+            })}
+          </Picker>
         </View>
 
         <FlatList

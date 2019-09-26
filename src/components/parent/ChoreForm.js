@@ -16,16 +16,24 @@ class ChoreForm extends Component {
     isOther: false,
     isRecurring: false
   };
+  componentDidMount() {
+    console.log("ComponentWillMount");
+    this.props.choreUpdate({
+      prop: "isRecurring",
+      value: false
+    });
+  }
 
-  onCheckBoxClicked() {
+  onCheckBoxClicked(isRecurring) {
+    console.log("this.state.isRecurring old: ", this.state.isRecurring);
     this.setState({
       isRecurring: !this.state.isRecurring
     });
+    console.log("this.state.isRecurring new: ", this.state.isRecurring);
     this.props.choreUpdate({
       prop: "isRecurring",
-      value: this.state.isRecurring
+      value: !this.state.isRecurring
     });
-    console.log("state.isRecurring: ", this.state.isRecurring);
   }
 
   render() {
@@ -110,7 +118,10 @@ class ChoreForm extends Component {
         <CardSection>
           <CheckBox
             style={{ flex: 1, padding: 10 }}
-            onClick={this.onCheckBoxClicked}
+            onClick={() => {
+              this.onCheckBoxClicked();
+              // this.setState({ isRecurring: !this.state.isRecurring });
+            }}
             isChecked={this.state.isRecurring}
             leftText={"Recurring"}
           />
