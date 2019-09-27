@@ -357,12 +357,10 @@ export const rewardRequestAccept = (
 };
 
 export const rewardRequestReject = (
-  cid,
-  choreName,
-  day,
-  child,
-  description,
-  pointsValue
+  childName,
+  uid,
+  pointsValue,
+  rewardName
 ) => {
   const { currentUser } = firebase.auth();
   console.log("cid: ", cid);
@@ -370,14 +368,11 @@ export const rewardRequestReject = (
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/chores/${cid}`)
-      .set({
-        status: "Rework",
-        choreName: choreName,
-        day: day,
-        child: child,
-        description: description,
-        pointsValue: pointsValue
+      .ref(`/users/${currentUser.uid}/rejectedRewards`)
+      .push({
+        reason: "Because I wanted to.",
+        rewardName: rewardName,
+        childName: childName
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
@@ -408,8 +403,8 @@ export const choreReset = filteredChores => {
           day: chore.day,
           description: chore.description,
           pointsValue: chore.pointsValue,
-          recuring: "yes",
-          status: chore.status
+          recuring: true,
+          status: "In-Progress"
         })
         .then(() => {
           Actions.parentChoreList({ type: "reset" });

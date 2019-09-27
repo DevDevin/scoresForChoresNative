@@ -1,18 +1,12 @@
 -- add logout and home button/links
 -- fix colors and styling. 
--- child chores filter by day and status
--- add functionality for recurring chores
-	-- each weekreset chores marked as recurring to be "In-Progress" and delete the ones that aren't recurring
 -- floating action for adding chores and rewards etc...
--- Filters for chore list (parent and child), rewardRequest list. 
--- make the startup and login pages have a box around the main part. 
--- show rejection reason if completion request is rejected. 
-
-
-
-
-
-
+-- make the startup and login pages have a box around the main part.
+-- reject chore completion request with a reason. 
+-- reject reward request with a reason
+-- make it so the same user name cannot be created for children. 
+-- add a rewardRequests view for the child where they can toggle
+   filter chores based on their status. Get rid of the earnedRewards view.
 
 
 

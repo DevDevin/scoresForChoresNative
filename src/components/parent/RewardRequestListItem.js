@@ -30,17 +30,16 @@ class RewardRequestListItem extends Component {
   onAccept(childName, uid, pointsValue, rid, rewardName) {
     console.log("uid: ", uid);
     console.log("childName: ", childName);
-    this.props.rewardRequestAccept(
+    this.props.rewardRequestAccept(childName, pointsValue, rid, rewardName);
+  }
+  onReject(childName, uid, pointsValue, rid, rewardName) {
+    this.props.rewardRequestReject(
       childName,
       uid,
       pointsValue,
       rid,
       rewardName
     );
-  }
-  s;
-  onReject(childName, uid, pointsValue) {
-    this.props.requestReject(childName, uid, pointsValue);
   }
 
   render() {
@@ -85,7 +84,9 @@ class RewardRequestListItem extends Component {
                     this,
                     childName,
                     uid,
-                    pointsValue
+                    pointsValue,
+                    rid,
+                    rewardName
                   )}
                   style={styles.buttonStyle}
                 >

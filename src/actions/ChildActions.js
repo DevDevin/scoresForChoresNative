@@ -72,8 +72,24 @@ export const completionRequestSend = (
   };
 };
 
-// maybe i can combine the child name/id and the rid to make it unique
-// i need to add the reward name so that I can use it further down when an earned reward is created.
+// grab the reward requests for that child
+export const rewardRequestsFetch = () => {
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests`)
+      .on("value", snapshot => {
+        dispatch({
+          type: REWARD_REQUESTS_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
+      });
+  };
+};
+
+// the childs total points will be deleted when they submit the reward request. It the reward request is accepted
+// nothing will need to happen. If the request is rejected then the points will be given back.
 export const rewardRequestSend = (
   activeUserName,
   uid,

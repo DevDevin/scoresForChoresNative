@@ -26,7 +26,7 @@ class ChoreReset extends Component {
         item.status
       );
       console.log("item.isRecuring: ", item.recurring);
-      return item.recuring === "yes";
+      return (item.recuring = true);
     });
     //change it to where recurring = false
 
