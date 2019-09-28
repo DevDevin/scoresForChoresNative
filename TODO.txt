@@ -5,8 +5,8 @@
 -- reject chore completion request with a reason. 
 -- reject reward request with a reason
 -- make it so the same user name cannot be created for children. 
--- add a rewardRequests view for the child where they can toggle
-   filter chores based on their status. Get rid of the earnedRewards view.
+-- password login for individual users,
+-- Spinner icon when waiting. 
 
 
 

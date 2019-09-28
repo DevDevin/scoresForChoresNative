@@ -9,7 +9,8 @@ import {
   COMPLETION_REQUESTS_FETCH_SUCCESS,
   CHORE_SAVE_SUCCESS,
   REWARD_REQUESTS_FETCH_SUCCESS,
-  REWARD_REQUEST_SAVE_SUCCESS
+  REWARD_REQUEST_SAVE_SUCCESS,
+  REJECTION_REASON_CHANGED
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
@@ -316,8 +317,7 @@ export const rewardRequestAccept = (
         console.log("points before: ", snapshot.val().earnedPoints);
 
         // set values for updating the child from the snapshot
-        totalPoints =
-          parseInt(snapshot.val().earnedPoints) - parseInt(pointsValue);
+        totalPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = snapshot.val().password;
@@ -347,7 +347,10 @@ export const rewardRequestAccept = (
       .set({
         rewardName: rewardName,
         uid: uid,
-        childName: childName
+        childName: childName,
+        rewardName: rewardName,
+        pointsValue: pointsValue,
+        status: "Accepted"
       })
       .then(() => {
         dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
@@ -360,23 +363,62 @@ export const rewardRequestReject = (
   childName,
   uid,
   pointsValue,
-  rewardName
+  rid,
+  rewardName,
+  rejectionReason
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("cid: ", cid);
+  console.log("rewardRequestReject reason: ", rejectionReason);
+  console.log("rid: ", rid);
+  console.log("rewardName: ", rewardName);
+  console.log("pointsValue: ", pointsValue);
 
+  // use the database to grab the earned points of the current user
+  // then use a variable to add the old and the new together for the new total
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rejectedRewards`)
-      .push({
-        reason: "Because I wanted to.",
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .on("value", snapshot => {
+        console.log("points before: ", snapshot.val().earnedPoints);
+
+        // set values for updating the child from the snapshot
+        totalPoints =
+          parseInt(snapshot.val().earnedPoints) + parseInt(pointsValue);
+        email = snapshot.val().email;
+        name = snapshot.val().name;
+        password = snapshot.val().password;
+        phone = snapshot.val().phone;
+        status = snapshot.val().status;
+
+        console.log("totalPoints: ", totalPoints);
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .set({
+        email: email,
+        name: name,
+        password: password,
+        phone: phone,
+        status: status,
+        earnedPoints: totalPoints
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests/${rid}`)
+      .set({
         rewardName: rewardName,
-        childName: childName
+        uid: uid,
+        childName: childName,
+        rewardName: rewardName,
+        pointsValue: pointsValue,
+        status: "Rejected",
+        rejectionReason: rejectionReason
       })
       .then(() => {
-        dispatch({ type: CHORE_SAVE_SUCCESS });
-        Actions.completionRequestList({ type: "reset" });
+        dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
+        Actions.rewardRequestList({ type: "reset" });
       });
   };
 };
@@ -410,5 +452,12 @@ export const choreReset = filteredChores => {
           Actions.parentChoreList({ type: "reset" });
         });
     });
+  };
+};
+
+export const rejectionReasonChange = text => {
+  return {
+    type: REJECTION_REASON_CHANGED,
+    payload: text
   };
 };

@@ -102,16 +102,47 @@ export const rewardRequestSend = (
   console.log("activeUserName: ", activeUserName);
   console.log("uid: ", uid);
   console.log("pointsValue: ", pointsValue);
+  console.log("rid: ", rid);
 
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rewardRequests/${rid + uid}`)
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .on("value", snapshot => {
+        console.log("points before: ", snapshot.val().earnedPoints);
+
+        // set values for updating the child from the snapshot
+        totalPoints =
+          parseInt(snapshot.val().earnedPoints) - parseInt(pointsValue);
+        email = snapshot.val().email;
+        name = snapshot.val().name;
+        password = snapshot.val().password;
+        phone = snapshot.val().phone;
+        status = snapshot.val().status;
+
+        console.log("totalPoints: ", totalPoints);
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .set({
+        email: email,
+        name: name,
+        password: password,
+        phone: phone,
+        status: status,
+        earnedPoints: totalPoints
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests/${rid}`)
       .set({
         childName: activeUserName,
         uid: uid,
         pointsValue: pointsValue,
-        rewardName: rewardName
+        rewardName: rewardName,
+        status: "Submitted",
+        rejectionReason: ""
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });

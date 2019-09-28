@@ -28,3 +28,4 @@ export const EARNED_REWARD_FETCH_SUCCESS = "earned_reward_fetch_success";
 export const PASSWORD2_CHANGED = "password2_changed";
 export const PASSWORD_MISMATCH = "password_mismatch";
 export const CREATE_USER_SUCCESS = "create_user_success";
+export const REJECTION_REASON_CHANGED = "rejection_reason_changed";

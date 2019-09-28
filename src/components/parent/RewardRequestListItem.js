@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -8,16 +9,24 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
+import Modal from "react-native-modal";
 import {
   rewardRequestsFetch,
   rewardRequestAccept,
-  rewardRequestReject
+  rewardRequestReject,
+  rejectionReasonChange
 } from "../../actions/ParentActions";
+import { Input, Spinner } from "../common";
 
 class RewardRequestListItem extends Component {
   state = {
-    isModalVisible: false
+    isModalVisible: false,
+    rejectionReason: ""
   };
+
+  componentWillMount() {
+    this.props.rewardRequestsFetch();
+  }
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -30,10 +39,7 @@ class RewardRequestListItem extends Component {
   onAccept(childName, uid, pointsValue, rid, rewardName) {
     console.log("uid: ", uid);
     console.log("childName: ", childName);
-    this.props.rewardRequestAccept(childName, pointsValue, rid, rewardName);
-  }
-  onReject(childName, uid, pointsValue, rid, rewardName) {
-    this.props.rewardRequestReject(
+    this.props.rewardRequestAccept(
       childName,
       uid,
       pointsValue,
@@ -42,13 +48,34 @@ class RewardRequestListItem extends Component {
     );
   }
 
+  onReject(childName, uid, pointsValue, rid, rewardName, rejectionReason) {
+    console.log("rejectionReason: ", rejectionReason);
+    this.props.rewardRequestReject(
+      childName,
+      uid,
+      pointsValue,
+      rid,
+      rewardName,
+      rejectionReason
+    );
+  }
+
+  onRejectionReasonChange(text) {
+    // this.props.rejectionReasonChange(text);
+    this.setState({ rejectionReason: text });
+  }
+
   render() {
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
     const uid = this.props.rewardRequest.uid;
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
+    const rejectionReason = this.state.rejectionReason;
+    console.log("rejectionReason", rejectionReason);
+
     console.log("rewardName: ", this.props.rewardRequest);
+    console.log("rid: ", rid);
 
     return (
       <View style={{ flex: 1 }}>
@@ -80,14 +107,7 @@ class RewardRequestListItem extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={this.onReject.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName
-                  )}
+                  onPress={this.toggleModal}
                   style={styles.buttonStyle}
                 >
                   <Text style={styles.textStyle}>Reject</Text>
@@ -96,6 +116,45 @@ class RewardRequestListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View
+            style={{
+              backgroundColor: "powderblue",
+              justifyContent: "center"
+            }}
+          >
+            <Text>Enter your rejection Reason</Text>
+            <TouchableOpacity
+              onPress={this.onReject.bind(
+                this,
+                childName,
+                uid,
+                pointsValue,
+                rid,
+                rewardName,
+                rejectionReason
+              )}
+              style={styles.buttonStyle}
+            >
+              <Text style={styles.textStyle}>Okay</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.toggleModal}
+              style={styles.buttonStyle}
+            >
+              <Text style={styles.textStyle}>Cancel </Text>
+            </TouchableOpacity>
+
+            <View style={styles.cardSectionStyle}>
+              <Input
+                label="Rejection Reason"
+                placeholder="afdafdaf"
+                onChangeText={this.onRejectionReasonChange.bind(this)}
+                value={this.state.rejectionReason}
+              />
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -167,16 +226,35 @@ const styles = {
     fontWeight: "600",
     paddingTop: 10,
     paddingBottom: 10
+  },
+  cardSectionStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "powderblue",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative"
   }
 };
 
 const mapStateToProps = state => {
+  const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
+    return { ...val, rid };
+  });
+
   return {
-    activeUser: state.auth.activeUser
+    activeUser: state.auth.activeUser,
+    rewardRequests: rewardRequests
   };
 };
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch, rewardRequestAccept, rewardRequestReject }
+  {
+    rewardRequestsFetch,
+    rewardRequestAccept,
+    rewardRequestReject,
+    rejectionReasonChange
+  }
 )(RewardRequestListItem);

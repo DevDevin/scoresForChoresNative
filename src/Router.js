@@ -71,15 +71,15 @@ const RouterComponent = () => {
             key="childRewardStore"
             component={ChildRewardStore}
             title="Child Reward Store"
-            rightTitle="Earned Rewards"
+            rightTitle="Reward Requests"
             onRight={() => {
-              Actions.earnedRewards();
+              Actions.rewardRequests();
             }}
           />
           <Scene
-            key="earnedRewards"
+            key="rewardRequests"
             component={ChildRewardRequestsList}
-            title="Earned Rewards"
+            title="Reward Requests"
           />
           <Scene
             key="startup"

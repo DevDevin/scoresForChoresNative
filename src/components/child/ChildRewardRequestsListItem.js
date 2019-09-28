@@ -8,11 +8,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import {
-  rewardRequestsFetch,
-  rewardRequestAccept,
-  rewardRequestReject
-} from "../../actions/ParentActions";
+import { rewardRequestsFetch } from "../../actions/ParentActions";
+import { rewardRequestSend } from "../../actions/ChildActions";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
@@ -27,14 +24,11 @@ class ChildRewardRequestsListItem extends Component {
     // actions.something
   }
 
-  onAccept(childName, uid, pointsValue, rid, rewardName) {
-    console.log("uid: ", uid);
-    console.log("childName: ", childName);
-    this.props.rewardRequestAccept(childName, pointsValue, rid, rewardName);
-  }
-  onReject(childName, uid, pointsValue, rid, rewardName) {
-    this.props.rewardRequestReject(
-      childName,
+  onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
+    // submit a completion
+    console.log("completion request child id: ", uid);
+    this.props.rewardRequestSend(
+      activeUserName,
       uid,
       pointsValue,
       rid,
@@ -43,20 +37,49 @@ class ChildRewardRequestsListItem extends Component {
   }
 
   render() {
+    const activeUserName = this.props.activeUser.name;
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
     const uid = this.props.rewardRequest.uid;
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
+    const rewardStatus = this.props.rewardRequest.status;
     console.log("rewardName: ", this.props.rewardRequest);
+    let reSubmitButton;
+    console.log("rewardRequest prop: ", this.props.rewardRequest);
+    console.log("rewardStatus: ", rewardStatus);
+
+    if (rewardStatus === "Rejected") {
+      console.log("inside rejected condition");
+      reSubmitButton = (
+        <TouchableOpacity
+          onPress={this.onButtonPress.bind(
+            this,
+            activeUserName,
+            uid,
+            pointsValue,
+            rid,
+            rewardName
+          )}
+          style={styles.buttonStyle}
+        >
+          <Text style={styles.textStyle}>Submit</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      reSubmitButton = <View></View>;
+    }
 
     return (
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
             <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{childName}</Text>
+              <Text style={styles.choreNameStyle}>{rewardName}</Text>
               <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+              <Text style={styles.choreInfoStyle}>{rewardStatus}</Text>
+              {reSubmitButton}
+
               <View
                 style={{
                   flex: 1,
@@ -64,35 +87,7 @@ class ChildRewardRequestsListItem extends Component {
                   justifyContent: "center",
                   alignItems: "center"
                 }}
-              >
-                <TouchableOpacity
-                  onPress={this.onAccept.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Accept</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={this.onReject.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Reject</Text>
-                </TouchableOpacity>
-              </View>
+              ></View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -178,5 +173,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch, rewardRequestAccept, rewardRequestReject }
+  { rewardRequestsFetch, rewardRequestSend }
 )(ChildRewardRequestsListItem);

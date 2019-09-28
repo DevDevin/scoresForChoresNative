@@ -2,11 +2,6 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FlatList, Picker } from "react-native";
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel
-} from "react-native-simple-radio-button";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View } from "react-native";
@@ -22,19 +17,7 @@ class ChildChoreList extends Component {
     console.log("this.state.choreStatus: ", this.state.choreStatus);
   }
 
-  toggleChores = e => {
-    //////////
-    console.log("e.value: ", e);
-    this.setState({ choreStatus: e });
-  };
-
   render() {
-    var radio_props = [
-      { label: "All", value: "All" },
-      { label: "In-Progress", value: "In-Progress" },
-      { label: "Complete", value: "Complete" },
-      { label: "Submitted", value: "Submitted" }
-    ];
     const chores = this.props.childChores;
     console.log("chores: ", chores);
     const choreStatus = this.state.choreStatus;
@@ -106,15 +89,6 @@ class ChildChoreList extends Component {
               return <Picker.Item label={status.value} value={status.value} />;
             })}
           </Picker>
-          {/* <RadioForm
-            radio_props={radio_props}
-            formHorizontal={true}
-            initial={0}
-            labelHorizontal={false}
-            onPress={e => {
-              this.toggleChores(e);
-            }}
-          /> */}
 
           <Picker
             selectedValue={this.state.day}

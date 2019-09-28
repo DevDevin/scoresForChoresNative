@@ -25,6 +25,7 @@ class RewardRequestList extends Component {
   render() {
     console.log("inside render");
     const rewardRequests = this.props.rewardRequests;
+    console.log("rewardRequests: ", rewardRequests);
     const users = this.props.users;
     const children = _.filter(users, function(item) {
       return item.status === "child";

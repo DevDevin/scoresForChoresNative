@@ -2,7 +2,8 @@ import {
   REWARD_REQUESTS_FETCH_SUCCESS,
   REWARD_REQUEST_UPDATE,
   REWARD_REQUEST_CREATE,
-  REWARD_REQUEST_SAVE_SUCCESS
+  REWARD_REQUEST_SAVE_SUCCESS,
+  REJECTION_REASON_CHANGED
 } from "../actions/types";
 
 const INITIAL_STATE = {};
@@ -17,6 +18,11 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case REWARD_REQUEST_SAVE_SUCCESS:
       return INITIAL_STATE;
+    case REJECTION_REASON_CHANGED:
+      return {
+        ...state,
+        rejectionReason: action.payload
+      };
     default:
       return state;
   }
