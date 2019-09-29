@@ -6,26 +6,68 @@ import {
   View,
   Dimensions,
   ScrollView,
-  Image
+  Image,
+  TouchableOpacity
 } from "react-native";
+import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
-import { usersFetch, setActiveUser } from "../actions/AuthActions";
+import { setActiveUser } from "../actions/AuthActions";
+import { Input, Spinner } from "./common";
 
 class UserListItem extends Component {
-  onRowPress(activeUser) {
-    // redirect to parent or child depending on the user status
-    console.log(console.log("activeUser.uid", activeUser.uid));
-    this.props.setActiveUser(activeUser);
+  state = {
+    isModalVisible: false,
+    enteredPassword: "",
+    loginError: ""
+  };
 
-    if (activeUser.status === "parent") {
-      Actions.parentHome();
+  onSignIn(password, activeUser) {
+    console.log(
+      "entered password: ",
+      this.state.enteredPassword,
+      " password: ",
+      password
+    );
+
+    console.log("activeUser: ", activeUser);
+
+    if (password === this.state.enteredPassword) {
+      // redirect to parent or child depending on the user status
+      console.log(console.log("activeUser.status", activeUser));
+      this.props.setActiveUser(activeUser);
+
+      if (activeUser.status === "parent") {
+        Actions.parentHome();
+      } else {
+        this.setState({ isModalVisible: false });
+        Actions.childHome();
+      }
     } else {
-      Actions.childHome();
+      console.log("did not match");
+      this.setState({ loginError: "Incorrect Password" });
     }
   }
 
+  toggleModal = () => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    });
+  };
+
+  rendorError() {
+    return (
+      <View>
+        <Text style={styles.errorTextStyle}>{this.state.loginError} </Text>
+      </View>
+    );
+  }
+
   render() {
-    const { name } = this.props.user;
+    const enteredPassword = this.state.enteredPassword;
+    const { name, password } = this.props.user;
+    console.log("user prop: ", this.props.user);
+
+    // const password = this.props.users;
 
     var width = Dimensions.get("window").width; //full width
     var height = Dimensions.get("window").height; //full height
@@ -34,7 +76,8 @@ class UserListItem extends Component {
       <View>
         <TouchableWithoutFeedback
           value={this.props.user.name}
-          onPress={this.onRowPress.bind(this, this.props.user)}
+          onPress={this.toggleModal}
+          // onPress={this.onRowPress.bind(this, this.props.user)}
         >
           <View style={styles.childStyle}>
             <View style={styles.cardSectionStyle}>
@@ -43,6 +86,49 @@ class UserListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View
+            style={{
+              backgroundColor: "powderblue",
+              justifyContent: "center"
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 10
+              }}
+            >
+              <Input
+                label="Password"
+                placeholder="password"
+                value={this.state.enteredPassword}
+                onChangeText={value => {
+                  this.setState({ enteredPassword: value });
+                  console.log(
+                    "this.state.enteredPass: ",
+                    this.state.enteredPassword
+                  );
+                }}
+              />
+              <TouchableOpacity
+                onPress={password => {
+                  this.toggleModal(password);
+                }}
+              >
+                <Text>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={this.onSignIn.bind(this, password, this.props.user)}
+              >
+                <Text>Go</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {this.rendorError()}
+        </Modal>
       </View>
     );
   }
@@ -76,10 +162,22 @@ const styles = {
     // backgroundColor: "#d67d72",
 
     alignItems: "center"
+  },
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: "center",
+    color: "red"
   }
 };
 
+const mapStateToProps = state => {
+  return {
+    activeUser: state.auth.activeUser,
+    users: state.users
+  };
+};
+
 export default connect(
-  null,
-  { usersFetch, setActiveUser }
+  mapStateToProps,
+  { setActiveUser }
 )(UserListItem);

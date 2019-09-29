@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
+import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
@@ -43,11 +44,24 @@ class ChildRewardRequestsListItem extends Component {
     const uid = this.props.rewardRequest.uid;
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
+    const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
+
     console.log("rewardName: ", this.props.rewardRequest);
     let reSubmitButton;
     console.log("rewardRequest prop: ", this.props.rewardRequest);
     console.log("rewardStatus: ", rewardStatus);
+
+    let rejectionReasonView;
+    if (rejectionReason != "") {
+      rejectionReasonView = (
+        <View>
+          <Text>Rejection Reason: {rejectionReason} </Text>
+        </View>
+      );
+    } else {
+      rejectionReasonView = <View></View>;
+    }
 
     if (rewardStatus === "Rejected") {
       console.log("inside rejected condition");
@@ -91,6 +105,31 @@ class ChildRewardRequestsListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View
+            style={{
+              backgroundColor: "powderblue",
+              justifyContent: "center"
+            }}
+          >
+            {rejectionReasonView}
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 10
+              }}
+            >
+              <TouchableOpacity
+                onPress={this.toggleModal}
+                style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

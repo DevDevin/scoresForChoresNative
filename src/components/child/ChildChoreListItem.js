@@ -46,6 +46,7 @@ class ChildChoreListItem extends Component {
   render() {
     const choreName = this.props.chore.choreName;
     const day = this.props.chore.day;
+    const rejectionReason = this.props.chore.rejectionReason;
     const status = this.props.chore.status;
     const { description, pointsValue, cid, child } = this.props.chore;
     const uid = this.props.activeUser.uid;
@@ -74,6 +75,17 @@ class ChildChoreListItem extends Component {
       submitOption = <Text>Submitted</Text>;
     } else {
       submitOption = <Text>Complete</Text>;
+    }
+
+    let rejectionReasonView;
+    if (rejectionReason != "") {
+      rejectionReasonView = (
+        <Text style={styles.modalTextStyle}>
+          Rejection Reason: {rejectionReason}
+        </Text>
+      );
+    } else {
+      rejectionReasonView = <View></View>;
     }
 
     return (
@@ -106,8 +118,10 @@ class ChildChoreListItem extends Component {
               Details
             </Text>
             <Text style={styles.modalTextStyle}>Chore Name: {choreName}</Text>
+            {rejectionReasonView}
             <Text style={styles.modalTextStyle}>Day: {day}</Text>
             <Text style={styles.modalTextStyle}>Status: {status}</Text>
+
             <Text style={styles.modalTextStyle}>
               Description: {description}
             </Text>

@@ -113,8 +113,8 @@ class CompletionRequestListItem extends Component {
             <View>
               <CardSection>
                 <Input
-                  label="ChoreName"
-                  placeholder="Dishes"
+                  label="Reason for rejection"
+                  placeholder="Rejection Reason"
                   value={this.state.reason}
                   onChangeText={value => this.setState({ reason: value })}
                 />
@@ -132,7 +132,7 @@ class CompletionRequestListItem extends Component {
                     this.state.reason
                   )}
                 >
-                  Yes
+                  Submit
                 </Button>
                 <Button
                   onPress={() => {

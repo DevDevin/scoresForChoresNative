@@ -1,13 +1,10 @@
 -- add logout and home button/links
--- fix colors and styling. 
+-- beautify the style and design
 -- floating action for adding chores and rewards etc...
--- make the startup and login pages have a box around the main part.
--- reject chore completion request with a reason. 
--- reject reward request with a reason
 -- make it so the same user name cannot be created for children. 
 -- password login for individual users,
 -- Spinner icon when waiting. 
-
+-- password reset functionality
 
 
 
