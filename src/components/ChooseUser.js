@@ -28,10 +28,12 @@ class ChooseUser extends Component {
             renderItem={({ item }) => <UserListItem user={item} />}
           />
         </View>
-        <ActionButton
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onButtonPress.bind(this)}
-        />
+        <View style={{ height: 50 }}>
+          <ActionButton
+            buttonColor="rgba(231,76,60,1)"
+            onPress={this.onButtonPress.bind(this)}
+          />
+        </View>
       </View>
     );
   }

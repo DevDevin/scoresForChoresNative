@@ -1,8 +1,7 @@
--- add logout and home button/links
+-- fix navigation/routing
 -- beautify the style and design
 -- floating action for adding chores and rewards etc...
 -- make it so the same user name cannot be created for children. 
--- password login for individual users,
 -- Spinner icon when waiting. 
 -- password reset functionality
 
