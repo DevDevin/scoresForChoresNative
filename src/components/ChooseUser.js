@@ -21,14 +21,21 @@ class ChooseUser extends Component {
     const users = this.props.users;
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <View>
           <FlatList
             data={users}
             renderItem={({ item }) => <UserListItem user={item} />}
           />
         </View>
-        <View style={{ height: 50 }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            marginBottom: 36
+            // backgroundColor: "grey"
+          }}
+        >
           <ActionButton
             buttonColor="rgba(231,76,60,1)"
             onPress={this.onButtonPress.bind(this)}

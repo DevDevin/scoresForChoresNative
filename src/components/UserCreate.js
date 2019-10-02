@@ -34,6 +34,19 @@ class UserCreate extends Component {
 
     if (duplicate === false) {
       this.props.userCreate({ name, phone, password1, status, email });
+    } else {
+      Alert.alert(
+        "Username Already Exists",
+        "Please choose another username",
+        [
+          {
+            text: "Okay",
+            onPress: () => console.log("Okay Pressed"),
+            style: "cancel"
+          }
+        ],
+        { cancelable: false }
+      );
     }
   }
 

@@ -1,9 +1,9 @@
 -- fix navigation/routing
 -- beautify the style and design
--- floating action for adding chores and rewards etc...
--- make it so the same user name cannot be created for children. 
 -- Spinner icon when waiting. 
--- password reset functionality
+-- password reset/forgotten password functionality
+-- add headers for the lists i.e. "Choose User" Header
+-- make all lists a scroll view
 
 
 

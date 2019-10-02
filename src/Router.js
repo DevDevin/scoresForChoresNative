@@ -46,11 +46,12 @@ const RouterComponent = () => {
         />
         <Scene key="signUp" component={SignUpForm} title="Create an Account" />
         <Scene
-          rightTitle="Log Out"
-          onRight={() => {
-            logoutAuth();
-          }}
           key="chooseUser"
+          rightTitle="New User"
+          onRight={() => {
+            // logoutAuth();
+            Actions.userCreate();
+          }}
           component={ChooseUser}
           title="Choose User"
         />
@@ -86,15 +87,6 @@ const RouterComponent = () => {
             component={StartupPage}
             title="Scores For Chores"
           />
-          <Scene
-            rightTitle="Log Out"
-            onRight={() => {
-              logoutAuth();
-            }}
-            key="chooseUser"
-            component={ChooseUser}
-            title="Choose User"
-          />
         </Drawer>
         <Drawer
           hideNavBar
@@ -116,10 +108,10 @@ const RouterComponent = () => {
           />
           <Scene key="choreReset" component={ChoreReset} title="Reset Chores" />
           <Scene
-            rightTitle="Add Reward"
-            onRight={() => {
-              Actions.rewardCreate();
-            }}
+            // rightTitle="Add Reward"
+            // onRight={() => {
+            //   Actions.rewardCreate();
+            // }}
             key="parentRewardList"
             component={ParentRewardList}
             title="Parent Reward List"
@@ -146,15 +138,6 @@ const RouterComponent = () => {
             key="startup"
             component={StartupPage}
             title="Scores For Chores"
-          />
-          <Scene
-            rightTitle="Log Out"
-            onRight={() => {
-              logoutAuth();
-            }}
-            key="chooseUser"
-            component={ChooseUser}
-            title="Choose User"
           />
         </Drawer>
       </Scene>

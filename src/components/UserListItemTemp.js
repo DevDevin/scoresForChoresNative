@@ -48,10 +48,19 @@ class UserListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        <ActionButton
-          buttonColor="rgba(231,76,60,1)"
-          onPress={this.onButtonPress.bind(this)}
-        />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            marginBottom: 36
+            // backgroundColor: "grey"
+          }}
+        >
+          <ActionButton
+            buttonColor="rgba(231,76,60,1)"
+            onPress={this.onButtonPress.bind(this)}
+          />
+        </View>
       </View>
     );
   }

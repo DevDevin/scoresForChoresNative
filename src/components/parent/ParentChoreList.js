@@ -85,10 +85,14 @@ class ParentChoreList extends Component {
       console.log("inside second else again ", filteredChores);
     }
 
-    // add one more filter below this that filters based on Day. It will be the same format as above.
+    const children = _.filter(users, function(item) {
+      console.log("inside filter");
+      console.log("item.status: ", item.status, "-item.name");
+      return item.status === "child";
+    });
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Picker
           selectedValue={this.state.child}
           style={{ height: 50, width: 100 }}
@@ -98,8 +102,8 @@ class ParentChoreList extends Component {
         >
           <Picker.Item label={"All"} value={"All"} />
 
-          {users.map(function(user) {
-            return <Picker.Item label={user.name} value={user.name} />;
+          {children.map(function(child) {
+            return <Picker.Item label={child.name} value={child.name} />;
           })}
         </Picker>
 
@@ -124,7 +128,14 @@ class ParentChoreList extends Component {
             renderItem={({ item }) => <ParentChoreListItem chore={item} />}
           />
         </View>
-        <View>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            marginBottom: 36
+            // backgroundColor: "grey"
+          }}
+        >
           <ActionButton
             buttonColor="rgba(231,76,60,1)"
             onPress={this.onButtonPress.bind(this)}

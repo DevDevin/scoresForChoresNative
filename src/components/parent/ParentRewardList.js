@@ -1,31 +1,19 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import ActionButton from "react-native-action-button";
 import { connect } from "react-redux";
-import { ListView } from "react-native";
+import { Actions } from "react-native-router-flux";
+import { ListView, FlatList, View } from "react-native";
 import { rewardsFetch } from "../../actions/ParentActions";
 import RewardListItem from "../child/ChildRewardListItem";
 
 class ParentRewardList extends Component {
   componentWillMount() {
     this.props.rewardsFetch();
-
-    this.createDataSource(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps);
-  }
-
-  createDataSource({ rewards }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
-    this.dataSource = ds.cloneWithRows(rewards);
-  }
-
-  renderRow(reward) {
-    return <RewardListItem reward={reward} />;
+  onButtonPress() {
+    Actions.rewardCreate();
   }
 
   render() {
@@ -33,11 +21,25 @@ class ParentRewardList extends Component {
     console.log("rewards: ", rewards);
 
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={rewards}
+          renderItem={({ item }) => <RewardListItem reward={item} />}
+        />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            marginBottom: 36
+            // backgroundColor: "grey"
+          }}
+        >
+          <ActionButton
+            buttonColor="rgba(231,76,60,1)"
+            onPress={this.onButtonPress.bind(this)}
+          />
+        </View>
+      </View>
     );
   }
 }

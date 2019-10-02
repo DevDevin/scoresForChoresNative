@@ -89,7 +89,7 @@ const loginUserSuccess = (dispatch, user) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
   console.log("user: ", user);
   // Navigate to the choose user screen
-  Actions.userCreate();
+  Actions.chooseUser();
 };
 
 export const userCreate = ({ name, phone, password1, status, email }) => {

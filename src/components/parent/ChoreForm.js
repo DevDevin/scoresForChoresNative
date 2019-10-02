@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import _ from "lodash";
+import { View, Picker } from "react-native";
 import CheckBox from "react-native-check-box";
 import RadioForm, {
   RadioButton,
@@ -8,13 +9,15 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 import { connect } from "react-redux";
 import { choreUpdate } from "../../actions/ParentActions";
+import { usersFetch } from "../../actions/AuthActions";
 import { CardSection, Input } from "../common/index";
 
 class ChoreForm extends Component {
   // Initital State Data
   state = {
     isOther: false,
-    isRecurring: false
+    isRecurring: false,
+    child: ""
   };
   componentDidMount() {
     console.log("ComponentWillMount");
@@ -22,6 +25,9 @@ class ChoreForm extends Component {
       prop: "isRecurring",
       value: false
     });
+
+    // fetch users for dropdown
+    this.props.usersFetch();
   }
 
   onCheckBoxClicked(isRecurring) {
@@ -50,6 +56,16 @@ class ChoreForm extends Component {
       { label: "Sunday", value: "Sunday" }
     ];
 
+    const users = this.props.users;
+
+    const children = _.filter(users, function(item) {
+      console.log("inside filter");
+      console.log("item.status: ", item.status, "-item.name");
+      return item.status === "child";
+    });
+
+    console.log("children: ", children);
+
     return (
       <View>
         <CardSection>
@@ -75,14 +91,19 @@ class ChoreForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Child"
-            placeholder="Child the chore is assigned to."
-            value={this.props.child}
-            onChangeText={value =>
-              this.props.choreUpdate({ prop: "child", value: value })
-            }
-          />
+          <Picker
+            selectedValue={this.state.child}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) => {
+              console.log("inside of set child: ", itemValue);
+              this.props.choreUpdate({ prop: "child", value: itemValue });
+              this.setState({ child: itemValue });
+            }}
+          >
+            {children.map(function(child) {
+              return <Picker.Item label={child.name} value={child.name} />;
+            })}
+          </Picker>
         </CardSection>
 
         <CardSection>
@@ -147,11 +168,12 @@ const mapStateToProps = state => {
     day,
     child,
     pointsValue,
-    isRecurring
+    isRecurring,
+    users: state.users
   };
 };
 
 export default connect(
   mapStateToProps,
-  { choreUpdate }
+  { choreUpdate, usersFetch }
 )(ChoreForm);
