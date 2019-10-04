@@ -1,6 +1,6 @@
 import { USER_FETCH_SUCCESS } from "../actions/types";
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = { loading: true };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {

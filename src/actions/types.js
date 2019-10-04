@@ -29,3 +29,5 @@ export const PASSWORD2_CHANGED = "password2_changed";
 export const PASSWORD_MISMATCH = "password_mismatch";
 export const CREATE_USER_SUCCESS = "create_user_success";
 export const REJECTION_REASON_CHANGED = "rejection_reason_changed";
+export const LOADING_USERS_START = "loading_users_start";
+export const LOADING_USERS_END = "loading_users_end";

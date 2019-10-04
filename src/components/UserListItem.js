@@ -7,12 +7,14 @@ import {
   Dimensions,
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import Modal from "react-native-modal";
+import Spinner from "react-native-loading-spinner-overlay";
 import { Actions } from "react-native-router-flux";
-import { setActiveUser } from "../actions/AuthActions";
-import { Input, Spinner } from "./common";
+import { setActiveUser, loadingUsersStart } from "../actions/AuthActions";
+import { Input } from "./common";
 
 class UserListItem extends Component {
   state = {
@@ -22,12 +24,11 @@ class UserListItem extends Component {
   };
 
   onSignIn(password, activeUser) {
-    console.log(
-      "entered password: ",
-      this.state.enteredPassword,
-      " password: ",
-      password
-    );
+    this.setState({
+      isModalVisible: !this.state.isModalVisible
+    });
+
+    this.props.loadingUsersStart();
 
     console.log("activeUser: ", activeUser);
 
@@ -62,6 +63,22 @@ class UserListItem extends Component {
     );
   }
 
+  renderSpinner() {
+    if (this.props.loading) {
+      return (
+        <Spinner
+          visible={true}
+          textContent={"Loading..."}
+          // textStyle={styles.spinnerTextStyle}
+          textStyle={{ color: "#FFF" }}
+          overlayColor="blue"
+        />
+      );
+    }
+
+    return <View></View>;
+  }
+
   render() {
     const enteredPassword = this.state.enteredPassword;
     const { name, password } = this.props.user;
@@ -87,6 +104,7 @@ class UserListItem extends Component {
           </View>
         </TouchableWithoutFeedback>
         <Modal isVisible={this.state.isModalVisible}>
+          {/* {this.renderSpinner()} */}
           <View
             style={{
               backgroundColor: "powderblue",
@@ -173,11 +191,12 @@ const styles = {
 const mapStateToProps = state => {
   return {
     activeUser: state.auth.activeUser,
-    users: state.users
+    users: state.users,
+    loading: state.loading.loading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setActiveUser }
+  { setActiveUser, loadingUsersStart }
 )(UserListItem);

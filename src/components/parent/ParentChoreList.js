@@ -8,7 +8,8 @@ import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
 import { View, Text } from "react-native";
 import ActionButton from "react-native-action-button";
-import { usersFetch } from "../../actions/AuthActions";
+import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class ParentChoreList extends Component {
   state = {
@@ -26,7 +27,31 @@ class ParentChoreList extends Component {
     Actions.choreCreate();
   }
 
+  componentDidMount() {
+    this.props.loadingUsersEnd();
+  }
+
   // const childArray = chores.
+
+  renderSpinner() {
+    if (this.props.loading) {
+      return (
+        <Spinner
+          visible={true}
+          textContent={"Loading..."}
+          // textStyle={styles.spinnerTextStyle}
+          textStyle={{ color: "#FFF" }}
+          overlayColor="blue"
+        />
+      );
+    }
+
+    return <View></View>;
+  }
+
+  // TODO: ON COMPONENTs like the parents chores set loading to true when the choresFetch action is called and set it to
+  // false when it is finished. That way I can ensure that the data is ready before the spinner stops. I can
+  // still put the timeout function on there just to ensure the spinner is seen if the data happens to load really fast.
 
   render() {
     const chores = this.props.chores;
@@ -93,6 +118,7 @@ class ParentChoreList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
+        {this.renderSpinner()}
         <Picker
           selectedValue={this.state.child}
           style={{ height: 50, width: 100 }}
@@ -158,10 +184,10 @@ const mapStateToProps = state => {
     return { ...val, uid };
   });
 
-  return { chores: chores, users: users };
+  return { chores: chores, users: users, loading: state.loading.loading };
 };
 
 export default connect(
   mapStateToProps,
-  { choresFetch, usersFetch }
+  { choresFetch, usersFetch, loadingUsersEnd }
 )(ParentChoreList);

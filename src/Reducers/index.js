@@ -9,6 +9,7 @@ import RewardFormReducer from "./RewardFormReducer";
 import CompletionRequestReducer from "./CompletionRequestReducer";
 import RewardRequestReducer from "./RewardRequestReducer";
 import EarnedRewardsReducer from "./EarnedRewardsReducer";
+import LoadingReducer from "./LoadingReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   rewards: RewardReducer,
   completionRequests: CompletionRequestReducer,
   rewardRequests: RewardRequestReducer,
-  earnedRewards: EarnedRewardsReducer
+  earnedRewards: EarnedRewardsReducer,
+  loading: LoadingReducer
 });

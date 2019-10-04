@@ -11,7 +11,10 @@ import {
   SET_ACTIVE_USER,
   PASSWORD2_CHANGED,
   PASSWORD_MISMATCH,
-  CREATE_USER_SUCCESS
+  CREATE_USER_SUCCESS,
+  LOADING_USERS,
+  LOADING_USERS_START,
+  LOADING_USERS_END
 } from "./types";
 
 export const emailChanged = text => {
@@ -36,8 +39,10 @@ export const password2Changed = text => {
 };
 
 export const loginUser = ({ email, password }) => {
+  console.log("inside login User");
   return dispatch => {
-    // dispatch({ type: LOGIN_USER });
+    dispatch({ type: LOADING_USERS_START });
+    console.log("past the loading start dispatch");
     console.log("inside loginUser");
     console.log("email: ", email, "password: ", password);
     firebase
@@ -126,14 +131,43 @@ export const usersFetch = () => {
   const { currentUser } = firebase.auth();
 
   return dispatch => {
+    // dispatch({ type: LOADING_USERS_START });
+
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users`)
       .on("value", snapshot => {
         dispatch({ type: USER_FETCH_SUCCESS, payload: snapshot.val() });
       });
+    loadingUsersEnd(dispatch);
   };
 };
+
+export const loadingUsersEnd = () => {
+  // startTimer();
+
+  return dispatch => {
+    setTimeout(() => {
+      dispatch({ type: LOADING_USERS_END });
+      console.log("Hello after 4 seconds");
+    }, 4 * 1000);
+  };
+};
+
+export const loadingUsersStart = () => {
+  return dispatch => {
+    dispatch({ type: LOADING_USERS_START });
+  };
+};
+
+// function startTimer() {
+//   timer.start();
+//   setTimeout(stopTimer, 5000);
+// }
+
+// function stopTimer() {
+//   timer.stop();
+// }
 
 export const setActiveUser = activeUser => {
   const { currentUser } = firebase.auth();

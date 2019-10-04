@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
 
 import {
   emailChanged,
   passwordChanged,
-  loginUser
+  loginUser,
+  loadingUsersEnd
 } from "../actions/AuthActions";
-import { Input, Spinner } from "./common";
+import { Input } from "./common";
 
 class LoginForm extends Component {
+  componentDidMount() {
+    this.props.loadingUsersEnd();
+  }
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -45,7 +50,24 @@ class LoginForm extends Component {
       </View>
     );
   }
+
+  renderSpinner() {
+    if (this.props.loading) {
+      return (
+        <Spinner
+          visible={true}
+          textContent={"Loading..."}
+          // textStyle={styles.spinnerTextStyle}
+          textStyle={{ color: "#FFF" }}
+          overlayColor="blue"
+        />
+      );
+    }
+
+    return <View></View>;
+  }
   render() {
+    console.log("this.props.loading: ", this.props.loading);
     return (
       <View style={styles.ContainerStyle}>
         <View style={styles.cardSectionStyle}>
@@ -65,7 +87,16 @@ class LoginForm extends Component {
             value={this.props.password}
           />
         </View>
-        <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
+        {/* {this.renderSpinner()} */}
+        <View style={styles.buttonSectionStyle}>
+          <TouchableOpacity
+            onPress={this.onButtonPress.bind(this)}
+            style={styles.buttonStyle}
+          >
+            <Text style={styles.textStyle}>Login</Text>
+          </TouchableOpacity>
+        </View>
+
         {this.rendorError()}
         {/* Rest of the app comes ABOVE the action button component !*/}
       </View>
@@ -147,11 +178,11 @@ const mapStateToProps = state => {
     email: state.auth.email,
     password: state.auth.password,
     error: state.auth.error,
-    loading: state.auth.loading
+    loading: state.loading.loading
   };
 };
 
 export default connect(
   mapStateToProps,
-  { emailChanged, passwordChanged, loginUser }
+  { emailChanged, passwordChanged, loginUser, loadingUsersEnd }
 )(LoginForm);

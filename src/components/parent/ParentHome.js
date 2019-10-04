@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Image,
+  ActivityIndicator
+} from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
 import { Card } from "../common/index";
+import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
 
 class ParentHome extends Component {
   onChoreListPress() {
+    this.props.loadingUsersStart();
     Actions.parentChoreList();
   }
 
@@ -21,13 +30,36 @@ class ParentHome extends Component {
     Actions.rewardRequestList();
   }
 
+  componentDidMount() {
+    this.props.loadingUsersEnd();
+  }
+
+  renderSpinner() {
+    if (this.props.loading) {
+      return (
+        // <ActivityIndicator animation={true} size="large" color="#0000ff" />
+        <Spinner
+          visible={true}
+          textContent={"Loading..."}
+          // textStyle={styles.spinnerTextStyle}
+          textStyle={{ color: "#FFF" }}
+          overlayColor="blue"
+        />
+      );
+    }
+
+    return <View></View>;
+  }
+
   render() {
     const { name } = this.props.activeUser;
+    console.log("this.props.loading", this.props.loading);
 
     return (
       <View
         style={{ flex: 1, flexDirection: "column", backgroundColor: "#d67d72" }}
       >
+        {this.renderSpinner()}
         <View
           style={{ justifyContent: "center", alignItems: "center", flex: 0.5 }}
         >
@@ -143,11 +175,12 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    activeUser: state.auth.activeUser
+    activeUser: state.auth.activeUser,
+    loading: state.loading.loading
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { loadingUsersEnd, loadingUsersStart }
 )(ParentHome);
