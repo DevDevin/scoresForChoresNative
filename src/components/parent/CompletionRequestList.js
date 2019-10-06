@@ -5,7 +5,7 @@ import { FlatList, Picker } from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
 import { View } from "react-native";
-import { usersFetch } from "../../actions/AuthActions";
+import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
 
 class CompletionRequestList extends Component {
   state = {
@@ -17,7 +17,27 @@ class CompletionRequestList extends Component {
     this.props.usersFetch();
   }
 
+  componentDidMount() {
+    this.props.loadingUsersEnd();
+  }
+
+  renderSpinner() {
+    if (this.props.loading) {
+      return (
+        <Spinner
+          visible={true}
+          textContent={"Loading..."}
+          // textStyle={styles.spinnerTextStyle}
+          textStyle={{ color: "#FFF" }}
+          overlayColor="blue"
+        />
+      );
+    }
+
+    return <View></View>;
+  }
   render() {
+    console.log("this.props.loading: ", this.props.loading);
     const completionRequests = this.props.completionRequests;
     const users = this.props.users;
     const children = _.filter(users, function(item) {
@@ -70,10 +90,14 @@ const mapStateToProps = state => {
   const users = _.map(state.users, (val, uid) => {
     return { ...val, uid };
   });
-  return { completionRequests: completionRequests, users: users };
+  return {
+    completionRequests: completionRequests,
+    users: users,
+    loading: state.loading.loading
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { completionRequestsFetch, usersFetch }
+  { completionRequestsFetch, usersFetch, loadingUsersEnd }
 )(CompletionRequestList);

@@ -9,9 +9,6 @@ import UserListItem from "./UserListItem";
 import Spinner from "react-native-loading-spinner-overlay";
 
 class ChooseUser extends Component {
-  state = {
-    loading: true
-  };
   componentWillMount() {
     this.props.usersFetch();
   }

@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
-import { Card } from "../common/index";
+import { loadingUsersEnd } from "../../actions/AuthActions";
 
 class ChildHome extends Component {
   componentDidMount() {
     console.log(this.props.activeUser.uid);
+    this.props.loadingUsersEnd();
   }
 
   onChoreListPress() {
@@ -100,5 +101,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { loadingUsersEnd }
 )(ChildHome);

@@ -10,7 +10,9 @@ import {
   CHORE_SAVE_SUCCESS,
   REWARD_REQUESTS_FETCH_SUCCESS,
   REWARD_REQUEST_SAVE_SUCCESS,
-  REJECTION_REASON_CHANGED
+  REJECTION_REASON_CHANGED,
+  LOADING_USERS_END,
+  LOADING_USERS_START
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
@@ -63,6 +65,23 @@ export const choresFetch = () => {
       });
   };
 };
+
+// export const loadingUsersEnd = () => {
+//   // startTimer();
+
+//   return dispatch => {
+//     setTimeout(() => {
+//       dispatch({ type: LOADING_USERS_END });
+//       console.log("Hello after 4 seconds");
+//     }, 4 * 1000);
+//   };
+// };
+
+// export const loadingUsersStart = () => {
+//   return dispatch => {
+//     dispatch({ type: LOADING_USERS_START });
+//   };
+// };
 
 //// REWARD STUFF //////////
 

@@ -9,12 +9,10 @@ import {
   ActivityIndicator
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
-import { Card } from "../common/index";
 import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
 
 class ParentHome extends Component {
   onChoreListPress() {
-    this.props.loadingUsersStart();
     Actions.parentChoreList();
   }
 
@@ -34,21 +32,21 @@ class ParentHome extends Component {
     this.props.loadingUsersEnd();
   }
 
-  renderSpinner() {
-    if (this.props.loading) {
+  renderSmallSpinner() {
+    if (this.state.smallSpinner) {
       return (
-        // <ActivityIndicator animation={true} size="large" color="#0000ff" />
-        <Spinner
-          visible={true}
-          textContent={"Loading..."}
-          // textStyle={styles.spinnerTextStyle}
-          textStyle={{ color: "#FFF" }}
-          overlayColor="blue"
-        />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <ActivityIndicator size="large" />
+        </View>
       );
     }
-
-    return <View></View>;
+    return <Text style={{ fontSize: 22 }}>Chore List</Text>;
   }
 
   render() {
@@ -59,7 +57,6 @@ class ParentHome extends Component {
       <View
         style={{ flex: 1, flexDirection: "column", backgroundColor: "#d67d72" }}
       >
-        {this.renderSpinner()}
         <View
           style={{ justifyContent: "center", alignItems: "center", flex: 0.5 }}
         >

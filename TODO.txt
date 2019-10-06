@@ -4,6 +4,8 @@
 -- password reset/forgotten password functionality
 -- add headers for the lists i.e. "Choose User" Header
 -- make all lists a scroll view
+-- animations
+
 
 
 

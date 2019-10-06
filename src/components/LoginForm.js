@@ -7,7 +7,8 @@ import {
   emailChanged,
   passwordChanged,
   loginUser,
-  loadingUsersEnd
+  loadingUsersEnd,
+  loadingUsersStart
 } from "../actions/AuthActions";
 import { Input } from "./common";
 
@@ -24,6 +25,7 @@ class LoginForm extends Component {
   }
 
   onButtonPress() {
+    this.props.loadingUsersStart();
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
@@ -184,5 +186,11 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { emailChanged, passwordChanged, loginUser, loadingUsersEnd }
+  {
+    emailChanged,
+    passwordChanged,
+    loginUser,
+    loadingUsersEnd,
+    loadingUsersStart
+  }
 )(LoginForm);

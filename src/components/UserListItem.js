@@ -104,7 +104,6 @@ class UserListItem extends Component {
           </View>
         </TouchableWithoutFeedback>
         <Modal isVisible={this.state.isModalVisible}>
-          {/* {this.renderSpinner()} */}
           <View
             style={{
               backgroundColor: "powderblue",
@@ -132,6 +131,7 @@ class UserListItem extends Component {
                 }}
               />
               <TouchableOpacity
+                style={styles.buttonStyle}
                 onPress={password => {
                   this.toggleModal(password);
                 }}
@@ -139,6 +139,7 @@ class UserListItem extends Component {
                 <Text>Close</Text>
               </TouchableOpacity>
               <TouchableOpacity
+                style={styles.buttonStyle}
                 onPress={this.onSignIn.bind(this, password, this.props.user)}
               >
                 <Text>Go</Text>
@@ -155,6 +156,15 @@ class UserListItem extends Component {
 const styles = {
   titleStyle: {
     fontSize: 24
+  },
+  buttonStyle: {
+    width: 100,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#007aff",
+    marginLeft: 5,
+    marginRight: 5
   },
   childStyle: {
     flex: 1,

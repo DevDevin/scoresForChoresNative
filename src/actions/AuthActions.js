@@ -160,15 +160,6 @@ export const loadingUsersStart = () => {
   };
 };
 
-// function startTimer() {
-//   timer.start();
-//   setTimeout(stopTimer, 5000);
-// }
-
-// function stopTimer() {
-//   timer.stop();
-// }
-
 export const setActiveUser = activeUser => {
   const { currentUser } = firebase.auth();
 
