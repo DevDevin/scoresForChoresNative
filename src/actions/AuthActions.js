@@ -24,8 +24,9 @@ export const emailChanged = text => {
   };
 };
 
-export const forgotPassword = yourEmail => {
-  firebse.auth().sendPasswordResetEmail(yourEmail);
+// forgotten password
+export const forgotPassword = resetEmail => {
+  firebase.auth().sendPasswordResetEmail(resetEmail);
 };
 
 export const passwordChanged = text => {

@@ -14,13 +14,15 @@ import {
   passwordChanged,
   loginUser,
   loadingUsersEnd,
-  loadingUsersStart
+  loadingUsersStart,
+  forgotPassword
 } from "../actions/AuthActions";
 import { Input } from "./common";
 
 class LoginForm extends Component {
   state = {
-    modalVisible: false
+    modalVisible: false,
+    resetEmail: "devincbennett@gmail.com"
   };
 
   componentDidMount() {
@@ -39,6 +41,15 @@ class LoginForm extends Component {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
+  }
+
+  resetPasswordEmailChange(text) {
+    this.setState({ resetEmail: text });
+  }
+
+  resetEmailSend(resetEmail) {
+    this.props.forgotPassword(resetEmail);
+    console.log("email sent", resetEmail);
   }
 
   renderButton() {
@@ -80,6 +91,8 @@ class LoginForm extends Component {
   }
   render() {
     console.log("this.props.loading: ", this.props.loading);
+    const resetEmail = this.state.resetEmail;
+    console.log("resetEmail: ", resetEmail);
     return (
       <View style={styles.ContainerStyle}>
         <View style={styles.cardSectionStyle}>
@@ -130,17 +143,16 @@ class LoginForm extends Component {
               <Text>Hello World!</Text>
               <View style={styles.cardSectionStyle}>
                 <Input
-                  secureTextEntry
                   label="Email"
                   placeholder="email"
-                  onChangeText={this.onPasswordChange.bind(this)}
-                  value={this.props.password}
+                  onChangeText={this.resetPasswordEmailChange.bind(this)}
+                  value={this.state.resetEmail}
                 />
               </View>
 
               <TouchableHighlight
                 onPress={() => {
-                  this.setState({ modalVisible: false });
+                  this.resetEmailSend(resetEmail);
                 }}
               >
                 <Text>Send Email</Text>
@@ -245,6 +257,7 @@ export default connect(
     passwordChanged,
     loginUser,
     loadingUsersEnd,
-    loadingUsersStart
+    loadingUsersStart,
+    forgotPassword
   }
 )(LoginForm);
