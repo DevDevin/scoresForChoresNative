@@ -24,6 +24,10 @@ export const emailChanged = text => {
   };
 };
 
+export const forgotPassword = yourEmail => {
+  firebse.auth().sendPasswordResetEmail(yourEmail);
+};
+
 export const passwordChanged = text => {
   return {
     type: PASSWORD_CHANGED,

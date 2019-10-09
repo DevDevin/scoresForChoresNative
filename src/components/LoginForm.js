@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  TouchableHighlight
+} from "react-native";
 import { connect } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay";
 
@@ -13,6 +19,10 @@ import {
 import { Input } from "./common";
 
 class LoginForm extends Component {
+  state = {
+    modalVisible: false
+  };
+
   componentDidMount() {
     this.props.loadingUsersEnd();
   }
@@ -99,8 +109,52 @@ class LoginForm extends Component {
           </TouchableOpacity>
         </View>
 
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ modalVisible: true });
+          }}
+        >
+          <Text>Forgot Password</Text>
+        </TouchableOpacity>
+
         {this.rendorError()}
         {/* Rest of the app comes ABOVE the action button component !*/}
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+        >
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <Text>Hello World!</Text>
+              <View style={styles.cardSectionStyle}>
+                <Input
+                  secureTextEntry
+                  label="Email"
+                  placeholder="email"
+                  onChangeText={this.onPasswordChange.bind(this)}
+                  value={this.props.password}
+                />
+              </View>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setState({ modalVisible: false });
+                }}
+              >
+                <Text>Send Email</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={() => {
+                  this.setState({ modalVisible: false });
+                }}
+              >
+                <Text>Cancel</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }
