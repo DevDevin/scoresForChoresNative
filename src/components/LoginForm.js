@@ -18,11 +18,13 @@ import {
   forgotPassword
 } from "../actions/AuthActions";
 import { Input } from "./common";
+import { Actions } from "react-native-router-flux";
 
 class LoginForm extends Component {
   state = {
     modalVisible: false,
-    resetEmail: "devincbennett@gmail.com"
+    resetEmail: "devincbennett@gmail.com",
+    emailSent: false
   };
 
   componentDidMount() {
@@ -89,6 +91,24 @@ class LoginForm extends Component {
 
     return <View></View>;
   }
+
+  renderEmailSentView() {
+    if (this.state.emailSent) {
+      return (
+        <View>
+          <Text>Email Sent</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ modalVisible: false });
+            }}
+          >
+            <Text>Back to Login</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
+
   render() {
     console.log("this.props.loading: ", this.props.loading);
     const resetEmail = this.state.resetEmail;
@@ -152,6 +172,7 @@ class LoginForm extends Component {
 
               <TouchableHighlight
                 onPress={() => {
+                  this.setState({ emailSent: true });
                   this.resetEmailSend(resetEmail);
                 }}
               >
@@ -165,6 +186,7 @@ class LoginForm extends Component {
                 <Text>Cancel</Text>
               </TouchableHighlight>
             </View>
+            {this.renderEmailSentView()}
           </View>
         </Modal>
       </View>

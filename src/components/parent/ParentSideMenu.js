@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, TouchableOpacity } from "react-native";
+import { logoutAuth } from "../../actions/AuthActions";
 
 class ChildSideMenu extends Component {
   render() {
@@ -35,7 +36,7 @@ class ChildSideMenu extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            Actions.choreCreate();
+            logoutAuth();
           }}
         >
           <View>
