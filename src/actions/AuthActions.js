@@ -17,7 +17,9 @@ import {
   LOADING_USERS_END
 } from "./types";
 
-export const passwordReset = user => {
+export const passwordReset = (uid, newPassword) => {
+  console.log("user: ", uid);
+  console.log("newPassword: ", newPassword);
   const { currentUser } = firebase.auth();
 
   let email, name, password, phone, status, earnedPoints;
@@ -25,23 +27,23 @@ export const passwordReset = user => {
   return dispatch => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users`)
-      .orderByChild("name")
-      .equalTo(user)
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      // .orderByChild("name")
+      // .equalTo(user)
       .on("value", snapshot => {
-        console.log("points before: ", snapshot.val().name);
+        console.log("snapshot : ", snapshot.val());
 
         // set values for updating the child from the snapshot
         earnedPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
         name = snapshot.val().name;
-        password = snapshot.val().password;
+        password = newPassword;
         phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users`)
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
       .set({
         earnedPoints: earnedPoints,
         email: email,
