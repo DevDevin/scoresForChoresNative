@@ -36,6 +36,15 @@ class ChildSideMenu extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            Actions.passwordReset();
+          }}
+        >
+          <View>
+            <Text>Reset Passwords</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             logoutAuth();
           }}
         >

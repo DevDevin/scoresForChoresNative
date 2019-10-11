@@ -17,6 +17,42 @@ import {
   LOADING_USERS_END
 } from "./types";
 
+export const passwordReset = user => {
+  const { currentUser } = firebase.auth();
+
+  let email, name, password, phone, status, earnedPoints;
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users`)
+      .orderByChild("name")
+      .equalTo(user)
+      .on("value", snapshot => {
+        console.log("points before: ", snapshot.val().name);
+
+        // set values for updating the child from the snapshot
+        earnedPoints = parseInt(snapshot.val().earnedPoints);
+        email = snapshot.val().email;
+        name = snapshot.val().name;
+        password = snapshot.val().password;
+        phone = snapshot.val().phone;
+        status = snapshot.val().status;
+      });
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users`)
+      .set({
+        earnedPoints: earnedPoints,
+        email: email,
+        name: name,
+        password: password,
+        phone: phone,
+        status: status
+      });
+  };
+};
+
 export const emailChanged = text => {
   return {
     type: EMAIL_CHANGED,

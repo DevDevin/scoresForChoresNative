@@ -25,6 +25,7 @@ import { logoutAuth } from "./actions/AuthActions";
 import RequestRejectReason from "./components/parent/RequestRejectReason";
 import ChoreReset from "./components/parent/ChoreReset";
 import ChildRewardRequestsList from "./components/child/ChildRewardRequestsList";
+import ResetPassword from "./components/parent/ResetPassword";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -126,6 +127,11 @@ const RouterComponent = () => {
             key="completionRequestList"
             component={CompletionRequestList}
             title="Completion Requests"
+          />
+          <Scene
+            key="passwordReset"
+            component={ResetPassword}
+            title="Reset Password"
           />
           <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />
           <Scene key="choreEdit" component={ChoreEdit} title="Edit Chore" />
