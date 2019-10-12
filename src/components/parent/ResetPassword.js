@@ -8,10 +8,11 @@ import { CardSection, Input } from "../common";
 
 class ResetPassword extends Component {
   state = {
-    user: "",
+    user: "nothing",
     password1: "",
     password2: "",
-    passwordMismatch: false
+    passwordMismatch: false,
+    userNothing: false
   };
 
   renderMismatch() {
@@ -19,6 +20,17 @@ class ResetPassword extends Component {
       return (
         <View>
           <Text style={{ color: "red" }}>Passwords Do Not Match</Text>
+        </View>
+      );
+    }
+    return <View></View>;
+  }
+
+  renderUserNothing() {
+    if (this.state.userNothing) {
+      return (
+        <View>
+          <Text style={{ color: "red" }}>User not selected.</Text>
         </View>
       );
     }
@@ -34,13 +46,15 @@ class ResetPassword extends Component {
     return (
       <View>
         <Text>Reset Password</Text>
+        {this.renderUserNothing()}
         <Picker
           selectedValue={this.state.user}
           style={{ height: 50, width: 100 }}
           onValueChange={(itemValue, itemIndex) =>
-            this.setState({ user: itemValue })
+            this.setState({ user: itemValue, userNothing: false })
           }
         >
+          <Picker.Item label="Choose User" value="nothing" key="null" />
           {users.map(function(user) {
             return (
               <Picker.Item label={user.name} value={user.uid} key={user.uid} />
@@ -50,10 +64,18 @@ class ResetPassword extends Component {
         <TouchableOpacity
           onPress={() => {
             console.log("user", user);
-            if (this.state.password1 === this.state.password2) {
+            if (
+              this.state.password1 === this.state.password2 &&
+              this.state.user != "nothing"
+            ) {
               this.props.passwordReset(user, this.state.password1);
             } else {
-              this.setState({ passwordMismatch: true });
+              if (this.state.password1 != this.state.password2) {
+                this.setState({ passwordMismatch: true });
+              }
+              if (this.state.user === "nothing") {
+                this.setState({ userNothing: true });
+              }
             }
           }}
         >

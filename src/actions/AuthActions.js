@@ -51,6 +51,9 @@ export const passwordReset = (uid, newPassword) => {
         password: password,
         phone: phone,
         status: status
+      })
+      .then(() => {
+        Actions.parentHome();
       });
   };
 };
