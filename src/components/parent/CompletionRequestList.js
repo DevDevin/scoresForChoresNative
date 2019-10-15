@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, Picker } from "react-native";
+import { FlatList, Picker, ScrollView } from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
 import { View } from "react-native";
@@ -71,12 +71,16 @@ class CompletionRequestList extends Component {
             return <Picker.Item label={child.name} value={child.name} />;
           })}
         </Picker>
-        <FlatList
-          data={filteredRequests}
-          renderItem={({ item }) => (
-            <CompletionRequestListItem completionRequest={item} />
-          )}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={filteredRequests}
+              renderItem={({ item }) => (
+                <CompletionRequestListItem completionRequest={item} />
+              )}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

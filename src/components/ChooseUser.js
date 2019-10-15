@@ -57,33 +57,8 @@ class ChooseUser extends Component {
             />
             <FloatingAction
               // actions={actions}
-              onOpen={this.onButtonPress.bind(this)}
+              onPressMain={this.onButtonPress.bind(this)}
             />
-            {/* <View
-              style={{
-                flex: 1,
-                justifyContent: "flex-end",
-                // // zIndex: 999,
-                marginBottom: 80,
-                // position: "absolute"
-                // // // backgroundColor: "grey"
-                // width: 60,
-                // height: 60,
-                // borderRadius: 30,
-                // backgroundColor: "#ee6e73",
-                // position: "absolute",
-                // bottom: 10,
-                // right: 10
-                resizeMode: "contain",
-                width: 50,
-                height: 50
-              }}
-            >
-              <ActionButton
-                buttonColor="rgba(231,76,60,1)"
-                onPress={this.onButtonPress.bind(this)}
-              />
-            </View> */}
           </View>
         </ScrollView>
       </View>

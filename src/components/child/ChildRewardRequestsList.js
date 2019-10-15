@@ -7,7 +7,7 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel
 } from "react-native-simple-radio-button";
-import { FlatList, View, Picker } from "react-native";
+import { FlatList, View, ScrollView } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import ChildRewardRequestsListItem from "./ChildRewardRequestsListItem";
 import { usersFetch } from "../../actions/AuthActions";
@@ -73,12 +73,16 @@ class ChildRewardRequestList extends Component {
             this.toggleChores(e);
           }}
         />
-        <FlatList
-          data={filteredRewardRequests}
-          renderItem={({ item }) => (
-            <ChildRewardRequestsListItem Item rewardRequest={item} />
-          )}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={filteredRewardRequests}
+              renderItem={({ item }) => (
+                <ChildRewardRequestsListItem Item rewardRequest={item} />
+              )}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

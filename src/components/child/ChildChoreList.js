@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, Picker } from "react-native";
+import { FlatList, Picker, ScrollView } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View } from "react-native";
@@ -105,10 +105,14 @@ class ChildChoreList extends Component {
           </Picker>
         </View>
 
-        <FlatList
-          data={filteredChores}
-          renderItem={({ item }) => <ChildChoreListItem chore={item} />}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={filteredChores}
+              renderItem={({ item }) => <ChildChoreListItem chore={item} />}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

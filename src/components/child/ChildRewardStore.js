@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, View, Text } from "react-native";
+import { FlatList, View, Text, ScrollView } from "react-native";
 import { rewardsFetch } from "../../actions/ChildActions";
 import RewardListItem from "./ChildRewardListItem";
 
@@ -20,10 +20,14 @@ class ChildRewardStore extends Component {
       <View>
         <Text style={{ fontSize: 24 }}>Points Earned: {earnedPoints} </Text>
         {/* I may want to move this over to the list item component so that the value refreshes */}
-        <FlatList
-          data={rewards}
-          renderItem={({ item }) => <RewardListItem reward={item} />}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={rewards}
+              renderItem={({ item }) => <RewardListItem reward={item} />}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, View, Picker } from "react-native";
+import { FlatList, View, Picker, ScrollView } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import RewardRequestListItem from "./RewardRequestListItem";
 import { usersFetch } from "../../actions/AuthActions";
@@ -58,13 +58,16 @@ class RewardRequestList extends Component {
             return <Picker.Item label={child.name} value={child.name} />;
           })}
         </Picker>
-
-        <FlatList
-          data={filteredRequests}
-          renderItem={({ item }) => (
-            <RewardRequestListItem rewardRequest={item} />
-          )}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={filteredRequests}
+              renderItem={({ item }) => (
+                <RewardRequestListItem rewardRequest={item} />
+              )}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

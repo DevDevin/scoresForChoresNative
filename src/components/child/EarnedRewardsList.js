@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, View } from "react-native";
+import { FlatList, View, ScrollView } from "react-native";
 import { earnedRewardsFetch } from "../../actions/ChildActions";
 import EarnedRewardsListItem from "./EarnedRewardsListItem";
 
@@ -15,12 +15,16 @@ class EarnedRewardsList extends Component {
 
     return (
       <View>
-        <FlatList
-          data={earnedRewards}
-          renderItem={({ item }) => (
-            <EarnedRewardsListItem earnedReward={item} />
-          )}
-        />
+        <ScrollView>
+          <View>
+            <FlatList
+              data={earnedRewards}
+              renderItem={({ item }) => (
+                <EarnedRewardsListItem earnedReward={item} />
+              )}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

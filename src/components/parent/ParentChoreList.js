@@ -2,12 +2,12 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, Picker } from "react-native";
+import { FlatList, Picker, ScrollView } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
+import { FloatingAction } from "react-native-floating-action";
 import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
 import { View, Text } from "react-native";
-import ActionButton from "react-native-action-button";
 import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
 import Spinner from "react-native-loading-spinner-overlay";
 
@@ -148,25 +148,21 @@ class ParentChoreList extends Component {
         </Picker>
 
         <Text>Chore Manager</Text>
-        <View>
-          <FlatList
-            data={filteredChores}
-            renderItem={({ item }) => <ParentChoreListItem chore={item} />}
-          />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "flex-end",
-            marginBottom: 36
-            // backgroundColor: "grey"
-          }}
-        >
-          <ActionButton
-            buttonColor="rgba(231,76,60,1)"
-            onPress={this.onButtonPress.bind(this)}
-          />
-        </View>
+        <ScrollView>
+          <View>
+            <View>
+              <FlatList
+                data={filteredChores}
+                renderItem={({ item }) => <ParentChoreListItem chore={item} />}
+              />
+            </View>
+
+            <FloatingAction
+              // actions={actions}
+              onPressMain={this.onButtonPress.bind(this)}
+            />
+          </View>
+        </ScrollView>
       </View>
       // where there are not users the view is not tall enough to be able to click on the floating button. I can add an view below that is always tall enough to include room for the button and is always at the bottom
     );

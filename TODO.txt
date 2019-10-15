@@ -1,11 +1,9 @@
 -- fix navigation/routing
 -- beautify the style and design
 -- add headers for the lists i.e. "Choose User" Header
--- make all lists a scroll view
-	- userlist, chorelist child, chorelist parent, rewardrequest, completionrequest, rewards parent, 
-	- rewards child
 -- animations
 -- fix login feature
+-- can't create the same reward twice
 
 
 
