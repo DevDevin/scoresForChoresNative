@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   Modal,
-  TouchableHighlight
+  TouchableHighlight,
+  Alert
 } from "react-native";
 import { connect } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -15,7 +16,8 @@ import {
   loginUser,
   loadingUsersEnd,
   loadingUsersStart,
-  forgotPassword
+  forgotPassword,
+  turnOffAuthError
 } from "../actions/AuthActions";
 import { Input } from "./common";
 import { Actions } from "react-native-router-flux";
@@ -29,6 +31,7 @@ class LoginForm extends Component {
 
   componentDidMount() {
     this.props.loadingUsersEnd();
+    this.props.error = "";
   }
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -68,14 +71,6 @@ class LoginForm extends Component {
     );
   }
 
-  rendorError() {
-    return (
-      <View style={{ backgroundColor: "grey" }}>
-        <Text style={styles.errorTextStyle}>{this.props.error}</Text>
-      </View>
-    );
-  }
-
   renderSpinner() {
     if (this.props.loading) {
       return (
@@ -109,12 +104,39 @@ class LoginForm extends Component {
     }
   }
 
+  renderAlert() {
+    let showAlert = false;
+    if (this.props.error === "true") {
+      showAlert = true;
+    }
+
+    if (showAlert === true) {
+      Alert.alert(
+        "Incorrect Password",
+        "Please Try Again",
+        [
+          {
+            text: "Okay",
+            onPress: () => {
+              this.props.turnOffAuthError();
+            },
+            style: "cancel"
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+  }
+
   render() {
     console.log("this.props.loading: ", this.props.loading);
+    console.log("this.props.error: ", this.props.error);
     const resetEmail = this.state.resetEmail;
     console.log("resetEmail: ", resetEmail);
+
     return (
       <View style={styles.ContainerStyle}>
+        {this.renderAlert()}
         <View style={styles.cardSectionStyle}>
           <Input
             label="Email"
@@ -149,9 +171,6 @@ class LoginForm extends Component {
         >
           <Text>Forgot Password</Text>
         </TouchableOpacity>
-
-        {this.rendorError()}
-        {/* Rest of the app comes ABOVE the action button component !*/}
 
         <Modal
           animationType="slide"
@@ -280,6 +299,7 @@ export default connect(
     loginUser,
     loadingUsersEnd,
     loadingUsersStart,
-    forgotPassword
+    forgotPassword,
+    turnOffAuthError
   }
 )(LoginForm);

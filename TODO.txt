@@ -1,9 +1,8 @@
 -- fix navigation/routing
 -- beautify the style and design
--- add headers for the lists i.e. "Choose User" Header
 -- animations
 -- fix login feature
--- can't create the same reward twice
+-- remove console.logs 
 
 
 

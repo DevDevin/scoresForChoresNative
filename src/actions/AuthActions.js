@@ -12,9 +12,9 @@ import {
   PASSWORD2_CHANGED,
   PASSWORD_MISMATCH,
   CREATE_USER_SUCCESS,
-  LOADING_USERS,
   LOADING_USERS_START,
-  LOADING_USERS_END
+  LOADING_USERS_END,
+  TURN_OFF_ERROR
 } from "./types";
 
 export const passwordReset = (uid, newPassword) => {
@@ -99,6 +99,7 @@ export const loginUser = ({ email, password }) => {
       .then(user => loginUserSuccess(dispatch, user))
       .catch(error => {
         console.log("this is the error", error);
+        loginUserFail(dispatch);
       });
   };
 };
@@ -135,6 +136,12 @@ const passwordMismatch = dispatch => {
 
 const createUserSuccess = dispatch => {
   dispatch({ type: CREATE_USER_SUCCESS });
+};
+
+export const turnOffAuthError = () => {
+  return dispatch => {
+    dispatch({ type: TURN_OFF_ERROR });
+  };
 };
 
 const loginUserSuccess = (dispatch, user) => {

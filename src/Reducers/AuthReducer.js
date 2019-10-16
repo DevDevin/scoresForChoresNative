@@ -7,7 +7,8 @@ import {
   LOGIN_USER,
   SET_ACTIVE_USER,
   PASSWORD_MISMATCH,
-  CREATE_USER_SUCCESS
+  CREATE_USER_SUCCESS,
+  TURN_OFF_ERROR
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -44,10 +45,15 @@ export default (state = INITIAL_STATE, action) => {
         error: "",
         loading: false
       };
+    case TURN_OFF_ERROR:
+      return {
+        ...state,
+        error: ""
+      };
     case LOGIN_USER_FAIL:
       return {
         ...state,
-        error: "Authentication Failed.",
+        error: "true",
         loading: false
       };
     case PASSWORD_MISMATCH:

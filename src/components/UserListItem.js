@@ -5,10 +5,10 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  ScrollView,
   Image,
   TouchableOpacity,
-  ActivityIndicator
+  Alert
+  // Modal
 } from "react-native";
 import Modal from "react-native-modal";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -28,11 +28,11 @@ class UserListItem extends Component {
       isModalVisible: !this.state.isModalVisible
     });
 
-    this.props.loadingUsersStart();
-
     console.log("activeUser: ", activeUser);
 
     if (password === this.state.enteredPassword) {
+      this.props.loadingUsersStart();
+
       // redirect to parent or child depending on the user status
       console.log(console.log("activeUser.status", activeUser));
       this.props.setActiveUser(activeUser);
@@ -46,6 +46,18 @@ class UserListItem extends Component {
     } else {
       console.log("did not match");
       this.setState({ loginError: "Incorrect Password" });
+      Alert.alert(
+        "Incorrect Password",
+        "Please Try Again",
+        [
+          {
+            text: "Okay",
+            onPress: () => console.log("Okay Pressed"),
+            style: "cancel"
+          }
+        ],
+        { cancelable: false }
+      );
     }
   }
 
@@ -103,6 +115,7 @@ class UserListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
@@ -130,23 +143,30 @@ class UserListItem extends Component {
                   );
                 }}
               />
+            </View>
+
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 10
+              }}
+            >
               <TouchableOpacity
+                onPress={this.onSignIn.bind(this, password, this.props.user)}
                 style={styles.buttonStyle}
-                onPress={password => {
-                  this.toggleModal(password);
-                }}
               >
-                <Text>Close</Text>
+                <Text style={styles.textStyle}>Okay</Text>
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={this.toggleModal}
                 style={styles.buttonStyle}
-                onPress={this.onSignIn.bind(this, password, this.props.user)}
               >
-                <Text>Go</Text>
+                <Text style={styles.textStyle}>Close</Text>
               </TouchableOpacity>
             </View>
           </View>
-          {this.rendorError()}
         </Modal>
       </View>
     );
@@ -165,6 +185,13 @@ const styles = {
     borderColor: "#007aff",
     marginLeft: 5,
     marginRight: 5
+  },
+  textStyle: {
+    alignSelf: "center",
+    fontSize: 16,
+    fontWeight: "600",
+    paddingTop: 10,
+    paddingBottom: 10
   },
   childStyle: {
     flex: 1,

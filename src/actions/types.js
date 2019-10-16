@@ -31,3 +31,4 @@ export const CREATE_USER_SUCCESS = "create_user_success";
 export const REJECTION_REASON_CHANGED = "rejection_reason_changed";
 export const LOADING_USERS_START = "loading_users_start";
 export const LOADING_USERS_END = "loading_users_end";
+export const TURN_OFF_ERROR = "turn_off_user";
