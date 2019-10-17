@@ -1,60 +1,141 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TouchableWithoutFeedback
+} from "react-native";
 import { logoutAuth } from "../../actions/AuthActions";
 
 class ChildSideMenu extends Component {
   render() {
     return (
-      <View>
-        <TouchableOpacity
+      <View style={{ flex: 1, flexDirection: "column" }}>
+        <TouchableWithoutFeedback
           onPress={() => {
             Actions.parentHome();
           }}
         >
-          <View>
-            <Text>Home</Text>
+          <View style={styles.choreListStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Home</Text>
+            </View>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
           onPress={() => {
             Actions.chooseUser();
           }}
         >
-          <View>
-            <Text>Change User</Text>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Change User</Text>
+            </View>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
           onPress={() => {
             Actions.choreReset();
           }}
         >
-          <View>
-            <Text>Reset Chores</Text>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Reset Chores</Text>
+            </View>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
           onPress={() => {
             Actions.passwordReset();
           }}
         >
-          <View>
-            <Text>Reset Passwords</Text>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Password Reset</Text>
+            </View>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
           onPress={() => {
             logoutAuth();
           }}
         >
-          <View>
-            <Text>Sign Out</Text>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Logout</Text>
+            </View>
           </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
 }
+
+const styles = {
+  choreListStyle: {
+    height: 100,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#d6d7da",
+    fontSize: 30,
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15,
+    backgroundColor: "powderblue"
+  },
+  rewardStoreStyle: {
+    height: 100,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#d6d7da",
+    fontSize: 30,
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15,
+    backgroundColor: "skyblue"
+  }
+};
 
 export default ChildSideMenu;

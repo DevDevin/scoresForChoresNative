@@ -55,7 +55,7 @@ class ParentHome extends Component {
 
     return (
       <View
-        style={{ flex: 1, flexDirection: "column", backgroundColor: "#d67d72" }}
+        style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
       >
         <View
           style={{ justifyContent: "center", alignItems: "center", flex: 0.5 }}

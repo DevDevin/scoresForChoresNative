@@ -173,7 +173,7 @@ const styles = {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "#d67d72",
+    backgroundColor: "skyblue",
     alignItems: "center",
     borderColor: "#ddd"
   },
