@@ -20,6 +20,7 @@ class App extends Component {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    console.disableYellowBox = true;
   }
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));

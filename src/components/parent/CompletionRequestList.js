@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FlatList, Picker, ScrollView } from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
 
 class CompletionRequestList extends Component {
@@ -58,29 +58,55 @@ class CompletionRequestList extends Component {
     }
 
     return (
-      <View>
-        <Picker
-          selectedValue={this.state.child}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ child: itemValue })
-          }
+      <View style={{ backgroundColor: "grey", flex: 1 }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "skyblue",
+            flex: 0.15
+          }}
         >
-          <Picker.Item label="All" value="All" />
-          {children.map(function(child) {
-            return <Picker.Item label={child.name} value={child.name} />;
-          })}
-        </Picker>
-        <ScrollView>
-          <View>
-            <FlatList
-              data={filteredRequests}
-              renderItem={({ item }) => (
-                <CompletionRequestListItem completionRequest={item} />
-              )}
-            />
-          </View>
-        </ScrollView>
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            Completion Requests
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Picker
+            selectedValue={this.state.child}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ child: itemValue })
+            }
+          >
+            <Picker.Item label="All" value="All" />
+            {children.map(function(child) {
+              return <Picker.Item label={child.name} value={child.name} />;
+            })}
+          </Picker>
+        </View>
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
+            <View>
+              <FlatList
+                data={filteredRequests}
+                renderItem={({ item }) => (
+                  <CompletionRequestListItem completionRequest={item} />
+                )}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

@@ -73,7 +73,25 @@ class ChildChoreList extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            paddingTop: 5
+            backgroundColor: "skyblue",
+            flex: 0.15
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            This week's chores:
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: 5,
+            backgroundColor: "powderblue"
           }}
         >
           <Picker
@@ -104,15 +122,16 @@ class ChildChoreList extends Component {
             })}
           </Picker>
         </View>
-
-        <ScrollView>
-          <View>
-            <FlatList
-              data={filteredChores}
-              renderItem={({ item }) => <ChildChoreListItem chore={item} />}
-            />
-          </View>
-        </ScrollView>
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
+            <View>
+              <FlatList
+                data={filteredChores}
+                renderItem={({ item }) => <ChildChoreListItem chore={item} />}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

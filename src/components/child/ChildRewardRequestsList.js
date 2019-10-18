@@ -7,7 +7,7 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel
 } from "react-native-simple-radio-button";
-import { FlatList, View, ScrollView } from "react-native";
+import { FlatList, View, ScrollView, Text } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import ChildRewardRequestsListItem from "./ChildRewardRequestsListItem";
 import { usersFetch } from "../../actions/AuthActions";
@@ -63,26 +63,53 @@ class ChildRewardRequestList extends Component {
     }
 
     return (
-      <View>
-        <RadioForm
-          radio_props={radio_props}
-          formHorizontal={true}
-          initial={0}
-          labelHorizontal={false}
-          onPress={e => {
-            this.toggleChores(e);
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "skyblue",
+            flex: 0.15
           }}
-        />
-        <ScrollView>
-          <View>
-            <FlatList
-              data={filteredRewardRequests}
-              renderItem={({ item }) => (
-                <ChildRewardRequestsListItem Item rewardRequest={item} />
-              )}
-            />
-          </View>
-        </ScrollView>
+        >
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            This week's chores:
+          </Text>
+        </View>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: 5,
+            backgroundColor: "powderblue"
+          }}
+        >
+          <RadioForm
+            radio_props={radio_props}
+            formHorizontal={true}
+            initial={0}
+            labelHorizontal={false}
+            onPress={e => {
+              this.toggleChores(e);
+            }}
+          />
+        </View>
+        <View style={{ flex: 0.85, backgroundColor: "#999897" }}>
+          <ScrollView>
+            <View>
+              <FlatList
+                data={filteredRewardRequests}
+                renderItem={({ item }) => (
+                  <ChildRewardRequestsListItem Item rewardRequest={item} />
+                )}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

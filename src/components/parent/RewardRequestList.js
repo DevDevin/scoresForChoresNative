@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, View, Picker, ScrollView } from "react-native";
+import { FlatList, View, Picker, ScrollView, Text } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import RewardRequestListItem from "./RewardRequestListItem";
 import { usersFetch } from "../../actions/AuthActions";
@@ -45,29 +45,55 @@ class RewardRequestList extends Component {
     }
 
     return (
-      <View>
-        <Picker
-          selectedValue={this.state.child}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ child: itemValue })
-          }
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "skyblue",
+            flex: 0.15
+          }}
         >
-          <Picker.Item label="All" value="All" />
-          {children.map(function(child) {
-            return <Picker.Item label={child.name} value={child.name} />;
-          })}
-        </Picker>
-        <ScrollView>
-          <View>
-            <FlatList
-              data={filteredRequests}
-              renderItem={({ item }) => (
-                <RewardRequestListItem rewardRequest={item} />
-              )}
-            />
-          </View>
-        </ScrollView>
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            Completion Requests
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Picker
+            selectedValue={this.state.child}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ child: itemValue })
+            }
+          >
+            <Picker.Item label="All" value="All" />
+            {children.map(function(child) {
+              return <Picker.Item label={child.name} value={child.name} />;
+            })}
+          </Picker>
+        </View>
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
+            <View>
+              <FlatList
+                data={filteredRequests}
+                renderItem={({ item }) => (
+                  <RewardRequestListItem rewardRequest={item} />
+                )}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

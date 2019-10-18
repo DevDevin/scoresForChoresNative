@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { FlatList, Picker, ScrollView } from "react-native";
-import { Dropdown } from "react-native-material-dropdown";
 import { FloatingAction } from "react-native-floating-action";
 import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
@@ -118,36 +117,53 @@ class ParentChoreList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            Chore Manager
+          </Text>
+        </View>
+
         {this.renderSpinner()}
-        <Picker
-          selectedValue={this.state.child}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ child: itemValue })
-          }
-        >
-          <Picker.Item label={"All"} value={"All"} />
-
-          {children.map(function(child) {
-            return <Picker.Item label={child.name} value={child.name} />;
-          })}
-        </Picker>
-
-        <Picker
-          selectedValue={this.state.day}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) => {
-            console.log("inside of set state day: ", itemValue);
-            this.setState({ day: itemValue });
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
-          <Picker.Item label={"All"} value={"All"} />
-          {days.map(function(day) {
-            return <Picker.Item label={day.value} value={day.value} />;
-          })}
-        </Picker>
+          <Picker
+            selectedValue={this.state.child}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ child: itemValue })
+            }
+          >
+            <Picker.Item label={"All"} value={"All"} />
 
-        <Text>Chore Manager</Text>
+            {children.map(function(child) {
+              return <Picker.Item label={child.name} value={child.name} />;
+            })}
+          </Picker>
+
+          <Picker
+            selectedValue={this.state.day}
+            style={{ height: 50, width: 100 }}
+            onValueChange={(itemValue, itemIndex) => {
+              console.log("inside of set state day: ", itemValue);
+              this.setState({ day: itemValue });
+            }}
+          >
+            <Picker.Item label={"All"} value={"All"} />
+            {days.map(function(day) {
+              return <Picker.Item label={day.value} value={day.value} />;
+            })}
+          </Picker>
+        </View>
+
         <ScrollView>
           <View>
             <View>
