@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import ActionButton from "react-native-action-button";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { ListView, FlatList, View, ScrollView } from "react-native";
+import { ListView, FlatList, View, ScrollView, Text } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import Spinner from "react-native-loading-spinner-overlay";
 import { rewardsFetch } from "../../actions/ParentActions";
@@ -46,15 +46,33 @@ class ParentRewardList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView>
-          <View>
-            <FlatList
-              data={rewards}
-              renderItem={({ item }) => <RewardListItem reward={item} />}
-            />
-            <FloatingAction onPressMain={this.onButtonPress.bind(this)} />
-          </View>
-        </ScrollView>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "skyblue",
+            flex: 0.15
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 24
+            }}
+          >
+            Rewards
+          </Text>
+        </View>
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
+            <View>
+              <FlatList
+                data={rewards}
+                renderItem={({ item }) => <RewardListItem reward={item} />}
+              />
+              <FloatingAction onPressMain={this.onButtonPress.bind(this)} />
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }

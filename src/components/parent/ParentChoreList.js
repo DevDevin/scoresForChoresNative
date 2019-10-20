@@ -117,7 +117,14 @@ class ParentChoreList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 0.15,
+            backgroundColor: "grey"
+          }}
+        >
           <Text
             style={{
               fontSize: 24
@@ -132,7 +139,8 @@ class ParentChoreList extends Component {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundColor: "powderblue"
           }}
         >
           <Picker
@@ -163,22 +171,25 @@ class ParentChoreList extends Component {
             })}
           </Picker>
         </View>
-
-        <ScrollView>
-          <View>
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
             <View>
-              <FlatList
-                data={filteredChores}
-                renderItem={({ item }) => <ParentChoreListItem chore={item} />}
+              <View>
+                <FlatList
+                  data={filteredChores}
+                  renderItem={({ item }) => (
+                    <ParentChoreListItem chore={item} />
+                  )}
+                />
+              </View>
+
+              <FloatingAction
+                // actions={actions}
+                onPressMain={this.onButtonPress.bind(this)}
               />
             </View>
-
-            <FloatingAction
-              // actions={actions}
-              onPressMain={this.onButtonPress.bind(this)}
-            />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
       // where there are not users the view is not tall enough to be able to click on the floating button. I can add an view below that is always tall enough to include room for the button and is always at the bottom
     );

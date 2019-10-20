@@ -38,10 +38,10 @@ class UserListItem extends Component {
       this.props.setActiveUser(activeUser);
 
       if (activeUser.status === "parent") {
-        Actions.parentHome();
+        Actions.parent();
       } else {
         this.setState({ isModalVisible: false });
-        Actions.childHome();
+        Actions.child();
       }
     } else {
       console.log("did not match");
@@ -120,7 +120,8 @@ class UserListItem extends Component {
           <View
             style={{
               backgroundColor: "powderblue",
-              justifyContent: "center"
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
             <View
@@ -132,6 +133,7 @@ class UserListItem extends Component {
               }}
             >
               <Input
+                style={{ justifyContent: "center", alignSelf: "center" }}
                 label="Password"
                 placeholder="password"
                 value={this.state.enteredPassword}

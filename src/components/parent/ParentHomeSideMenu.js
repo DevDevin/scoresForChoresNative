@@ -9,48 +9,10 @@ import {
 } from "react-native";
 import { logoutAuth } from "../../actions/AuthActions";
 
-class ChildSideMenu extends Component {
+class ParentHomeSideMenu extends Component {
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Actions.parentHome();
-          }}
-        >
-          <View style={styles.choreListStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Home</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Actions.userList();
-          }}
-        >
-          <View style={styles.rewardStoreStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Change User</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
           onPress={() => {
             Actions.choreReset();
@@ -138,4 +100,4 @@ const styles = {
   }
 };
 
-export default ChildSideMenu;
+export default ParentHomeSideMenu;

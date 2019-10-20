@@ -26,6 +26,8 @@ import RequestRejectReason from "./components/parent/RequestRejectReason";
 import ChoreReset from "./components/parent/ChoreReset";
 import ChildRewardRequestsList from "./components/child/ChildRewardRequestsList";
 import ResetPassword from "./components/parent/ResetPassword";
+import ChildHomeSideMenu from "./components/child/ChildHomeSideMenu";
+import ParentHomeSideMenu from "./components/parent/ParentHomeSideMenu";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -33,119 +35,160 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="root" hideNavBar>
-        <Scene
-          key="startup"
-          component={StartupPage}
-          title="Scores For Chores"
-          initial
-        />
-        <Scene key="login" component={LoginForm} title="Please Login" />
-        <Scene
-          key="adminUserCreate"
-          component={AdminUserCreate}
-          title="Please Create Admin User"
-        />
-        <Scene key="signUp" component={SignUpForm} title="Create an Account" />
-        <Scene
-          key="chooseUser"
-          rightTitle="New User"
-          onRight={() => {
-            // logoutAuth();
-            Actions.userCreate();
-          }}
-          component={ChooseUser}
-          title="Choose User"
-        />
-        <Scene key="userCreate" component={UserCreate} title="Create User" />
-        <Drawer
-          hideNavBar
-          drawerPosition={"right"}
-          contentComponent={ChildSideMenu}
-          drawerWidth={Dimensions.get("window").width * 0.4}
-        >
-          <Scene key="childHome" component={ChildHome} title="Child Home" />
+        {/* Auth **************************** */}
+        <Scene key="auth">
           <Scene
-            key="childChoreList"
-            component={ChildChoreList}
-            title="Child Chore List"
+            key="startup"
+            component={StartupPage}
+            title="Scores For Chores"
+            initial
+          />
+          <Scene key="login" component={LoginForm} title="Please Login" />
+          <Scene
+            key="adminUserCreate"
+            component={AdminUserCreate}
+            title="Please Create Admin User"
           />
           <Scene
-            key="childRewardStore"
-            component={ChildRewardStore}
-            title="Child Reward Store"
-            rightTitle="Reward Requests"
+            key="signUp"
+            component={SignUpForm}
+            title="Create an Account"
+          />
+
+          <Scene key="userCreate" component={UserCreate} title="Create User" />
+        </Scene>
+        {/* Auth *************************** */}
+
+        <Scene key="userList">
+          <Scene
+            initial
+            key="chooseUser"
+            rightTitle="New User"
             onRight={() => {
-              Actions.rewardRequests();
+              Actions.userCreate();
             }}
+            component={ChooseUser}
+            title="Choose User"
           />
-          <Scene
-            key="rewardRequests"
-            component={ChildRewardRequestsList}
-            title="Reward Requests"
-          />
-          <Scene
-            key="startup"
-            component={StartupPage}
-            title="Scores For Chores"
-          />
-        </Drawer>
-        <Drawer
-          hideNavBar
-          drawerPosition={"right"}
-          contentComponent={ParentSideMenu}
-          drawerWidth={Dimensions.get("window").width * 0.4}
-        >
-          <Scene key="parentHome" component={ParentHome} title="Parent Home" />
-          {/* <Drawer
-              hideNavBar
-              drawerPosition={"right"}
-              contentComponent={ChildSideMenu}
-              drawerWidth={Dimensions.get("window").width * 0.4}
-            > */}
-          <Scene
-            key="parentChoreList"
-            component={ParentChoreList}
-            title="Parent Chore List"
-          />
-          <Scene key="choreReset" component={ChoreReset} title="Reset Chores" />
-          <Scene
-            // rightTitle="Add Reward"
-            // onRight={() => {
-            //   Actions.rewardCreate();
-            // }}
-            key="parentRewardList"
-            component={ParentRewardList}
-            title="Parent Reward List"
-          />
-          <Scene
-            key="rewardRequestList"
-            component={RewardRequestList}
-            title="Rewards Requests"
-          />
-          <Scene key="requestReject" component={RequestRejectReason} title="" />
-          <Scene
-            key="completionRequestList"
-            component={CompletionRequestList}
-            title="Completion Requests"
-          />
-          <Scene
-            key="passwordReset"
-            component={ResetPassword}
-            title="Reset Password"
-          />
-          <Scene key="choreCreate" component={ChoreCreate} title="New Chore" />
-          <Scene key="choreEdit" component={ChoreEdit} title="Edit Chore" />
-          <Scene
-            key="rewardCreate"
-            component={RewardCreate}
-            title="New New Reward"
-          />
-          <Scene
-            key="startup"
-            component={StartupPage}
-            title="Scores For Chores"
-          />
-        </Drawer>
+        </Scene>
+        {/* CHILD *********************************** */}
+        <Scene key="child">
+          <Drawer
+            hideNavBar
+            drawerPosition="right"
+            contentComponent={ChildHomeSideMenu}
+            drawerWidth={Dimensions.get("window").width * 0.4}
+          >
+            <Scene
+              initial
+              key="childHome"
+              component={ChildHome}
+              title="Child Home"
+            />
+          </Drawer>
+          <Drawer
+            hideNavBar
+            drawerPosition={"right"}
+            contentComponent={ChildSideMenu}
+            drawerWidth={Dimensions.get("window").width * 0.4}
+          >
+            <Scene
+              key="childChoreList"
+              component={ChildChoreList}
+              title="Child Chore List"
+            />
+            <Scene
+              key="childRewardStore"
+              component={ChildRewardStore}
+              title="Child Reward Store"
+              rightTitle="Reward Requests"
+              onRight={() => {
+                Actions.rewardRequests();
+              }}
+            />
+            <Scene
+              key="rewardRequests"
+              component={ChildRewardRequestsList}
+              title="Reward Requests"
+            />
+          </Drawer>
+        </Scene>
+        {/* ********************** CHILD END ************************ */}
+
+        {/* ********************** PARENT **************** */}
+        <Scene key="parent">
+          <Drawer
+            hideNavBar
+            drawerPosition={"right"}
+            contentComponent={ParentHomeSideMenu}
+            drawerWidth={Dimensions.get("window").width * 0.4}
+          >
+            <Scene
+              key="parentHome"
+              component={ParentHome}
+              title="Parent Home"
+              initial
+            />
+          </Drawer>
+          <Drawer
+            hideNavBar
+            drawerPosition={"right"}
+            contentComponent={ParentSideMenu}
+            drawerWidth={Dimensions.get("window").width * 0.4}
+          >
+            <Scene
+              key="parentChoreList"
+              component={ParentChoreList}
+              title="Parent Chore List"
+            />
+            <Scene
+              key="choreReset"
+              component={ChoreReset}
+              title="Reset Chores"
+            />
+            <Scene
+              // rightTitle="Add Reward"
+              // onRight={() => {
+              //   Actions.rewardCreate();
+              // }}
+              key="parentRewardList"
+              component={ParentRewardList}
+              title="Parent Reward List"
+            />
+            <Scene
+              key="rewardRequestList"
+              component={RewardRequestList}
+              title="Rewards Requests"
+            />
+            <Scene
+              key="requestReject"
+              component={RequestRejectReason}
+              title=""
+            />
+            <Scene
+              key="completionRequestList"
+              component={CompletionRequestList}
+              title="Completion Requests"
+            />
+            <Scene
+              key="passwordReset"
+              component={ResetPassword}
+              title="Reset Password"
+            />
+            <Scene
+              key="choreCreate"
+              component={ChoreCreate}
+              title="New Chore"
+            />
+            <Scene key="choreEdit" component={ChoreEdit} title="Edit Chore" />
+            <Scene
+              key="rewardCreate"
+              component={RewardCreate}
+              title="New New Reward"
+            />
+          </Drawer>
+        </Scene>
+        {/* ************ PARENT END ********************* */}
       </Scene>
     </Router>
   );
