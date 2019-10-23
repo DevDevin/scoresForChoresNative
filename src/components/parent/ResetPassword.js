@@ -41,8 +41,6 @@ class ResetPassword extends Component {
     const users = this.props.users;
     const user = this.state.user;
 
-    console.log("users: ", users);
-
     return (
       <View>
         <Text>Reset Password</Text>
@@ -63,7 +61,6 @@ class ResetPassword extends Component {
         </Picker>
         <TouchableOpacity
           onPress={() => {
-            console.log("user", user);
             if (
               this.state.password1 === this.state.password2 &&
               this.state.user != "nothing"

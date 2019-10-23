@@ -29,7 +29,6 @@ class RewardListItem extends Component {
 
   onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
     // submit a completion
-    console.log("completion request child id: ", uid);
     this.props.rewardRequestSend(
       activeUserName,
       uid,
@@ -45,9 +44,6 @@ class RewardListItem extends Component {
     const rid = this.props.reward.rid;
     const uid = this.props.activeUser.uid;
     const activeUserName = this.props.activeUser.name;
-    console.log("test", this.props.activeUser);
-    console.log("uid: ", uid);
-    console.log("name: ", activeUserName);
 
     return (
       <View style={{ flex: 1 }}>

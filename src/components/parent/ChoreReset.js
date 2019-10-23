@@ -15,22 +15,10 @@ class ChoreReset extends Component {
 
   render() {
     const chores = this.props.chores;
-    console.log("chores: ", chores);
 
     const filteredChores = _.filter(chores, function(item) {
-      console.log(
-        "inside else: ",
-        item.child,
-        item.choreName,
-        item.day,
-        item.status
-      );
-      console.log("item.isRecuring: ", item.recurring);
       return (item.recuring = true);
     });
-    //change it to where recurring = false
-
-    console.log("filteredChores: ", filteredChores);
 
     return (
       <View>

@@ -28,13 +28,10 @@ class UserListItem extends Component {
       isModalVisible: !this.state.isModalVisible
     });
 
-    console.log("activeUser: ", activeUser);
-
     if (password === this.state.enteredPassword) {
       this.props.loadingUsersStart();
 
       // redirect to parent or child depending on the user status
-      console.log(console.log("activeUser.status", activeUser));
       this.props.setActiveUser(activeUser);
 
       if (activeUser.status === "parent") {
@@ -44,7 +41,6 @@ class UserListItem extends Component {
         Actions.child();
       }
     } else {
-      console.log("did not match");
       this.setState({ loginError: "Incorrect Password" });
       Alert.alert(
         "Incorrect Password",
@@ -52,7 +48,7 @@ class UserListItem extends Component {
         [
           {
             text: "Okay",
-            onPress: () => console.log("Okay Pressed"),
+            // onPress: () => console.log("Okay Pressed"),
             style: "cancel"
           }
         ],
@@ -94,7 +90,6 @@ class UserListItem extends Component {
   render() {
     const enteredPassword = this.state.enteredPassword;
     const { name, password } = this.props.user;
-    console.log("user prop: ", this.props.user);
 
     // const password = this.props.users;
 
@@ -139,10 +134,6 @@ class UserListItem extends Component {
                 value={this.state.enteredPassword}
                 onChangeText={value => {
                   this.setState({ enteredPassword: value });
-                  console.log(
-                    "this.state.enteredPass: ",
-                    this.state.enteredPassword
-                  );
                 }}
               />
             </View>
@@ -209,8 +200,8 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-    backgroundColor: "powderblue",
-    width: Dimensions.get("window").width
+    backgroundColor: "powderblue"
+    // width: Dimensions.get("window").width
   },
   cardSectionStyle: {
     flex: 1,

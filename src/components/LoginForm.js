@@ -54,7 +54,6 @@ class LoginForm extends Component {
 
   resetEmailSend(resetEmail) {
     this.props.forgotPassword(resetEmail);
-    console.log("email sent", resetEmail);
   }
 
   renderButton() {
@@ -129,10 +128,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    console.log("this.props.loading: ", this.props.loading);
-    console.log("this.props.error: ", this.props.error);
     const resetEmail = this.state.resetEmail;
-    console.log("resetEmail: ", resetEmail);
 
     return (
       <View style={styles.ContainerStyle}>

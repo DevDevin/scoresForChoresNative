@@ -23,13 +23,10 @@ class ChildRewardRequestList extends Component {
   }
 
   onButtonPress() {
-    console.log("addUserPress");
     Actions.userCreate();
   }
 
   toggleChores = e => {
-    //////////
-    console.log("e.value: ", e);
     this.setState({ rewardStatus: e });
   };
 
@@ -44,20 +41,16 @@ class ChildRewardRequestList extends Component {
 
     const rewardStatus = this.state.rewardStatus;
     const { name } = this.props.activeUser;
-    console.log("activeUser: ", name);
     const rewardRequests = this.props.rewardRequests;
 
     let filteredRewardRequests;
 
     filteredRewardRequests = _.filter(rewardRequests, function(item) {
-      console.log("inside else: ", name);
       return item.childName === name;
     });
 
     if (rewardStatus != "All") {
       filteredRewardRequests = _.filter(filteredRewardRequests, function(item) {
-        console.log("inside filteredByStatus: ", rewardStatus);
-        console.log("item.status: ", item.status);
         return item.status === rewardStatus;
       });
     }

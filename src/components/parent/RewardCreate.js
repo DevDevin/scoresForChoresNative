@@ -15,12 +15,7 @@ class RewardCreate extends Component {
     let duplicate = false;
     const rewards = this.props.rewards;
     _.map(rewards, function(item) {
-      console.log("rewardName: ", item.rewardName, "-vs-", rewardName);
-      console.log("inisde of map");
       if (rewardName === item.rewardName) {
-        console.log("duplicate user name");
-        // i don't have to do state. I can just do a normal variable
-        // this.setState({ duplicateUser: true });
         duplicate = true;
       }
     });
@@ -38,7 +33,7 @@ class RewardCreate extends Component {
         [
           {
             text: "Okay",
-            onPress: () => console.log("Okay Pressed"),
+            // onPress: () => console.log("Okay Pressed"),
             style: "cancel"
           }
         ],
@@ -48,7 +43,6 @@ class RewardCreate extends Component {
   }
 
   render() {
-    console.log("this.props.rewards: ", this.props.rewards);
     return (
       <Card>
         <RewardForm {...this.props} />

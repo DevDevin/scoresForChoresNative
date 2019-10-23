@@ -18,8 +18,6 @@ import {
 } from "./types";
 
 export const passwordReset = (uid, newPassword) => {
-  console.log("user: ", uid);
-  console.log("newPassword: ", newPassword);
   const { currentUser } = firebase.auth();
 
   let email, name, password, phone, status, earnedPoints;
@@ -31,8 +29,6 @@ export const passwordReset = (uid, newPassword) => {
       // .orderByChild("name")
       // .equalTo(user)
       .on("value", snapshot => {
-        console.log("snapshot : ", snapshot.val());
-
         // set values for updating the child from the snapshot
         earnedPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
@@ -87,18 +83,14 @@ export const password2Changed = text => {
 };
 
 export const loginUser = ({ email, password }) => {
-  console.log("inside login User");
   return dispatch => {
     dispatch({ type: LOADING_USERS_START });
-    console.log("past the loading start dispatch");
-    console.log("inside loginUser");
-    console.log("email: ", email, "password: ", password);
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(error => {
-        console.log("this is the error", error);
         loginUserFail(dispatch);
       });
   };
@@ -107,7 +99,6 @@ export const loginUser = ({ email, password }) => {
 export const createAccount = ({ email, password, password2 }) => {
   return dispatch => {
     if (password != password2) {
-      console.log("password mismatch");
       passwordMismatch(dispatch);
     } else {
       firebase
@@ -126,7 +117,6 @@ export const createAccount = ({ email, password, password2 }) => {
 };
 
 const loginUserFail = dispatch => {
-  console.log("inside loginUserFail");
   dispatch({ type: LOGIN_USER_FAIL });
 };
 
@@ -145,16 +135,13 @@ export const turnOffAuthError = () => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log("inside loginUserSuccess");
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
-  console.log("user: ", user);
   // Navigate to the choose user screen
   Actions.userList();
 };
 
 export const userCreate = ({ name, phone, password1, status, email }) => {
   const { currentUser } = firebase.auth();
-  console.log("inside userCreate");
 
   return dispatch => {
     firebase
@@ -169,7 +156,6 @@ export const userCreate = ({ name, phone, password1, status, email }) => {
         earnedPoints: 0
       })
       .then(() => {
-        console.log("user successfully create");
         Actions.chooseUser();
       });
   };
@@ -204,7 +190,6 @@ export const loadingUsersEnd = () => {
   return dispatch => {
     setTimeout(() => {
       dispatch({ type: LOADING_USERS_END });
-      console.log("Hello after 4 seconds");
     }, 4 * 1000);
   };
 };
@@ -243,7 +228,5 @@ export const logoutAuth = () => {
     .then(() => {
       Actions.auth();
     })
-    .catch(err => {
-      console.log("sign out fail: ", err);
-    });
+    .catch(err => {});
 };

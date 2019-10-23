@@ -18,14 +18,11 @@ class RewardRequestList extends Component {
   }
 
   onButtonPress() {
-    console.log("addUserPress");
     Actions.userCreate();
   }
 
   render() {
-    console.log("inside render");
     const rewardRequests = this.props.rewardRequests;
-    console.log("rewardRequests: ", rewardRequests);
     const users = this.props.users;
     const children = _.filter(users, function(item) {
       return item.status === "child";
@@ -35,11 +32,9 @@ class RewardRequestList extends Component {
 
     let filteredRequests;
     if (child === "All") {
-      console.log("inside if: ", child);
       filteredRequests = rewardRequests;
     } else {
       filteredRequests = _.filter(rewardRequests, function(item) {
-        console.log("inside else: ", child);
         return item.childName === child;
       });
     }

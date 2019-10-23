@@ -8,7 +8,6 @@ import UserListItem from "./UserListItem";
 class ChooseUser extends Component {
   componentWillMount() {
     this.props.usersFetch();
-    console.log("this.props.users: ", this.props.users);
 
     this.createDataSource(this.props);
   }

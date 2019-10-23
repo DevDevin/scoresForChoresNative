@@ -6,7 +6,6 @@ import { loadingUsersEnd } from "../../actions/AuthActions";
 
 class ChildHome extends Component {
   componentDidMount() {
-    console.log(this.props.activeUser.uid);
     this.props.loadingUsersEnd();
   }
 

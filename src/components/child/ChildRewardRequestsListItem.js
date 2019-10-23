@@ -27,7 +27,6 @@ class ChildRewardRequestsListItem extends Component {
 
   onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
     // submit a completion
-    console.log("completion request child id: ", uid);
     this.props.rewardRequestSend(
       activeUserName,
       uid,
@@ -47,10 +46,7 @@ class ChildRewardRequestsListItem extends Component {
     const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
 
-    console.log("rewardName: ", this.props.rewardRequest);
     let reSubmitButton;
-    console.log("rewardRequest prop: ", this.props.rewardRequest);
-    console.log("rewardStatus: ", rewardStatus);
 
     let rejectionReasonView;
     if (rejectionReason != "") {
@@ -64,7 +60,6 @@ class ChildRewardRequestsListItem extends Component {
     }
 
     if (rewardStatus === "Rejected") {
-      console.log("inside rejected condition");
       reSubmitButton = (
         <TouchableOpacity
           onPress={this.onButtonPress.bind(

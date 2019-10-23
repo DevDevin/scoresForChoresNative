@@ -37,8 +37,6 @@ class RewardRequestListItem extends Component {
   }
 
   onAccept(childName, uid, pointsValue, rid, rewardName) {
-    console.log("uid: ", uid);
-    console.log("childName: ", childName);
     this.props.rewardRequestAccept(
       childName,
       uid,
@@ -49,7 +47,6 @@ class RewardRequestListItem extends Component {
   }
 
   onReject(childName, uid, pointsValue, rid, rewardName, rejectionReason) {
-    console.log("rejectionReason: ", rejectionReason);
     this.props.rewardRequestReject(
       childName,
       uid,
@@ -72,10 +69,6 @@ class RewardRequestListItem extends Component {
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.state.rejectionReason;
-    console.log("rejectionReason", rejectionReason);
-
-    console.log("rewardName: ", this.props.rewardRequest);
-    console.log("rid: ", rid);
 
     return (
       <View style={{ flex: 1 }}>

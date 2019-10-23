@@ -16,8 +16,6 @@ import {
 } from "./types";
 
 export const choreUpdate = ({ prop, value }) => {
-  console.log("inside chore update");
-  console.log("prop: ", prop, "value: ", value);
   return {
     type: CHORE_UPDATE,
     payload: { prop, value }
@@ -66,23 +64,6 @@ export const choresFetch = () => {
   };
 };
 
-// export const loadingUsersEnd = () => {
-//   // startTimer();
-
-//   return dispatch => {
-//     setTimeout(() => {
-//       dispatch({ type: LOADING_USERS_END });
-//       console.log("Hello after 4 seconds");
-//     }, 4 * 1000);
-//   };
-// };
-
-// export const loadingUsersStart = () => {
-//   return dispatch => {
-//     dispatch({ type: LOADING_USERS_START });
-//   };
-// };
-
 //// REWARD STUFF //////////
 
 export const rewardCreate = ({
@@ -91,7 +72,6 @@ export const rewardCreate = ({
   pointsValue: pointsValue
 }) => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser: ", currentUser);
 
   return dispatch => {
     firebase
@@ -116,7 +96,6 @@ export const rewardUpdate = ({ prop, value }) => {
 };
 
 export const rewardsFetch = () => {
-  console.log("inside rewards fetch in parent actions");
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -154,7 +133,6 @@ export const choreSave = ({
   day
 }) => {
   const { currentUser } = firebase.auth();
-  console.log("cid: ", cid);
 
   return dispatch => {
     firebase
@@ -204,8 +182,6 @@ export const requestAccept = (
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
-        console.log("snapshot: ", snapshot.val().earnedPoints);
-
         // set values for updating the child from the snapshot
         totalPoints =
           parseInt(snapshot.val().earnedPoints) + parseInt(pointsValue);
@@ -214,8 +190,6 @@ export const requestAccept = (
         password = snapshot.val().password;
         phone = snapshot.val().phone;
         status = snapshot.val().status;
-
-        console.log("totalPoints: ", totalPoints);
       });
     firebase
       .database()
@@ -256,7 +230,6 @@ export const requestReject = (
   reason
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("cid: ", cid);
 
   return dispatch => {
     firebase
@@ -322,9 +295,6 @@ export const rewardRequestAccept = (
   rewardName
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("rewardRequestAccepts");
-  console.log("rid: ", rid);
-  console.log("rewardName: ", rewardName);
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -333,8 +303,6 @@ export const rewardRequestAccept = (
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
-        console.log("points before: ", snapshot.val().earnedPoints);
-
         // set values for updating the child from the snapshot
         totalPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
@@ -342,8 +310,6 @@ export const rewardRequestAccept = (
         password = snapshot.val().password;
         phone = snapshot.val().phone;
         status = snapshot.val().status;
-
-        console.log("totalPoints: ", totalPoints);
       });
     firebase
       .database()
@@ -387,10 +353,6 @@ export const rewardRequestReject = (
   rejectionReason
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("rewardRequestReject reason: ", rejectionReason);
-  console.log("rid: ", rid);
-  console.log("rewardName: ", rewardName);
-  console.log("pointsValue: ", pointsValue);
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -399,8 +361,6 @@ export const rewardRequestReject = (
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
-        console.log("points before: ", snapshot.val().earnedPoints);
-
         // set values for updating the child from the snapshot
         totalPoints =
           parseInt(snapshot.val().earnedPoints) + parseInt(pointsValue);
@@ -409,8 +369,6 @@ export const rewardRequestReject = (
         password = snapshot.val().password;
         phone = snapshot.val().phone;
         status = snapshot.val().status;
-
-        console.log("totalPoints: ", totalPoints);
       });
     firebase
       .database()
@@ -444,7 +402,6 @@ export const rewardRequestReject = (
 
 export const choreReset = filteredChores => {
   const { currentUser } = firebase.auth();
-  console.log("filteredChores: ", filteredChores);
 
   return () => {
     firebase
@@ -453,8 +410,6 @@ export const choreReset = filteredChores => {
       .remove();
 
     _.map(filteredChores, chore => {
-      console.log("iteration ", chore);
-
       firebase
         .database()
         .ref(`/users/${currentUser.uid}/chores`)

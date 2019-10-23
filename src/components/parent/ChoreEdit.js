@@ -13,14 +13,12 @@ class ChoreEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    console.log("this.props.chore: ", this.props.chore);
     _.each(this.props.chore, (value, prop) => {
       this.props.choreUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    console.log("this.props: ", this.props);
     const { child, choreName, description, pointsValue, day } = this.props;
 
     this.props.choreSave({

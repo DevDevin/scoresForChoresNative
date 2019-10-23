@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Card, CardSection, Button, Confirm } from "../components/common";
 
 class StartupPage extends Component {
   onLoginPress() {
@@ -41,12 +42,12 @@ class StartupPage extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity
+          <Button
             onPress={this.onLoginPress.bind(this)}
-            style={styles.buttonStyle}
+            // style={styles.buttonStyle}
           >
             <Text style={styles.textStyle}>Login</Text>
-          </TouchableOpacity>
+          </Button>
         </View>
         <View
           style={{
@@ -56,12 +57,12 @@ class StartupPage extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity
+          <Button
             onPress={this.onSignUpPress.bind(this)}
-            style={styles.buttonStyle}
+            // style={styles.buttonStyle}
           >
             <Text style={styles.textStyle}>Create Account</Text>
-          </TouchableOpacity>
+          </Button>
         </View>
       </View>
     );

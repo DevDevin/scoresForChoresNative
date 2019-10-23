@@ -31,7 +31,6 @@ class ChildChoreListItem extends Component {
 
   onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
     // submit a completion
-    console.log("completion request child id: ", uid);
     this.props.completionRequestSend(
       choreName,
       day,

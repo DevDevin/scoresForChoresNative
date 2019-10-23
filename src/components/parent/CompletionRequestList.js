@@ -37,7 +37,6 @@ class CompletionRequestList extends Component {
     return <View></View>;
   }
   render() {
-    console.log("this.props.loading: ", this.props.loading);
     const completionRequests = this.props.completionRequests;
     const users = this.props.users;
     const children = _.filter(users, function(item) {
@@ -48,11 +47,9 @@ class CompletionRequestList extends Component {
     let filteredRequests;
     // need to find a way to pass this.state.choreStatus into this function
     if (child === "All") {
-      console.log("inside if: ", child);
       filteredRequests = completionRequests;
     } else {
       filteredRequests = _.filter(completionRequests, function(item) {
-        console.log("inside else: ", child);
         return item.child === child;
       });
     }

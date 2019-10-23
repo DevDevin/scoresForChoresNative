@@ -51,7 +51,6 @@ class ParentHome extends Component {
 
   render() {
     const { name } = this.props.activeUser;
-    console.log("this.props.loading", this.props.loading);
 
     return (
       <View
@@ -145,7 +144,7 @@ const styles = {
     borderColor: "#d6d7da",
     fontSize: 30,
     paddingLeft: 15,
-    flex: 1,
+    // flex: 1,
     backgroundColor: "powderblue"
   },
   rewardListStyle: {
@@ -155,7 +154,7 @@ const styles = {
     borderColor: "#d6d7da",
     fontSize: 30,
     paddingLeft: 15,
-    flex: 1,
+    // flex: 1,
     backgroundColor: "skyblue"
   },
   completionRequestsStyle: {
@@ -165,7 +164,7 @@ const styles = {
     borderColor: "#d6d7da",
     fontSize: 30,
     paddingLeft: 15,
-    flex: 1,
+    // flex: 1,
     backgroundColor: "steelblue"
   }
 };

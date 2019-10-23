@@ -12,9 +12,7 @@ class ChildRewardStore extends Component {
 
   render() {
     const rewards = this.props.rewards;
-    console.log("rewards: ", rewards);
     const earnedPoints = this.props.activeUser.earnedPoints;
-    console.log("earnedPoints: ", this.props.activeUser.earnedPoints);
 
     return (
       <View>

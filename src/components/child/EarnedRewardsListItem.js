@@ -31,7 +31,6 @@ class EarnedRewardListItem extends Component {
     const uid = this.props.earnedReward.uid;
     const rid = this.props.earnedReward.rid;
     const rewardName = this.props.earnedReward.rewardName;
-    console.log("rewardName: ", this.props.earnedReward);
 
     return (
       <View style={{ flex: 1 }}>

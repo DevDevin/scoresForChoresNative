@@ -15,19 +15,13 @@ class UserCreate extends Component {
     this.props.usersFetch();
   }
   onButtonPress() {
-    console.log("insided onButtonPress", this.state.duplicateUser);
     const { name, phone, password1, status, email } = this.props;
 
     let duplicate = false;
 
     const users = this.props.users;
     _.map(users, function(item) {
-      console.log("child: ", item.name, "-vs-", name);
-      console.log("inisde of map");
       if (name === item.name) {
-        console.log("duplicate user name");
-        // i don't have to do state. I can just do a normal variable
-        // this.setState({ duplicateUser: true });
         duplicate = true;
       }
     });
@@ -41,7 +35,7 @@ class UserCreate extends Component {
         [
           {
             text: "Okay",
-            onPress: () => console.log("Okay Pressed"),
+            // onPress: () => console.log("Okay Pressed"),
             style: "cancel"
           }
         ],
@@ -53,12 +47,6 @@ class UserCreate extends Component {
   render() {
     const users = this.props.users;
 
-    // usersFiltered.map(function(user) {
-    //   console.log("child", user.name);
-    // });
-    //for some reason users is not getting populated.
-
-    console.log("this.props.users: ", this.props.users);
     return (
       <Card>
         <UserForm {...this.props} />

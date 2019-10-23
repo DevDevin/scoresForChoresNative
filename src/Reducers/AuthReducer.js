@@ -63,7 +63,6 @@ export default (state = INITIAL_STATE, action) => {
         loading: false
       };
     case CREATE_USER_SUCCESS:
-      console.log("create user success in auth reducer");
       return {
         ...state,
         modalFlag: true,
@@ -77,7 +76,6 @@ export default (state = INITIAL_STATE, action) => {
         error: ""
       };
     case SET_ACTIVE_USER:
-      console.log("setActiveUser Payload", action.payload);
       return {
         ...state,
         activeUser: action.payload

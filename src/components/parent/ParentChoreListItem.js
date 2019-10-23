@@ -33,7 +33,6 @@ class ParentChoreListItem extends Component {
     const description = this.props.chore.description;
 
     const childName = this.props.chore.child;
-    console.log(this.props.activeUser.status);
 
     return (
       <View style={{ flex: 1 }}>
@@ -122,8 +121,8 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-    backgroundColor: "powderblue",
-    width: Dimensions.get("window").width
+    backgroundColor: "powderblue"
+    // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
     fontSize: 18,

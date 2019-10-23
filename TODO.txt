@@ -1,9 +1,8 @@
--- fix navigation/routing
+-- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- animations
 -- fix login feature
--- remove console.logs 
-
+-- fix responsiveness
 
 
 

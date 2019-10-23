@@ -20,7 +20,6 @@ class ChoreForm extends Component {
     child: ""
   };
   componentDidMount() {
-    console.log("ComponentWillMount");
     this.props.choreUpdate({
       prop: "isRecurring",
       value: false
@@ -31,11 +30,9 @@ class ChoreForm extends Component {
   }
 
   onCheckBoxClicked(isRecurring) {
-    console.log("this.state.isRecurring old: ", this.state.isRecurring);
     this.setState({
       isRecurring: !this.state.isRecurring
     });
-    console.log("this.state.isRecurring new: ", this.state.isRecurring);
     this.props.choreUpdate({
       prop: "isRecurring",
       value: !this.state.isRecurring
@@ -59,12 +56,8 @@ class ChoreForm extends Component {
     const users = this.props.users;
 
     const children = _.filter(users, function(item) {
-      console.log("inside filter");
-      console.log("item.status: ", item.status, "-item.name");
       return item.status === "child";
     });
-
-    console.log("children: ", children);
 
     return (
       <View>
@@ -95,7 +88,6 @@ class ChoreForm extends Component {
             selectedValue={this.state.child}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => {
-              console.log("inside of set child: ", itemValue);
               this.props.choreUpdate({ prop: "child", value: itemValue });
               this.setState({ child: itemValue });
             }}
@@ -123,7 +115,6 @@ class ChoreForm extends Component {
               radio_props={radio_props}
               initial={0}
               onPress={value => {
-                console.log("radio value: ", value);
                 if (value === "other") {
                   this.setState({ isOther: true });
                 }

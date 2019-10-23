@@ -22,7 +22,6 @@ class ParentChoreList extends Component {
   }
 
   onButtonPress() {
-    console.log("addUserPress");
     Actions.choreCreate();
   }
 
@@ -54,9 +53,7 @@ class ParentChoreList extends Component {
 
   render() {
     const chores = this.props.chores;
-    console.log("chores.childName: ", chores.name);
     const users = this.props.users;
-    console.log("users: ", users);
 
     const days = [
       { value: "Monday" },
@@ -71,47 +68,31 @@ class ParentChoreList extends Component {
       { value: "Daily" }
     ];
 
-    // const pickerItem = _.map(users, function(item) {
-    //   console.log("item: ", item.name);
-    //   return item.name;
-    // });
-
     var pickerItem = users.map(function(user) {
       return { value: user.name };
     });
-    console.log("pickerItem: ", pickerItem);
     const child = this.state.child;
-    console.log("child: ", child);
     const day = this.state.day;
-    console.log("this.state.day: ", day);
 
     let filteredChores;
     // need to find a way to pass this.state.choreStatus into this function
     if (child === "All") {
-      console.log("inside if: ", child);
       filteredChores = chores;
     } else {
       filteredChores = _.filter(chores, function(item) {
-        console.log("inside else: ", child);
         return item.child === child;
       });
     }
 
     if (day === "All") {
-      console.log("day = all. Child: ", child);
       filteredChores = filteredChores;
     } else {
-      console.log("day does not = all: ", filteredChores);
       filteredChores = _.filter(filteredChores, function(item) {
-        console.log("const day:  ", day, "item.day: ", item.day);
         return item.day === day;
       });
-      console.log("inside second else again ", filteredChores);
     }
 
     const children = _.filter(users, function(item) {
-      console.log("inside filter");
-      console.log("item.status: ", item.status, "-item.name");
       return item.status === "child";
     });
 
@@ -161,7 +142,6 @@ class ParentChoreList extends Component {
             selectedValue={this.state.day}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => {
-              console.log("inside of set state day: ", itemValue);
               this.setState({ day: itemValue });
             }}
           >
@@ -197,7 +177,6 @@ class ParentChoreList extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state.auth.activeUser.name", state.auth.activeUser.name);
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });

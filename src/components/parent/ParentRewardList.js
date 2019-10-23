@@ -39,10 +39,7 @@ class ParentRewardList extends Component {
   }
 
   render() {
-    console.log("this.props.loading: ", this.props.loading);
-
     const rewards = this.props.rewards;
-    console.log("rewards: ", rewards);
 
     return (
       <View style={{ flex: 1 }}>

@@ -27,7 +27,6 @@ class CompletionRequestListItem extends Component {
   };
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
-    console.log("uid: ", this.props.completionRequest.uid);
     this.props.requestAccept(
       cid,
       choreName,
@@ -40,7 +39,6 @@ class CompletionRequestListItem extends Component {
   }
 
   onReject(cid, choreName, day, child, description, pointsValue, reason) {
-    console.log("reason: ", reason);
     this.props.requestReject(
       cid,
       choreName,

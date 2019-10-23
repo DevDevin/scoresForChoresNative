@@ -19,7 +19,6 @@ class ChooseUser extends Component {
   }
 
   onButtonPress() {
-    console.log("addUserPress");
     Actions.userCreate();
   }
 
@@ -41,8 +40,6 @@ class ChooseUser extends Component {
 
   render() {
     const users = this.props.users;
-
-    console.log("this.props.loading: ", this.props.loading);
 
     // i may want to set the loading in the login action as well. Thats how its being done in other projects.
 

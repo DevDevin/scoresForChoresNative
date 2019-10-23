@@ -14,15 +14,12 @@ class ChildChoreList extends Component {
   };
   componentWillMount() {
     this.props.childChoresFetch(this.props.activeUser.name);
-    console.log("this.state.choreStatus: ", this.state.choreStatus);
   }
 
   render() {
     const chores = this.props.childChores;
-    console.log("chores: ", chores);
     const choreStatus = this.state.choreStatus;
     const day = this.state.day;
-    console.log("this.state.day: ", day);
 
     const days = [
       { value: "Monday" },
@@ -50,21 +47,16 @@ class ChildChoreList extends Component {
       filteredChores = chores;
     } else {
       filteredChores = _.filter(chores, function(e) {
-        console.log(choreStatus);
         return e.status === choreStatus;
       });
     }
 
     if (day === "All") {
-      console.log("day = all");
       filteredChores = filteredChores;
     } else {
-      console.log("day does not = all: ", filteredChores);
       filteredChores = _.filter(filteredChores, function(item) {
-        console.log("const day:  ", day, "item.day: ", item.day);
         return item.day === day;
       });
-      console.log("inside second else again ", filteredChores);
     }
 
     return (
@@ -98,7 +90,6 @@ class ChildChoreList extends Component {
             selectedValue={this.state.choreStatus}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => {
-              console.log("inside of set state day: ", itemValue);
               this.setState({ choreStatus: itemValue });
             }}
           >
@@ -112,7 +103,6 @@ class ChildChoreList extends Component {
             selectedValue={this.state.day}
             style={{ height: 50, width: 100 }}
             onValueChange={(itemValue, itemIndex) => {
-              console.log("inside of set state day: ", itemValue);
               this.setState({ day: itemValue });
             }}
           >

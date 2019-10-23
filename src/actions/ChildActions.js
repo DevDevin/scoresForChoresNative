@@ -27,7 +27,6 @@ export const childChoresFetch = activeUser => {
 
 /// child rewards fetch ///
 export const rewardsFetch = () => {
-  console.log("inside rewards fetch in parent actions");
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -50,7 +49,6 @@ export const completionRequestSend = (
   uid
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("cid: ", cid);
 
   return dispatch => {
     firebase
@@ -98,19 +96,12 @@ export const rewardRequestSend = (
   rewardName
 ) => {
   const { currentUser } = firebase.auth();
-  console.log("inside reward request send");
-  console.log("activeUserName: ", activeUserName);
-  console.log("uid: ", uid);
-  console.log("pointsValue: ", pointsValue);
-  console.log("rid: ", rid);
 
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
-        console.log("points before: ", snapshot.val().earnedPoints);
-
         // set values for updating the child from the snapshot
         totalPoints =
           parseInt(snapshot.val().earnedPoints) - parseInt(pointsValue);
@@ -119,8 +110,6 @@ export const rewardRequestSend = (
         password = snapshot.val().password;
         phone = snapshot.val().phone;
         status = snapshot.val().status;
-
-        console.log("totalPoints: ", totalPoints);
       });
     firebase
       .database()
@@ -152,10 +141,8 @@ export const rewardRequestSend = (
 };
 
 export const earnedRewardsFetch = activeUser => {
-  console.log("inside earned rewards fetch");
   const { currentUser } = firebase.auth();
   const childName = activeUser;
-  console.log("child: ", childName);
   return dispatch => {
     firebase
       .database()
@@ -163,7 +150,6 @@ export const earnedRewardsFetch = activeUser => {
       .orderByChild("childName")
       .equalTo(childName)
       .on("value", snapshot => {
-        console.log(snapshot.val());
         dispatch({
           type: EARNED_REWARD_FETCH_SUCCESS,
           payload: snapshot.val()
@@ -174,8 +160,6 @@ export const earnedRewardsFetch = activeUser => {
 
 export const earnedRewardSpend = rewardId => {
   const { currentUser } = firebase.auth();
-  console.log("inside earnedRewardSpend");
-  console.log("rewardId: ", rewardId);
 
   return () => {
     firebase
