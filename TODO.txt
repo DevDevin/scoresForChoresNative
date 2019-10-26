@@ -2,7 +2,8 @@
 -- beautify the style and design
 -- animations
 -- fix login feature
--- fix responsiveness
+-- change status of rewards if requested. 
+-- subtract points from earned points when reward is requested. 
 
 
 

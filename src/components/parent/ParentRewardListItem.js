@@ -46,6 +46,7 @@ class ParentRewardListItem extends Component {
     const activeUserName = this.props.activeUser.name;
 
     return (
+      // maybe i want to remove the flex on this...
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback
           value={this.props.reward.rewardName}

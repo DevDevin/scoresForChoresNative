@@ -96,6 +96,18 @@ export const rewardRequestSend = (
   rewardName
 ) => {
   const { currentUser } = firebase.auth();
+  console.log(
+    "activeUserName:",
+    activeUserName,
+    "uid: ",
+    uid,
+    "pointsValue: ",
+    pointsValue,
+    "rid: ",
+    rid,
+    "rewardName: ",
+    rewardName
+  );
 
   return dispatch => {
     firebase
@@ -103,6 +115,7 @@ export const rewardRequestSend = (
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
         // set values for updating the child from the snapshot
+        console.log("earned points: ", snapshot.val().earnedPoints);
         totalPoints =
           parseInt(snapshot.val().earnedPoints) - parseInt(pointsValue);
         email = snapshot.val().email;

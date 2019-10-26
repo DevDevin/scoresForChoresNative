@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  ActivityIndicator
+  ActivityIndicator,
+  ScrollView
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
@@ -53,85 +54,92 @@ class ParentHome extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <View
-        style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
-      >
+      <ScrollView style={{ backgroundColor: "grey" }}>
         <View
-          style={{ justifyContent: "center", alignItems: "center", flex: 0.5 }}
+          style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
         >
-          <Text
+          <View
             style={{
-              fontSize: 24
+              justifyContent: "center",
+              alignItems: "center",
+              flex: 0.5
             }}
           >
-            Hello {name}
-          </Text>
+            <Text
+              style={{
+                fontSize: 24
+              }}
+            >
+              Hello {name}
+            </Text>
+          </View>
+
+          <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
+            <View style={styles.choreListStyle}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Image source={require("../../Images/choreList.png")} />
+                <Text style={{ fontSize: 22 }}>Chore List</Text>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
+            <View style={styles.rewardListStyle}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Image source={require("../../Images/rewardList.png")} />
+                <Text style={{ fontSize: 22 }}>Reward List</Text>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={this.onCompletionRequestPress.bind(this)}
+          >
+            <View style={styles.completionRequestsStyle}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Image source={require("../../Images/completionRequest.png")} />
+                <Text style={{ fontSize: 22 }}>Completion Requests</Text>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={this.onRewardRequestPress.bind(this)}
+          >
+            <View style={styles.completionRequestsStyle}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Image source={require("../../Images/completionRequest.png")} />
+                <Text style={{ fontSize: 22 }}>Reward Requests</Text>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
-        <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
-          <View style={styles.choreListStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 22 }}>Chore List</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
-          <View style={styles.rewardListStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/rewardList.png")} />
-              <Text style={{ fontSize: 22 }}>Reward List</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={this.onCompletionRequestPress.bind(this)}
-        >
-          <View style={styles.completionRequestsStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/completionRequest.png")} />
-              <Text style={{ fontSize: 22 }}>Completion Requests</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={this.onRewardRequestPress.bind(this)}
-        >
-          <View style={styles.completionRequestsStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/completionRequest.png")} />
-              <Text style={{ fontSize: 22 }}>Reward Requests</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+      </ScrollView>
     );
   }
 }

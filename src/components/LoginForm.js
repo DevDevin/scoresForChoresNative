@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   Modal,
   TouchableHighlight,
-  Alert
+  Alert,
+  Animated
 } from "react-native";
 import { connect } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -26,12 +27,21 @@ class LoginForm extends Component {
   state = {
     modalVisible: false,
     resetEmail: "devincbennett@gmail.com",
-    emailSent: false
+    emailSent: false,
+    fadeValue: new Animated.Value(0)
+  };
+
+  _start = () => {
+    Animated.timing(this.state.fadeValue, {
+      toValue: 1,
+      duration: 1000
+    }).start();
   };
 
   componentDidMount() {
     this.props.loadingUsersEnd();
     this.props.error = "";
+    this._start();
   }
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -132,41 +142,47 @@ class LoginForm extends Component {
 
     return (
       <View style={styles.ContainerStyle}>
-        {this.renderAlert()}
-        <View style={styles.cardSectionStyle}>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </View>
-        <View style={styles.cardSectionStyle}>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </View>
-        {/* {this.renderSpinner()} */}
-        <View style={styles.buttonSectionStyle}>
-          <TouchableOpacity
-            onPress={this.onButtonPress.bind(this)}
-            style={styles.buttonStyle}
-          >
-            <Text style={styles.textStyle}>Login</Text>
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity
-          onPress={() => {
-            this.setState({ modalVisible: true });
+        <Animated.View
+          style={{
+            opacity: this.state.fadeValue
           }}
         >
-          <Text>Forgot Password</Text>
-        </TouchableOpacity>
+          {this.renderAlert()}
+          <View style={styles.cardSectionStyle}>
+            <Input
+              label="Email"
+              placeholder="email@gmail.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
+            />
+          </View>
+          <View style={styles.cardSectionStyle}>
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
+          </View>
+          {/* {this.renderSpinner()} */}
+          <View style={styles.buttonSectionStyle}>
+            <TouchableOpacity
+              onPress={this.onButtonPress.bind(this)}
+              style={styles.buttonStyle}
+            >
+              <Text style={styles.textStyle}>Login</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ modalVisible: true });
+            }}
+          >
+            <Text>Forgot Password</Text>
+          </TouchableOpacity>
+        </Animated.View>
 
         <Modal
           animationType="slide"

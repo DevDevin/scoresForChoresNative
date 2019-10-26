@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, Picker, ScrollView } from "react-native";
+import { FlatList, Picker, ScrollView, Animated } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
@@ -14,12 +14,23 @@ class ParentChoreList extends Component {
   state = {
     child: "All",
     language: "",
-    day: "All"
+    day: "All",
+    slideUp: new Animated.Value(0)
   };
   componentWillMount() {
     this.props.choresFetch();
     this.props.usersFetch();
   }
+
+  _start = () => {
+    return Animated.parallel([
+      Animated.timing(this.state.slideUp, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
 
   onButtonPress() {
     Actions.choreCreate();
@@ -27,6 +38,7 @@ class ParentChoreList extends Component {
 
   componentDidMount() {
     this.props.loadingUsersEnd();
+    this._start();
   }
 
   // const childArray = chores.
@@ -52,6 +64,7 @@ class ParentChoreList extends Component {
   // still put the timeout function on there just to ensure the spinner is seen if the data happens to load really fast.
 
   render() {
+    let { slideUp } = this.state;
     const chores = this.props.chores;
     const users = this.props.users;
 
@@ -151,16 +164,31 @@ class ParentChoreList extends Component {
             })}
           </Picker>
         </View>
+
+        <Text>Hello </Text>
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
               <View>
-                <FlatList
-                  data={filteredChores}
-                  renderItem={({ item }) => (
-                    <ParentChoreListItem chore={item} />
-                  )}
-                />
+                <Animated.View
+                  style={{
+                    transform: [
+                      {
+                        translateY: slideUp.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [600, 0]
+                        })
+                      }
+                    ]
+                  }}
+                >
+                  <FlatList
+                    data={filteredChores}
+                    renderItem={({ item }) => (
+                      <ParentChoreListItem chore={item} />
+                    )}
+                  />
+                </Animated.View>
               </View>
 
               <FloatingAction

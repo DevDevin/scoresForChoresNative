@@ -15,7 +15,7 @@ class ChildRewardStore extends Component {
     const earnedPoints = this.props.activeUser.earnedPoints;
 
     return (
-      <View>
+      <View style={{ backgroundColor: "grey" }}>
         <Text style={{ fontSize: 24 }}>Points Earned: {earnedPoints} </Text>
         {/* I may want to move this over to the list item component so that the value refreshes */}
         <ScrollView>
