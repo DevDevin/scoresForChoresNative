@@ -1,12 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { Text, TouchableWithoutFeedback, View, Image } from "react-native";
+import {
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  Image,
+  Animated,
+  ScrollView
+} from "react-native";
 import { loadingUsersEnd } from "../../actions/AuthActions";
 
 class ChildHome extends Component {
+  state = {
+    slideUp: new Animated.Value(0),
+    SlideInLeft: new Animated.Value(0)
+  };
+
+  // animation
+  _start = () => {
+    return Animated.parallel([
+      Animated.timing(this.state.slideUp, {
+        toValue: 1,
+        duration: 6000,
+        useNativeDriver: true
+      }),
+      Animated.timing(this.state.SlideInLeft, {
+        toValue: 1,
+        duration: 6000,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
+
   componentDidMount() {
     this.props.loadingUsersEnd();
+    this._start();
   }
 
   onChoreListPress() {
@@ -18,6 +47,7 @@ class ChildHome extends Component {
   }
 
   render() {
+    let { slideUp, SlideInLeft } = this.state;
     const { name } = this.props.activeUser;
 
     return (
@@ -30,8 +60,22 @@ class ChildHome extends Component {
             flex: 0.5
           }}
         >
-          <Text style={{ fontSize: 24 }}>Hello {name}</Text>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  translateX: slideUp.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [600, 0]
+                  })
+                }
+              ]
+            }}
+          >
+            <Text style={{ fontSize: 24 }}>Hello {name}</Text>
+          </Animated.View>
         </View>
+
         <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
           <View style={styles.choreListStyle}>
             <View
@@ -47,6 +91,7 @@ class ChildHome extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+
         <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
           <View style={styles.rewardStoreStyle}>
             <View

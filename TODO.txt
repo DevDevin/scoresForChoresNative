@@ -4,6 +4,6 @@
 -- fix login feature
 -- change status of rewards if requested. 
 -- subtract points from earned points when reward is requested. 
-
+-- fix action button
 
 

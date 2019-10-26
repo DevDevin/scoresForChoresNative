@@ -15,12 +15,9 @@ class ParentChoreList extends Component {
     child: "All",
     language: "",
     day: "All",
-    slideUp: new Animated.Value(0)
+    slideUp: new Animated.Value(0),
+    SlideInLeft: new Animated.Value(0)
   };
-  componentWillMount() {
-    this.props.choresFetch();
-    this.props.usersFetch();
-  }
 
   _start = () => {
     return Animated.parallel([
@@ -28,9 +25,19 @@ class ParentChoreList extends Component {
         toValue: 1,
         duration: 1000,
         useNativeDriver: true
+      }),
+      Animated.timing(this.state.SlideInLeft, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
       })
     ]).start();
   };
+
+  componentWillMount() {
+    this.props.choresFetch();
+    this.props.usersFetch();
+  }
 
   onButtonPress() {
     Actions.choreCreate();
@@ -64,7 +71,7 @@ class ParentChoreList extends Component {
   // still put the timeout function on there just to ensure the spinner is seen if the data happens to load really fast.
 
   render() {
-    let { slideUp } = this.state;
+    let { slideUp, SlideInLeft } = this.state;
     const chores = this.props.chores;
     const users = this.props.users;
 
@@ -119,13 +126,26 @@ class ParentChoreList extends Component {
             backgroundColor: "grey"
           }}
         >
-          <Text
+          <Animated.View
             style={{
-              fontSize: 24
+              transform: [
+                {
+                  translateX: slideUp.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [600, 0]
+                  })
+                }
+              ]
             }}
           >
-            Chore Manager
-          </Text>
+            <Text
+              style={{
+                fontSize: 24
+              }}
+            >
+              Chore Manager
+            </Text>
+          </Animated.View>
         </View>
 
         {this.renderSpinner()}
@@ -165,7 +185,6 @@ class ParentChoreList extends Component {
           </Picker>
         </View>
 
-        <Text>Hello </Text>
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
           <ScrollView>
             <View>

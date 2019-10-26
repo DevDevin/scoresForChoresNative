@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, Picker, ScrollView } from "react-native";
+import { FlatList, Picker, ScrollView, Animated } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View } from "react-native";
@@ -10,13 +10,37 @@ import { CardSection } from "../common/index";
 class ChildChoreList extends Component {
   state = {
     choreStatus: "All",
-    day: "All"
+    day: "All",
+    slideUp: new Animated.Value(0),
+    SlideInLeft: new Animated.Value(0)
   };
+
+  // animation
+  _start = () => {
+    return Animated.parallel([
+      Animated.timing(this.state.slideUp, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }),
+      Animated.timing(this.state.SlideInLeft, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
+
+  componentDidMount() {
+    this._start();
+  }
+
   componentWillMount() {
     this.props.childChoresFetch(this.props.activeUser.name);
   }
 
   render() {
+    let { slideUp, SlideInLeft } = this.state;
     const chores = this.props.childChores;
     const choreStatus = this.state.choreStatus;
     const day = this.state.day;
@@ -69,13 +93,26 @@ class ChildChoreList extends Component {
             flex: 0.15
           }}
         >
-          <Text
+          <Animated.View
             style={{
-              fontSize: 24
+              transform: [
+                {
+                  translateX: slideUp.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [600, 0]
+                  })
+                }
+              ]
             }}
           >
-            This week's chores:
-          </Text>
+            <Text
+              style={{
+                fontSize: 24
+              }}
+            >
+              This week's chores:
+            </Text>
+          </Animated.View>
         </View>
         <View
           style={{
@@ -115,10 +152,23 @@ class ChildChoreList extends Component {
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
-              <FlatList
-                data={filteredChores}
-                renderItem={({ item }) => <ChildChoreListItem chore={item} />}
-              />
+              <Animated.View
+                style={{
+                  transform: [
+                    {
+                      translateY: slideUp.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [600, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <FlatList
+                  data={filteredChores}
+                  renderItem={({ item }) => <ChildChoreListItem chore={item} />}
+                />
+              </Animated.View>
             </View>
           </ScrollView>
         </View>

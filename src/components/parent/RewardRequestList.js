@@ -2,15 +2,44 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, View, Picker, ScrollView, Text } from "react-native";
+import {
+  FlatList,
+  View,
+  Picker,
+  ScrollView,
+  Text,
+  Animated
+} from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import RewardRequestListItem from "./RewardRequestListItem";
 import { usersFetch } from "../../actions/AuthActions";
 
 class RewardRequestList extends Component {
   state = {
-    child: "All"
+    child: "All",
+    slideUp: new Animated.Value(0),
+    SlideInLeft: new Animated.Value(0)
   };
+
+  // animation
+  _start = () => {
+    return Animated.parallel([
+      Animated.timing(this.state.slideUp, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }),
+      Animated.timing(this.state.SlideInLeft, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
+
+  componentDidMount() {
+    this._start();
+  }
 
   componentWillMount() {
     this.props.rewardRequestsFetch();
@@ -22,6 +51,7 @@ class RewardRequestList extends Component {
   }
 
   render() {
+    let { slideUp, SlideInLeft } = this.state;
     const rewardRequests = this.props.rewardRequests;
     const users = this.props.users;
     const children = _.filter(users, function(item) {
@@ -49,13 +79,26 @@ class RewardRequestList extends Component {
             flex: 0.15
           }}
         >
-          <Text
+          <Animated.View
             style={{
-              fontSize: 24
+              transform: [
+                {
+                  translateX: slideUp.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [600, 0]
+                  })
+                }
+              ]
             }}
           >
-            Completion Requests
-          </Text>
+            <Text
+              style={{
+                fontSize: 24
+              }}
+            >
+              Completion Requests
+            </Text>
+          </Animated.View>
         </View>
         <View
           style={{
@@ -80,12 +123,25 @@ class RewardRequestList extends Component {
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
-              <FlatList
-                data={filteredRequests}
-                renderItem={({ item }) => (
-                  <RewardRequestListItem rewardRequest={item} />
-                )}
-              />
+              <Animated.View
+                style={{
+                  transform: [
+                    {
+                      translateY: slideUp.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [600, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <FlatList
+                  data={filteredRequests}
+                  renderItem={({ item }) => (
+                    <RewardRequestListItem rewardRequest={item} />
+                  )}
+                />
+              </Animated.View>
             </View>
           </ScrollView>
         </View>
