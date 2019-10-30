@@ -91,7 +91,8 @@ class ChildSideMenu extends Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
           onPress={() => {
-            logoutAuth();
+            // logoutAuth();
+            Actions.rewardCreate();
           }}
         >
           <View style={styles.rewardStoreStyle}>

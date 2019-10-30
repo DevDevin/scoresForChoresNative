@@ -16,6 +16,7 @@ class UserListItem extends Component {
   onRowPress(activeUser) {
     // redirect to parent or child depending on the user status
     this.props.setActiveUser(activeUser);
+    console.log("activeUser object", activeUser);
 
     if (activeUser.status === "parent") {
       Actions.parent();

@@ -60,6 +60,7 @@ const RouterComponent = () => {
         {/* Auth *************************** */}
 
         <Scene key="userList">
+          <Scene key="userCreate" component={UserCreate} title="Create User" />
           <Scene
             initial
             key="chooseUser"

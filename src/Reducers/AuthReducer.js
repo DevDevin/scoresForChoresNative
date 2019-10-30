@@ -76,6 +76,7 @@ export default (state = INITIAL_STATE, action) => {
         error: ""
       };
     case SET_ACTIVE_USER:
+      console.log("inside SET_ACTIVE_USER: ", "PAYLOAD: ", action.payload);
       return {
         ...state,
         activeUser: action.payload

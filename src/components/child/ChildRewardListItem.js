@@ -11,10 +11,12 @@ import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
 import { rewardFetch } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
+import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
 
 class RewardListItem extends Component {
   state = {
-    isModalVisible: false
+    isModalVisible: false,
+    stateRefresh: true
   };
 
   toggleModal = () => {
@@ -36,6 +38,9 @@ class RewardListItem extends Component {
       rid,
       rewardName
     );
+    console.log("uid: ", this.props.activeUser.uid);
+    console.log("activeUser object", this.props.activeUser);
+    // this.props.updateActiveUser(this.props.activeUser, pointsValue);
   }
 
   render() {
@@ -201,5 +206,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardFetch, rewardRequestSend }
+  { rewardFetch, rewardRequestSend, setActiveUser, updateActiveUser }
 )(RewardListItem);

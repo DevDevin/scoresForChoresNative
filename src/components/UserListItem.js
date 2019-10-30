@@ -19,7 +19,7 @@ import { Input } from "./common";
 class UserListItem extends Component {
   state = {
     isModalVisible: false,
-    enteredPassword: "",
+    enteredPassword: "test",
     loginError: ""
   };
 

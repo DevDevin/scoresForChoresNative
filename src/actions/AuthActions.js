@@ -142,7 +142,7 @@ const loginUserSuccess = (dispatch, user) => {
 
 export const userCreate = ({ name, phone, password1, status, email }) => {
   const { currentUser } = firebase.auth();
-
+  console.log("entered userCreate");
   return dispatch => {
     firebase
       .database()
@@ -202,16 +202,57 @@ export const loadingUsersStart = () => {
 
 export const setActiveUser = activeUser => {
   const { currentUser } = firebase.auth();
+  console.log("entered setActiveUser: ", activeUser);
 
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users/${activeUser.uid}`)
       .on("value", snapshot => {
-        dispatch({ type: SET_ACTIVE_USER, payload: activeUser });
+        // it think the payload should be snapshot.val instead of activeUser
+        // dispatch({ type: SET_ACTIVE_USER, payload: activeUser });
+        dispatch({ type: SET_ACTIVE_USER, payload: snapshot.val() });
       });
   };
 };
+
+export const updateActiveUser = (activeUser, pointsValue) => {
+  const { currentUser } = firebase.auth();
+  console.log("entered updateActiveUser: ", activeUser);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${activeUser.uid}`)
+      .on("value", snapshot => {
+        dispatch({
+          type: SET_ACTIVE_USER,
+          payload: {
+            earnedPoints:
+              parseInt(snapshot.val().earnedPoints) - parseInt(pointsValue),
+            email: snapshot.val().email,
+            name: snapshot.val().name,
+            password: snapshot.val().password,
+            phone: snapshot.val().phone
+          }
+        });
+      });
+  };
+};
+
+// for updating from the reward request child action
+// export const setActiveUser = uid => {
+//   const { currentUser } = firebase.auth();
+
+//   return dispatch => {
+//     firebase
+//       .database()
+//       .ref(`/users/${currentUser.uid}/users/${}`)
+//       .on("value", snapshot => {
+//         dispatch({ type: SET_ACTIVE_USER, payload: activeUser });
+//       });
+//   };
+// };
 
 export const setActiveUserId = activeUserId => {
   dispatch({ type: SET_ACTIVE_USER_ID, payload: activeUserId });
