@@ -211,7 +211,19 @@ export const setActiveUser = activeUser => {
       .on("value", snapshot => {
         // it think the payload should be snapshot.val instead of activeUser
         // dispatch({ type: SET_ACTIVE_USER, payload: activeUser });
-        dispatch({ type: SET_ACTIVE_USER, payload: snapshot.val() });
+        // i need to pass in the id here as well so I can use it when updating the user later.
+        dispatch({
+          type: SET_ACTIVE_USER,
+          payload: {
+            earnedPoints: snapshot.val().earnedPoints,
+            email: snapshot.val().email,
+            name: snapshot.val().name,
+            password: snapshot.val().password,
+            phone: snapshot.val().phone,
+            status: snapshot.val().status,
+            uid: activeUser.uid
+          }
+        });
       });
   };
 };

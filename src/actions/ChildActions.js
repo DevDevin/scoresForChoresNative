@@ -91,17 +91,17 @@ export const rewardRequestsFetch = () => {
 // nothing will need to happen. If the request is rejected then the points will be given back.
 
 export const rewardRequestSend2 = (
-  activeUserName,
-  uid,
+  activeUsername,
   pointsValue,
   rid,
   rewardName,
-  activeUserObject
+  activeUserObject,
+  currentPoints
 ) => {
-  const childName = activeUserName;
   console.log("activeUserObject: ", activeUserObject);
+  console.log("currentPoints: ", currentPoints);
 
-  console.log("params: ", activeUserName, uid, pointsValue, rid, rewardName);
+  console.log("params: ", pointsValue, rid, rewardName, activeUserObject);
   const { currentUser } = firebase.auth();
   console.log("entered userCreate");
   return dispatch => {
@@ -111,22 +111,22 @@ export const rewardRequestSend2 = (
       .database()
       .ref(`/users/${currentUser.uid}/rewardRequests`)
       .push({
-        childName: childName,
+        childName: activeUsername,
         pointsValue: pointsValue,
         rejectionReason: "",
-        rewardName: rewardName,
+        rewardName: "rewardName",
         status: "Submitted",
         uid: "uid",
         rid: rid
       });
     // edit the childs points value
-    console.log("edit childs points value. uid: ", uid);
+    // console.log("edit childs points value. uid: ", uid);
+    // i need to give the active user an id when it is first initialized
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .ref(`/users/${currentUser.uid}/users/${activeUserObject.uid}`)
       .set({
-        earnedPoints:
-          parseInt(activeUserObject.earnedPoints) - parseInt(pointsValue),
+        earnedPoints: parseInt(currentPoints) - parseInt(pointsValue),
         email: activeUserObject.email,
         name: activeUserObject.name,
         password: activeUserObject.password,

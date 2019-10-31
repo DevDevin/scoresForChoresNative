@@ -31,17 +31,18 @@ class ChildRewardStore extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
+  onButtonPress(activeUserName, pointsValue, rid, rewardName, currentPoints) {
     // submit a completion
     // the uid being passed in is nothing. If i can fix this it will fix most other things.
     const activeUserObject = this.props.activeUser;
+    console.log("currentPoints in button press: ", currentPoints);
     this.props.rewardRequestSend2(
       activeUserName,
-      uid,
       pointsValue,
       rid,
       rewardName,
-      activeUserObject
+      activeUserObject,
+      currentPoints
     );
     this.props.setActiveUser(activeUserObject);
   }
@@ -83,10 +84,12 @@ class ChildRewardStore extends Component {
     const users = this.props.users;
     console.log("users: ", users);
     // const activeUserObject = this.props.activeUser;
-    const uid = this.props.activeUser.uid;
+    console.log("uid: ", this.props.activeUser.uid);
+
     let { slideUp, SlideInLeft } = this.state;
     const rewards = this.props.rewards;
     const activeUser = this.props.activeUser;
+    console.log("activeUser: ", this.props.activeUser);
     console.log("rewards: ", this.props.rewards);
     const earnedPoints = this.props.activeUser.earnedPoints;
     console.log("earnedPoints1 ", earnedPoints);
@@ -98,6 +101,8 @@ class ChildRewardStore extends Component {
     console.log("currentUser **: ", currentUser);
     const currentPoints = currentUser[0].earnedPoints;
     console.log("currentPoints: ", currentPoints);
+    const uid = currentUser[0].uid;
+    console.log("uid: ", uid);
     // this.setState({ currentPoints: currentPoints });
 
     return (
@@ -166,10 +171,10 @@ class ChildRewardStore extends Component {
                             onPress={this.onButtonPress.bind(
                               this,
                               activeUserName,
-                              item.uid,
                               item.pointsValue,
                               item.rid,
-                              item.rewardName
+                              item.rewardName,
+                              currentPoints
                             )}
                             style={styles.buttonStyle}
                           >
