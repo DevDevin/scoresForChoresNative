@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { View, FlatList, ScrollView } from "react-native";
+import { View, FlatList, ScrollView, Animated, Text } from "react-native";
 import { usersFetch, loadingUsersEnd } from "../actions/AuthActions";
 import { FloatingAction } from "react-native-floating-action";
 import ActionButton from "react-native-action-button";
@@ -10,11 +10,32 @@ import UserListItem from "./UserListItem";
 import Spinner from "react-native-loading-spinner-overlay";
 
 class ChooseUser extends Component {
+  state = {
+    slideUp: new Animated.Value(0),
+    SlideInLeft: new Animated.Value(0)
+  };
   componentWillMount() {
     this.props.usersFetch();
   }
 
+  // animation
+  _start = () => {
+    return Animated.parallel([
+      Animated.timing(this.state.slideUp, {
+        toValue: 1,
+        duration: 2000,
+        useNativeDriver: true
+      }),
+      Animated.timing(this.state.SlideInLeft, {
+        toValue: 1,
+        duration: 2000,
+        useNativeDriver: true
+      })
+    ]).start();
+  };
+
   componentDidMount() {
+    this._start();
     this.props.loadingUsersEnd();
   }
 
@@ -39,25 +60,69 @@ class ChooseUser extends Component {
   }
 
   render() {
+    let { slideUp, SlideInLeft } = this.state;
     const users = this.props.users;
 
     // i may want to set the loading in the login action as well. Thats how its being done in other projects.
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "grey" }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "skyblue",
+            flex: 0.15
+          }}
+        >
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  translateX: slideUp.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [600, 0]
+                  })
+                }
+              ]
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 24
+              }}
+            >
+              Completion Requests
+            </Text>
+          </Animated.View>
+        </View>
         {this.renderSpinner()}
-        <ScrollView>
-          <View>
-            <FlatList
-              data={users}
-              renderItem={({ item }) => <UserListItem user={item} />}
-            />
+        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+          <ScrollView>
+            <Animated.View
+              style={{
+                transform: [
+                  {
+                    translateY: slideUp.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [600, 0]
+                    })
+                  }
+                ]
+              }}
+            >
+              <FlatList
+                data={users}
+                renderItem={({ item }) => <UserListItem user={item} />}
+              />
+            </Animated.View>
+
             <FloatingAction
               // actions={actions}
               onPressMain={this.onButtonPress.bind(this)}
             />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     );
   }

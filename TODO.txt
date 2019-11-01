@@ -1,8 +1,7 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- fix login feature
--- change status of rewards if requested. 
--- subtract points from earned points when reward is requested. 
+-- change appearance of rewards if requested. 
 -- fix action button
 -- finish child home animations
 -- add confirmation alerts/modals where necessary. 
