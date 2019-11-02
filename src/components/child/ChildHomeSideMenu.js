@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
+import { logoutAuth } from "../../actions/AuthActions";
 
 class ChildHomeSideMenu extends Component {
   render() {
@@ -42,7 +43,24 @@ class ChildHomeSideMenu extends Component {
         >
           <TouchableOpacity
             onPress={() => {
-              Actions.auth();
+              Alert.alert(
+                "Logout",
+                "Are you sure you want to sign out?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {},
+                    style: "cancel"
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      logoutAuth();
+                    }
+                  }
+                ],
+                { cancelable: false }
+              );
             }}
           >
             <View

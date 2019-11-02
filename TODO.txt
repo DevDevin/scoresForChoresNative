@@ -1,9 +1,18 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- fix login feature
--- change appearance of rewards if requested. 
--- fix action button
--- finish child home animations
--- add confirmation alerts/modals where necessary. 
-
-
+-- change appearance of rewards if requested.
+	- reward request
+-- add confirmation alerts/modals where necessary.
+	- change user
+	- submit reward request
+	- submit completion request
+	- accepting or rejecting completion/reward requests
+	- password reset
+-- undo reward request
+-- undo completion request 
+-- change side menu icons
+-- make edit forms scroll view. 
+-- delete chores/rewards
+-- remove unused imports
+-- action button disapears when scrolling

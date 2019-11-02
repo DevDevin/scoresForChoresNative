@@ -128,6 +128,7 @@ class UserListItem extends Component {
               }}
             >
               <Input
+                secureTextEntry
                 style={{ justifyContent: "center", alignSelf: "center" }}
                 label="Password"
                 placeholder="password"

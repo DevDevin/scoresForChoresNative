@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from "react-native";
 import { logoutAuth } from "../../actions/AuthActions";
 
@@ -53,7 +54,24 @@ class ParentHomeSideMenu extends Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
           onPress={() => {
-            logoutAuth();
+            Alert.alert(
+              "Logout",
+              "Are you sure you want to sign out?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {},
+                  style: "cancel"
+                },
+                {
+                  text: "OK",
+                  onPress: () => {
+                    logoutAuth();
+                  }
+                }
+              ],
+              { cancelable: false }
+            );
           }}
         >
           <View style={styles.rewardStoreStyle}>

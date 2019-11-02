@@ -92,6 +92,7 @@ class ChoreForm extends Component {
               this.setState({ child: itemValue });
             }}
           >
+            <Picker.Item label="Select Child" value="" />
             {children.map(function(child) {
               return <Picker.Item label={child.name} value={child.name} />;
             })}

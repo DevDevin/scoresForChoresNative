@@ -209,13 +209,12 @@ class ParentChoreList extends Component {
                   />
                 </Animated.View>
               </View>
-
-              <FloatingAction
-                // actions={actions}
-                onPressMain={this.onButtonPress.bind(this)}
-              />
             </View>
           </ScrollView>
+          <FloatingAction
+            style={{ justifyContent: "flex-end" }}
+            onPressMain={this.onButtonPress.bind(this)}
+          />
         </View>
       </View>
       // where there are not users the view is not tall enough to be able to click on the floating button. I can add an view below that is always tall enough to include room for the button and is always at the bottom

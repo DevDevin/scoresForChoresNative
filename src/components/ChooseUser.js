@@ -2,7 +2,14 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import { View, FlatList, ScrollView, Animated, Text } from "react-native";
+import {
+  View,
+  FlatList,
+  ScrollView,
+  Animated,
+  Text,
+  Dimensions
+} from "react-native";
 import { usersFetch, loadingUsersEnd } from "../actions/AuthActions";
 import { FloatingAction } from "react-native-floating-action";
 import ActionButton from "react-native-action-button";
@@ -116,13 +123,13 @@ class ChooseUser extends Component {
                 renderItem={({ item }) => <UserListItem user={item} />}
               />
             </Animated.View>
-
-            <FloatingAction
-              // actions={actions}
-              onPressMain={this.onButtonPress.bind(this)}
-            />
           </ScrollView>
         </View>
+        <FloatingAction
+          style={{ justifyContent: "flex-end" }}
+          // actions={actions}
+          onPressMain={this.onButtonPress.bind(this)}
+        />
       </View>
     );
   }

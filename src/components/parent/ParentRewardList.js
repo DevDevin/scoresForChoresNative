@@ -119,9 +119,12 @@ class ParentRewardList extends Component {
                   renderItem={({ item }) => <RewardListItem reward={item} />}
                 />
               </Animated.View>
-              <FloatingAction onPressMain={this.onButtonPress.bind(this)} />
             </View>
           </ScrollView>
+          <FloatingAction
+            style={{ justifyContent: "flex-end" }}
+            onPressMain={this.onButtonPress.bind(this)}
+          />
         </View>
       </View>
     );
