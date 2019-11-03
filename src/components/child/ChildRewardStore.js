@@ -9,7 +9,8 @@ import {
   ScrollView,
   Animated,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import { rewardsFetch } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
@@ -31,20 +32,39 @@ class ChildRewardStore extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  onButtonPress(activeUserName, pointsValue, rid, rewardName, currentPoints) {
+  onButtonPress(activeUserName, pointsValue, rid, rewardName, currentPoints, uid) {
     // submit a completion
     // the uid being passed in is nothing. If i can fix this it will fix most other things.
     const activeUserObject = this.props.activeUser;
     console.log("currentPoints in button press: ", currentPoints);
-    this.props.rewardRequestSend2(
-      activeUserName,
-      pointsValue,
-      rid,
-      rewardName,
-      activeUserObject,
-      currentPoints
+
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to request this reward?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.rewardRequestSend2(
+              activeUserName,
+              pointsValue,
+              rid,
+              rewardName,
+              activeUserObject,
+              currentPoints,
+              uid
+            );
+            // this.props.setActiveUser(activeUserObject);
+          }
+        }
+      ],
+      { cancelable: false }
     );
-    this.props.setActiveUser(activeUserObject);
   }
 
   // animation
@@ -84,7 +104,8 @@ class ChildRewardStore extends Component {
     const users = this.props.users;
     console.log("users: ", users);
     // const activeUserObject = this.props.activeUser;
-    console.log("uid: ", this.props.activeUser.uid);
+    const uid = this.props.activeUser.uid;
+    console.log("uid: ", uid);
 
     let { slideUp, SlideInLeft } = this.state;
     const rewards = this.props.rewards;
@@ -101,8 +122,8 @@ class ChildRewardStore extends Component {
     console.log("currentUser **: ", currentUser);
     const currentPoints = currentUser[0].earnedPoints;
     console.log("currentPoints: ", currentPoints);
-    const uid = currentUser[0].uid;
-    console.log("uid: ", uid);
+    const uid2 = currentUser[0].uid;
+    console.log("uid2: ", uid);
     // this.setState({ currentPoints: currentPoints });
 
     return (
@@ -174,7 +195,8 @@ class ChildRewardStore extends Component {
                               item.pointsValue,
                               item.rid,
                               item.rewardName,
-                              currentPoints
+                              currentPoints,
+                              uid
                             )}
                             style={styles.buttonStyle}
                           >

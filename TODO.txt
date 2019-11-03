@@ -3,12 +3,6 @@
 -- fix login feature
 -- change appearance of rewards if requested.
 	- reward request
--- add confirmation alerts/modals where necessary.
-	- change user
-	- submit reward request
-	- submit completion request
-	- accepting or rejecting completion/reward requests
-	- password reset
 -- undo reward request
 -- undo completion request 
 -- change side menu icons
@@ -16,3 +10,8 @@
 -- delete chores/rewards
 -- remove unused imports
 -- action button disapears when scrolling
+-- make the input views look nicer.
+-- if same reward request exists multiple times they will all be removed when accepting or rejecting. 
+	- need to make the reward id unique. Maybe I can generate a random Id.
+
+

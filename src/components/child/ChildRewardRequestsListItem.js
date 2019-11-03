@@ -5,12 +5,13 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
-import { rewardRequestSend } from "../../actions/ChildActions";
+import { rewardRequestSend2 } from "../../actions/ChildActions";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
@@ -27,12 +28,31 @@ class ChildRewardRequestsListItem extends Component {
 
   onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
     // submit a completion
-    this.props.rewardRequestSend(
-      activeUserName,
-      uid,
-      pointsValue,
-      rid,
-      rewardName
+
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to request this reward?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.rewardRequestSend2(
+              activeUserName,
+              uid,
+              pointsValue,
+              rid,
+              rewardName
+            );
+            // this.props.setActiveUser(activeUserObject);
+          }
+        }
+      ],
+      { cancelable: false }
     );
   }
 
@@ -207,5 +227,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch, rewardRequestSend }
+  { rewardRequestsFetch, rewardRequestSend2 }
 )(ChildRewardRequestsListItem);

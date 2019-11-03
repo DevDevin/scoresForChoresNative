@@ -96,7 +96,7 @@ class RewardRequestList extends Component {
                 fontSize: 24
               }}
             >
-              Completion Requests
+              Reward Requests
             </Text>
           </Animated.View>
         </View>

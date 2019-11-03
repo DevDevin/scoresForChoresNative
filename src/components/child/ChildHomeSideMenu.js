@@ -17,7 +17,24 @@ class ChildHomeSideMenu extends Component {
         >
           <TouchableOpacity
             onPress={() => {
-              Actions.userList();
+              Alert.alert(
+                "Logout",
+                "Are you sure you want to change users?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {},
+                    style: "cancel"
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      Actions.userList();
+                    }
+                  }
+                ],
+                { cancelable: false }
+              );
             }}
           >
             <View

@@ -96,7 +96,8 @@ export const rewardRequestSend2 = (
   rid,
   rewardName,
   activeUserObject,
-  currentPoints
+  currentPoints,
+  uid
 ) => {
   console.log("activeUserObject: ", activeUserObject);
   console.log("currentPoints: ", currentPoints);
@@ -116,7 +117,7 @@ export const rewardRequestSend2 = (
         rejectionReason: "",
         rewardName: "rewardName",
         status: "Submitted",
-        uid: "uid",
+        uid: uid,
         rid: rid
       });
     // edit the childs points value

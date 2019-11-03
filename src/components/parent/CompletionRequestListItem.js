@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Modal,
   TouchableHighlight,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import {
   completionRequestsFetch,
@@ -27,28 +28,62 @@ class CompletionRequestListItem extends Component {
   };
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
-    this.props.requestAccept(
-      cid,
-      choreName,
-      day,
-      child,
-      description,
-      pointsValue,
-      this.props.completionRequest.uid
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to accept this chore?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.requestAccept(
+              cid,
+              choreName,
+              day,
+              child,
+              description,
+              pointsValue,
+              this.props.completionRequest.uid
+            );
+          }
+        }
+      ],
+      { cancelable: false }
     );
   }
 
   onReject(cid, choreName, day, child, description, pointsValue, reason) {
-    this.props.requestReject(
-      cid,
-      choreName,
-      day,
-      child,
-      description,
-      pointsValue,
-      reason
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to reject this chore?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.requestReject(
+              cid,
+              choreName,
+              day,
+              child,
+              description,
+              pointsValue,
+              reason
+            );
+            this.setState({ modalVisible: !this.state.modalVisible });
+          }
+        }
+      ],
+      { cancelable: false }
     );
-    this.setState({ modalVisible: !this.state.modalVisible });
   }
 
   render() {

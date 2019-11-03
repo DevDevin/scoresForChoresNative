@@ -5,7 +5,8 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -31,14 +32,31 @@ class ChildChoreListItem extends Component {
 
   onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
     // submit a completion
-    this.props.completionRequestSend(
-      choreName,
-      day,
-      description,
-      pointsValue,
-      cid,
-      child,
-      uid
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to submit this chore?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.completionRequestSend(
+              choreName,
+              day,
+              description,
+              pointsValue,
+              cid,
+              child,
+              uid
+            );
+          }
+        }
+      ],
+      { cancelable: false }
     );
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { View, Text, Picker, TouchableOpacity } from "react-native";
+import { View, Text, Picker, TouchableOpacity, Alert } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { usersFetch, passwordReset } from "../../actions/AuthActions";
@@ -65,7 +65,24 @@ class ResetPassword extends Component {
               this.state.password1 === this.state.password2 &&
               this.state.user != "nothing"
             ) {
-              this.props.passwordReset(user, this.state.password1);
+              Alert.alert(
+                "Reset Password",
+                "Are you sure you want to reset the password?",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {},
+                    style: "cancel"
+                  },
+                  {
+                    text: "OK",
+                    onPress: () => {
+                      this.props.passwordReset(user, this.state.password1);
+                    }
+                  }
+                ],
+                { cancelable: false }
+              );
             } else {
               if (this.state.password1 != this.state.password2) {
                 this.setState({ passwordMismatch: true });
@@ -82,6 +99,7 @@ class ResetPassword extends Component {
         </TouchableOpacity>
         <CardSection>
           <Input
+            secureTextEntry
             label="password"
             placeholder="password"
             value={this.state.passwordReset}
@@ -91,6 +109,7 @@ class ResetPassword extends Component {
 
         <CardSection>
           <Input
+            secureTextEntry
             label="passwordConfirm"
             placeholder="confirm password"
             value={this.state.password2}

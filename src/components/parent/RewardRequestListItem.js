@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
@@ -37,23 +38,58 @@ class RewardRequestListItem extends Component {
   }
 
   onAccept(childName, uid, pointsValue, rid, rewardName) {
-    this.props.rewardRequestAccept(
-      childName,
-      uid,
-      pointsValue,
-      rid,
-      rewardName
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to accept this reward request?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            console.log("uid: ", uid);
+            this.props.rewardRequestAccept(
+              childName,
+              uid,
+              pointsValue,
+              rid,
+              rewardName
+            );
+          }
+        }
+      ],
+      { cancelable: false }
     );
   }
 
   onReject(childName, uid, pointsValue, rid, rewardName, rejectionReason) {
-    this.props.rewardRequestReject(
-      childName,
-      uid,
-      pointsValue,
-      rid,
-      rewardName,
-      rejectionReason
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to reject this reward request?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.rewardRequestReject(
+              childName,
+              uid,
+              pointsValue,
+              rid,
+              rewardName,
+              rejectionReason
+            );
+          }
+        }
+      ],
+      { cancelable: false }
     );
   }
 
@@ -66,6 +102,7 @@ class RewardRequestListItem extends Component {
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
     const uid = this.props.rewardRequest.uid;
+    console.log("uid original: ", uid);
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.state.rejectionReason;

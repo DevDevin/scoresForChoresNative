@@ -52,6 +52,44 @@ class ParentHomeSideMenu extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        {/* new user */}
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Alert.alert(
+              "Logout",
+              "Are you sure you want to change users?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {},
+                  style: "cancel"
+                },
+                {
+                  text: "OK",
+                  onPress: () => {
+                    Actions.userList();
+                  }
+                }
+              ],
+              { cancelable: false }
+            );
+          }}
+        >
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+              <Text style={{ fontSize: 12 }}>Change User</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+
         <TouchableWithoutFeedback
           onPress={() => {
             Alert.alert(

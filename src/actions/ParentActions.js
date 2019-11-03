@@ -303,6 +303,7 @@ export const rewardRequestAccept = (
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
+        console.log("snapshot.val: ", snapshot.val());
         // set values for updating the child from the snapshot
         totalPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
