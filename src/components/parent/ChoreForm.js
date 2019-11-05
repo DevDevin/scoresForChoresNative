@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { View, Picker } from "react-native";
+import { View, Picker, ScrollView } from "react-native";
 import CheckBox from "react-native-check-box";
 import RadioForm, {
   RadioButton,
@@ -61,84 +61,86 @@ class ChoreForm extends Component {
 
     return (
       <View>
-        <CardSection>
-          <Input
-            label="ChoreName"
-            placeholder="Dishes"
-            value={this.props.choreName}
-            onChangeText={value =>
-              this.props.choreUpdate({ prop: "choreName", value: value })
-            }
-          />
-        </CardSection>
-
-        <CardSection>
-          <Input
-            label="Desicription"
-            placeholder="A brief description of the chore."
-            value={this.props.description}
-            onChangeText={value =>
-              this.props.choreUpdate({ prop: "email", value: value })
-            }
-          />
-        </CardSection>
-
-        <CardSection>
-          <Picker
-            selectedValue={this.state.child}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => {
-              this.props.choreUpdate({ prop: "child", value: itemValue });
-              this.setState({ child: itemValue });
-            }}
-          >
-            <Picker.Item label="Select Child" value="" />
-            {children.map(function(child) {
-              return <Picker.Item label={child.name} value={child.name} />;
-            })}
-          </Picker>
-        </CardSection>
-
-        <CardSection>
-          <Input
-            label="Points"
-            placeholder="Points the chore is worth."
-            value={this.props.pointsValue}
-            onChangeText={value =>
-              this.props.choreUpdate({ prop: "pointsValue", value: value })
-            }
-          />
-        </CardSection>
-
-        <CardSection>
-          <View>
-            <RadioForm
-              radio_props={radio_props}
-              initial={0}
-              onPress={value => {
-                if (value === "other") {
-                  this.setState({ isOther: true });
-                }
-                this.props.choreUpdate({
-                  prop: "day",
-                  value: value
-                });
-              }}
+        <ScrollView>
+          <CardSection>
+            <Input
+              label="ChoreName"
+              placeholder="Dishes"
+              value={this.props.choreName}
+              onChangeText={value =>
+                this.props.choreUpdate({ prop: "choreName", value: value })
+              }
             />
-          </View>
-        </CardSection>
+          </CardSection>
 
-        <CardSection>
-          <CheckBox
-            style={{ flex: 1, padding: 10 }}
-            onClick={() => {
-              this.onCheckBoxClicked();
-              // this.setState({ isRecurring: !this.state.isRecurring });
-            }}
-            isChecked={this.state.isRecurring}
-            leftText={"Recurring"}
-          />
-        </CardSection>
+          <CardSection>
+            <Input
+              label="Desicription"
+              placeholder="A brief description of the chore."
+              value={this.props.description}
+              onChangeText={value =>
+                this.props.choreUpdate({ prop: "email", value: value })
+              }
+            />
+          </CardSection>
+
+          <CardSection>
+            <Picker
+              selectedValue={this.state.child}
+              style={{ height: 50, width: 100 }}
+              onValueChange={(itemValue, itemIndex) => {
+                this.props.choreUpdate({ prop: "child", value: itemValue });
+                this.setState({ child: itemValue });
+              }}
+            >
+              <Picker.Item label="Select Child" value="" />
+              {children.map(function(child) {
+                return <Picker.Item label={child.name} value={child.name} />;
+              })}
+            </Picker>
+          </CardSection>
+
+          <CardSection>
+            <Input
+              label="Points"
+              placeholder="Points the chore is worth."
+              value={this.props.pointsValue}
+              onChangeText={value =>
+                this.props.choreUpdate({ prop: "pointsValue", value: value })
+              }
+            />
+          </CardSection>
+
+          <CardSection>
+            <View>
+              <RadioForm
+                radio_props={radio_props}
+                initial={0}
+                onPress={value => {
+                  if (value === "other") {
+                    this.setState({ isOther: true });
+                  }
+                  this.props.choreUpdate({
+                    prop: "day",
+                    value: value
+                  });
+                }}
+              />
+            </View>
+          </CardSection>
+
+          <CardSection>
+            <CheckBox
+              style={{ flex: 1, padding: 10 }}
+              onClick={() => {
+                this.onCheckBoxClicked();
+                // this.setState({ isRecurring: !this.state.isRecurring });
+              }}
+              isChecked={this.state.isRecurring}
+              leftText={"Recurring"}
+            />
+          </CardSection>
+        </ScrollView>
       </View>
     );
   }

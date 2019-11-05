@@ -5,15 +5,14 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Dimensions,
   Alert
 } from "react-native";
 import Modal from "react-native-modal";
 import {
   childChoresFetch,
-  completionRequestSend
+  completionRequestSend,
+  undoCompletionRequest
 } from "../../actions/ChildActions";
-import { Actions } from "react-native-router-flux";
 
 class ChildChoreListItem extends Component {
   state = {
@@ -24,10 +23,16 @@ class ChildChoreListItem extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  onEditPress() {
-    // edit the chore
-    this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.choreEdit({ chore: this.props.chore });
+  undoRequest(choreName, day, description, pointsValue, cid, child, uid) {
+    // undo completion request
+    this.props.undoCompletionRequest(
+      cid,
+      choreName,
+      day,
+      child,
+      description,
+      pointsValue
+    );
   }
 
   onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
@@ -89,7 +94,26 @@ class ChildChoreListItem extends Component {
         </TouchableOpacity>
       );
     } else if (status === "Submitted") {
-      submitOption = <Text>Submitted</Text>;
+      submitOption = (
+        <View>
+          <Text>Submitted</Text>
+          <TouchableOpacity
+            onPress={this.undoRequest.bind(
+              this,
+              choreName,
+              day,
+              description,
+              pointsValue,
+              cid,
+              child,
+              uid
+            )}
+            style={styles.buttonStyle}
+          >
+            <Text style={styles.textStyle}>Undo Submit</Text>
+          </TouchableOpacity>
+        </View>
+      );
     } else {
       submitOption = <Text>Complete</Text>;
     }
@@ -150,12 +174,6 @@ class ChildChoreListItem extends Component {
                 paddingTop: 10
               }}
             >
-              <TouchableOpacity
-                onPress={this.onEditPress.bind(this)}
-                style={styles.buttonStyle}
-              >
-                <Text style={styles.textStyle}>Edit</Text>
-              </TouchableOpacity>
               <TouchableOpacity
                 onPress={this.toggleModal}
                 style={styles.buttonStyle}
@@ -243,5 +261,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { childChoresFetch, completionRequestSend }
+  { childChoresFetch, completionRequestSend, undoCompletionRequest }
 )(ChildChoreListItem);

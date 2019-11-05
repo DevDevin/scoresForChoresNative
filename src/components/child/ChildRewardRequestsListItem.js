@@ -65,6 +65,7 @@ class ChildRewardRequestsListItem extends Component {
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
+    console.log("rewardRequests prop: ", this.props.rewardRequest);
 
     let reSubmitButton;
 

@@ -4,8 +4,7 @@ import {
   CHORE_FETCH_SUCCESS,
   REWARD_FETCH_SUCCESS,
   CHORE_SAVE_SUCCESS,
-  EARNED_REWARD_FETCH_SUCCESS,
-  SET_ACTIVE_USER
+  EARNED_REWARD_FETCH_SUCCESS
 } from "./types";
 
 export const childChoresFetch = activeUser => {
@@ -67,6 +66,36 @@ export const completionRequestSend = (
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
         Actions.childChoreList({ type: "reset" });
+      });
+  };
+};
+
+// undo completion rewquest
+export const undoCompletionRequest = (
+  cid,
+  choreName,
+  day,
+  child,
+  description,
+  pointsValue
+) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({
+        status: "In-Progress",
+        choreName: choreName,
+        day: day,
+        child: child,
+        description: description,
+        pointsValue: pointsValue,
+        rejectionReason: ""
+      })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
       });
   };
 };

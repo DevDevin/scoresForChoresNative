@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Card, CardSection, Button, Confirm } from "../components/common";
+import { View, Text } from "react-native";
+import { Button } from "../components/common";
 
 class StartupPage extends Component {
   onLoginPress() {

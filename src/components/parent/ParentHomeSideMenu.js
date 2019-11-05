@@ -3,7 +3,6 @@ import { Actions } from "react-native-router-flux";
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
   TouchableWithoutFeedback,
   Alert

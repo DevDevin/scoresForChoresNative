@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Alert
 } from "react-native";
+import { rewardRequestsFetch } from "../../actions/ParentActions";
 import { rewardsFetch } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 import { rewardRequestSend2 } from "../../actions/ChildActions";
@@ -24,15 +25,32 @@ class ChildRewardStore extends Component {
     SlideInLeft: new Animated.Value(0),
     currentPoints: 0,
     isModalVisible: false,
-    stateRefresh: true
-  };
-  // maybe i could do the user instead... or i just need to try to set activeUser again.
-  toggleModal = () => {
-    console.log("inisde of toggle modal");
-    this.setState({ isModalVisible: !this.state.isModalVisible });
+    stateRefresh: true,
+    pointsValue: "",
+    rewardName: "",
+    description: ""
   };
 
-  onButtonPress(activeUserName, pointsValue, rid, rewardName, currentPoints, uid) {
+  toggleModal = (pointsValue, rewardName, description) => {
+    this.setState({
+      pointsValue: pointsValue,
+      rewardName: rewardName,
+      description: description
+    });
+    console.log("inisde of toggle modal");
+    console.log("before toggle: ", this.state.isModalVisible);
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+    console.log("after toggle: ", this.state.isModalVisible);
+  };
+
+  onButtonPress(
+    activeUserName,
+    pointsValue,
+    rid,
+    rewardName,
+    currentPoints,
+    uid
+  ) {
     // submit a completion
     // the uid being passed in is nothing. If i can fix this it will fix most other things.
     const activeUserObject = this.props.activeUser;
@@ -83,12 +101,6 @@ class ChildRewardStore extends Component {
     ]).start();
   };
 
-  onEditPress() {
-    // edit the chore
-    this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.choreEdit({ chore: this.props.chore });
-  }
-
   componentDidMount() {
     console.log("childRewardStore did mount");
     this._start();
@@ -97,6 +109,7 @@ class ChildRewardStore extends Component {
   componentWillMount() {
     this.props.usersFetch();
     this.props.rewardsFetch();
+    this.props.rewardRequestsFetch();
   }
 
   render() {
@@ -125,6 +138,14 @@ class ChildRewardStore extends Component {
     const uid2 = currentUser[0].uid;
     console.log("uid2: ", uid);
     // this.setState({ currentPoints: currentPoints });
+
+    const rewardRequests = this.props.rewardRequestSend;
+    console.log("rewardRequests: ", rewardRequests);
+    //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
+    // have a undo button available.
+    _.map(rewardRequests, item => {
+      console.log(item);
+    });
 
     return (
       <View style={{ backgroundColor: "grey", flex: 1 }}>
@@ -178,7 +199,12 @@ class ChildRewardStore extends Component {
                   <View>
                     <TouchableWithoutFeedback
                       value={item.rewardName}
-                      onPress={this.toggleModal}
+                      onPress={this.toggleModal.bind(
+                        this,
+                        item.pointsValue,
+                        item.rewardName,
+                        item.description
+                      )}
                     >
                       <View style={styles.childStyle}>
                         <View style={styles.choreStyle}>
@@ -205,62 +231,56 @@ class ChildRewardStore extends Component {
                         </View>
                       </View>
                     </TouchableWithoutFeedback>
-                    <Modal isVisible={this.state.isModalVisible}>
-                      <View
-                        style={{
-                          backgroundColor: "powderblue",
-                          justifyContent: "center"
-                        }}
-                      >
-                        <Text
-                          style={{
-                            alignSelf: "center",
-                            fontSize: 28,
-                            textDecorationLine: "underline",
-                            fontWeight: "bold"
-                          }}
-                        >
-                          Details
-                        </Text>
-                        <Text style={styles.modalTextStyle}>
-                          Reward Name: {item.rewardName}
-                        </Text>
-                        <Text style={styles.modalTextStyle}>
-                          Reward Value: {item.pointsValue}
-                        </Text>
-                        {/* <Text style={styles.modalTextStyle}>Day: {day}</Text>
-                    <Text style={styles.modalTextStyle}>
-                      Description: {description}
-                    </Text> */}
-                        <View
-                          style={{
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            paddingTop: 10
-                          }}
-                        >
-                          <TouchableOpacity
-                            onPress={this.onEditPress.bind(this)}
-                            style={styles.buttonStyle}
-                          >
-                            <Text style={styles.textStyle}>Edit</Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            onPress={this.toggleModal}
-                            style={styles.buttonStyle}
-                          >
-                            <Text style={styles.textStyle}>Close</Text>
-                          </TouchableOpacity>
-                        </View>
-                      </View>
-                    </Modal>
                   </View>
                 )}
               />
             </Animated.View>
           </View>
         </ScrollView>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View
+            style={{
+              backgroundColor: "powderblue",
+              justifyContent: "center"
+            }}
+          >
+            <Text
+              style={{
+                alignSelf: "center",
+                fontSize: 28,
+                textDecorationLine: "underline",
+                fontWeight: "bold"
+              }}
+            >
+              Details
+            </Text>
+            <Text style={styles.modalTextStyle}>
+              Reward Name: {this.state.rewardName}
+            </Text>
+            <Text style={styles.modalTextStyle}>
+              Reward Value: {this.state.pointsValue}
+            </Text>
+            <Text style={styles.modalTextStyle}>
+              Reward Description: {this.state.description}
+            </Text>
+
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingTop: 10
+              }}
+            >
+              <TouchableOpacity
+                onPress={this.toggleModal}
+                style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }
@@ -339,14 +359,25 @@ const mapStateToProps = state => {
   const rewards = _.map(state.rewards, (val, rid) => {
     return { ...val, rid };
   });
+
+  const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
+    return { ...val, rid };
+  });
   return {
     rewards: rewards,
     activeUser: state.auth.activeUser,
-    users: state.users
+    users: state.users,
+    rewardRequests: rewardRequests
   };
 };
 
 export default connect(
   mapStateToProps,
-  { rewardsFetch, rewardRequestSend2, usersFetch, setActiveUser }
+  {
+    rewardsFetch,
+    rewardRequestSend2,
+    usersFetch,
+    setActiveUser,
+    rewardRequestsFetch
+  }
 )(ChildRewardStore);

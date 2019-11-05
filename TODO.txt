@@ -1,17 +1,15 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- fix login feature
--- change appearance of rewards if requested.
-	- reward request
--- undo reward request
--- undo completion request 
+*-- change appearance of rewards if requested.
+	- check each reward to see if that reward exists as a reward request with that current users name. 
+	- if so, then change the appearance of the reward. 
+*-- undo reward request
 -- change side menu icons
--- make edit forms scroll view. 
 -- delete chores/rewards
--- remove unused imports
--- action button disapears when scrolling
 -- make the input views look nicer.
 -- if same reward request exists multiple times they will all be removed when accepting or rejecting. 
 	- need to make the reward id unique. Maybe I can generate a random Id.
+
 
 

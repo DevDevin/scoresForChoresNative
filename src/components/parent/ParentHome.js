@@ -7,7 +7,6 @@ import {
   View,
   Image,
   ActivityIndicator,
-  ScrollView,
   Animated
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";

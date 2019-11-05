@@ -6,8 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  Animated,
-  ScrollView
+  Animated
 } from "react-native";
 import { loadingUsersEnd } from "../../actions/AuthActions";
 

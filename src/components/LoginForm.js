@@ -21,7 +21,6 @@ import {
   turnOffAuthError
 } from "../actions/AuthActions";
 import { Input } from "./common";
-import { Actions } from "react-native-router-flux";
 
 class LoginForm extends Component {
   state = {

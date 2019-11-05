@@ -8,7 +8,6 @@ import {
   Image,
   TouchableOpacity,
   Alert
-  // Modal
 } from "react-native";
 import Modal from "react-native-modal";
 import Spinner from "react-native-loading-spinner-overlay";

@@ -1,15 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
-  Modal,
-  TouchableHighlight,
-  TextInput,
-  Alert
-} from "react-native";
+import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
 import {
   completionRequestsFetch,
   requestAccept,

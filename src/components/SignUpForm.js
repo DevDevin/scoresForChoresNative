@@ -9,7 +9,7 @@ import {
   createAccount,
   password2Changed
 } from "../actions/AuthActions";
-import { Card, CardSection, Input, Button, Spinner } from "./common";
+import { Card, CardSection, Spinner } from "./common";
 
 class LoginForm extends Component {
   state = {
@@ -39,10 +39,6 @@ class LoginForm extends Component {
     this.props.createAccount({ email, password, password2 });
     // this needs to be asynchronus because it's hitting set state before the state data actually changes
     if (password === password2) this.setState({ isModalVisible: true });
-  }
-
-  onGoToLogIn() {
-    ///
   }
 
   renderButton() {

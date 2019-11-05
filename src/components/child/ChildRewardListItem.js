@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -9,18 +10,24 @@ import {
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
-import { rewardFetch } from "../../actions/ParentActions";
+import { rewardFetch, rewardRequestsFetch } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
 
 class RewardListItem extends Component {
   state = {
-    isModalVisible: false,
-    stateRefresh: true
+    isModalVisible: false
   };
 
+  componentDidMount() {
+    this.props.rewardRequestsFetch();
+    console.log("ChildRewardListItem component did mount");
+  }
+
   toggleModal = () => {
+    console.log("ismodalvisible before: ", this.state.isModalVisible);
     this.setState({ isModalVisible: !this.state.isModalVisible });
+    console.log("ismodalvisible after: ", this.state.isModalVisible);
   };
 
   onEditPress() {
@@ -44,11 +51,20 @@ class RewardListItem extends Component {
   }
 
   render() {
+    console.log("reward requests1 : ", this.props);
     const rewardName = this.props.reward.rewardName;
     const pointsValue = this.props.reward.pointsValue;
     const rid = this.props.reward.rid;
     const uid = this.props.activeUser.uid;
     const activeUserName = this.props.activeUser.name;
+    const rewardRequests = this.props.rewardRequests;
+    console.log("rewardRequests: ", rewardRequests);
+
+    //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
+    // have a undo button available.
+    _.map(rewardRequests, item => {
+      console.log(item);
+    });
 
     return (
       <View style={{ flex: 1 }}>
@@ -199,12 +215,23 @@ const styles = {
 };
 
 const mapStateToProps = state => {
+  const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
+    return { ...val, rid };
+  });
+
   return {
-    activeUser: state.auth.activeUser
+    activeUser: state.auth.activeUser,
+    rewardRequests: rewardRequests
   };
 };
 
 export default connect(
   mapStateToProps,
-  { rewardFetch, rewardRequestSend, setActiveUser, updateActiveUser }
+  {
+    rewardFetch,
+    rewardRequestSend,
+    setActiveUser,
+    updateActiveUser,
+    rewardRequestsFetch
+  }
 )(RewardListItem);

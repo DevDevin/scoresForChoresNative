@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { ScrollView } from "react-native";
 import { connect } from "react-redux";
 import ChoreForm from "./ChoreForm";
 import {
@@ -44,27 +45,33 @@ class ChoreEdit extends Component {
   render() {
     return (
       <Card>
-        <ChoreForm />
+        <ScrollView>
+          <ChoreForm />
 
-        <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>Save Changes</Button>
-        </CardSection>
+          <CardSection>
+            <Button onPress={this.onButtonPress.bind(this)}>
+              Save Changes
+            </Button>
+          </CardSection>
 
-        <CardSection>
-          <Button
-            onPress={() => this.setState({ showModal: !this.state.showModal })}
+          <CardSection>
+            <Button
+              onPress={() =>
+                this.setState({ showModal: !this.state.showModal })
+              }
+            >
+              Delete Chore
+            </Button>
+          </CardSection>
+
+          <Confirm
+            visible={this.state.showModal}
+            onAccept={this.onAccept.bind(this)}
+            onDecline={this.onDecline.bind(this)}
           >
-            Delete Chore
-          </Button>
-        </CardSection>
-
-        <Confirm
-          visible={this.state.showModal}
-          onAccept={this.onAccept.bind(this)}
-          onDecline={this.onDecline.bind(this)}
-        >
-          Are you sure you want to delete this?
-        </Confirm>
+            Are you sure you want to delete this?
+          </Confirm>
+        </ScrollView>
       </Card>
     );
   }
