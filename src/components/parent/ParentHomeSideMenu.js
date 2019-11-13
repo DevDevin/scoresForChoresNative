@@ -27,8 +27,8 @@ class ParentHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Reset Chores</Text>
+              <Image source={require("../../Images/reset.png")} />
+              <Text style={{ fontSize: 16 }}>Reset Chores</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -46,8 +46,8 @@ class ParentHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Password Reset</Text>
+              <Image source={require("../../Images/resetPassword.png")} />
+              <Text style={{ fontSize: 16 }}>Password Reset</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -83,8 +83,8 @@ class ParentHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Change User</Text>
+              <Image source={require("../../Images/changeUser.png")} />
+              <Text style={{ fontSize: 16 }}>Change User</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -120,8 +120,8 @@ class ParentHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Logout</Text>
+              <Image source={require("../../Images/signOut.png")} />
+              <Text style={{ fontSize: 16 }}>Logout</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

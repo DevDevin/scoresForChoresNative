@@ -87,7 +87,7 @@ class RewardListItem extends Component {
                 )}
                 style={styles.buttonStyle}
               >
-                <Text style={styles.textStyle}>Submit</Text>
+                <Text style={styles.textStyle}>Test</Text>
               </TouchableOpacity>
             </View>
           </View>

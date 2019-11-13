@@ -8,7 +8,8 @@ import UserForm from "./UserForm";
 
 class UserCreate extends Component {
   state = {
-    duplicateUser: false
+    duplicateUser: false,
+    allowSubmit: true
   };
 
   componentDidMount() {
@@ -26,21 +27,63 @@ class UserCreate extends Component {
       }
     });
 
-    if (duplicate === false) {
-      this.props.userCreate({ name, phone, password1, status, email });
+    // description  Check
+    let nameRequired;
+    if (name === "") {
+      console.log("inside of name check");
+
+      this.state.allowSubmit = false;
+      nameRequired = "-User Name";
     } else {
+      nameRequired = "";
+    }
+
+    // child  Check
+    let password1Required;
+    if (password1 === "") {
+      console.log("inside of password1 check");
+
+      this.state.allowSubmit = false;
+      console.log("allowSubmit in password1 check: ", this.state.allowSubmit);
+      password1Required = "-Password";
+    } else {
+      password1Required = "";
+    }
+
+    console.log("allowSubmit before alert check: ", this.state.allowSubmit);
+    if (this.state.allowSubmit === false) {
       Alert.alert(
-        "Username Already Exists",
-        "Please choose another username",
+        "Missing Required Fields: ",
+        `${nameRequired}
+          ${password1Required}`,
         [
           {
-            text: "Okay",
-            // onPress: () => console.log("Okay Pressed"),
-            style: "cancel"
+            text: "OK",
+            onPress: () => {
+              this.setState({ allowSubmit: true });
+              console.log("this.state.allowSubmit ", this.state.allowSubmit);
+            }
           }
         ],
         { cancelable: false }
       );
+    } else {
+      if (duplicate === false) {
+        this.props.userCreate({ name, phone, password1, status, email });
+      } else {
+        Alert.alert(
+          "Username Already Exists",
+          "Please choose another username",
+          [
+            {
+              text: "Okay",
+              // onPress: () => console.log("Okay Pressed"),
+              style: "cancel"
+            }
+          ],
+          { cancelable: false }
+        );
+      }
     }
   }
 

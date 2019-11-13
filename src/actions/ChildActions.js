@@ -100,6 +100,18 @@ export const undoCompletionRequest = (
   };
 };
 
+// delete reward request
+export const deleteRewardRequest = rrid => {
+  console.log("inside delete reward request");
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests/${rrid}`)
+      .remove();
+  };
+};
+
 // grab the reward requests for that child
 export const rewardRequestsFetch = () => {
   const { currentUser } = firebase.auth();

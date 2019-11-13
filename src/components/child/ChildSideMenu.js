@@ -17,7 +17,7 @@ class ChildSideMenu extends Component {
         >
           <TouchableOpacity
             onPress={() => {
-              logoutAuth();
+              Actions.childHome();
             }}
           >
             <View
@@ -28,8 +28,8 @@ class ChildSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Home</Text>
+              <Image source={require("../../Images/home.png")} />
+              <Text style={{ fontSize: 16 }}>Home</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -71,8 +71,8 @@ class ChildSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Change User</Text>
+              <Image source={require("../../Images/changeUser.png")} />
+              <Text style={{ fontSize: 16 }}>Change User</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -114,8 +114,8 @@ class ChildSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Sign Out</Text>
+              <Image source={require("../../Images/signOut.png")} />
+              <Text style={{ fontSize: 16 }}>Sign Out</Text>
             </View>
           </TouchableOpacity>
         </View>

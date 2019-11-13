@@ -11,7 +11,10 @@ import {
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
-import { rewardRequestSend2 } from "../../actions/ChildActions";
+import {
+  rewardRequestSend2,
+  deleteRewardRequest
+} from "../../actions/ChildActions";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
@@ -56,6 +59,30 @@ class ChildRewardRequestsListItem extends Component {
     );
   }
 
+  // delete reward request with reward rewquest id passed in.
+  onDeleteRewardRequest(rid) {
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to delete this reward rewquest?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.deleteRewardRequest(rid);
+
+            // this.props.setActiveUser(activeUserObject);
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  }
+
   render() {
     const activeUserName = this.props.activeUser.name;
     const childName = this.props.rewardRequest.childName;
@@ -82,18 +109,35 @@ class ChildRewardRequestsListItem extends Component {
 
     if (rewardStatus === "Rejected") {
       reSubmitButton = (
+        <View>
+          <TouchableOpacity
+            onPress={this.onButtonPress.bind(
+              this,
+              activeUserName,
+              uid,
+              pointsValue,
+              rid,
+              rewardName
+            )}
+            style={styles.buttonStyle}
+          >
+            <Text style={styles.textStyle}>Resubmit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onDeleteRewardRequest.bind(this, rid)}
+            style={styles.buttonStyle}
+          >
+            <Text style={styles.textStyle}>Remove</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else if (rewardStatus === "Submitted") {
+      reSubmitButton = (
         <TouchableOpacity
-          onPress={this.onButtonPress.bind(
-            this,
-            activeUserName,
-            uid,
-            pointsValue,
-            rid,
-            rewardName
-          )}
+          onPress={this.onDeleteRewardRequest.bind(this, rid)}
           style={styles.buttonStyle}
         >
-          <Text style={styles.textStyle}>Submit</Text>
+          <Text style={styles.textStyle}>Undo Submit</Text>
         </TouchableOpacity>
       );
     } else {
@@ -228,5 +272,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { rewardRequestsFetch, rewardRequestSend2 }
+  { rewardRequestsFetch, rewardRequestSend2, deleteRewardRequest }
 )(ChildRewardRequestsListItem);

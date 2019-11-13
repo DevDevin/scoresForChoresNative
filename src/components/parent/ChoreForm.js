@@ -79,7 +79,7 @@ class ChoreForm extends Component {
               placeholder="A brief description of the chore."
               value={this.props.description}
               onChangeText={value =>
-                this.props.choreUpdate({ prop: "email", value: value })
+                this.props.choreUpdate({ prop: "description", value: value })
               }
             />
           </CardSection>

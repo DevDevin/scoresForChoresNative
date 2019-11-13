@@ -45,8 +45,8 @@ class ChildHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Change User</Text>
+              <Image source={require("../../Images/changeUser.png")} />
+              <Text style={{ fontSize: 16 }}>Change User</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -88,8 +88,8 @@ class ChildHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 12 }}>Sign Out</Text>
+              <Image source={require("../../Images/signOut.png")} />
+              <Text style={{ fontSize: 16 }}>Sign Out</Text>
             </View>
           </TouchableOpacity>
         </View>
