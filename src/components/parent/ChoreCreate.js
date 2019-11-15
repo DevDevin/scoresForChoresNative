@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Card, CardSection, Button, Text } from "../common/index";
 import { choreCreate } from "../../actions/ParentActions";
 import ChoreForm from "./ChoreForm";
-import { ScrollView, Alert } from "react-native";
+import { ScrollView, Alert, View } from "react-native";
 
 class ChoreCreate extends Component {
   state = {
@@ -89,12 +89,19 @@ class ChoreCreate extends Component {
   render() {
     return (
       <ScrollView style={styles.scrollView}>
-        <Card>
-          <ChoreForm {...this.props} />
-          <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-          </CardSection>
-        </Card>
+        <ChoreForm {...this.props} />
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
+          <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
+        </View>
       </ScrollView>
     );
   }
@@ -102,7 +109,8 @@ class ChoreCreate extends Component {
 
 const styles = {
   scrollView: {
-    backgroundColor: "pink"
+    backgroundColor: "pink",
+    alignSelf: "stretch"
   }
 };
 
@@ -126,9 +134,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    choreCreate
-  }
-)(ChoreCreate);
+export default connect(mapStateToProps, {
+  choreCreate
+})(ChoreCreate);

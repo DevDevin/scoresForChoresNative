@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import { Card, CardSection, Button } from "./common/index";
 import { userCreate, usersFetch } from "../actions/AuthActions";
 import UserForm from "./UserForm";
@@ -93,9 +93,18 @@ class UserCreate extends Component {
     return (
       <Card>
         <UserForm {...this.props} />
-        <CardSection>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
           <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-        </CardSection>
+        </View>
       </Card>
     );
   }
@@ -107,11 +116,8 @@ const mapStateToProps = state => {
   return { name, phone, password1, status, email, users: state.users };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    // employeeUpdate,
-    userCreate,
-    usersFetch
-  }
-)(UserCreate);
+export default connect(mapStateToProps, {
+  // employeeUpdate,
+  userCreate,
+  usersFetch
+})(UserCreate);

@@ -10,7 +10,11 @@ import {
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
-import { rewardFetch, rewardRequestsFetch } from "../../actions/ParentActions";
+import {
+  rewardsFetch,
+  rewardRequestsFetch,
+  rewardDelete
+} from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
 
@@ -20,7 +24,9 @@ class RewardListItem extends Component {
   };
 
   componentDidMount() {
+    // this.props.rewardsFetch();
     this.props.rewardRequestsFetch();
+
     console.log("ChildRewardListItem component did mount");
   }
 
@@ -36,29 +42,21 @@ class RewardListItem extends Component {
     Actions.choreEdit({ chore: this.props.chore });
   }
 
-  onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
+  onButtonPress(rid) {
     // submit a completion
-    this.props.rewardRequestSend(
-      activeUserName,
-      uid,
-      pointsValue,
-      rid,
-      rewardName
-    );
-    console.log("uid: ", this.props.activeUser.uid);
-    console.log("activeUser object", this.props.activeUser);
-    // this.props.updateActiveUser(this.props.activeUser, pointsValue);
+    console.log("rid3: ", rid);
+    console.log("rid4: ", this.props.reward.cid);
+    this.props.rewardDelete(rid);
   }
 
   render() {
-    console.log("reward requests1 : ", this.props);
     const rewardName = this.props.reward.rewardName;
     const pointsValue = this.props.reward.pointsValue;
-    const rid = this.props.reward.rid;
+    const rid = this.props.reward.cid;
+    console.log("rid1: ", this.props.reward.cid);
     const uid = this.props.activeUser.uid;
     const activeUserName = this.props.activeUser.name;
     const rewardRequests = this.props.rewardRequests;
-    console.log("rewardRequests: ", rewardRequests);
 
     //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
     // have a undo button available.
@@ -77,17 +75,10 @@ class RewardListItem extends Component {
               <Text style={styles.choreNameStyle}>{rewardName}</Text>
               <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
               <TouchableOpacity
-                onPress={this.onButtonPress.bind(
-                  this,
-                  activeUserName,
-                  uid,
-                  pointsValue,
-                  rid,
-                  rewardName
-                )}
+                onPress={this.onButtonPress.bind(this, rid)}
                 style={styles.buttonStyle}
               >
-                <Text style={styles.textStyle}>Test</Text>
+                <Text style={styles.textStyle}>Delete</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -225,13 +216,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    rewardFetch,
-    rewardRequestSend,
-    setActiveUser,
-    updateActiveUser,
-    rewardRequestsFetch
-  }
-)(RewardListItem);
+export default connect(mapStateToProps, {
+  rewardsFetch,
+  rewardRequestSend,
+  setActiveUser,
+  updateActiveUser,
+  rewardRequestsFetch,
+  rewardDelete
+})(RewardListItem);

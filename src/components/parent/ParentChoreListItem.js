@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
-import { choresFetch } from "../../actions/ParentActions";
+import { choresFetch, choreDelete } from "../../actions/ParentActions";
 
 class ParentChoreListItem extends Component {
   state = {
@@ -27,10 +27,17 @@ class ParentChoreListItem extends Component {
     Actions.choreEdit({ chore: this.props.chore });
   }
 
+  onButtonPress(cid) {
+    ////
+    this.props.choreDelete(cid);
+  }
+
   render() {
     const choreName = this.props.chore.choreName;
     const day = this.props.chore.day;
     const description = this.props.chore.description;
+    const cid = this.props.chore.cid;
+    console.log("cid: ", cid);
 
     const childName = this.props.chore.child;
 
@@ -43,6 +50,12 @@ class ParentChoreListItem extends Component {
               <Text style={styles.choreInfoStyle}>
                 {day}: {childName}
               </Text>
+              <TouchableOpacity
+                onPress={this.onButtonPress.bind(this, cid)}
+                style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Delete</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -168,7 +181,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { choresFetch }
-)(ParentChoreListItem);
+export default connect(mapStateToProps, { choresFetch, choreDelete })(
+  ParentChoreListItem
+);

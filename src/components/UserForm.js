@@ -3,9 +3,14 @@ import { View, Picker } from "react-native";
 import { connect } from "react-redux";
 import { userUpdate } from "../actions/AuthActions";
 import { CardSection, Input } from "./common";
+import RadioForm from "react-native-simple-radio-button";
 
 class UserForm extends Component {
   render() {
+    var radio_props = [
+      { label: "Parent", value: "Parent" },
+      { label: "Child", value: "Child" }
+    ];
     return (
       <View>
         <CardSection>
@@ -43,7 +48,7 @@ class UserForm extends Component {
 
         <CardSection>
           <Input
-            label="password"
+            label="Password"
             placeholder="password"
             value={this.props.password1}
             onChangeText={value =>
@@ -54,7 +59,7 @@ class UserForm extends Component {
 
         <CardSection>
           <Input
-            label="passwordConfirm"
+            label="Confirm"
             placeholder="confirm password"
             value={this.props.password2}
             onChangeText={value =>
@@ -63,16 +68,15 @@ class UserForm extends Component {
           />
         </CardSection>
         <CardSection>
-          <Picker
-            selectedValue={this.props.status}
-            style={{ height: 50, width: 100, position: "relative" }}
-            onValueChange={value => {
-              this.props.userUpdate({ prop: "status", value });
-            }}
-          >
-            <Picker.Item label="Parent" value="parent" />
-            <Picker.Item label="Child" value="child" />
-          </Picker>
+          <View>
+            <RadioForm
+              radio_props={radio_props}
+              initial={0}
+              onPress={value => {
+                this.props.userUpdate({ prop: "status", value });
+              }}
+            />
+          </View>
         </CardSection>
       </View>
     );
@@ -85,7 +89,4 @@ const mapStateToProps = state => {
   return { name, phone, password1, status, email };
 };
 
-export default connect(
-  mapStateToProps,
-  { userUpdate }
-)(UserForm);
+export default connect(mapStateToProps, { userUpdate })(UserForm);

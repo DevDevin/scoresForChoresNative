@@ -7,13 +7,14 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
-  Alert
+  Alert,
+  TextInput
 } from "react-native";
 import Modal from "react-native-modal";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Actions } from "react-native-router-flux";
 import { setActiveUser, loadingUsersStart } from "../actions/AuthActions";
-import { Input } from "./common";
+import { Input, CardSection } from "./common";
 
 class UserListItem extends Component {
   state = {
@@ -118,25 +119,29 @@ class UserListItem extends Component {
               alignItems: "center"
             }}
           >
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
                 paddingTop: 10
               }}
-            >
-              <Input
-                secureTextEntry
-                style={{ justifyContent: "center", alignSelf: "center" }}
-                label="Password"
-                placeholder="password"
-                value={this.state.enteredPassword}
-                onChangeText={value => {
-                  this.setState({ enteredPassword: value });
-                }}
-              />
-            </View>
+            ></View> */}
+            <CardSection>
+              <View style={styles.containerStyle}>
+                <Text style={styles.labelStyle}>Password</Text>
+                <TextInput
+                  secureTextEntry
+                  autoCorrect={false}
+                  style={styles.inputStyle}
+                  placeholder="Password"
+                  value={this.state.enteredPassword}
+                  onChangeText={value => {
+                    this.setState({ enteredPassword: value });
+                  }}
+                />
+              </View>
+            </CardSection>
 
             <View
               style={{
@@ -213,6 +218,27 @@ const styles = {
     fontSize: 20,
     alignSelf: "center",
     color: "red"
+  },
+  inputStyle: {
+    color: "#000",
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1
+  },
+  containerStyle: {
+    height: 40,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "powderblue",
+    borderColor: "powderblue"
   }
 };
 
@@ -224,7 +250,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveUser, loadingUsersStart }
-)(UserListItem);
+export default connect(mapStateToProps, { setActiveUser, loadingUsersStart })(
+  UserListItem
+);

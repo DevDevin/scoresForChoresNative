@@ -11,7 +11,7 @@ class RewardForm extends Component {
         <CardSection>
           <Input
             label="Reward Name"
-            placeholder="reward name"
+            placeholder="Reward Name"
             value={this.props.rewardName}
             onChangeText={value =>
               this.props.rewardUpdate({ prop: "rewardName", value: value })
@@ -21,8 +21,8 @@ class RewardForm extends Component {
 
         <CardSection>
           <Input
-            label="Points Value"
-            placeholder="Number of points the reward is worth"
+            label="Point Value"
+            placeholder="Points the reward is worth"
             value={this.props.pointsValue}
             onChangeText={value =>
               this.props.rewardUpdate({ prop: "pointsValue", value: value })
@@ -32,8 +32,8 @@ class RewardForm extends Component {
 
         <CardSection>
           <Input
-            label="Reward Description"
-            placeholder="Briefly Describe what this reward is."
+            label="Description"
+            placeholder="Description of Reward"
             value={this.props.description}
             onChangeText={value =>
               this.props.rewardUpdate({ prop: "description", value: value })
@@ -55,7 +55,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { rewardUpdate }
-)(RewardForm);
+export default connect(mapStateToProps, { rewardUpdate })(RewardForm);

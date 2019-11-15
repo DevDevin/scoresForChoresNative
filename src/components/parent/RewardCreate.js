@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import { connect } from "react-redux";
 import { Card, CardSection, Button } from "../common/index";
 import { rewardCreate, rewardsFetch } from "../../actions/ParentActions";
@@ -105,9 +105,18 @@ class RewardCreate extends Component {
     return (
       <Card>
         <RewardForm {...this.props} />
-        <CardSection>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
           <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-        </CardSection>
+        </View>
       </Card>
     );
   }
@@ -124,10 +133,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    rewardCreate,
-    rewardsFetch
-  }
-)(RewardCreate);
+export default connect(mapStateToProps, {
+  rewardCreate,
+  rewardsFetch
+})(RewardCreate);

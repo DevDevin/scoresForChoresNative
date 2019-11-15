@@ -9,7 +9,7 @@ import {
   createAccount,
   password2Changed
 } from "../actions/AuthActions";
-import { Card, CardSection, Spinner } from "./common";
+import { Card, CardSection, Spinner, Input, Button } from "./common";
 
 class LoginForm extends Component {
   state = {
@@ -46,12 +46,12 @@ class LoginForm extends Component {
       return <Spinner />;
     }
     return (
-      <TouchableOpacity
+      <Button
         onPress={this.onButtonPress.bind(this)}
         style={styles.buttonStyle}
       >
         <Text style={styles.textStyle}>Create Account</Text>
-      </TouchableOpacity>
+      </Button>
     );
   }
 
@@ -168,10 +168,10 @@ const styles = {
     borderBottomWidth: 1,
     padding: 5,
     backgroundColor: "skyblue",
-    flexDirection: "row",
+    // flexDirection: "row",
     borderColor: "#ddd",
-    position: "relative",
-    justifyContent: "center",
+    // position: "relative",
+    // justifyContent: "center",
     alignItems: "center"
   },
   // textStyle: {
@@ -211,7 +211,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { emailChanged, passwordChanged, createAccount, password2Changed }
-)(LoginForm);
+export default connect(mapStateToProps, {
+  emailChanged,
+  passwordChanged,
+  createAccount,
+  password2Changed
+})(LoginForm);

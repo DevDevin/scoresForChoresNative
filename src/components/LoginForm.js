@@ -179,7 +179,14 @@ class LoginForm extends Component {
               this.setState({ modalVisible: true });
             }}
           >
-            <Text style={{ fontSize: 20, paddingTop: 10, color: "skyblue" }}>
+            <Text
+              style={{
+                fontSize: 20,
+                paddingTop: 10,
+                paddingLeft: 10,
+                color: "skyblue"
+              }}
+            >
               Forgot Password
             </Text>
           </TouchableOpacity>

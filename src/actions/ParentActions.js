@@ -144,7 +144,8 @@ export const choreSave = ({
   };
 };
 
-export const choreDelete = ({ cid }) => {
+export const choreDelete = cid => {
+  console.log("inside of chore delete: ", cid);
   const { currentUser } = firebase.auth();
 
   return () => {
@@ -154,6 +155,22 @@ export const choreDelete = ({ cid }) => {
       .remove()
       .then(() => {
         Actions.employeeList({ type: "reset" });
+      });
+  };
+};
+
+// reward delete
+export const rewardDelete = rid => {
+  console.log("rid in rewardDelete: ", rid);
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewards/${rid}`)
+      .remove()
+      .then(() => {
+        Actions.parentRewardList({ type: "reset" });
       });
   };
 };

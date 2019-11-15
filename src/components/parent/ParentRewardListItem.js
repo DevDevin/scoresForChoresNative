@@ -202,7 +202,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { rewardFetch, rewardRequestSend }
-)(ParentRewardListItem);
+export default connect(mapStateToProps, { rewardFetch, rewardRequestSend })(
+  ParentRewardListItem
+);

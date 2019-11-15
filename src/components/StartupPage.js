@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text } from "react-native";
+import { View, Text, BackHandler, Alert } from "react-native";
 import { Button } from "../components/common";
 
 class StartupPage extends Component {
+  componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      Alert.alert(
+        "Confirm exit",
+        "Do you want to quit the app?"[
+          ({ text: "CANCEL", style: "cancel" },
+          { text: "OK", onPress: () => BackHandler.exitApp() })
+        ]
+      );
+      return true;
+    });
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", () => {});
+  }
   onLoginPress() {
     Actions.login();
   }
