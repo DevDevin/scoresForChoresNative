@@ -14,7 +14,7 @@ const Button = props => {
 const styles = {
   textStyle: {
     alignSelf: "center",
-    color: "#007aff",
+    color: "steelblue",
     fontSize: 16,
     fontWeight: "600",
     paddingTop: 10,

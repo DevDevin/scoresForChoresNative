@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Picker } from "react-native";
+import { View, Picker, Text, TextInput } from "react-native";
 import { connect } from "react-redux";
 import { userUpdate } from "../actions/AuthActions";
 import { CardSection, Input } from "./common";
@@ -14,9 +14,11 @@ class UserForm extends Component {
     return (
       <View>
         <CardSection>
-          <Input
-            label="Name"
+          <Text style={styles.labelStyle}>Name</Text>
+          <TextInput
             placeholder="Jane"
+            autoCorrect={false}
+            style={styles.inputStyle}
             value={this.props.name}
             onChangeText={value =>
               this.props.userUpdate({ prop: "name", value })
@@ -25,10 +27,12 @@ class UserForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Email"
-            placeholder="johndoe@gmail.com"
-            value={this.props.email}
+          <Text style={styles.labelStyle}>Email</Text>
+          <TextInput
+            placeholder="example@example.com"
+            autoCorrect={false}
+            style={styles.inputStyle}
+            value={this.props.emails}
             onChangeText={value =>
               this.props.userUpdate({ prop: "email", value })
             }
@@ -36,9 +40,11 @@ class UserForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Phone"
-            placeholder="555-555-5555"
+          <Text style={styles.labelStyle}>Phone</Text>
+          <TextInput
+            placeholder="(555)555-5555"
+            autoCorrect={false}
+            style={styles.inputStyle}
             value={this.props.phone}
             onChangeText={value =>
               this.props.userUpdate({ prop: "phone", value })
@@ -47,9 +53,12 @@ class UserForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Password"
-            placeholder="password"
+          <Text style={styles.labelStyle}>Password</Text>
+          <TextInput
+            secureTextEntry
+            placeholder="enter password here"
+            autoCorrect={false}
+            style={styles.inputStyle}
             value={this.props.password1}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password1", value })
@@ -58,15 +67,19 @@ class UserForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input
-            label="Confirm"
-            placeholder="confirm password"
+          <Text style={styles.labelStyle}>Confirm</Text>
+          <TextInput
+            secureTextEntry
+            placeholder="confirm password here"
+            autoCorrect={false}
+            style={styles.inputStyle}
             value={this.props.password2}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password2", value })
             }
           />
         </CardSection>
+
         <CardSection>
           <View>
             <RadioForm
@@ -83,10 +96,35 @@ class UserForm extends Component {
   }
 }
 
+const styles = {
+  inputStyle: {
+    color: "#000",
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1,
+    alignSelf: "center"
+  },
+  containerStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative"
+  }
+};
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.userForm;
+  const { name, phone, password1, password2, status, email } = state.userForm;
 
-  return { name, phone, password1, status, email };
+  return { name, phone, password1, password2, status, email };
 };
 
 export default connect(mapStateToProps, { userUpdate })(UserForm);

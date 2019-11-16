@@ -13,7 +13,8 @@ import { Card, CardSection, Spinner, Input, Button } from "./common";
 
 class LoginForm extends Component {
   state = {
-    isModalVisible: false
+    isModalVisible: false,
+    passwordMismatch: false
   };
 
   onEmailChange(text) {
@@ -22,10 +23,12 @@ class LoginForm extends Component {
 
   onPasswordChange(text) {
     this.props.passwordChanged(text);
+    this.setState({ passwordMismatch: false });
   }
 
   onPassword2Change(text) {
     this.props.password2Changed(text);
+    this.setState({ passwordMismatch: false });
   }
 
   toggleModal = () => {
@@ -36,9 +39,27 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password, password2, modalFlag } = this.props;
 
-    this.props.createAccount({ email, password, password2 });
+    if (password === password2) {
+      this.props.createAccount({ email, password, password2 });
+      this.setState({ isModalVisible: true });
+    } else {
+      this.setState({ passwordMismatch: true });
+    }
     // this needs to be asynchronus because it's hitting set state before the state data actually changes
-    if (password === password2) this.setState({ isModalVisible: true });
+  }
+
+  renderPasswordMessage() {
+    if (this.state.passwordMismatch === true) {
+      return (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Passwords Do Not Match
+          </Text>
+        </View>
+      );
+    } else {
+      return <View></View>;
+    }
   }
 
   renderButton() {
@@ -65,67 +86,86 @@ class LoginForm extends Component {
   render() {
     return (
       <View style={styles.ContainerStyle}>
-        <View style={styles.cardSectionStyle}>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </View>
-        <View style={styles.cardSectionStyle}>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </View>
-        <View style={styles.cardSectionStyle}>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="Confirm Password"
-            onChangeText={this.onPassword2Change.bind(this)}
-            value={this.props.password2}
-          />
-        </View>
-        <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
-        {this.rendorError()}
-        <Modal isVisible={this.state.isModalVisible}>
+        <View
+          style={{
+            paddingLeft: 8,
+            paddingRight: 8
+          }}
+        >
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              height: 60,
+              backgroundColor: "steelblue",
+              alignItems: "center",
+              justifyContent: "center",
+              elevation: 5
             }}
           >
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 28,
-                fontWeight: "bold"
-              }}
-            >
-              Account Created.
-            </Text>
+            <Text style={{ fontSize: 22 }}>Enter Account Credentials</Text>
+          </View>
+          <View style={styles.cardSectionStyle}>
+            <Input
+              label="Email"
+              placeholder="email@gmail.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
+            />
+          </View>
+          <View style={styles.cardSectionStyle}>
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
+          </View>
+          <View style={styles.cardSectionStyle}>
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="Confirm Password"
+              onChangeText={this.onPassword2Change.bind(this)}
+              value={this.props.password2}
+            />
+          </View>
+          {this.renderPasswordMessage()}
+          <View style={styles.buttonSectionStyle}>{this.renderButton()}</View>
+          {this.rendorError()}
+          <Modal isVisible={this.state.isModalVisible}>
             <View
               style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
+                backgroundColor: "powderblue",
+                justifyContent: "center"
               }}
             >
-              <TouchableOpacity
-                onPress={this.toggleModal}
-                style={styles.buttonStyle}
+              <Text
+                style={{
+                  alignSelf: "center",
+                  fontSize: 28,
+                  fontWeight: "bold"
+                }}
               >
-                <Text style={styles.textStyle}>Log In</Text>
-              </TouchableOpacity>
+                Account Created.
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 10
+                }}
+              >
+                <TouchableOpacity
+                  onPress={this.toggleModal}
+                  style={styles.buttonStyle}
+                >
+                  <Text style={styles.textStyle}>Log In</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
+        </View>
       </View>
     );
   }
@@ -162,17 +202,19 @@ const styles = {
     justifyContent: "flex-start",
     flexDirection: "row",
     borderColor: "#ddd",
-    position: "relative"
+    position: "relative",
+    elevation: 3
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "skyblue",
+    backgroundColor: "powderblue",
     // flexDirection: "row",
     borderColor: "#ddd",
     // position: "relative",
     // justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    elevation: 3
   },
   // textStyle: {
   //   alignSelf: "center",
@@ -187,7 +229,8 @@ const styles = {
     fontSize: 16,
     fontWeight: "600",
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    color: "steelblue"
   },
   buttonStyle: {
     width: 200,

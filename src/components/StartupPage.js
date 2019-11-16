@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, BackHandler, Alert } from "react-native";
-import { Button } from "../components/common";
+import { Button, Card } from "../components/common";
 
 class StartupPage extends Component {
   componentDidMount() {
@@ -38,47 +38,49 @@ class StartupPage extends Component {
           backgroundColor: "grey"
         }}
       >
-        <View
-          style={{
-            height: 100,
-            backgroundColor: "powderblue",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <Text style={styles.titleStyle}>Scores 4 Chores</Text>
-          <Text style={{ fontSize: 18 }}>Sign in or create new account</Text>
-        </View>
+        <View style={styles.ContainerStyle}>
+          <View
+            style={{
+              height: 100,
+              backgroundColor: "powderblue",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Text style={styles.titleStyle}>Scores 4 Chores</Text>
+            <Text style={{ fontSize: 18 }}>Sign in or create new account</Text>
+          </View>
 
-        <View
-          style={{
-            height: 100,
-            backgroundColor: "skyblue",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <Button
-            onPress={this.onLoginPress.bind(this)}
-            // style={styles.buttonStyle}
+          <View
+            style={{
+              height: 100,
+              backgroundColor: "steelblue",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
           >
-            <Text style={styles.textStyle}>Login</Text>
-          </Button>
-        </View>
-        <View
-          style={{
-            height: 100,
-            backgroundColor: "steelblue",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <Button
-            onPress={this.onSignUpPress.bind(this)}
-            // style={styles.buttonStyle}
+            <Button
+              onPress={this.onLoginPress.bind(this)}
+              // style={styles.buttonStyle}
+            >
+              Login
+            </Button>
+          </View>
+          <View
+            style={{
+              height: 100,
+              backgroundColor: "steelblue",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
           >
-            <Text style={styles.textStyle}>Create Account</Text>
-          </Button>
+            <Button
+              onPress={this.onSignUpPress.bind(this)}
+              // style={styles.buttonStyle}
+            >
+              Create Account
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -104,6 +106,20 @@ const styles = {
   },
   titleStyle: {
     fontSize: 28
+  },
+  ContainerStyle: {
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: "charcoal",
+    borderBottomWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 9,
+    elevation: 10,
+    // marginLeft: 10,
+    // marginRight: 10,
+    marginTop: 10
   }
 };
 

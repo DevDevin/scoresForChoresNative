@@ -20,7 +20,7 @@ import {
   forgotPassword,
   turnOffAuthError
 } from "../actions/AuthActions";
-import { Input } from "./common";
+import { Input, CardSection, Button } from "./common";
 
 class LoginForm extends Component {
   state = {
@@ -141,93 +141,111 @@ class LoginForm extends Component {
 
     return (
       <View style={styles.ContainerStyle}>
-        <Animated.View
+        <View
           style={{
-            opacity: this.state.fadeValue
+            paddingLeft: 8,
+            paddingRight: 8
           }}
         >
-          {this.renderAlert()}
-          <View style={styles.cardSectionStyle}>
-            <Input
-              label="Email"
-              placeholder="email@gmail.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
-            />
-          </View>
-          <View style={styles.cardSectionStyle}>
-            <Input
-              secureTextEntry
-              label="Password"
-              placeholder="password"
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-            />
-          </View>
-          {/* {this.renderSpinner()} */}
-          <View style={styles.buttonSectionStyle}>
-            <TouchableOpacity
-              onPress={this.onButtonPress.bind(this)}
-              style={styles.buttonStyle}
-            >
-              <Text style={styles.textStyle}>Login</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-            onPress={() => {
-              this.setState({ modalVisible: true });
+          <View
+            style={{
+              height: 60,
+              backgroundColor: "powderblue",
+              alignItems: "center",
+              justifyContent: "center",
+              elevation: 3
             }}
           >
-            <Text
-              style={{
-                fontSize: 20,
-                paddingTop: 10,
-                paddingLeft: 10,
-                color: "skyblue"
+            <Text style={{ fontSize: 22 }}>Enter Login Credentials</Text>
+          </View>
+          <Animated.View
+            style={{
+              opacity: this.state.fadeValue
+            }}
+          >
+            {this.renderAlert()}
+            <View style={styles.cardSectionStyle}>
+              <Input
+                label="Email"
+                placeholder="email@gmail.com"
+                onChangeText={this.onEmailChange.bind(this)}
+                value={this.props.email}
+              />
+            </View>
+            <View style={styles.cardSectionStyle}>
+              <Input
+                secureTextEntry
+                label="Password"
+                placeholder="password"
+                onChangeText={this.onPasswordChange.bind(this)}
+                value={this.props.password}
+              />
+            </View>
+            {/* {this.renderSpinner()} */}
+            <View style={styles.buttonSectionStyle}>
+              <Button
+                onPress={this.onButtonPress.bind(this)}
+                // style={styles.buttonStyle}
+              >
+                <Text style={styles.textStyle}>Login</Text>
+              </Button>
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({ modalVisible: true });
               }}
             >
-              Forgot Password
-            </Text>
-          </TouchableOpacity>
-        </Animated.View>
+              <Text
+                style={{
+                  fontSize: 20,
+                  paddingTop: 10,
+                  paddingLeft: 10,
+                  color: "black"
+                }}
+              >
+                Forgot Password?
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
 
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-        >
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <Text>Hello World!</Text>
-              <View style={styles.cardSectionStyle}>
-                <Input
-                  label="Email"
-                  placeholder="email"
-                  onChangeText={this.resetPasswordEmailChange.bind(this)}
-                  value={this.state.resetEmail}
-                />
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+          >
+            <View style={{ marginTop: 22, marginLeft: 10, marginRight: 15 }}>
+              <View>
+                <Text>Hello World!</Text>
+                <View style={styles.cardSectionStyle}>
+                  <Input
+                    label="Email"
+                    placeholder="email"
+                    onChangeText={this.resetPasswordEmailChange.bind(this)}
+                    value={this.state.resetEmail}
+                  />
+                </View>
+
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setState({ emailSent: true });
+                    this.resetEmailSend(resetEmail);
+                  }}
+                >
+                  <Text>Send Email</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setState({ modalVisible: false });
+                  }}
+                >
+                  <Text>Cancel</Text>
+                </TouchableHighlight>
               </View>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setState({ emailSent: true });
-                  this.resetEmailSend(resetEmail);
-                }}
-              >
-                <Text>Send Email</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => {
-                  this.setState({ modalVisible: false });
-                }}
-              >
-                <Text>Cancel</Text>
-              </TouchableHighlight>
+              {this.renderEmailSentView()}
             </View>
-            {this.renderEmailSentView()}
-          </View>
-        </Modal>
+          </Modal>
+        </View>
       </View>
     );
   }
@@ -248,7 +266,7 @@ const styles = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 1,
+    elevation: 10,
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
@@ -260,21 +278,23 @@ const styles = {
   cardSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "powderblue",
+    backgroundColor: "steelblue",
     justifyContent: "flex-start",
     flexDirection: "row",
-    borderColor: "#ddd",
-    position: "relative"
+    borderColor: "black",
+    position: "relative",
+    elevation: 5
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "skyblue",
-    flexDirection: "row",
+    backgroundColor: "steelblue",
+    // flexDirection: "row",
     borderColor: "#ddd",
     position: "relative",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    elevation: 5
   },
   // textStyle: {
   //   alignSelf: "center",
@@ -289,7 +309,8 @@ const styles = {
     fontSize: 16,
     fontWeight: "600",
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
+    color: "steelblue"
   },
   buttonStyle: {
     width: 200,
@@ -311,15 +332,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    emailChanged,
-    passwordChanged,
-    loginUser,
-    loadingUsersEnd,
-    loadingUsersStart,
-    forgotPassword,
-    turnOffAuthError
-  }
-)(LoginForm);
+export default connect(mapStateToProps, {
+  emailChanged,
+  passwordChanged,
+  loginUser,
+  loadingUsersEnd,
+  loadingUsersStart,
+  forgotPassword,
+  turnOffAuthError
+})(LoginForm);

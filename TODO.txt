@@ -1,14 +1,14 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- fix login feature
--- make the input views look nicer
-	- user sign in. 
 -- if same reward request exists multiple times they will all be removed when accepting or rejecting. 
 	- need to make the reward id unique. Maybe I can generate a random Id.
--- matching passwords when user created
 -- animate user sign in modal
 -- add direction tips for first time users. 
 -- make it so form values clear out after submit.
+-- handle email already exists when registering. 
+-- remove phone number from the forms
+-- delete commented out code and console logs. 
 
 
 

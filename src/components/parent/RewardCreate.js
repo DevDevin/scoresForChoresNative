@@ -103,21 +103,30 @@ class RewardCreate extends Component {
 
   render() {
     return (
-      <Card>
-        <RewardForm {...this.props} />
-        <View
-          style={{
-            borderBottomWidth: 1,
-            padding: 5,
-            backgroundColor: "#fff",
-            justifyContent: "flex-start",
-            borderColor: "#ddd",
-            position: "relative"
-          }}
-        >
-          <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-        </View>
-      </Card>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          backgroundColor: "grey"
+        }}
+      >
+        <Card>
+          <RewardForm {...this.props} />
+          <View
+            style={{
+              borderBottomWidth: 1,
+              padding: 5,
+              backgroundColor: "#fff",
+              justifyContent: "flex-start",
+              borderColor: "#ddd",
+              position: "relative"
+            }}
+          >
+            <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
+          </View>
+        </Card>
+      </View>
     );
   }
 }

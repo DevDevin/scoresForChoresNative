@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { Alert, View } from "react-native";
+import { Alert, View, Text } from "react-native";
 import { Card, CardSection, Button } from "./common/index";
 import { userCreate, usersFetch } from "../actions/AuthActions";
 import UserForm from "./UserForm";
@@ -9,14 +9,16 @@ import UserForm from "./UserForm";
 class UserCreate extends Component {
   state = {
     duplicateUser: false,
-    allowSubmit: true
+    allowSubmit: true,
+    passwordMismatch: false
   };
 
   componentDidMount() {
     this.props.usersFetch();
   }
   onButtonPress() {
-    const { name, phone, password1, status, email } = this.props;
+    const { name, phone, password1, password2, status, email } = this.props;
+    console.log("this.props: ", this.props);
 
     let duplicate = false;
 
@@ -69,7 +71,11 @@ class UserCreate extends Component {
       );
     } else {
       if (duplicate === false) {
-        this.props.userCreate({ name, phone, password1, status, email });
+        if (password1 != password2) {
+          this.setState({ passwordMismatch: true });
+        } else {
+          this.props.userCreate({ name, phone, password1, status, email });
+        }
       } else {
         Alert.alert(
           "Username Already Exists",
@@ -87,33 +93,65 @@ class UserCreate extends Component {
     }
   }
 
+  renderMismatch() {
+    if (this.state.passwordMismatch === true) {
+      return (
+        <View>
+          <Text style={{ color: "red", fontSize: 20 }}>
+            **Passwords Do Not Match**
+          </Text>
+        </View>
+      );
+    } else {
+      return <View></View>;
+    }
+  }
+
   render() {
     const users = this.props.users;
 
     return (
-      <Card>
-        <UserForm {...this.props} />
-        <View
-          style={{
-            borderBottomWidth: 1,
-            padding: 5,
-            backgroundColor: "#fff",
-            justifyContent: "flex-start",
-            borderColor: "#ddd",
-            position: "relative"
-          }}
-        >
-          <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-        </View>
-      </Card>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "center",
+          backgroundColor: "grey"
+        }}
+      >
+        <Card>
+          <UserForm {...this.props} />
+          <View
+            style={{
+              borderBottomWidth: 1,
+              padding: 5,
+              backgroundColor: "#fff",
+              justifyContent: "flex-start",
+              borderColor: "#ddd",
+              position: "relative"
+            }}
+          >
+            <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
+            {this.renderMismatch()}
+          </View>
+        </Card>
+      </View>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.userForm;
+  const { name, phone, password1, password2, status, email } = state.userForm;
 
-  return { name, phone, password1, status, email, users: state.users };
+  return {
+    name,
+    phone,
+    password1,
+    password2,
+    status,
+    email,
+    users: state.users
+  };
 };
 
 export default connect(mapStateToProps, {
