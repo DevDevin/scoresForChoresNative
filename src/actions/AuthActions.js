@@ -139,7 +139,7 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.userList();
 };
 
-export const userCreate = ({ name, phone, password1, status, email }) => {
+export const userCreate = ({ name, password1, status, email }) => {
   const { currentUser } = firebase.auth();
   console.log("entered userCreate");
   return dispatch => {
@@ -149,7 +149,6 @@ export const userCreate = ({ name, phone, password1, status, email }) => {
       .push({
         name: name,
         email: email,
-        phone: phone,
         password: password1,
         status: status,
         earnedPoints: 0

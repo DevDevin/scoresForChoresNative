@@ -17,7 +17,7 @@ class UserCreate extends Component {
     this.props.usersFetch();
   }
   onButtonPress() {
-    const { name, phone, password1, password2, status, email } = this.props;
+    const { name, password1, password2, status, email } = this.props;
     console.log("this.props: ", this.props);
 
     let duplicate = false;
@@ -74,7 +74,7 @@ class UserCreate extends Component {
         if (password1 != password2) {
           this.setState({ passwordMismatch: true });
         } else {
-          this.props.userCreate({ name, phone, password1, status, email });
+          this.props.userCreate({ name, password1, status, email });
         }
       } else {
         Alert.alert(

@@ -40,19 +40,6 @@ class UserForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Text style={styles.labelStyle}>Phone</Text>
-          <TextInput
-            placeholder="(555)555-5555"
-            autoCorrect={false}
-            style={styles.inputStyle}
-            value={this.props.phone}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "phone", value })
-            }
-          />
-        </CardSection>
-
-        <CardSection>
           <Text style={styles.labelStyle}>Password</Text>
           <TextInput
             secureTextEntry
