@@ -112,6 +112,37 @@ class ChildRewardStore extends Component {
     this.props.rewardRequestsFetch();
   }
 
+  renderRequestButton(
+    activeUserName,
+    pointsValue,
+    rid,
+    rewardName,
+    currentPoints,
+    uid
+  ) {
+    console.log("pointsValue: ", pointsValue);
+    if (currentPoints >= pointsValue) {
+      return (
+        <TouchableOpacity
+          onPress={this.onButtonPress.bind(
+            this,
+            activeUserName,
+            pointsValue,
+            rid,
+            rewardName,
+            currentPoints,
+            uid
+          )}
+          style={styles.buttonStyle}
+        >
+          <Text style={styles.textStyle}>Request</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return <View></View>;
+    }
+  }
+
   render() {
     const activeUserName = this.props.activeUser.name;
     const users = this.props.users;
@@ -214,20 +245,15 @@ class ChildRewardStore extends Component {
                           <Text style={styles.choreInfoStyle}>
                             {item.pointsValue}
                           </Text>
-                          <TouchableOpacity
-                            onPress={this.onButtonPress.bind(
-                              this,
-                              activeUserName,
-                              item.pointsValue,
-                              item.rid,
-                              item.rewardName,
-                              currentPoints,
-                              uid
-                            )}
-                            style={styles.buttonStyle}
-                          >
-                            <Text style={styles.textStyle}>Submit</Text>
-                          </TouchableOpacity>
+
+                          {this.renderRequestButton(
+                            activeUserName,
+                            item.pointsValue,
+                            item.rid,
+                            item.rewardName,
+                            currentPoints,
+                            uid
+                          )}
                         </View>
                       </View>
                     </TouchableWithoutFeedback>
@@ -371,13 +397,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    rewardsFetch,
-    rewardRequestSend2,
-    usersFetch,
-    setActiveUser,
-    rewardRequestsFetch
-  }
-)(ChildRewardStore);
+export default connect(mapStateToProps, {
+  rewardsFetch,
+  rewardRequestSend2,
+  usersFetch,
+  setActiveUser,
+  rewardRequestsFetch
+})(ChildRewardStore);

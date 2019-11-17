@@ -6,8 +6,8 @@
 -- make it so form values clear out after submit.
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
--- fix rejection reason modal(parent) and reward request modal (child)
--- disable reward rewques
+-- fix rejection reason modal(parent) for completion and reward request
+-- and reward request modal (child)
 
 
 

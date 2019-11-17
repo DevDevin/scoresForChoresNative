@@ -279,12 +279,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    rewardRequestsFetch,
-    rewardRequestAccept,
-    rewardRequestReject,
-    rejectionReasonChange
-  }
-)(RewardRequestListItem);
+export default connect(mapStateToProps, {
+  rewardRequestsFetch,
+  rewardRequestAccept,
+  rewardRequestReject,
+  rejectionReasonChange
+})(RewardRequestListItem);
