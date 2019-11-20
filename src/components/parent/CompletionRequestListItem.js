@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  Alert,
+  TextInput
+} from "react-native";
 import {
   completionRequestsFetch,
   requestAccept,
@@ -129,43 +136,70 @@ class CompletionRequestListItem extends Component {
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-          }}
         >
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <CardSection>
-                <Input
-                  label="Reason for rejection"
-                  placeholder="Rejection Reason"
-                  value={this.state.reason}
-                  onChangeText={value => this.setState({ reason: value })}
-                />
-              </CardSection>
-              <CardSection>
-                <Button
-                  onPress={this.onReject.bind(
-                    this,
-                    cid,
-                    choreName,
-                    day,
-                    child,
-                    description,
-                    pointsValue,
-                    this.state.reason
-                  )}
-                >
-                  Submit
-                </Button>
-                <Button
-                  onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
-                  }}
-                >
-                  Close
-                </Button>
-              </CardSection>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "column",
+              justifyContent: "center",
+              backgroundColor: "grey"
+            }}
+          >
+            <View style={{ marginTop: 22 }}>
+              <View>
+                <CardSection>
+                  <Input
+                    label="Reason"
+                    placeholder="Rejection Reason"
+                    value={this.state.reason}
+                    onChangeText={value => this.setState({ reason: value })}
+                  />
+                </CardSection>
+              </View>
+            </View>
+
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={this.onReject.bind(
+                  this,
+                  cid,
+                  choreName,
+                  day,
+                  child,
+                  description,
+                  pointsValue,
+                  this.state.reason
+                )}
+              >
+                Submit
+              </Button>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}
+              >
+                Close
+              </Button>
             </View>
           </View>
         </Modal>
@@ -187,6 +221,12 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold"
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1,
+    alignSelf: "center"
   },
   childStyle: {
     flex: 1,
@@ -249,7 +289,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { completionRequestsFetch, requestAccept, requestReject }
-)(CompletionRequestListItem);
+export default connect(mapStateToProps, {
+  completionRequestsFetch,
+  requestAccept,
+  requestReject
+})(CompletionRequestListItem);

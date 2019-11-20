@@ -8,13 +8,14 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  TextInput
+  TextInput,
+  Modal
 } from "react-native";
-import Modal from "react-native-modal";
+// import Modal from "react-native-modal";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Actions } from "react-native-router-flux";
 import { setActiveUser, loadingUsersStart } from "../actions/AuthActions";
-import { Input, CardSection } from "./common";
+import { Input, CardSection, Button } from "./common";
 
 class UserListItem extends Component {
   state = {
@@ -111,58 +112,68 @@ class UserListItem extends Component {
           </View>
         </TouchableWithoutFeedback>
 
-        <Modal isVisible={this.state.isModalVisible}>
+        <Modal
+          visible={this.state.isModalVisible}
+          animationType="slide"
+          transparent={true}
+        >
           <View
             style={{
-              backgroundColor: "powderblue",
+              flex: 1,
+              flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center"
+              backgroundColor: "grey"
             }}
           >
-            {/* <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
-              }}
-            ></View> */}
-            <CardSection>
-              <View style={styles.containerStyle}>
-                <Text style={styles.labelStyle}>Password</Text>
-                <TextInput
-                  secureTextEntry
-                  autoCorrect={false}
-                  style={styles.inputStyle}
-                  placeholder="Password"
-                  value={this.state.enteredPassword}
-                  onChangeText={value => {
-                    this.setState({ enteredPassword: value });
-                  }}
-                />
-              </View>
-            </CardSection>
-
             <View
               style={{
-                flexDirection: "row",
                 justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
+                alignItems: "center"
               }}
             >
-              <TouchableOpacity
+              <CardSection>
+                <View style={styles.containerStyle}>
+                  <Text style={styles.labelStyle}>Password</Text>
+                  <TextInput
+                    secureTextEntry
+                    autoCorrect={false}
+                    style={styles.inputStyle}
+                    placeholder="Password"
+                    value={this.state.enteredPassword}
+                    onChangeText={value => {
+                      this.setState({ enteredPassword: value });
+                    }}
+                  />
+                </View>
+              </CardSection>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
                 onPress={this.onSignIn.bind(this, password, this.props.user)}
-                style={styles.buttonStyle}
               >
-                <Text style={styles.textStyle}>Okay</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={this.toggleModal}
-                style={styles.buttonStyle}
-              >
-                <Text style={styles.textStyle}>Close</Text>
-              </TouchableOpacity>
+                Submit
+              </Button>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button onPress={this.toggleModal}>Close</Button>
             </View>
           </View>
         </Modal>
@@ -220,7 +231,6 @@ const styles = {
     color: "red"
   },
   inputStyle: {
-    color: "#000",
     paddingRight: 5,
     paddingLeft: 5,
     fontSize: 18,
@@ -237,7 +247,7 @@ const styles = {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "powderblue",
+    // backgroundColor: "powderblue",
     borderColor: "powderblue"
   }
 };

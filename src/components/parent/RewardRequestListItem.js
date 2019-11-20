@@ -7,17 +7,18 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  Alert
+  Alert,
+  Modal
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import Modal from "react-native-modal";
+// import Modal from "react-native-modal";
 import {
   rewardRequestsFetch,
   rewardRequestAccept,
   rewardRequestReject,
   rejectionReasonChange
 } from "../../actions/ParentActions";
-import { Input, Spinner } from "../common";
+import { Input, CardSection, Button } from "../common";
 
 class RewardRequestListItem extends Component {
   state = {
@@ -146,42 +147,75 @@ class RewardRequestListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
-        <Modal isVisible={this.state.isModalVisible}>
+        <Modal
+          visible={this.state.isModalVisible}
+          animationType="slide"
+          transparent={false}
+        >
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              flex: 1,
+              flexDirection: "column",
+              justifyContent: "center",
+              backgroundColor: "grey"
             }}
           >
-            <Text>Enter your rejection Reason</Text>
-            <TouchableOpacity
-              onPress={this.onReject.bind(
-                this,
-                childName,
-                uid,
-                pointsValue,
-                rid,
-                rewardName,
-                rejectionReason
-              )}
-              style={styles.buttonStyle}
-            >
-              <Text style={styles.textStyle}>Okay</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={this.toggleModal}
-              style={styles.buttonStyle}
-            >
-              <Text style={styles.textStyle}>Cancel </Text>
-            </TouchableOpacity>
+            <View style={{ marginTop: 22 }}>
+              <View>
+                <CardSection>
+                  <Input
+                    label="Reason"
+                    placeholder="Rejection Reason"
+                    value={this.state.reason}
+                    onChangeText={value =>
+                      this.setState({ rejectionReason: value })
+                    }
+                  />
+                </CardSection>
+              </View>
+            </View>
 
-            <View style={styles.cardSectionStyle}>
-              <Input
-                label="Rejection Reason"
-                placeholder="afdafdaf"
-                onChangeText={this.onRejectionReasonChange.bind(this)}
-                value={this.state.rejectionReason}
-              />
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={this.onReject.bind(
+                  this,
+                  childName,
+                  uid,
+                  pointsValue,
+                  rid,
+                  rewardName,
+                  rejectionReason
+                )}
+              >
+                Submit
+              </Button>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={() => {
+                  this.toggleModal();
+                }}
+              >
+                Close
+              </Button>
             </View>
           </View>
         </Modal>

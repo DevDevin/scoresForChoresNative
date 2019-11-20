@@ -148,7 +148,6 @@ class ChoreForm extends Component {
                 style={{ flex: 1, padding: 10 }}
                 onClick={() => {
                   this.onCheckBoxClicked();
-                  // this.setState({ isRecurring: !this.state.isRecurring });
                 }}
                 isChecked={this.state.isRecurring}
                 leftText={"Recurring"}

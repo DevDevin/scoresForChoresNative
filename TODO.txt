@@ -1,13 +1,11 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
 -- fix login feature
--- animate user sign in modal
 -- add direction tips for first time users. 
 -- make it so form values clear out after submit.
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
--- fix rejection reason modal(parent) for completion and reward request
 -- and reward request modal (child)
-
-
+-- make the description, and reason of rejection fields a larger field for more text.
+-- styling of dropdowns
 

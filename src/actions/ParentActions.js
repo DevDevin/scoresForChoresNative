@@ -355,7 +355,7 @@ export const rewardRequestAccept = (
       })
       .then(() => {
         dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
-        Actions.rewardRequestList({ type: "reset" });
+        Actions.parentHome({ type: "reset" });
       });
   };
 };

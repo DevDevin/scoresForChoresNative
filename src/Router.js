@@ -146,10 +146,6 @@ const RouterComponent = () => {
               title="Reset Chores"
             />
             <Scene
-              // rightTitle="Add Reward"
-              // onRight={() => {
-              //   Actions.rewardCreate();
-              // }}
               key="parentRewardList"
               component={ParentRewardList}
               title="Parent Reward List"
