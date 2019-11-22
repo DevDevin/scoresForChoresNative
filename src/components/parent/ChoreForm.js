@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { View, Picker, ScrollView } from "react-native";
+import { View, Picker, ScrollView, TextInput, Text } from "react-native";
 import CheckBox from "react-native-check-box";
 import RadioForm, {
   RadioButton,
@@ -74,16 +74,20 @@ class ChoreForm extends Component {
               />
             </CardSection>
 
-            <CardSection>
-              <Input
-                label="Desicription"
-                placeholder="A brief description of the chore."
+            <View style={styles.containerStyle}>
+              <Text style={styles.labelStyle}> Description </Text>
+              <TextInput
+                multiline={true}
+                numberOfLines={2}
+                placeholder="A brief description of the chore"
+                autoCorrect={false}
+                style={styles.inputStyle}
                 value={this.props.description}
                 onChangeText={value =>
                   this.props.choreUpdate({ prop: "description", value: value })
                 }
               />
-            </CardSection>
+            </View>
 
             <View
               style={{
@@ -168,6 +172,29 @@ const styles = {
     justifyContent: "flex-start",
     borderColor: "#ddd",
     position: "relative"
+  },
+  inputStyle: {
+    color: "#000",
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  },
+  containerStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative",
+    alignItems: "center"
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1
   }
 };
 

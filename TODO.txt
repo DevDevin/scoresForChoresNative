@@ -6,6 +6,10 @@
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
 -- and reward request modal (child)
--- make the description, and reason of rejection fields a larger field for more text.
 -- styling of dropdowns
+	- parent reward list
+	- completion request list
+	- reward request list
+	- child chore list
+
 

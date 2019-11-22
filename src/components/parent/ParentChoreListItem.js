@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  Button,
   Text,
   View,
   TouchableWithoutFeedback,
-  TouchableOpacity,
-  Dimensions
+  TouchableOpacity
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";

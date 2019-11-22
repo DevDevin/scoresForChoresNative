@@ -2,7 +2,13 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
-import { FlatList, Picker, ScrollView, Animated } from "react-native";
+import {
+  FlatList,
+  Picker,
+  ScrollView,
+  Animated,
+  Dimensions
+} from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import { choresFetch } from "../../actions/ParentActions";
 import ParentChoreListItem from "./ParentChoreListItem";
@@ -122,7 +128,7 @@ class ParentChoreList extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.15,
+            flex: 0.1,
             backgroundColor: "grey"
           }}
         >
@@ -151,38 +157,83 @@ class ParentChoreList extends Component {
         {this.renderSpinner()}
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "powderblue"
+            flexDirection: "row"
           }}
         >
-          <Picker
-            selectedValue={this.state.child}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ child: itemValue })
-            }
-          >
-            <Picker.Item label={"All"} value={"All"} />
-
-            {children.map(function(child) {
-              return <Picker.Item label={child.name} value={child.name} />;
-            })}
-          </Picker>
-
-          <Picker
-            selectedValue={this.state.day}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ day: itemValue });
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "skyblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
             }}
           >
-            <Picker.Item label={"All"} value={"All"} />
-            {days.map(function(day) {
-              return <Picker.Item label={day.value} value={day.value} />;
-            })}
-          </Picker>
+            <Text style={styles.labelStyle}> Child </Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "skyblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
+            }}
+          >
+            <Text style={styles.labelStyle}> Day </Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "steelblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
+            }}
+          >
+            <Picker
+              selectedValue={this.state.child}
+              style={{ width: Dimensions.get("window").width / 3 }}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ child: itemValue })
+              }
+            >
+              <Picker.Item label={"All Chores"} value={"All"} />
+
+              {children.map(function(child) {
+                return <Picker.Item label={child.name} value={child.name} />;
+              })}
+            </Picker>
+          </View>
+
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "steelblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
+            }}
+          >
+            <Picker
+              selectedValue={this.state.day}
+              style={{ width: Dimensions.get("window").width / 3 }}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ day: itemValue });
+              }}
+            >
+              <Picker.Item label={"All Chores"} value={"All"} />
+              {days.map(function(day) {
+                return <Picker.Item label={day.value} value={day.value} />;
+              })}
+            </Picker>
+          </View>
         </View>
 
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
@@ -217,10 +268,20 @@ class ParentChoreList extends Component {
           />
         </View>
       </View>
-      // where there are not users the view is not tall enough to be able to click on the floating button. I can add an view below that is always tall enough to include room for the button and is always at the bottom
     );
   }
 }
+
+const styles = {
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    // flex: 1,
+    color: "black",
+    paddingBottom: 5,
+    paddingTop: 5
+  }
+};
 
 const mapStateToProps = state => {
   const chores = _.map(state.chores, (val, cid) => {
@@ -235,7 +296,8 @@ const mapStateToProps = state => {
   return { chores: chores, users: users, loading: state.loading.loading };
 };
 
-export default connect(
-  mapStateToProps,
-  { choresFetch, usersFetch, loadingUsersEnd }
-)(ParentChoreList);
+export default connect(mapStateToProps, {
+  choresFetch,
+  usersFetch,
+  loadingUsersEnd
+})(ParentChoreList);

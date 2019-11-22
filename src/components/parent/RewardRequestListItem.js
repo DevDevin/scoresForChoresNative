@@ -8,7 +8,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Alert,
-  Modal
+  Modal,
+  TextInput
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 // import Modal from "react-native-modal";
@@ -161,17 +162,19 @@ class RewardRequestListItem extends Component {
             }}
           >
             <View style={{ marginTop: 22 }}>
-              <View>
-                <CardSection>
-                  <Input
-                    label="Reason"
-                    placeholder="Rejection Reason"
-                    value={this.state.reason}
-                    onChangeText={value =>
-                      this.setState({ rejectionReason: value })
-                    }
-                  />
-                </CardSection>
+              <View style={styles.containerStyle}>
+                <Text style={styles.labelStyle}> Description </Text>
+                <TextInput
+                  multiline={true}
+                  numberOfLines={2}
+                  placeholder="Rejection Reason"
+                  autoCorrect={false}
+                  style={styles.inputStyle}
+                  value={this.state.reason}
+                  onChangeText={value =>
+                    this.setState({ rejectionReason: value })
+                  }
+                />
               </View>
             </View>
 
@@ -299,6 +302,29 @@ const styles = {
     flexDirection: "row",
     borderColor: "#ddd",
     position: "relative"
+  },
+  inputStyle: {
+    color: "#000",
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  },
+  containerStyle: {
+    borderBottomWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative",
+    alignItems: "center"
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1
   }
 };
 
