@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FlatList, Picker, ScrollView, Animated } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
-import { Text, View } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import { CardSection } from "../common/index";
 
 class ChildChoreList extends Component {
@@ -116,6 +116,36 @@ class ChildChoreList extends Component {
         </View>
         <View
           style={{
+            flexDirection: "row"
+          }}
+        >
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "skyblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
+            }}
+          >
+            <Text style={styles.labelStyle}> Status </Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "skyblue",
+              borderColor: "black",
+              flex: 1,
+              borderRightWidth: 0.2
+            }}
+          >
+            <Text style={styles.labelStyle}> Day </Text>
+          </View>
+        </View>
+        <View
+          style={{
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
@@ -123,31 +153,36 @@ class ChildChoreList extends Component {
             backgroundColor: "powderblue"
           }}
         >
-          <Picker
-            selectedValue={this.state.choreStatus}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ choreStatus: itemValue });
-            }}
-          >
-            <Picker.Item label={"All"} value={"All"} />
-            {choreStatuses.map(function(status) {
-              return <Picker.Item label={status.value} value={status.value} />;
-            })}
-          </Picker>
-
-          <Picker
-            selectedValue={this.state.day}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ day: itemValue });
-            }}
-          >
-            <Picker.Item label={"All"} value={"All"} />
-            {days.map(function(day) {
-              return <Picker.Item label={day.value} value={day.value} />;
-            })}
-          </Picker>
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Picker
+              selectedValue={this.state.choreStatus}
+              style={{ width: Dimensions.get("window").width / 3 }}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ choreStatus: itemValue });
+              }}
+            >
+              <Picker.Item label={"Any Status"} value={"All"} />
+              {choreStatuses.map(function(status) {
+                return (
+                  <Picker.Item label={status.value} value={status.value} />
+                );
+              })}
+            </Picker>
+          </View>
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Picker
+              selectedValue={this.state.day}
+              style={{ width: Dimensions.get("window").width / 3 }}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ day: itemValue });
+              }}
+            >
+              <Picker.Item label={"Any Day"} value={"All"} />
+              {days.map(function(day) {
+                return <Picker.Item label={day.value} value={day.value} />;
+              })}
+            </Picker>
+          </View>
         </View>
         <View style={{ flex: 0.85, backgroundColor: "grey" }}>
           <ScrollView>
@@ -177,6 +212,17 @@ class ChildChoreList extends Component {
   }
 }
 
+const styles = {
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    // flex: 1,
+    color: "black",
+    paddingBottom: 5,
+    paddingTop: 5
+  }
+};
+
 const mapStateToProps = state => {
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
@@ -184,7 +230,4 @@ const mapStateToProps = state => {
 
   return { childChores: chores, activeUser: state.auth.activeUser };
 };
-export default connect(
-  mapStateToProps,
-  { childChoresFetch }
-)(ChildChoreList);
+export default connect(mapStateToProps, { childChoresFetch })(ChildChoreList);

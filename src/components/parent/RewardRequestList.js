@@ -8,7 +8,8 @@ import {
   Picker,
   ScrollView,
   Text,
-  Animated
+  Animated,
+  Dimensions
 } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import RewardRequestListItem from "./RewardRequestListItem";
@@ -76,7 +77,8 @@ class RewardRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.15
+            flex: 0.15,
+            elevation: 3
           }}
         >
           <Animated.View
@@ -107,14 +109,23 @@ class RewardRequestList extends Component {
             alignItems: "center"
           }}
         >
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Text style={{ fontSize: 20, fontWeight: "400" }}>
+              Sort by Child:
+            </Text>
+          </View>
+
           <Picker
             selectedValue={this.state.child}
-            style={{ height: 50, width: 100 }}
+            style={{
+              flex: 1,
+              width: Dimensions.get("window").width / 2
+            }}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ child: itemValue })
             }
           >
-            <Picker.Item label="All" value="All" />
+            <Picker.Item label="All Children:" value="All" />
             {children.map(function(child) {
               return <Picker.Item label={child.name} value={child.name} />;
             })}
@@ -163,7 +174,6 @@ const mapStateToProps = state => {
   return { rewardRequests: rewardRequests, users: users };
 };
 
-export default connect(
-  mapStateToProps,
-  { rewardRequestsFetch, usersFetch }
-)(RewardRequestList);
+export default connect(mapStateToProps, { rewardRequestsFetch, usersFetch })(
+  RewardRequestList
+);

@@ -1,7 +1,13 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FlatList, Picker, ScrollView, Animated } from "react-native";
+import {
+  FlatList,
+  Picker,
+  ScrollView,
+  Animated,
+  Dimensions
+} from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
 import { View, Text } from "react-native";
@@ -81,7 +87,8 @@ class CompletionRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.15
+            flex: 0.15,
+            elevation: 5
           }}
         >
           <Animated.View
@@ -109,17 +116,25 @@ class CompletionRequestList extends Component {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            borderColor: "black",
+            borderBottomWidth: 0.15,
+            elevation: 1
           }}
         >
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Text style={{ fontSize: 20, fontWeight: "400" }}>
+              Sort by Child:
+            </Text>
+          </View>
           <Picker
             selectedValue={this.state.child}
-            style={{ height: 50, width: 100 }}
+            style={{ flex: 1, width: Dimensions.get("window").width / 2 }}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ child: itemValue })
             }
           >
-            <Picker.Item label="All" value="All" />
+            <Picker.Item label="All Requests" value="All" />
             {children.map(function(child) {
               return <Picker.Item label={child.name} value={child.name} />;
             })}
@@ -170,7 +185,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { completionRequestsFetch, usersFetch, loadingUsersEnd }
-)(CompletionRequestList);
+export default connect(mapStateToProps, {
+  completionRequestsFetch,
+  usersFetch,
+  loadingUsersEnd
+})(CompletionRequestList);
