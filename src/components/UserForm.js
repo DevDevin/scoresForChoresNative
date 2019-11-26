@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-import { View, Picker, Text, TextInput } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import { connect } from "react-redux";
 import { userUpdate } from "../actions/AuthActions";
 import { CardSection, Input } from "./common";
 import RadioForm from "react-native-simple-radio-button";
 
 class UserForm extends Component {
+  componentDidMount() {
+    // reset props when opening form
+    this.props.userUpdate({ prop: "name", value: "" });
+    this.props.userUpdate({ prop: "email", value: 0 });
+    this.props.userUpdate({ prop: "password1", value: "" });
+    this.props.userUpdate({ prop: "password2", value: "" });
+    this.props.userUpdate({ prop: "status", value: "" });
+  }
+
   render() {
     var radio_props = [
       { label: "Parent", value: "Parent" },

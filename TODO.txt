@@ -2,8 +2,8 @@
 -- beautify the style and design
 -- fix login feature
 -- add direction tips for first time users. 
--- make it so form values clear out after submit.
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
 -- and reward request modal (child)
-
+-- fix the required fields in forms
+-- make it so only a child can be created after the parent is initially created. 

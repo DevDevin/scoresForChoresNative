@@ -25,6 +25,9 @@ class ChoreForm extends Component {
       value: false
     });
 
+    this.props.choreUpdate({ prop: "choreName", value: "" });
+    this.props.choreUpdate({ prop: "description", value: "" });
+    this.props.choreUpdate({ prop: "pointsValue", value: 0 });
     // fetch users for dropdown
     this.props.usersFetch();
   }

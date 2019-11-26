@@ -5,6 +5,12 @@ import { rewardUpdate } from "../../actions/ParentActions";
 import { CardSection, Input } from "../common/index";
 
 class RewardForm extends Component {
+  componentDidMount() {
+    // reset props when opening form
+    this.props.rewardUpdate({ prop: "rewardName", value: "" });
+    this.props.rewardUpdate({ prop: "pointsValue", value: 0 });
+    this.props.rewardUpdate({ prop: "description", value: "" });
+  }
   render() {
     return (
       <View>
