@@ -78,8 +78,8 @@ class ChooseUser extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "skyblue",
-            flex: 0.15
+            backgroundColor: "steelblue",
+            flex: 0.1
           }}
         >
           <Animated.View
@@ -99,7 +99,7 @@ class ChooseUser extends Component {
                 fontSize: 24
               }}
             >
-              Completion Requests
+              Users
             </Text>
           </Animated.View>
         </View>
@@ -142,7 +142,6 @@ const mapStateToProps = state => {
   return { users, loading: state.loading.loading };
 };
 
-export default connect(
-  mapStateToProps,
-  { usersFetch, loadingUsersEnd }
-)(ChooseUser);
+export default connect(mapStateToProps, { usersFetch, loadingUsersEnd })(
+  ChooseUser
+);

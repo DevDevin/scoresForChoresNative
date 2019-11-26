@@ -12,14 +12,10 @@ class UserForm extends Component {
     this.props.userUpdate({ prop: "email", value: 0 });
     this.props.userUpdate({ prop: "password1", value: "" });
     this.props.userUpdate({ prop: "password2", value: "" });
-    this.props.userUpdate({ prop: "status", value: "" });
+    this.props.userUpdate({ prop: "status", value: "Child" });
   }
 
   render() {
-    var radio_props = [
-      { label: "Parent", value: "Parent" },
-      { label: "Child", value: "Child" }
-    ];
     return (
       <View>
         <CardSection>
@@ -74,18 +70,6 @@ class UserForm extends Component {
               this.props.userUpdate({ prop: "password2", value })
             }
           />
-        </CardSection>
-
-        <CardSection>
-          <View>
-            <RadioForm
-              radio_props={radio_props}
-              initial={0}
-              onPress={value => {
-                this.props.userUpdate({ prop: "status", value });
-              }}
-            />
-          </View>
         </CardSection>
       </View>
     );

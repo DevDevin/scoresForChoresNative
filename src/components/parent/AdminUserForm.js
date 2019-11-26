@@ -5,6 +5,14 @@ import { userUpdate } from "../../actions/AuthActions";
 import { CardSection, Input } from "../common";
 
 class AdminUserForm extends Component {
+  componentDidMount() {
+    // reset props when opening form
+    this.props.userUpdate({ prop: "name", value: "" });
+    this.props.userUpdate({ prop: "email", value: 0 });
+    this.props.userUpdate({ prop: "password1", value: "" });
+    this.props.userUpdate({ prop: "password2", value: "" });
+    this.props.userUpdate({ prop: "phone", value: "" });
+  }
   render() {
     return (
       <View>
@@ -73,7 +81,4 @@ const mapStateToProps = state => {
   return { name, phone, password1, status, email };
 };
 
-export default connect(
-  mapStateToProps,
-  { userUpdate }
-)(AdminUserForm);
+export default connect(mapStateToProps, { userUpdate })(AdminUserForm);

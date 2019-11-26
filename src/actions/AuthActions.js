@@ -154,7 +154,8 @@ export const userCreate = ({ name, password1, status, email }) => {
         earnedPoints: 0
       })
       .then(() => {
-        Actions.chooseUser();
+        console.log("should have gone to choose user");
+        Actions.userList();
       });
   };
 };

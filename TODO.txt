@@ -5,5 +5,6 @@
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
 -- and reward request modal (child)
--- fix the required fields in forms
--- make it so only a child can be created after the parent is initially created. 
+-- fix the required fields in forms 
+-- fix adminuser form style and functionality
+	- center it and give grey background
