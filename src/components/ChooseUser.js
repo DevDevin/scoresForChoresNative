@@ -79,7 +79,8 @@ class ChooseUser extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "steelblue",
-            flex: 0.1
+            flex: 0.1,
+            elevation: 10
           }}
         >
           <Animated.View

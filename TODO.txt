@@ -6,5 +6,5 @@
 -- delete commented out code and console logs. 
 -- and reward request modal (child)
 -- fix the required fields in forms 
--- fix adminuser form style and functionality
-	- center it and give grey background
+-- make passwords match when creating the admin user
+-- elevate the top banner/header on each list view

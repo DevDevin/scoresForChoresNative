@@ -16,6 +16,20 @@ class AdminUserForm extends Component {
   render() {
     return (
       <View>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            borderColor: "#ddd",
+            alignItems: "center",
+            padding: 10,
+            backgroundColor: "steelblue",
+            elevation: 5
+          }}
+        >
+          <Text style={{ fontSize: 20 }}>Create Admin User</Text>
+        </View>
         <CardSection>
           <Input
             label="Name"
@@ -51,8 +65,8 @@ class AdminUserForm extends Component {
 
         <CardSection>
           <Input
-            label="password"
-            placeholder="password"
+            label="Password"
+            placeholder="Password"
             value={this.props.password1}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password1", value })
@@ -62,8 +76,8 @@ class AdminUserForm extends Component {
 
         <CardSection>
           <Input
-            label="passwordConfirm"
-            placeholder="confirm password"
+            label="Confirm"
+            placeholder="Confirm Password"
             value={this.props.password2}
             onChangeText={value =>
               this.props.userUpdate({ prop: "password2", value })
