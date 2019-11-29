@@ -138,10 +138,12 @@ export const rewardRequestSend2 = (
   rewardName,
   activeUserObject,
   currentPoints,
-  uid
+  uid,
+  rewardDescription
 ) => {
   console.log("activeUserObject: ", activeUserObject);
   console.log("currentPoints: ", currentPoints);
+  console.log("rewardDescription inside actions: ", rewardDescription);
 
   console.log("params: ", pointsValue, rid, rewardName, activeUserObject);
   const { currentUser } = firebase.auth();
@@ -156,10 +158,11 @@ export const rewardRequestSend2 = (
         childName: activeUsername,
         pointsValue: pointsValue,
         rejectionReason: "",
-        rewardName: "rewardName",
+        rewardName: rewardName,
         status: "Submitted",
         uid: uid,
-        rid: rid
+        rid: rid,
+        rewardDescription: rewardDescription
       });
     // edit the childs points value
     // console.log("edit childs points value. uid: ", uid);

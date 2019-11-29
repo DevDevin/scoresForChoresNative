@@ -8,3 +8,6 @@
 -- fix the required fields in forms 
 -- make passwords match when creating the admin user
 -- elevate the top banner/header on each list view
+-- make all the forms like the sign in form in style
+-- elevate the action buttons
+-- consider weather or not I want the resubmit functionality for reward requests.

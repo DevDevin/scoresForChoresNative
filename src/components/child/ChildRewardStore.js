@@ -49,7 +49,8 @@ class ChildRewardStore extends Component {
     rid,
     rewardName,
     currentPoints,
-    uid
+    uid,
+    rewardDescription
   ) {
     // submit a completion
     // the uid being passed in is nothing. If i can fix this it will fix most other things.
@@ -75,7 +76,8 @@ class ChildRewardStore extends Component {
               rewardName,
               activeUserObject,
               currentPoints,
-              uid
+              uid,
+              rewardDescription
             );
             // this.props.setActiveUser(activeUserObject);
           }
@@ -118,7 +120,8 @@ class ChildRewardStore extends Component {
     rid,
     rewardName,
     currentPoints,
-    uid
+    uid,
+    rewardDescription
   ) {
     console.log("pointsValue: ", pointsValue);
     if (currentPoints >= pointsValue) {
@@ -131,7 +134,8 @@ class ChildRewardStore extends Component {
             rid,
             rewardName,
             currentPoints,
-            uid
+            uid,
+            rewardDescription
           )}
           style={styles.buttonStyle}
         >
@@ -158,6 +162,7 @@ class ChildRewardStore extends Component {
     console.log("rewards: ", this.props.rewards);
     const earnedPoints = this.props.activeUser.earnedPoints;
     console.log("earnedPoints1 ", earnedPoints);
+    console.log("reward description: ", this.props.rewards.description);
 
     const currentUser = _.filter(users, function(item) {
       return item.name === activeUserName;
@@ -252,7 +257,8 @@ class ChildRewardStore extends Component {
                             item.rid,
                             item.rewardName,
                             currentPoints,
-                            uid
+                            uid,
+                            item.description
                           )}
                         </View>
                       </View>

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -15,11 +16,16 @@ import {
   rewardRequestSend2,
   deleteRewardRequest
 } from "../../actions/ChildActions";
+import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
     isModalVisible: false
   };
+
+  componentDidMount() {
+    this.props.usersFetch();
+  }
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
@@ -29,8 +35,18 @@ class ChildRewardRequestsListItem extends Component {
     // actions.something
   }
 
-  onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {
-    // submit a completion
+  onButtonPress(
+    activeUserName,
+    uid,
+    pointsValue,
+    rid,
+    rewardName,
+    currentPoints,
+    rewardDescription
+  ) {
+    // resubmit a reward request
+    const activeUserObject = this.props.activeUser;
+    console.log("rewardDescription: ", rewardDescription);
 
     Alert.alert(
       "Logout",
@@ -46,10 +62,13 @@ class ChildRewardRequestsListItem extends Component {
           onPress: () => {
             this.props.rewardRequestSend2(
               activeUserName,
-              uid,
               pointsValue,
               rid,
-              rewardName
+              rewardName,
+              activeUserObject,
+              currentPoints,
+              uid,
+              rewardDescription
             );
             // this.props.setActiveUser(activeUserObject);
           }
@@ -84,7 +103,16 @@ class ChildRewardRequestsListItem extends Component {
   }
 
   render() {
+    const activeUserObject = this.props.activeUser;
+    console.log("activeUserObject: ", activeUserObject);
     const activeUserName = this.props.activeUser.name;
+    const users = this.props.users;
+    const currentUser = _.filter(users, function(item) {
+      return item.name === activeUserName;
+    });
+
+    console.log("currentUser **: ", currentUser);
+    const currentPoints = currentUser[0].earnedPoints;
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
     const uid = this.props.rewardRequest.uid;
@@ -92,7 +120,8 @@ class ChildRewardRequestsListItem extends Component {
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
-    console.log("rewardRequests prop: ", this.props.rewardRequest);
+    const rewardDescription = this.props.rewardRequest.rewardDescription;
+    console.log("rewardDescription: ", rewardDescription);
 
     let reSubmitButton;
 
@@ -100,7 +129,9 @@ class ChildRewardRequestsListItem extends Component {
     if (rejectionReason != "") {
       rejectionReasonView = (
         <View>
-          <Text>Rejection Reason: {rejectionReason} </Text>
+          <Text style={{ fontSize: 18 }}>
+            Rejection Reason: {rejectionReason}{" "}
+          </Text>
         </View>
       );
     } else {
@@ -109,7 +140,7 @@ class ChildRewardRequestsListItem extends Component {
 
     if (rewardStatus === "Rejected") {
       reSubmitButton = (
-        <View>
+        <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
             onPress={this.onButtonPress.bind(
               this,
@@ -117,7 +148,9 @@ class ChildRewardRequestsListItem extends Component {
               uid,
               pointsValue,
               rid,
-              rewardName
+              rewardName,
+              currentPoints,
+              rewardDescription
             )}
             style={styles.buttonStyle}
           >
@@ -150,7 +183,6 @@ class ChildRewardRequestsListItem extends Component {
           <View style={styles.childStyle}>
             <View style={styles.choreStyle}>
               <Text style={styles.choreNameStyle}>{rewardName}</Text>
-              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
               <Text style={styles.choreInfoStyle}>{rewardStatus}</Text>
               {reSubmitButton}
 
@@ -168,11 +200,20 @@ class ChildRewardRequestsListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "steelblue",
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
-            {rejectionReasonView}
+            <View style={{ justifyContent: "center" }}>
+              <Text style={{ fontSize: 22 }}> {rewardName}</Text>
+
+              {rejectionReasonView}
+              <Text style={{ fontSize: 18 }}>Points: {pointsValue}</Text>
+              <Text style={{ fontSize: 18 }}>
+                Description: {rewardDescription}
+              </Text>
+            </View>
             <View
               style={{
                 flexDirection: "row",
@@ -223,7 +264,7 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-    backgroundColor: "powderblue",
+    backgroundColor: "steelblue",
     width: Dimensions.get("window").width
   },
   choreInfoStyle: {
@@ -238,7 +279,7 @@ const styles = {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "skyblue",
+    backgroundColor: "steelblue",
     alignItems: "center",
     borderColor: "#ddd"
   },
@@ -266,12 +307,15 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
-    activeUser: state.auth.activeUser
+    activeUser: state.auth.activeUser,
+    users: state.users
   };
 };
 
 export default connect(mapStateToProps, {
   rewardRequestsFetch,
   rewardRequestSend2,
-  deleteRewardRequest
+  deleteRewardRequest,
+  setActiveUser,
+  usersFetch
 })(ChildRewardRequestsListItem);

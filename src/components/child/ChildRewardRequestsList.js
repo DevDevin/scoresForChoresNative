@@ -61,7 +61,7 @@ class ChildRewardRequestList extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "skyblue",
+            backgroundColor: "steelblue",
             flex: 0.15
           }}
         >
@@ -70,7 +70,7 @@ class ChildRewardRequestList extends Component {
               fontSize: 24
             }}
           >
-            This week's chores:
+            Reward Requests
           </Text>
         </View>
         <View
@@ -125,7 +125,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { rewardRequestsFetch, usersFetch }
-)(ChildRewardRequestList);
+export default connect(mapStateToProps, { rewardRequestsFetch, usersFetch })(
+  ChildRewardRequestList
+);
