@@ -263,6 +263,7 @@ class ParentChoreList extends Component {
             </View>
           </ScrollView>
           <FloatingAction
+            color="#4280b3"
             style={{ justifyContent: "flex-end" }}
             onPressMain={this.onButtonPress.bind(this)}
           />

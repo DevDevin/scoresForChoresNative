@@ -4,18 +4,36 @@ import { connect } from "react-redux";
 import { Card, CardSection, Button } from "../common/index";
 import { userCreate } from "../../actions/AuthActions";
 import AdminUserForm from "./AdminUserForm";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 class AdminUserCreate extends Component {
   componentDidMount() {}
   onButtonPress() {
-    const { name, phone, password1, email } = this.props;
-
-    this.props.userCreate({ name, phone, password1, status: "parent", email });
-    Actions.chooseUser();
+    const { name, phone, password1, email, password2 } = this.props;
+    let nameMessage;
+    if (name === "") {
+      /// TODO: create a prop to pass back to the form so that it can show the message underneath the field.
+      nameMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>Name is required</Text>
+        </View>
+      );
+    } else nameMessage = <View></View>;
+    if (this.props.password1 === this.props.password2) {
+      this.props.userCreate({
+        name,
+        phone,
+        password1,
+        status: "parent",
+        email
+      });
+      Actions.chooseUser();
+    } else {
+    }
   }
 
   render() {
+    let nameMessage;
     return (
       <View
         style={{
@@ -40,6 +58,7 @@ class AdminUserCreate extends Component {
           >
             <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
           </View>
+          {nameMessage}
         </Card>
       </View>
     );
@@ -47,9 +66,9 @@ class AdminUserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.userForm;
+  const { name, phone, password1, status, email, password2 } = state.userForm;
 
-  return { name, phone, password1, status, email };
+  return { name, phone, password1, status, email, password2 };
 };
 
 export default connect(mapStateToProps, {

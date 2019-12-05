@@ -161,6 +161,7 @@ export const userCreate = ({ name, password1, status, email }) => {
 };
 
 export const userUpdate = ({ prop, value }) => {
+  console.log("prop: ", prop, " value: ", value);
   return {
     type: USER_UPDATE,
     payload: { prop, value }

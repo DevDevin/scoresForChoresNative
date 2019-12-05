@@ -4,10 +4,7 @@
 -- add direction tips for first time users. 
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
--- and reward request modal (child)
 -- fix the required fields in forms 
--- make passwords match when creating the admin user
 -- elevate the top banner/header on each list view
 -- make all the forms like the sign in form in style
--- elevate the action buttons
--- consider weather or not I want the resubmit functionality for reward requests.
+-- add logout button on choose user view. in place of the new user button. 

@@ -13,7 +13,7 @@ import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import {
-  rewardRequestSend2,
+  resubmitRewardRequest,
   deleteRewardRequest
 } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
@@ -60,7 +60,7 @@ class ChildRewardRequestsListItem extends Component {
         {
           text: "OK",
           onPress: () => {
-            this.props.rewardRequestSend2(
+            this.props.resubmitRewardRequest(
               activeUserName,
               pointsValue,
               rid,
@@ -70,7 +70,6 @@ class ChildRewardRequestsListItem extends Component {
               uid,
               rewardDescription
             );
-            // this.props.setActiveUser(activeUserObject);
           }
         }
       ],
@@ -121,7 +120,7 @@ class ChildRewardRequestsListItem extends Component {
     const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
     const rewardDescription = this.props.rewardRequest.rewardDescription;
-    console.log("rewardDescription: ", rewardDescription);
+    console.log("rewardRequest prop: ", this.props.rewardRequest);
 
     let reSubmitButton;
 
@@ -130,7 +129,8 @@ class ChildRewardRequestsListItem extends Component {
       rejectionReasonView = (
         <View>
           <Text style={{ fontSize: 18 }}>
-            Rejection Reason: {rejectionReason}{" "}
+            <Text style={{ fontWeight: "bold" }}>Rejection Reason: </Text>
+            {rejectionReason}
           </Text>
         </View>
       );
@@ -182,7 +182,7 @@ class ChildRewardRequestsListItem extends Component {
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
             <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{rewardName}</Text>
+              <Text style={styles.rewardNameStyle}>{rewardName}</Text>
               <Text style={styles.choreInfoStyle}>{rewardStatus}</Text>
               {reSubmitButton}
 
@@ -205,13 +205,29 @@ class ChildRewardRequestsListItem extends Component {
               alignItems: "center"
             }}
           >
-            <View style={{ justifyContent: "center" }}>
-              <Text style={{ fontSize: 22 }}> {rewardName}</Text>
-
+            <View
+              style={{
+                padding: 8
+              }}
+            >
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+                  {rewardName}
+                </Text>
+              </View>
               {rejectionReasonView}
-              <Text style={{ fontSize: 18 }}>Points: {pointsValue}</Text>
-              <Text style={{ fontSize: 18 }}>
-                Description: {rewardDescription}
+              <Text style={{ fontSize: 18, padding: 1 }}>
+                <Text style={{ fontWeight: "bold" }}>Points: </Text>
+                {pointsValue}
+              </Text>
+              <Text style={{ fontSize: 18, padding: 1 }}>
+                <Text style={{ fontWeight: "bold" }}>Description: </Text>{" "}
+                {rewardDescription}
               </Text>
             </View>
             <View
@@ -219,7 +235,8 @@ class ChildRewardRequestsListItem extends Component {
                 flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingTop: 10
+                paddingTop: 10,
+                paddingBottom: 10
               }}
             >
               <TouchableOpacity
@@ -241,7 +258,7 @@ const styles = {
     fontSize: 18,
     paddingLeft: 15
   },
-  choreNameStyle: {
+  rewardNameStyle: {
     fontSize: 26,
     paddingLeft: 15,
     flex: 1,
@@ -314,7 +331,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   rewardRequestsFetch,
-  rewardRequestSend2,
+  resubmitRewardRequest,
   deleteRewardRequest,
   setActiveUser,
   usersFetch

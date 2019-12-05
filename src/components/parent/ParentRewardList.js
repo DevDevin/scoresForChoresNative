@@ -122,6 +122,7 @@ class ParentRewardList extends Component {
             </View>
           </ScrollView>
           <FloatingAction
+            color="#4280b3"
             style={{ justifyContent: "flex-end" }}
             onPressMain={this.onButtonPress.bind(this)}
           />
@@ -138,7 +139,6 @@ const mapStateToProps = state => {
   return { rewards: rewards, loading: state.loading.loading };
 };
 
-export default connect(
-  mapStateToProps,
-  { rewardsFetch, loadingUsersEnd }
-)(ParentRewardList);
+export default connect(mapStateToProps, { rewardsFetch, loadingUsersEnd })(
+  ParentRewardList
+);

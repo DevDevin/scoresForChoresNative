@@ -5,6 +5,9 @@ import { userUpdate } from "../../actions/AuthActions";
 import { CardSection, Input } from "../common";
 
 class AdminUserForm extends Component {
+  state = {
+    passwordMismatch: false
+  };
   componentDidMount() {
     // reset props when opening form
     this.props.userUpdate({ prop: "name", value: "" });
@@ -13,6 +16,29 @@ class AdminUserForm extends Component {
     this.props.userUpdate({ prop: "password2", value: "" });
     this.props.userUpdate({ prop: "phone", value: "" });
   }
+
+  renderPasswordMessage() {
+    console.log(
+      "password1: ",
+      this.props.password1,
+      " password2: ",
+      this.props.password2
+    );
+    if (this.props.password1 === this.props.password2) {
+      console.log("do match");
+      return <View></View>;
+    } else {
+      console.log("dont match");
+      return (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Passwords Do Not Match
+          </Text>
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <View>
@@ -65,6 +91,7 @@ class AdminUserForm extends Component {
 
         <CardSection>
           <Input
+            secureTextEntry
             label="Password"
             placeholder="Password"
             value={this.props.password1}
@@ -73,15 +100,17 @@ class AdminUserForm extends Component {
             }
           />
         </CardSection>
+        {this.renderPasswordMessage()}
 
         <CardSection>
           <Input
+            secureTextEntry
             label="Confirm"
             placeholder="Confirm Password"
             value={this.props.password2}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "password2", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "password2", value });
+            }}
           />
         </CardSection>
       </View>
@@ -90,9 +119,9 @@ class AdminUserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email } = state.userForm;
+  const { name, phone, password1, status, email, password2 } = state.userForm;
 
-  return { name, phone, password1, status, email };
+  return { name, phone, password1, status, email, password2 };
 };
 
 export default connect(mapStateToProps, { userUpdate })(AdminUserForm);
