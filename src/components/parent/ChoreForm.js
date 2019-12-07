@@ -59,8 +59,10 @@ class ChoreForm extends Component {
     const users = this.props.users;
 
     const children = _.filter(users, function(item) {
-      return item.status === "child";
+      console.log("item.status: ", item.status);
+      return item.status === "Child";
     });
+    console.log("children: ", children, "users: ", users);
 
     return (
       <View>

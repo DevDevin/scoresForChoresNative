@@ -17,29 +17,58 @@ class AdminUserForm extends Component {
     this.props.userUpdate({ prop: "phone", value: "" });
   }
 
-  renderPasswordMessage() {
-    console.log(
-      "password1: ",
-      this.props.password1,
-      " password2: ",
-      this.props.password2
-    );
-    if (this.props.password1 === this.props.password2) {
-      console.log("do match");
-      return <View></View>;
+  render() {
+    console.log("props.emptyName: ", this.props.emptyName);
+    let emptyNameMessage;
+    if (this.props.emptyName === true) {
+      emptyNameMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>Name is Required</Text>
+        </View>
+      );
     } else {
-      console.log("dont match");
-      return (
+      emptyNameMessage = <View></View>;
+    }
+
+    let emptyPhoneMessage;
+    if (this.props.emptyPhone === true) {
+      emptyPhoneMessage = (
         <View>
           <Text style={{ color: "white", fontSize: 22 }}>
-            Passwords Do Not Match
+            Phone is Required
           </Text>
         </View>
       );
+    } else {
+      emptyPhoneMessage = <View></View>;
     }
-  }
 
-  render() {
+    let emptyEmailMessage;
+    console.log("this.props.emptyEmail: ", this.props.emptyEmail);
+    if (this.props.emptyEmail === true) {
+      emptyEmailMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Email is Required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyEmailMessage = <View></View>;
+    }
+    let passwordMismatchMessage;
+    if (this.props.passwordMismatch === true) {
+      passwordMismatchMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Passwords must match
+          </Text>
+        </View>
+      );
+    } else {
+      passwordMismatchMessage = <View></View>;
+    }
+
     return (
       <View>
         <View
@@ -61,33 +90,39 @@ class AdminUserForm extends Component {
             label="Name"
             placeholder="Jane"
             value={this.props.name}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "name", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "emptyName", value: false });
+              this.props.userUpdate({ prop: "name", value });
+            }}
           />
         </CardSection>
+        {emptyNameMessage}
 
         <CardSection>
           <Input
             label="Email"
             placeholder="johndoe@gmail.com"
             value={this.props.email}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "email", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "emptyEmail", value: false });
+              this.props.userUpdate({ prop: "email", value });
+            }}
           />
         </CardSection>
+        {emptyEmailMessage}
 
         <CardSection>
           <Input
             label="Phone"
             placeholder="555-555-5555"
             value={this.props.phone}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "phone", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "emptyPhone", value: false });
+              this.props.userUpdate({ prop: "phone", value });
+            }}
           />
         </CardSection>
+        {emptyPhoneMessage}
 
         <CardSection>
           <Input
@@ -95,12 +130,13 @@ class AdminUserForm extends Component {
             label="Password"
             placeholder="Password"
             value={this.props.password1}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "password1", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "passwordMismatch", value: false });
+              this.props.userUpdate({ prop: "password1", value });
+            }}
           />
         </CardSection>
-        {this.renderPasswordMessage()}
+        {passwordMismatchMessage}
 
         <CardSection>
           <Input
@@ -119,9 +155,31 @@ class AdminUserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email, password2 } = state.userForm;
+  const {
+    name,
+    phone,
+    password1,
+    status,
+    email,
+    password2,
+    emptyName,
+    emptyPhone,
+    passwordMismatch,
+    emptyEmail
+  } = state.userForm;
 
-  return { name, phone, password1, status, email, password2 };
+  return {
+    name,
+    phone,
+    password1,
+    status,
+    email,
+    password2,
+    emptyName,
+    emptyPhone,
+    passwordMismatch,
+    emptyEmail
+  };
 };
 
 export default connect(mapStateToProps, { userUpdate })(AdminUserForm);

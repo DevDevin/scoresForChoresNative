@@ -26,6 +26,7 @@ import ChildRewardRequestsList from "./components/child/ChildRewardRequestsList"
 import ResetPassword from "./components/parent/ResetPassword";
 import ChildHomeSideMenu from "./components/child/ChildHomeSideMenu";
 import ParentHomeSideMenu from "./components/parent/ParentHomeSideMenu";
+import { logoutAuth } from "./actions/AuthActions";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -62,9 +63,9 @@ const RouterComponent = () => {
           <Scene
             initial
             key="chooseUser"
-            rightTitle="New User"
+            rightTitle="Sign Out"
             onRight={() => {
-              Actions.userCreate();
+              logoutAuth();
             }}
             component={ChooseUser}
             title="Choose User"

@@ -16,6 +16,57 @@ class UserForm extends Component {
   }
 
   render() {
+    let emptyNameMessage;
+    if (this.props.emptyName === true) {
+      emptyNameMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>Name is Required</Text>
+        </View>
+      );
+    } else {
+      emptyNameMessage = <View></View>;
+    }
+
+    let userExistsMessage;
+    console.log("exists: ", this.props.userExists);
+    if (this.props.userExists === true) {
+      userExistsMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            That name is already chosen. Pick another one please
+          </Text>
+        </View>
+      );
+    } else {
+      userExistsMessage = <View></View>;
+    }
+
+    let emptyEmailMessage;
+    console.log("this.props.emptyEmail: ", this.props.emptyEmail);
+    if (this.props.emptyEmail === true) {
+      emptyEmailMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Email is Required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyEmailMessage = <View></View>;
+    }
+    let passwordMismatchMessage;
+    console.log("passwordMismatch: ", this.props.passwordMismatch);
+    if (this.props.passwordMismatch === true) {
+      passwordMismatchMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Passwords must match
+          </Text>
+        </View>
+      );
+    } else {
+      passwordMismatchMessage = <View></View>;
+    }
     return (
       <View>
         <CardSection>
@@ -25,11 +76,15 @@ class UserForm extends Component {
             autoCorrect={false}
             style={styles.inputStyle}
             value={this.props.name}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "name", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "userExists", value: false });
+              this.props.userUpdate({ prop: "emptyName", value: false });
+              this.props.userUpdate({ prop: "name", value });
+            }}
           />
         </CardSection>
+        {emptyNameMessage}
+        {userExistsMessage}
 
         <CardSection>
           <Text style={styles.labelStyle}>Email</Text>
@@ -38,11 +93,13 @@ class UserForm extends Component {
             autoCorrect={false}
             style={styles.inputStyle}
             value={this.props.emails}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "email", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "emptyEmail", value: false });
+              this.props.userUpdate({ prop: "email", value });
+            }}
           />
         </CardSection>
+        {emptyEmailMessage}
 
         <CardSection>
           <Text style={styles.labelStyle}>Password</Text>
@@ -52,11 +109,13 @@ class UserForm extends Component {
             autoCorrect={false}
             style={styles.inputStyle}
             value={this.props.password1}
-            onChangeText={value =>
-              this.props.userUpdate({ prop: "password1", value })
-            }
+            onChangeText={value => {
+              this.props.userUpdate({ prop: "passwordMismatch", value: false });
+              this.props.userUpdate({ prop: "password1", value });
+            }}
           />
         </CardSection>
+        {passwordMismatchMessage}
 
         <CardSection>
           <Text style={styles.labelStyle}>Confirm</Text>
@@ -102,9 +161,31 @@ const styles = {
   }
 };
 const mapStateToProps = state => {
-  const { name, phone, password1, password2, status, email } = state.userForm;
+  const {
+    name,
+    phone,
+    password1,
+    password2,
+    status,
+    email,
+    emptyEmail,
+    emptyName,
+    passwordMismatch,
+    userExists
+  } = state.userForm;
 
-  return { name, phone, password1, password2, status, email };
+  return {
+    name,
+    phone,
+    password1,
+    password2,
+    status,
+    email,
+    emptyEmail,
+    emptyName,
+    passwordMismatch,
+    userExists
+  };
 };
 
 export default connect(mapStateToProps, { userUpdate })(UserForm);

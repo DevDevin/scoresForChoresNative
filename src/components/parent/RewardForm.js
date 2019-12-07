@@ -12,6 +12,58 @@ class RewardForm extends Component {
     this.props.rewardUpdate({ prop: "description", value: "" });
   }
   render() {
+    let emptyRewardNameMessage;
+    if (this.props.emptyRewardName === true) {
+      emptyRewardNameMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Reward Name is Required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyRewardNameMessage = <View></View>;
+    }
+
+    let emptyPointsValueMessage;
+    if (this.props.emptyPointsValue === true) {
+      emptyPointsValueMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Points Value is Required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyPointsValueMessage = <View></View>;
+    }
+
+    let emptyDescriptionMessage;
+    if (this.props.emptyDescription === true) {
+      emptyDescriptionMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Description is Required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyDescriptionMessage = <View></View>;
+    }
+
+    let rewardExistsMessage;
+    if (this.props.rewardExists === true) {
+      rewardExistsMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            This Reward Already Exists
+          </Text>
+        </View>
+      );
+    } else {
+      rewardExistsMessage = <View></View>;
+    }
+
     return (
       <View>
         <CardSection>
@@ -23,22 +75,34 @@ class RewardForm extends Component {
             label="Reward Name"
             placeholder="Reward Name"
             value={this.props.rewardName}
-            onChangeText={value =>
-              this.props.rewardUpdate({ prop: "rewardName", value: value })
-            }
+            onChangeText={value => {
+              this.props.rewardUpdate({
+                prop: "emptyRewardName",
+                value: false
+              });
+              this.props.rewardUpdate({ prop: "rewardExists", value: false });
+              this.props.rewardUpdate({ prop: "rewardName", value: value });
+            }}
           />
         </CardSection>
+        {emptyRewardNameMessage}
+        {rewardExistsMessage}
 
         <CardSection>
           <Input
             label="Point Value"
             placeholder="Points the reward is worth"
             value={this.props.pointsValue}
-            onChangeText={value =>
-              this.props.rewardUpdate({ prop: "pointsValue", value: value })
-            }
+            onChangeText={value => {
+              this.props.rewardUpdate({
+                prop: "emptyPointsValue",
+                value: false
+              });
+              this.props.rewardUpdate({ prop: "pointsValue", value: value });
+            }}
           />
         </CardSection>
+        {emptyPointsValueMessage}
 
         <View style={styles.containerStyle}>
           <Text style={styles.labelStyle}> Description </Text>
@@ -49,12 +113,16 @@ class RewardForm extends Component {
             autoCorrect={false}
             style={styles.inputStyle}
             value={this.props.description}
-            onChangeText={value =>
-              this.props.rewardUpdate({ prop: "description", value: value })
-            }
-            s
+            onChangeText={value => {
+              this.props.rewardUpdate({
+                prop: "emptyDescription",
+                value: false
+              });
+              this.props.rewardUpdate({ prop: "description", value: value });
+            }}
           />
         </View>
+        {emptyDescriptionMessage}
       </View>
     );
   }
@@ -87,12 +155,24 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  const { rewardName, description, pointsValue } = state.rewardForm;
+  const {
+    rewardName,
+    description,
+    pointsValue,
+    emptyRewardName,
+    emptyPointsValue,
+    emptyDescription,
+    rewardExists
+  } = state.rewardForm;
 
   return {
     rewardName: rewardName,
     description: description,
-    pointsValue: pointsValue
+    pointsValue: pointsValue,
+    emptyRewardName: emptyRewardName,
+    emptyPointsValue: emptyPointsValue,
+    emptyDescription: emptyDescription,
+    rewardExists: rewardExists
   };
 };
 

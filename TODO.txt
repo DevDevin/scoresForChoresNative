@@ -5,6 +5,8 @@
 -- handle email already exists when registering. 
 -- delete commented out code and console logs. 
 -- fix the required fields in forms 
+	chore
 -- elevate the top banner/header on each list view
 -- make all the forms like the sign in form in style
--- add logout button on choose user view. in place of the new user button. 
+-- fix infinite loop if password is incorrect. 
+-- remove the auto filled values from the form like email and password

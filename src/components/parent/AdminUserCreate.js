@@ -2,24 +2,51 @@ import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 import { Card, CardSection, Button } from "../common/index";
-import { userCreate } from "../../actions/AuthActions";
+import { userCreate, userUpdate } from "../../actions/AuthActions";
 import AdminUserForm from "./AdminUserForm";
 import { View, Text } from "react-native";
 
 class AdminUserCreate extends Component {
-  componentDidMount() {}
+  state = {
+    allowSubmit: true
+  };
+  componentDidMount() {
+    this.props.userUpdate({ prop: "emptyName", value: false });
+    this.props.userUpdate({ prop: "passwordMismatch", value: false });
+    this.props.userUpdate({ prop: "emptyPhone", value: false });
+    this.props.userUpdate({ prop: "emptyEmail", value: false });
+    this.props.userUpdate({ prop: "email", value: "" });
+  }
+
   onButtonPress() {
+    this.state.allowSubmit = true;
     const { name, phone, password1, email, password2 } = this.props;
-    let nameMessage;
+    let passwordMismatch = false;
+    let emptyName = false;
+    let emptyPhone = false;
+    let emptyEmail = false;
+
     if (name === "") {
-      /// TODO: create a prop to pass back to the form so that it can show the message underneath the field.
-      nameMessage = (
-        <View>
-          <Text style={{ color: "white", fontSize: 22 }}>Name is required</Text>
-        </View>
-      );
-    } else nameMessage = <View></View>;
-    if (this.props.password1 === this.props.password2) {
+      this.props.userUpdate({ prop: "emptyName", value: true });
+      this.state.allowSubmit = false;
+    }
+    console.log("password1: ", password1, " password2: ", password2);
+    if (this.props.password1 != this.props.password2) {
+      this.props.userUpdate({ prop: "passwordMismatch", value: true });
+      this.state.allowSubmit = false;
+    }
+    if (phone === "") {
+      this.props.userUpdate({ prop: "emptyPhone", value: true });
+      this.state.allowSubmit = false;
+    }
+    if (email === "") {
+      this.state.allowSubmit = false;
+      this.props.userUpdate({ prop: "emptyEmail", value: true });
+    }
+
+    //if all of those are false then create user
+    console.log(emptyName, emptyEmail, emptyPhone, passwordMismatch);
+    if (this.state.allowSubmit) {
       this.props.userCreate({
         name,
         phone,
@@ -28,12 +55,10 @@ class AdminUserCreate extends Component {
         email
       });
       Actions.chooseUser();
-    } else {
     }
   }
 
   render() {
-    let nameMessage;
     return (
       <View
         style={{
@@ -58,7 +83,6 @@ class AdminUserCreate extends Component {
           >
             <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
           </View>
-          {nameMessage}
         </Card>
       </View>
     );
@@ -72,6 +96,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  // employeeUpdate,
-  userCreate
+  userCreate,
+  userUpdate
 })(AdminUserCreate);

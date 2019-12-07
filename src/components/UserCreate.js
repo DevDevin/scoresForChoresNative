@@ -3,7 +3,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import { Alert, View, Text } from "react-native";
 import { Card, CardSection, Button } from "./common/index";
-import { userCreate, usersFetch } from "../actions/AuthActions";
+import { userCreate, usersFetch, userUpdate } from "../actions/AuthActions";
 import UserForm from "./UserForm";
 
 class UserCreate extends Component {
@@ -15,81 +15,50 @@ class UserCreate extends Component {
 
   componentDidMount() {
     this.props.usersFetch();
+    this.props.userUpdate({ prop: "emptyName", value: false });
+    this.props.userUpdate({ prop: "passwordMismatch", value: false });
+    this.props.userUpdate({ prop: "emptyPhone", value: false });
+    this.props.userUpdate({ prop: "emptyEmail", value: false });
+    this.props.userUpdate({ prop: "email", value: "" });
+    this.props.userUpdate({ prop: "userExists", value: false });
   }
   onButtonPress() {
+    this.state.allowSubmit = true;
     const { name, password1, password2, status, email } = this.props;
     console.log("this.props: ", this.props);
+
+    if (name === "") {
+      this.props.userUpdate({ prop: "emptyName", value: true });
+      this.state.allowSubmit = false;
+    }
+    console.log("password1: ", password1, " password2: ", password2);
+    if (this.props.password1 != this.props.password2) {
+      this.props.userUpdate({ prop: "passwordMismatch", value: true });
+      this.state.allowSubmit = false;
+    }
+
+    if (email === "") {
+      this.state.allowSubmit = false;
+      this.props.userUpdate({ prop: "emptyEmail", value: true });
+    }
 
     let duplicate = false;
 
     const users = this.props.users;
+    let duplicateUser = false;
     _.map(users, function(item) {
       if (name === item.name) {
-        duplicate = true;
+        duplicateUser = true;
       }
     });
 
-    // description  Check
-    let nameRequired;
-    if (name === "") {
-      console.log("inside of name check");
-
+    if (duplicateUser) {
+      this.props.userUpdate({ prop: "userExists", value: true });
       this.state.allowSubmit = false;
-      nameRequired = "-User Name";
-    } else {
-      nameRequired = "";
     }
 
-    // child  Check
-    let password1Required;
-    if (password1 === "") {
-      console.log("inside of password1 check");
-
-      this.state.allowSubmit = false;
-      console.log("allowSubmit in password1 check: ", this.state.allowSubmit);
-      password1Required = "-Password";
-    } else {
-      password1Required = "";
-    }
-
-    console.log("allowSubmit before alert check: ", this.state.allowSubmit);
-    if (this.state.allowSubmit === false) {
-      Alert.alert(
-        "Missing Required Fields: ",
-        `${nameRequired}
-          ${password1Required}`,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.setState({ allowSubmit: true });
-              console.log("this.state.allowSubmit ", this.state.allowSubmit);
-            }
-          }
-        ],
-        { cancelable: false }
-      );
-    } else {
-      if (duplicate === false) {
-        if (password1 != password2) {
-          this.setState({ passwordMismatch: true });
-        } else {
-          this.props.userCreate({ name, password1, status, email });
-        }
-      } else {
-        Alert.alert(
-          "Username Already Exists",
-          "Please choose another username",
-          [
-            {
-              text: "Okay",
-              // onPress: () => console.log("Okay Pressed"),
-              style: "cancel"
-            }
-          ],
-          { cancelable: false }
-        );
-      }
+    if (this.state.allowSubmit) {
+      this.props.userCreate({ name, password1, status, email });
     }
   }
 
@@ -157,5 +126,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   // employeeUpdate,
   userCreate,
-  usersFetch
+  usersFetch,
+  userUpdate
 })(UserCreate);
