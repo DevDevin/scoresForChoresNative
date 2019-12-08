@@ -56,6 +56,59 @@ class ChoreForm extends Component {
       { label: "Sunday", value: "Sunday" }
     ];
 
+    let emptyChoreNameMessage;
+    if (this.props.emptyChoreName === true) {
+      emptyChoreNameMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Chore name is required
+          </Text>
+        </View>
+      );
+    } else {
+      emptyChoreNameMessage = <View></View>;
+    }
+
+    let emptyDescriptionMessage;
+    if (this.props.emptyDescription === true) {
+      emptyDescriptionMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Description is required.
+          </Text>
+        </View>
+      );
+    } else {
+      emptyDescriptionMessage = <View></View>;
+    }
+
+    let emptyChildMessage;
+    console.log("emptyChild: ", this.props.emptyChild);
+    if (this.props.emptyChild === true) {
+      emptyChildMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Chore must be assigned to a child
+          </Text>
+        </View>
+      );
+    } else {
+      emptyChildMessage = <View></View>;
+    }
+
+    let emptyPointsValueMessage;
+    if (this.props.emptyPointsValue === true) {
+      emptyPointsValueMessage = (
+        <View>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Points is required.
+          </Text>
+        </View>
+      );
+    } else {
+      emptyPointsValueMessage = <View></View>;
+    }
+
     const users = this.props.users;
 
     const children = _.filter(users, function(item) {
@@ -73,11 +126,16 @@ class ChoreForm extends Component {
                 label="ChoreName"
                 placeholder="Dishes"
                 value={this.props.choreName}
-                onChangeText={value =>
-                  this.props.choreUpdate({ prop: "choreName", value: value })
-                }
+                onChangeText={value => {
+                  this.props.choreUpdate({
+                    prop: "emptyChoreName",
+                    value: false
+                  });
+                  this.props.choreUpdate({ prop: "choreName", value: value });
+                }}
               />
             </CardSection>
+            {emptyChoreNameMessage}
 
             <View style={styles.containerStyle}>
               <Text style={styles.labelStyle}> Description </Text>
@@ -88,11 +146,16 @@ class ChoreForm extends Component {
                 autoCorrect={false}
                 style={styles.inputStyle}
                 value={this.props.description}
-                onChangeText={value =>
-                  this.props.choreUpdate({ prop: "description", value: value })
-                }
+                onChangeText={value => {
+                  this.props.choreUpdate({
+                    prop: "emptyDescription",
+                    value: false
+                  });
+                  this.props.choreUpdate({ prop: "description", value: value });
+                }}
               />
             </View>
+            {emptyDescriptionMessage}
 
             <View
               style={{
@@ -112,6 +175,10 @@ class ChoreForm extends Component {
                   // TOTmake equal to width
                 }}
                 onValueChange={(itemValue, itemIndex) => {
+                  this.props.choreUpdate({
+                    prop: "emptyChild",
+                    value: false
+                  });
                   this.props.choreUpdate({ prop: "child", value: itemValue });
                   this.setState({ child: itemValue });
                 }}
@@ -122,17 +189,23 @@ class ChoreForm extends Component {
                 })}
               </Picker>
             </View>
+            {emptyChildMessage}
 
             <CardSection>
               <Input
                 label="Points"
                 placeholder="Points the chore is worth."
                 value={this.props.pointsValue}
-                onChangeText={value =>
-                  this.props.choreUpdate({ prop: "pointsValue", value: value })
-                }
+                onChangeText={value => {
+                  this.props.choreUpdate({
+                    prop: "emptyPointsValue",
+                    value: false
+                  });
+                  this.props.choreUpdate({ prop: "pointsValue", value: value });
+                }}
               />
             </CardSection>
+            {emptyPointsValueMessage}
 
             <CardSection>
               <View>
@@ -210,7 +283,12 @@ const mapStateToProps = state => {
     day,
     child,
     pointsValue,
-    isRecurring
+    isRecurring,
+    emptyChoreName,
+    emptyDescription,
+    emptyDay,
+    emptyChild,
+    emptyPointsValue
   } = state.choreForm;
 
   return {
@@ -220,7 +298,12 @@ const mapStateToProps = state => {
     child,
     pointsValue,
     isRecurring,
-    users: state.users
+    users: state.users,
+    emptyChoreName,
+    emptyDescription,
+    emptyDay,
+    emptyChild,
+    emptyPointsValue
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, CardSection, Button, Text } from "../common/index";
-import { choreCreate } from "../../actions/ParentActions";
+import { choreCreate, choreUpdate } from "../../actions/ParentActions";
 import ChoreForm from "./ChoreForm";
 import { ScrollView, Alert, View } from "react-native";
 
@@ -9,7 +9,17 @@ class ChoreCreate extends Component {
   state = {
     allowSubmit: true
   };
+
+  componentDidMount() {
+    this.props.choreUpdate({ prop: "emptyChoreName", value: false });
+    this.props.choreUpdate({ prop: "emptyDescription", value: false });
+    this.props.choreUpdate({ prop: "emptyDay", value: false });
+    this.props.choreUpdate({ prop: "emptyChild", value: false });
+    this.props.choreUpdate({ prop: "emptyPointsValue", value: 0 });
+  }
+
   onButtonPress() {
+    this.state.allowSubmit = true;
     const {
       choreName,
       description,
@@ -20,60 +30,35 @@ class ChoreCreate extends Component {
       isRecurring
     } = this.props;
 
-    // chore Name Check
-    let choreNameRequired;
     if (choreName === "") {
-      console.log("inside of chore Name check");
-
+      this.props.choreUpdate({ prop: "emptyChoreName", value: true });
       this.state.allowSubmit = false;
-      choreNameRequired = "-Chore Name";
-    } else {
-      choreNameRequired = "";
     }
 
-    // description  Check
-    let descriptionRequired;
     if (description === "") {
-      console.log("inside of description check");
-
       this.state.allowSubmit = false;
-      descriptionRequired = "-Description";
-    } else {
-      descriptionRequired = "";
+      this.props.choreUpdate({ prop: "emptyDescription", value: true });
     }
 
-    // child  Check
-    let childRequired;
-    if (child === "") {
-      console.log("inside of child check");
-
+    if (day === "") {
       this.state.allowSubmit = false;
-      console.log("allowSubmit in child check: ", this.state.allowSubmit);
-      childRequired = "-Child Name";
-    } else {
-      childRequired = "";
+      this.props.choreUpdate({ prop: "emptyDay", value: true });
+    }
+
+    console.log("child: ", child);
+    if (child === "") {
+      this.state.allowSubmit = false;
+      this.props.choreUpdate({ prop: "emptyChild", value: true });
+    }
+
+    console.log("pointsValue: ", pointsValue);
+    if (pointsValue === 0) {
+      this.state.allowSubmit = false;
+      this.props.choreUpdate({ prop: "emptyPointsValue", value: true });
     }
 
     console.log("allowSubmit before alert check: ", this.state.allowSubmit);
-    if (this.state.allowSubmit === false) {
-      Alert.alert(
-        "Missing Required Fields: ",
-        `${childRequired}
-         ${descriptionRequired} 
-         ${choreNameRequired}`,
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.setState({ allowSubmit: true });
-              console.log("this.state.allowSubmit ", this.state.allowSubmit);
-            }
-          }
-        ],
-        { cancelable: false }
-      );
-    } else {
-      console.log("allowSubmit: ", this.state.allowSubmit);
+    if (this.state.allowSubmit) {
       this.props.choreCreate({
         choreName: choreName,
         description: description,
@@ -135,5 +120,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  choreCreate
+  choreCreate,
+  choreUpdate
 })(ChoreCreate);

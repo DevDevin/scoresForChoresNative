@@ -22,6 +22,7 @@ class UserCreate extends Component {
     this.props.userUpdate({ prop: "email", value: "" });
     this.props.userUpdate({ prop: "userExists", value: false });
   }
+
   onButtonPress() {
     this.state.allowSubmit = true;
     const { name, password1, password2, status, email } = this.props;
