@@ -81,7 +81,7 @@ class ParentRewardList extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.15,
+            flex: 0.1,
             backgroundColor: "grey"
           }}
         >
@@ -99,7 +99,7 @@ class ParentRewardList extends Component {
             </Text>
           </Animated.View>
         </View>
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.9, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
               <Animated.View

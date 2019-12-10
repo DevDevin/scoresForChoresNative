@@ -62,7 +62,7 @@ class ChildRewardRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "steelblue",
-            flex: 0.15
+            flex: 0.1
           }}
         >
           <Text
@@ -91,7 +91,7 @@ class ChildRewardRequestList extends Component {
             }}
           />
         </View>
-        <View style={{ flex: 0.85, backgroundColor: "#999897" }}>
+        <View style={{ flex: 0.9, backgroundColor: "#999897" }}>
           <ScrollView>
             <View>
               <FlatList

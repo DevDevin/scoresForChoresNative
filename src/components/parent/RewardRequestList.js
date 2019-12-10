@@ -77,7 +77,7 @@ class RewardRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.15,
+            flex: 0.1,
             elevation: 3
           }}
         >
@@ -131,7 +131,7 @@ class RewardRequestList extends Component {
             })}
           </Picker>
         </View>
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.9, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
               <Animated.View

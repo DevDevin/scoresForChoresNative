@@ -101,10 +101,6 @@ const RouterComponent = () => {
               key="childRewardStore"
               component={ChildRewardStore}
               title="Child Reward Store"
-              rightTitle="Reward Requests"
-              onRight={() => {
-                Actions.rewardRequests();
-              }}
             />
             <Scene
               key="rewardRequests"

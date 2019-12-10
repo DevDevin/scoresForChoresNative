@@ -90,7 +90,7 @@ class ChildChoreList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.15
+            flex: 0.1
           }}
         >
           <Animated.View
@@ -184,7 +184,7 @@ class ChildChoreList extends Component {
             </Picker>
           </View>
         </View>
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.9, backgroundColor: "grey" }}>
           <ScrollView>
             <View>
               <Animated.View

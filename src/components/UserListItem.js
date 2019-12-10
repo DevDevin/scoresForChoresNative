@@ -25,17 +25,21 @@ class UserListItem extends Component {
   };
 
   onSignIn(password, activeUser) {
-    this.setState({
-      isModalVisible: !this.state.isModalVisible
-    });
+    console.log("this.state.enteredPassword: ", this.state.enteredPassword);
+    console.log("actualPassword: ", password);
+    // this.setState({
+    //   isModalVisible: !this.state.isModalVisible
+    // });
 
     if (password === this.state.enteredPassword) {
+      console.log("passwords matched");
       this.props.loadingUsersStart();
 
       // redirect to parent or child depending on the user status
       this.props.setActiveUser(activeUser);
 
       if (activeUser.status === "parent") {
+        this.setState({ isModalVisible: false });
         Actions.parent();
       } else {
         this.setState({ isModalVisible: false });
@@ -49,7 +53,7 @@ class UserListItem extends Component {
         [
           {
             text: "Okay",
-            // onPress: () => console.log("Okay Pressed"),
+            // onPress: () => Actions.chooseUser(),
             style: "cancel"
           }
         ],

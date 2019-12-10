@@ -56,7 +56,7 @@ class ChildHome extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "grey",
-            flex: 0.5
+            flex: 0.3
           }}
         >
           <Animated.View
@@ -102,7 +102,7 @@ class ChildHome extends Component {
               }}
             >
               <Image source={require("../../Images/rewardList.png")} />
-              <Text style={{ fontSize: 22 }}>Reward List</Text>
+              <Text style={{ fontSize: 22 }}>Reward Store</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -142,7 +142,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { loadingUsersEnd }
-)(ChildHome);
+export default connect(mapStateToProps, { loadingUsersEnd })(ChildHome);

@@ -1,13 +1,9 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
--- fix login feature
 -- add direction tips for first time users. 
--- handle email already exists when registering. 
 -- delete commented out code and console logs. 
--- fix the required fields in forms 
-	chore
 -- elevate the top banner/header on each list view
 -- make all the forms like the sign in form in style
--- fix infinite loop if password is incorrect. 
 -- remove the auto filled values from the form like email and password
 -- finish the recurring chores restart thing. 
+-- finish forgotten password feature

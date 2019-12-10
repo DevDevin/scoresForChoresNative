@@ -15,6 +15,7 @@ import {
   LOADING_USERS_END,
   TURN_OFF_ERROR
 } from "./types";
+import { Alert } from "react-native";
 
 export const passwordReset = (uid, newPassword) => {
   const { currentUser } = firebase.auth();
@@ -25,10 +26,7 @@ export const passwordReset = (uid, newPassword) => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
-      // .orderByChild("name")
-      // .equalTo(user)
       .on("value", snapshot => {
-        // set values for updating the child from the snapshot
         earnedPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
         name = snapshot.val().name;
@@ -110,6 +108,20 @@ export const createAccount = ({ email, password, password2 }) => {
             .then(() => {
               createUserSuccess(dispatch);
             });
+        })
+        .catch(err => {
+          console.log("fail. Couldn't create user because: ", err);
+          Alert.alert(
+            "Usesr Name Already Exists",
+            "Please choose another one.",
+            [
+              {
+                text: "OK",
+                onPress: () => {}
+              }
+            ],
+            { cancelable: false }
+          );
         });
     }
   };
@@ -124,6 +136,20 @@ const passwordMismatch = dispatch => {
 };
 
 const createUserSuccess = dispatch => {
+  Alert.alert(
+    "Account Successfully Created.",
+    "Please create an admin user to manage the account.",
+    [
+      {
+        text: "OK",
+        onPress: () => {
+          Actions.adminUserCreate();
+        }
+      }
+    ],
+    { cancelable: false }
+  );
+
   dispatch({ type: CREATE_USER_SUCCESS });
 };
 

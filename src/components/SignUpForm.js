@@ -33,7 +33,7 @@ class LoginForm extends Component {
 
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.adminUserCreate();
+    // Actions.adminUserCreate();
   };
 
   onButtonPress() {
@@ -41,7 +41,7 @@ class LoginForm extends Component {
 
     if (password === password2) {
       this.props.createAccount({ email, password, password2 });
-      this.setState({ isModalVisible: true });
+      // this.setState({ isModalVisible: true });
     } else {
       this.setState({ passwordMismatch: true });
     }

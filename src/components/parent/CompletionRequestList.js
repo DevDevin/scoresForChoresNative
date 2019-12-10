@@ -87,7 +87,7 @@ class CompletionRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.15,
+            flex: 0.1,
             elevation: 5
           }}
         >
@@ -118,7 +118,7 @@ class CompletionRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             borderColor: "black",
-            borderBottomWidth: 0.15,
+            borderBottomWidth: 0.9,
             elevation: 1
           }}
         >
