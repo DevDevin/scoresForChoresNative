@@ -82,7 +82,8 @@ class ParentRewardList extends Component {
             justifyContent: "center",
             alignItems: "center",
             flex: 0.1,
-            backgroundColor: "grey"
+            backgroundColor: "grey",
+            elevation: 5
           }}
         >
           <Animated.View

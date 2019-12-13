@@ -90,7 +90,8 @@ class ChildChoreList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "skyblue",
-            flex: 0.1
+            flex: 0.1,
+            elevation: 5
           }}
         >
           <Animated.View

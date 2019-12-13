@@ -78,7 +78,7 @@ class RewardRequestList extends Component {
             alignItems: "center",
             backgroundColor: "skyblue",
             flex: 0.1,
-            elevation: 3
+            elevation: 5
           }}
         >
           <Animated.View

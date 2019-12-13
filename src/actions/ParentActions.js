@@ -439,7 +439,8 @@ export const choreReset = filteredChores => {
           status: "In-Progress"
         })
         .then(() => {
-          Actions.parentChoreList({ type: "reset" });
+          console.log("actions.parent");
+          Actions.parentChoreList();
         });
     });
   };

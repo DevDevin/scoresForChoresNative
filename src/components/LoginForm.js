@@ -6,11 +6,12 @@ import {
   Modal,
   TouchableHighlight,
   Alert,
-  Animated
+  Animated,
+  TextInput
 } from "react-native";
 import { connect } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay";
-
+import { Actions } from "react-native-router-flux";
 import {
   emailChanged,
   passwordChanged,
@@ -63,6 +64,21 @@ class LoginForm extends Component {
 
   resetEmailSend(resetEmail) {
     this.props.forgotPassword(resetEmail);
+    Alert.alert(
+      "Email Sent",
+      "Check your inbox for a link to reset your password.",
+      [
+        {
+          text: "Back to Login",
+          onPress: () => {
+            // Actions.login();
+            this.setState({ modalVisible: false });
+          },
+          style: "cancel"
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   renderButton() {
@@ -93,23 +109,6 @@ class LoginForm extends Component {
     }
 
     return <View></View>;
-  }
-
-  renderEmailSentView() {
-    if (this.state.emailSent) {
-      return (
-        <View>
-          <Text>Email Sent</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.setState({ modalVisible: false });
-            }}
-          >
-            <Text>Back to Login</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
   }
 
   renderAlert() {
@@ -211,38 +210,92 @@ class LoginForm extends Component {
 
           <Modal
             animationType="slide"
-            transparent={false}
+            transparent={true}
             visible={this.state.modalVisible}
           >
-            <View style={{ marginTop: 22, marginLeft: 10, marginRight: 15 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                justifyContent: "center",
+                backgroundColor: "grey"
+              }}
+            >
+              <View
+                style={{
+                  height: 60,
+                  backgroundColor: "powderblue",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  elevation: 3
+                }}
+              >
+                <Text style={{ fontSize: 22 }}>Enter your email address</Text>
+              </View>
               <View>
-                <Text>Hello World!</Text>
-                <View style={styles.cardSectionStyle}>
-                  <Input
-                    label="Email"
-                    placeholder="email"
-                    onChangeText={this.resetPasswordEmailChange.bind(this)}
-                    value={this.state.resetEmail}
-                  />
+                <View
+                  style={{
+                    borderBottomWidth: 1,
+                    padding: 5,
+                    backgroundColor: "steelblue",
+                    justifyContent: "flex-start",
+                    borderColor: "#ddd",
+                    position: "relative",
+                    flexDirection: "row"
+                  }}
+                >
+                  <View style={styles.containerStyle}>
+                    <Text style={styles.labelStyle}>Email Address</Text>
+
+                    <TextInput
+                      autoCorrect={false}
+                      style={styles.inputStyle}
+                      placeholder="Email"
+                      value={this.state.resetEmail}
+                      onChangeText={this.resetPasswordEmailChange.bind(this)}
+                    />
+                  </View>
                 </View>
 
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setState({ emailSent: true });
-                    this.resetEmailSend(resetEmail);
+                <View
+                  style={{
+                    borderBottomWidth: 1,
+                    padding: 5,
+                    backgroundColor: "steelblue",
+                    justifyContent: "flex-start",
+                    borderColor: "#ddd",
+                    position: "relative"
                   }}
                 >
-                  <Text>Send Email</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setState({ modalVisible: false });
+                  <Button
+                    onPress={() => {
+                      this.setState({ emailSent: true });
+                      this.resetEmailSend(resetEmail);
+                    }}
+                  >
+                    Send Email
+                  </Button>
+                </View>
+
+                <View
+                  style={{
+                    borderBottomWidth: 1,
+                    padding: 5,
+                    backgroundColor: "steelblue",
+                    justifyContent: "flex-start",
+                    borderColor: "#ddd",
+                    position: "relative"
                   }}
                 >
-                  <Text>Cancel</Text>
-                </TouchableHighlight>
+                  <Button
+                    onPress={() => {
+                      this.setState({ modalVisible: false });
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </View>
               </View>
-              {this.renderEmailSentView()}
             </View>
           </Modal>
         </View>
@@ -256,6 +309,26 @@ const styles = {
     fontSize: 20,
     alignSelf: "center",
     color: "red"
+  },
+  inputStyle: {
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  },
+  labelStyle: {
+    fontSize: 18,
+    paddingLeft: 20,
+    flex: 1
+  },
+  containerStyle: {
+    height: 40,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "steelblue"
+    // borderColor: "powderblue"
   },
   ContainerStyle: {
     borderWidth: 1,

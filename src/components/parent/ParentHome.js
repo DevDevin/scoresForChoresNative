@@ -83,7 +83,8 @@ class ParentHome extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.6
+            flex: 0.6,
+            elevation: 5
           }}
         >
           <Text
@@ -257,7 +258,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { loadingUsersEnd, loadingUsersStart }
-)(ParentHome);
+export default connect(mapStateToProps, { loadingUsersEnd, loadingUsersStart })(
+  ParentHome
+);

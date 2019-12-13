@@ -189,7 +189,8 @@ class ChildRewardStore extends Component {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            elevation: 5
           }}
         >
           <Animated.View

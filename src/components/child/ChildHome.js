@@ -56,7 +56,8 @@ class ChildHome extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "grey",
-            flex: 0.3
+            flex: 0.3,
+            elevation: 5
           }}
         >
           <Animated.View

@@ -2,8 +2,9 @@
 -- beautify the style and design
 -- add direction tips for first time users. 
 -- delete commented out code and console logs. 
--- elevate the top banner/header on each list view
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
--- finish the recurring chores restart thing. 
--- finish forgotten password feature
+-- fix the edit feature for chores and rewards to have form autofilled with current values
+	-fix the edit and delte buttons functionality and style
+-- add edit user funtionality for the admin to edit the childrens info if need be
+-- finish reset child passwords view
