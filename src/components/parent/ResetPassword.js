@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { View, Text, Picker, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Picker,
+  TouchableOpacity,
+  Alert,
+  Dimensions
+} from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { usersFetch, passwordReset } from "../../actions/AuthActions";
@@ -20,7 +27,9 @@ class ResetPassword extends Component {
     if (this.state.passwordMismatch) {
       return (
         <View>
-          <Text style={{ color: "red" }}>Passwords Do Not Match</Text>
+          <Text style={{ color: "white", fontSize: 22 }}>
+            Passwords Do Not Match
+          </Text>
         </View>
       );
     }
@@ -40,17 +49,9 @@ class ResetPassword extends Component {
 
   renderPickerLabel() {
     if (this.state.user === "nothing") {
-      return (
-        <Text style={{ color: "white", fontSize: 22 }}>
-          Please choose a user.
-        </Text>
-      );
+      return <Text style={{ fontSize: 22 }}>Choose a user</Text>;
     } else {
-      return (
-        <Text style={{ color: "white", fontSize: 22 }}>
-          {this.state.pickerLabel}
-        </Text>
-      );
+      return <Text style={{ fontSize: 22 }}>{this.state.pickerLabel}</Text>;
     }
   }
 
@@ -65,8 +66,8 @@ class ResetPassword extends Component {
             height: 60,
             backgroundColor: "steelblue",
             alignItems: "center",
-            justifyContent: "center",
-            elevation: 3
+            justifyContent: "center"
+            // elevation: 5
           }}
         >
           <Text style={{ fontSize: 22 }} t>
@@ -74,55 +75,63 @@ class ResetPassword extends Component {
           </Text>
         </View>
         {this.renderUserNothing()}
-        <View
-          style={{
-            height: 60,
-            backgroundColor: "powderblue",
-            alignItems: "center",
-            justifyContent: "center",
-            elevation: 3
-          }}
-        >
-          {this.renderPickerLabel()}
-        </View>
-        <View
-          style={{
-            height: 60,
-            backgroundColor: "powderblue",
-            alignItems: "center",
-            justifyContent: "center",
-            elevation: 3
-          }}
-        >
-          <Picker
-            selectedValue={this.state.user}
-            style={{ height: 50, width: 200 }}
-            onValueChange={(itemValue, itemIndex) => {
-              console.log("itemValue.uid: ", itemValue.uid);
-              console.log("itemValue.name: ", itemValue.name);
-
-              this.setState({
-                user: itemValue.uid,
-                userNothing: false,
-                pickerLabel: itemValue.name
-              });
+        <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              height: 60,
+              backgroundColor: "powderblue",
+              alignItems: "center",
+              justifyContent: "center",
+              elevation: 5,
+              width: Dimensions.get("window").width / 2
             }}
           >
-            <Picker.Item
-              label="Please Choose User"
-              value="nothing"
-              key="null"
-            />
+            {this.renderPickerLabel()}
+          </View>
+          <View
+            style={{
+              height: 60,
+              backgroundColor: "powderblue",
+              alignItems: "center",
+              justifyContent: "center",
+              elevation: 5,
+              width: Dimensions.get("window").width / 2
+            }}
+          >
+            <Picker
+              selectedValue={this.state.user}
+              style={{ height: 50, width: 200 }}
+              onValueChange={(itemValue, itemIndex) => {
+                console.log("itemValue.uid: ", itemValue.uid);
+                console.log("itemValue.name: ", itemValue.name);
 
-            {users.map(function(user) {
-              return (
-                <Picker.Item label={user.name} value={user} key={user.uid} />
-              );
-            })}
-          </Picker>
+                this.setState({
+                  user: itemValue.uid,
+                  userNothing: false,
+                  pickerLabel: itemValue.name
+                });
+              }}
+            >
+              <Picker.Item label="Users" value="nothing" key="null" />
+
+              {users.map(function(user) {
+                return (
+                  <Picker.Item label={user.name} value={user} key={user.uid} />
+                );
+              })}
+            </Picker>
+          </View>
         </View>
 
-        <CardSection>
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "steelblue",
+            alignItems: "center",
+            justifyContent: "center"
+            // elevation: 3
+          }}
+        >
           <Input
             secureTextEntry
             label="password"
@@ -130,9 +139,17 @@ class ResetPassword extends Component {
             value={this.state.passwordReset}
             onChangeText={value => this.setState({ password1: value })}
           />
-        </CardSection>
+        </View>
 
-        <CardSection>
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "steelblue",
+            alignItems: "center",
+            justifyContent: "center"
+            // elevation: 3
+          }}
+        >
           <Input
             secureTextEntry
             label="passwordConfirm"
@@ -140,12 +157,13 @@ class ResetPassword extends Component {
             value={this.state.password2}
             onChangeText={value => this.setState({ password2: value })}
           />
-        </CardSection>
+        </View>
+
         {this.renderMismatch()}
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 5,
+            padding: 10,
             backgroundColor: "steelblue",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -192,7 +210,7 @@ class ResetPassword extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 5,
+            padding: 10,
             backgroundColor: "steelblue",
             justifyContent: "flex-start",
             borderColor: "#ddd",

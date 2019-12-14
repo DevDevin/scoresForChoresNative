@@ -31,7 +31,7 @@ export const passwordReset = (uid, newPassword) => {
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = newPassword;
-        phone = snapshot.val().phone;
+        // phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
@@ -42,7 +42,7 @@ export const passwordReset = (uid, newPassword) => {
         email: email,
         name: name,
         password: password,
-        phone: phone,
+        // phone: phone,
         status: status
       })
       .then(() => {
