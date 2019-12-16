@@ -5,7 +5,7 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  choreName: "",
+  // choreName: "",
   description: "",
   day: "Daily",
   child: "",

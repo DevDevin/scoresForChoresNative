@@ -139,7 +139,6 @@ export const choreSave = ({
       .set({ child, choreName, description, pointsValue, day })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
-        Actions.parentChoreList({ type: "reset" });
       });
   };
 };

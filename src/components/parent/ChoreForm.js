@@ -20,14 +20,17 @@ class ChoreForm extends Component {
     child: ""
   };
   componentDidMount() {
+    console.log("this.props.choreName: ", this.props.choreName);
+    console.log("this.props.cid: ", this.props.cid);
+    this.props.choreUpdate({ prop: "cid", value: this.props.cid });
     this.props.choreUpdate({
       prop: "isRecurring",
       value: false
     });
 
-    this.props.choreUpdate({ prop: "choreName", value: "" });
-    this.props.choreUpdate({ prop: "description", value: "" });
-    this.props.choreUpdate({ prop: "pointsValue", value: 0 });
+    // this.props.choreUpdate({ prop: "choreName", value: "" });
+    // this.props.choreUpdate({ prop: "description", value: "" });
+    // this.props.choreUpdate({ prop: "pointsValue", value: 0 });
     // fetch users for dropdown
     this.props.usersFetch();
   }
@@ -43,6 +46,7 @@ class ChoreForm extends Component {
   }
 
   render() {
+    this.props.choreUpdate({ prop: "cid", value: this.props.cid });
     var radio_props = [
       { label: "Daily", value: "Daily" },
       { label: "Monday-Wednesday-Friday", value: "Monday-Wednesday-Friday" },
@@ -288,7 +292,11 @@ const mapStateToProps = state => {
     emptyDescription,
     emptyDay,
     emptyChild,
-    emptyPointsValue
+    emptyPointsValue,
+    editChoreName,
+    editDescription,
+    editPointsValue,
+    cid
   } = state.choreForm;
 
   return {
@@ -303,7 +311,11 @@ const mapStateToProps = state => {
     emptyDescription,
     emptyDay,
     emptyChild,
-    emptyPointsValue
+    emptyPointsValue,
+    editChoreName,
+    editDescription,
+    editPointsValue,
+    cid
   };
 };
 

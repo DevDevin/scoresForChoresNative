@@ -8,7 +8,11 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
-import { choresFetch, choreDelete } from "../../actions/ParentActions";
+import {
+  choresFetch,
+  choreDelete,
+  choreUpdate
+} from "../../actions/ParentActions";
 
 class ParentChoreListItem extends Component {
   state = {
@@ -16,11 +20,31 @@ class ParentChoreListItem extends Component {
   };
 
   toggleModal = () => {
+    console.log("this.props.chore: ", this.props.chore);
+
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
   onEditPress() {
     // edit the chore
+    console.log("this.props.chore.cid editpress: ", this.props.chore.cid);
+    console.log("this.props.chore: ", this.props.chore);
+    this.props.choreUpdate({
+      prop: "choreName",
+      value: this.props.chore.choreName
+    });
+    this.props.choreUpdate({
+      prop: "description",
+      value: this.props.chore.description
+    });
+    this.props.choreUpdate({
+      prop: "pointsValue",
+      value: this.props.chore.pointsValue
+    });
+    this.props.choreUpdate({
+      prop: "cid",
+      value: this.props.chore.cid
+    });
     this.setState({ isModalVisible: !this.state.isModalVisible });
     Actions.choreEdit({ chore: this.props.chore });
   }
@@ -179,6 +203,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { choresFetch, choreDelete })(
-  ParentChoreListItem
-);
+export default connect(mapStateToProps, {
+  choresFetch,
+  choreDelete,
+  choreUpdate
+})(ParentChoreListItem);

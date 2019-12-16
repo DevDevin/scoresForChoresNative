@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { connect } from "react-redux";
 import ChoreForm from "./ChoreForm";
 import {
@@ -9,31 +9,44 @@ import {
   choreDelete
 } from "../../actions/ParentActions";
 import { Card, CardSection, Button, Confirm } from "../common";
+import { Actions } from "react-native-router-flux";
 
 class ChoreEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
+    console.log("this.props.chore:  in choreEdit.js", this.props.cid);
     _.each(this.props.chore, (value, prop) => {
       this.props.choreUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    const { child, choreName, description, pointsValue, day } = this.props;
+    console.log(
+      "this.props.chore.choreName: in choreEdit.js ",
+      this.props.choreName
+    );
+    console.log("this.props.cid: in chore edit", this.props.cid);
+    console.log("this.props: ", this.props);
+
+    const { child, choreName, description, pointsValue, day, cid } = this.props;
+    console.log("cid: ", cid);
 
     this.props.choreSave({
       child,
       choreName,
       description,
-      cid: this.props.chore.cid,
+      cid,
       pointsValue,
       day
     });
+
+    Actions.parentChoreList();
   }
 
   onAccept() {
-    const { cid } = this.props.chore;
+    console.log("this.props.chore: ", this.props.chore);
+    const { cid } = this.props;
 
     this.props.choreDelete({ cid });
   }
@@ -48,29 +61,41 @@ class ChoreEdit extends Component {
         <ScrollView>
           <ChoreForm />
 
-          <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
-              Save Changes
-            </Button>
-          </CardSection>
-
-          <CardSection>
-            <Button
-              onPress={() =>
-                this.setState({ showModal: !this.state.showModal })
-              }
+          <View style={{ flexDirection: "column" }}>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
             >
-              Delete Chore
-            </Button>
-          </CardSection>
+              <Button onPress={this.onButtonPress.bind(this)}>
+                Save Changes
+              </Button>
+            </View>
 
-          <Confirm
-            visible={this.state.showModal}
-            onAccept={this.onAccept.bind(this)}
-            onDecline={this.onDecline.bind(this)}
-          >
-            Are you sure you want to delete this?
-          </Confirm>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={() => {
+                  Actions.parentChoreList();
+                }}
+              >
+                Cancel
+              </Button>
+            </View>
+          </View>
         </ScrollView>
       </Card>
     );
@@ -78,16 +103,20 @@ class ChoreEdit extends Component {
 }
 
 const mapStateToProps = state => {
-  const { child, choreName, day, description, pointsValue } = state.choreForm;
+  const {
+    child,
+    choreName,
+    day,
+    description,
+    pointsValue,
+    cid
+  } = state.choreForm;
 
-  return { child, choreName, day, description, pointsValue };
+  return { child, choreName, day, description, pointsValue, cid };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    choreUpdate,
-    choreSave,
-    choreDelete
-  }
-)(ChoreEdit);
+export default connect(mapStateToProps, {
+  choreUpdate,
+  choreSave,
+  choreDelete
+})(ChoreEdit);

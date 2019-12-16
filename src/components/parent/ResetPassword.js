@@ -219,7 +219,7 @@ class ResetPassword extends Component {
         >
           <Button
             onPress={() => {
-              // this.setState({ modalVisible: false });
+              Actions.parentHome();
             }}
           >
             Back to Home

@@ -7,4 +7,3 @@
 -- fix the edit feature for chores and rewards to have form autofilled with current values
 	-fix the edit and delte buttons functionality and style
 -- add edit user funtionality for the admin to edit the childrens info if need be
--- finish reset child passwords view
