@@ -15,10 +15,7 @@ class RewardEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    console.log(
-      "this.props.rewardName:  in RewardEdit.js",
-      this.props.rewardName
-    );
+    console.log("this.props.rid: rewardEdit.js: ", this.props.rid);
     _.each(this.props.reward, (value, prop) => {
       this.props.rewardUpdate({ prop, value });
     });
@@ -26,30 +23,27 @@ class RewardEdit extends Component {
 
   onButtonPress() {
     console.log("this.props.reward: ", this.props.rewardName);
-    console.log("this.props.cid: in chore edit", this.props.cid);
+    console.log("this.props.cid: in chore edit", this.props);
     console.log("this.props: ", this.props);
-    const { child, choreName, description, pointsValue, day, cid } = this.props;
-    console.log("cid: ", cid);
+    const { rewardName, description, pointsValue, rid } = this.props;
     this.props.rewardSave({
-      child,
-      choreName,
+      rewardName,
       description,
-      cid,
-      pointsValue,
-      day
+      rid,
+      pointsValue
     });
     Actions.parentRewardList();
   }
 
-  onAccept() {
-    // console.log("this.props.chore: ", this.props.chore);
-    // const { cid } = this.props;
-    // this.props.choreDelete({ cid });
-  }
+  // onAccept() {
+  //   console.log("this.props.chore: ", this.props.chore);
+  //   const { rid } = this.props;
+  //   this.props.choreDelete({ rid });
+  // }
 
-  onDecline() {
-    this.setState({ showModal: false });
-  }
+  // onDecline() {
+  //   this.setState({ showModal: false });
+  // }
 
   render() {
     return (
@@ -99,9 +93,9 @@ class RewardEdit extends Component {
 }
 
 const mapStateToProps = state => {
-  const { rewardName, pointsValue, description } = state.rewardForm;
+  const { rewardName, pointsValue, description, rid } = state.rewardForm;
 
-  return { rewardName, pointsValue, description };
+  return { rewardName, pointsValue, description, rid };
 };
 
 export default connect(mapStateToProps, {

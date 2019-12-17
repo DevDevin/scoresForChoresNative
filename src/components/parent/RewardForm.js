@@ -7,7 +7,8 @@ import { CardSection, Input } from "../common/index";
 class RewardForm extends Component {
   componentDidMount() {
     // reset props when opening form
-    // this.props.rewardUpdate({ prop: "rewardName", value: "" });
+    console.log("reward form. this.props.reward: ", this.props.rid);
+    this.props.rewardUpdate({ prop: "rid", value: this.props.rid });
     // this.props.rewardUpdate({ prop: "pointsValue", value: 0 });
     // this.props.rewardUpdate({ prop: "description", value: "" });
     // ** I removed this for editing purposes. In order to have the value "" when creating a new reward
@@ -164,7 +165,8 @@ const mapStateToProps = state => {
     emptyRewardName,
     emptyPointsValue,
     emptyDescription,
-    rewardExists
+    rewardExists,
+    rid
   } = state.rewardForm;
 
   return {
@@ -174,7 +176,8 @@ const mapStateToProps = state => {
     emptyRewardName: emptyRewardName,
     emptyPointsValue: emptyPointsValue,
     emptyDescription: emptyDescription,
-    rewardExists: rewardExists
+    rewardExists: rewardExists,
+    rid: rid
   };
 };
 
