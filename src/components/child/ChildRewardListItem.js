@@ -13,7 +13,8 @@ import Modal from "react-native-modal";
 import {
   rewardsFetch,
   rewardRequestsFetch,
-  rewardDelete
+  rewardDelete,
+  rewardUpdate
 } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
@@ -31,15 +32,38 @@ class RewardListItem extends Component {
   }
 
   toggleModal = () => {
-    console.log("ismodalvisible before: ", this.state.isModalVisible);
+    console.log("rewardName: ", this.props.reward.rewardName);
+    console.log("pointsValue: ", this.props.reward.pointsValue);
+    console.log("description: ", this.props.reward.description);
+    console.log("rid: ", this.props.reward);
+
+    this.props.rewardUpdate({
+      prop: "rewardName",
+      value: this.props.reward.rewardName
+    });
+
+    this.props.rewardUpdate({
+      prop: "pointsValue",
+      value: this.props.reward.pointsValue
+    });
+
+    this.props.rewardUpdate({
+      prop: "description",
+      value: this.props.reward.description
+    });
+
+    this.props.rewardUpdate({
+      prop: "rid",
+      value: this.props.reward.cid
+    });
+
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    console.log("ismodalvisible after: ", this.state.isModalVisible);
   };
 
   onEditPress() {
     // edit the chore
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.choreEdit({ chore: this.props.chore });
+    Actions.rewardEdit({ reward: this.props.reward });
   }
 
   onButtonPress(rid) {
@@ -222,5 +246,6 @@ export default connect(mapStateToProps, {
   setActiveUser,
   updateActiveUser,
   rewardRequestsFetch,
-  rewardDelete
+  rewardDelete,
+  rewardUpdate
 })(RewardListItem);

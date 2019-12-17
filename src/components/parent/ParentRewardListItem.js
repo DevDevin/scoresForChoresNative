@@ -23,8 +23,9 @@ class ParentRewardListItem extends Component {
 
   onEditPress() {
     // edit the chore
+    console.log("editPress");
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    Actions.choreEdit({ chore: this.props.chore });
+    Actions.rewardEdit({ reward: this.props.reward });
   }
 
   onButtonPress(activeUserName, uid, pointsValue, rid, rewardName) {

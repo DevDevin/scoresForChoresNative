@@ -143,6 +143,27 @@ export const choreSave = ({
   };
 };
 
+export const rewardSave = ({
+  child,
+  choreName,
+  description,
+  cid,
+  pointsValue,
+  day
+}) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores/${cid}`)
+      .set({ child, choreName, description, pointsValue, day })
+      .then(() => {
+        dispatch({ type: CHORE_SAVE_SUCCESS });
+      });
+  };
+};
+
 export const choreDelete = cid => {
   console.log("inside of chore delete: ", cid);
   const { currentUser } = firebase.auth();

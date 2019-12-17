@@ -7,9 +7,11 @@ import { CardSection, Input } from "../common/index";
 class RewardForm extends Component {
   componentDidMount() {
     // reset props when opening form
-    this.props.rewardUpdate({ prop: "rewardName", value: "" });
-    this.props.rewardUpdate({ prop: "pointsValue", value: 0 });
-    this.props.rewardUpdate({ prop: "description", value: "" });
+    // this.props.rewardUpdate({ prop: "rewardName", value: "" });
+    // this.props.rewardUpdate({ prop: "pointsValue", value: 0 });
+    // this.props.rewardUpdate({ prop: "description", value: "" });
+    // ** I removed this for editing purposes. In order to have the value "" when creating a new reward
+    // ** set the props to "" as above, but do it before navigating to this view. Do it when the floating action button is pressed.
   }
   render() {
     let emptyRewardNameMessage;
