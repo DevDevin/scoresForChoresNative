@@ -194,6 +194,36 @@ export const userUpdate = ({ prop, value }) => {
   };
 };
 
+export const userSave = ({ rewardName, description, uid, pointsValue }) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .set({
+        rewardName: rewardName,
+        description: description,
+        pointsValue: pointsValue
+      });
+  };
+};
+
+export const userDelete = uid => {
+  console.log("inside of chore delete: ", uid);
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/users/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.employeeList({ type: "reset" });
+      });
+  };
+};
+
 export const usersFetch = () => {
   const { currentUser } = firebase.auth();
 

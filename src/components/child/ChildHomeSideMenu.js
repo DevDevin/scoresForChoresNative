@@ -12,6 +12,28 @@ class ChildHomeSideMenu extends Component {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "skyblue"
+          }}
+        >
+          <TouchableOpacity onPress={() => {}}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/signOut.png")} />
+              <Text style={{ fontSize: 16 }}>Account Settings</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: "#999897"
           }}
         >
