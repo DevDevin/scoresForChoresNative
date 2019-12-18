@@ -4,7 +4,7 @@ import { ScrollView, View } from "react-native";
 import { connect } from "react-redux";
 import UserForm from "./UserForm";
 import { userUpdate, userSave, userDelete } from "../actions/AuthActions";
-import { Card, CardSection, Button, Confirm } from "../common";
+import { Card, CardSection, Button, Confirm } from "./common";
 import { Actions } from "react-native-router-flux";
 
 class UserEdit extends Component {

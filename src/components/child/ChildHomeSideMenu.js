@@ -15,7 +15,11 @@ class ChildHomeSideMenu extends Component {
             backgroundColor: "skyblue"
           }}
         >
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.userEdit();
+            }}
+          >
             <View
               style={{
                 flex: 1,
