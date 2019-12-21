@@ -18,14 +18,27 @@ class UserEdit extends Component {
   }
 
   onButtonPress() {
-    const { rewardName, description, pointsValue, rid } = this.props;
+    const {
+      name,
+      email,
+      earnedPoints,
+      uid,
+      password1,
+      password2,
+      status
+    } = this.props;
+
+    console.log("earnedPoints inside userEdit onButtonPress", earnedPoints);
+    console.log("name: ", name, " email: ", email, " earnedPoints: ");
     this.props.userSave({
-      rewardName,
-      description,
-      rid,
-      pointsValue
+      name,
+      email,
+      password1,
+      status,
+      uid,
+      earnedPoints
     });
-    Actions.parentRewardList();
+    Actions.childHome();
   }
 
   render() {
@@ -76,9 +89,17 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = state => {
-  const { rewardName, pointsValue, description, rid } = state.userForm;
+  const {
+    name,
+    email,
+    password1,
+    password2,
+    uid,
+    status,
+    earnedPoints
+  } = state.userForm;
 
-  return { rewardName, pointsValue, description, rid };
+  return { name, email, password1, password2, uid, status, earnedPoints };
 };
 
 export default connect(mapStateToProps, {

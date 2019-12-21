@@ -194,17 +194,35 @@ export const userUpdate = ({ prop, value }) => {
   };
 };
 
-export const userSave = ({ rewardName, description, uid, pointsValue }) => {
+export const userSave = ({
+  name,
+  email,
+  password1,
+  status,
+  uid,
+  earnedPoints
+}) => {
   const { currentUser } = firebase.auth();
+  console.log(
+    "name: ",
+    name,
+    " password1: ",
+    password1,
+    " status: ",
+    status,
+    " AuthActions user Save"
+  );
 
   return dispatch => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .set({
-        rewardName: rewardName,
-        description: description,
-        pointsValue: pointsValue
+        name: name,
+        email: email,
+        password: password1,
+        status: status,
+        earnedPoints: earnedPoints
       });
   };
 };

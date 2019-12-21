@@ -35,14 +35,23 @@ class ChildHome extends Component {
   componentDidMount() {
     console.log("this.props.activeUser: ", this.props.activeUser);
 
-    const { name, email, password, status } = this.props.activeUser;
-    console.log("email: childHome: ", email);
+    const {
+      name,
+      email,
+      password,
+      status,
+      uid,
+      earnedPoints
+    } = this.props.activeUser;
+
+    console.log("earnedPoints in ChildHome: ", earnedPoints);
 
     this.props.userUpdate({ prop: "name", value: name });
     this.props.userUpdate({ prop: "email", value: email });
     this.props.userUpdate({ prop: "password1", value: password });
     this.props.userUpdate({ prop: "password2", value: password });
     this.props.userUpdate({ prop: "status", value: "Child" });
+    this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
     this.props.loadingUsersEnd();
     this._start();
