@@ -8,7 +8,7 @@ import {
   Image,
   Animated
 } from "react-native";
-import { loadingUsersEnd } from "../../actions/AuthActions";
+import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
 
 class ChildHome extends Component {
   state = {
@@ -33,6 +33,17 @@ class ChildHome extends Component {
   };
 
   componentDidMount() {
+    console.log("this.props.activeUser: ", this.props.activeUser);
+
+    const { name, email, password, status } = this.props.activeUser;
+    console.log("email: childHome: ", email);
+
+    this.props.userUpdate({ prop: "name", value: name });
+    this.props.userUpdate({ prop: "email", value: email });
+    this.props.userUpdate({ prop: "password1", value: password });
+    this.props.userUpdate({ prop: "password2", value: password });
+    this.props.userUpdate({ prop: "status", value: "Child" });
+
     this.props.loadingUsersEnd();
     this._start();
   }
@@ -143,4 +154,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { loadingUsersEnd })(ChildHome);
+export default connect(mapStateToProps, { loadingUsersEnd, userUpdate })(
+  ChildHome
+);

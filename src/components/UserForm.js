@@ -8,11 +8,11 @@ import RadioForm from "react-native-simple-radio-button";
 class UserForm extends Component {
   componentDidMount() {
     // reset props when opening form
-    this.props.userUpdate({ prop: "name", value: "" });
-    this.props.userUpdate({ prop: "email", value: 0 });
-    this.props.userUpdate({ prop: "password1", value: "" });
-    this.props.userUpdate({ prop: "password2", value: "" });
-    this.props.userUpdate({ prop: "status", value: "Child" });
+    // this.props.userUpdate({ prop: "name", value: "" });
+    // this.props.userUpdate({ prop: "email", value: 0 });
+    // this.props.userUpdate({ prop: "password1", value: "" });
+    // this.props.userUpdate({ prop: "password2", value: "" });
+    // this.props.userUpdate({ prop: "status", value: "Child" });
   }
 
   render() {
@@ -67,6 +67,8 @@ class UserForm extends Component {
     } else {
       passwordMismatchMessage = <View></View>;
     }
+
+    console.log("this.props.name: userForm", this.props.name);
     return (
       <View>
         <CardSection>
@@ -92,7 +94,7 @@ class UserForm extends Component {
             placeholder="example@example.com"
             autoCorrect={false}
             style={styles.inputStyle}
-            value={this.props.emails}
+            value={this.props.email}
             onChangeText={value => {
               this.props.userUpdate({ prop: "emptyEmail", value: false });
               this.props.userUpdate({ prop: "email", value });
