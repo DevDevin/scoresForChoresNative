@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import _ from "lodash";
 import { Actions } from "react-native-router-flux";
 import {
   EMAIL_CHANGED,
@@ -94,6 +95,7 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const createAccount = ({ email, password, password2 }) => {
+  console.log("inside createAccount");
   return dispatch => {
     if (password != password2) {
       passwordMismatch(dispatch);
@@ -112,7 +114,7 @@ export const createAccount = ({ email, password, password2 }) => {
         .catch(err => {
           console.log("fail. Couldn't create user because: ", err);
           Alert.alert(
-            "Usesr Name Already Exists",
+            "Username Already Exists",
             "Please choose another one.",
             [
               {
@@ -195,7 +197,8 @@ export const userUpdate = ({ prop, value }) => {
 };
 
 export const userSave = ({
-  name,
+  oldName,
+  newName,
   email,
   password1,
   status,
@@ -203,14 +206,20 @@ export const userSave = ({
   earnedPoints
 }) => {
   const { currentUser } = firebase.auth();
+  // old name to reference when changing the chore and other objects
+  // const newName = currentUser;
+  console.log("currentUser: ", currentUser);
+
   console.log(
     "name: ",
-    name,
+    oldName,
     " password1: ",
     password1,
     " status: ",
     status,
-    " AuthActions user Save"
+    " AuthActions user Save",
+    " newName: ",
+    newName
   );
 
   return dispatch => {
@@ -218,11 +227,69 @@ export const userSave = ({
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .set({
-        name: name,
+        name: newName,
         email: email,
         password: password1,
         status: status,
         earnedPoints: earnedPoints
+      })
+      .then(() => {
+        console.log("name: ", name);
+        // update all objects with this name. ex:
+        choreUpdate2(oldName, newName);
+        // completionRequestUpdate()
+        // rewardRequestUpdate()
+      });
+  };
+};
+
+export const choreUpdate = () => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .on("value", snapshot => {
+        dispatch({ type: CHORE_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+export const choreUpdate2 = (oldName, newName) => {
+  console.log("-----choreUpdate2------");
+  console.log("oldName: ", oldName);
+  console.log("newName: ", newName);
+  const { currentUser } = firebase.auth();
+  // const child = activeUser;
+  // need to figure out why it is not going into the dispatch
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .orderByChild("child")
+      .equalTo("Child 3")
+      .on("value", snapshot => {
+        _.map(snapshot, chore => {
+          console.log("chore: ", chore);
+          console.log("snapshote: ", snapshot);
+          firebase
+            .database()
+            .ref(`/users/${currentUser.uid}/chores`)
+            .push({
+              child: newName,
+              choreName: chore.choreName,
+              day: chore.day,
+              description: chore.description,
+              pointsValue: chore.pointsValue,
+              recuring: true,
+              status: "In-Progress"
+            })
+            .then(() => {
+              console.log("actions.parent");
+              Actions.parentChoreList();
+            });
+        });
       });
   };
 };

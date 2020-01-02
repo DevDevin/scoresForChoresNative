@@ -11,4 +11,8 @@
 	- with that I will need to edit any chores, earnedRewards, completion requests, etc. that have the users name
 -- confirm that the same name can't be used for a user in the same group.
 -- determine wether or not I want the non-admin users to be able to create new users. Currently they can.  
+-- remove phone number field from admin user for and user form. 
+-- add correct icons for menu buttons
+-- display the error message in the account create error modal
+
 

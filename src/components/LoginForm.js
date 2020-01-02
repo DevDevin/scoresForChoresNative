@@ -26,7 +26,7 @@ import { Input, CardSection, Button } from "./common";
 class LoginForm extends Component {
   state = {
     modalVisible: false,
-    resetEmail: "devincbennett@gmail.com",
+    resetEmail: "test@test.co",
     emailSent: false,
     fadeValue: new Animated.Value(0)
   };

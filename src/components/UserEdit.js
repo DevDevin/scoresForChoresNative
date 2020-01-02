@@ -11,6 +11,8 @@ class UserEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
+    oldName = this.props.name;
+    console.log("oldName: ", oldName);
     console.log("this.props.rid: UserEdit.js: ", this.props.rid);
     _.each(this.props.reward, (value, prop) => {
       this.props.userUpdate({ prop, value });
@@ -28,10 +30,15 @@ class UserEdit extends Component {
       status
     } = this.props;
 
+    const newName = this.props.name;
+    console.log("oldName: ", oldName);
+    console.log("newName: ", newName);
+
     console.log("earnedPoints inside userEdit onButtonPress", earnedPoints);
     console.log("name: ", name, " email: ", email, " earnedPoints: ");
     this.props.userSave({
-      name,
+      oldName,
+      newName,
       email,
       password1,
       status,
@@ -42,6 +49,7 @@ class UserEdit extends Component {
   }
 
   render() {
+    let oldName;
     return (
       <Card>
         <ScrollView>
