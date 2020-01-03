@@ -208,19 +208,6 @@ export const userSave = ({
   const { currentUser } = firebase.auth();
   // old name to reference when changing the chore and other objects
   // const newName = currentUser;
-  console.log("currentUser: ", currentUser);
-
-  console.log(
-    "name: ",
-    oldName,
-    " password1: ",
-    password1,
-    " status: ",
-    status,
-    " AuthActions user Save",
-    " newName: ",
-    newName
-  );
 
   return dispatch => {
     firebase
@@ -236,7 +223,7 @@ export const userSave = ({
       .then(() => {
         console.log("name: ", name);
         // update all objects with this name. ex:
-        choreUpdate2(oldName, newName);
+        choreUpdate2();
         // completionRequestUpdate()
         // rewardRequestUpdate()
       });
@@ -257,6 +244,53 @@ export const choreUpdate = () => {
 };
 
 export const choreUpdate2 = (oldName, newName) => {
+  const { currentUser } = firebase.auth();
+  console.log("oldName: ", oldName);
+  console.log("currentUser.uid: ", currentUser.uid);
+  console.log("inside chore update2");
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .orderByChild("child")
+      .equalTo(oldName)
+      .on("value", snapshot => {
+        console.log("payload: ", snapshot.val());
+        _.map(snapshot.val(), chore => {
+          console.log("chore: ", chore);
+          console.log("chore.child: ", chore.choreName);
+
+          // may need to save a chore id value in with the chore objects so i can filter on that value instead of .orderbychild
+          firebase
+            .database()
+            .ref(`/users/${currentUser.uid}/chores`)
+            .orderByChild("choreName")
+            .equalTo(chore.choreName)
+            .on("value", snapshot => {})
+            .set({
+              child: newName,
+              choreName: chore.choreName,
+              day: chore.day,
+              description: chore.description,
+              pointsValue: chore.pointsValue,
+              recuring: true,
+              status: "In-Progress"
+            })
+            .then(() => {
+              console.log("actions.parent");
+              // Actions.parentChoreList();
+            });
+        });
+      });
+  };
+};
+
+export const testFunc = () => {
+  console.log("testFunc");
+};
+
+export const choreUpdate2_2 = (oldName, newName) => {
   console.log("-----choreUpdate2------");
   console.log("oldName: ", oldName);
   console.log("newName: ", newName);
@@ -270,6 +304,7 @@ export const choreUpdate2 = (oldName, newName) => {
       .orderByChild("child")
       .equalTo("Child 3")
       .on("value", snapshot => {
+        console.log("snapshot in choreUpdate2: ", snapshot);
         _.map(snapshot, chore => {
           console.log("chore: ", chore);
           console.log("snapshote: ", snapshot);
@@ -290,6 +325,9 @@ export const choreUpdate2 = (oldName, newName) => {
               Actions.parentChoreList();
             });
         });
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 };

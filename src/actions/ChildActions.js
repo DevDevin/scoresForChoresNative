@@ -9,6 +9,9 @@ import {
 
 export const childChoresFetch = activeUser => {
   const { currentUser } = firebase.auth();
+  console.log("currentUser.uid: ", currentUser.uid);
+  console.log("inside chore childChoresFetch");
+
   const child = activeUser;
   return dispatch => {
     firebase
@@ -17,6 +20,7 @@ export const childChoresFetch = activeUser => {
       .orderByChild("child")
       .equalTo(child)
       .on("value", snapshot => {
+        console.log("payload: ", snapshot.val());
         dispatch({
           type: CHORE_FETCH_SUCCESS,
           payload: snapshot.val()

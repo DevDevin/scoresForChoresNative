@@ -3,7 +3,12 @@ import React, { Component } from "react";
 import { ScrollView, View } from "react-native";
 import { connect } from "react-redux";
 import UserForm from "./UserForm";
-import { userUpdate, userSave, userDelete } from "../actions/AuthActions";
+import {
+  userUpdate,
+  userSave,
+  userDelete,
+  choreUpdate2
+} from "../actions/AuthActions";
 import { Card, CardSection, Button, Confirm } from "./common";
 import { Actions } from "react-native-router-flux";
 
@@ -45,6 +50,10 @@ class UserEdit extends Component {
       uid,
       earnedPoints
     });
+
+    /// testing
+    this.props.choreUpdate2(oldName, newName);
+
     Actions.childHome();
   }
 
@@ -113,5 +122,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   userUpdate,
   userSave,
-  userDelete
+  userDelete,
+  choreUpdate2
 })(UserEdit);
