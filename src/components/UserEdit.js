@@ -9,6 +9,7 @@ import {
   userDelete,
   choreUpdate2
 } from "../actions/AuthActions";
+import { childChoresFetch } from "../actions/ChildActions";
 import { Card, CardSection, Button, Confirm } from "./common";
 import { Actions } from "react-native-router-flux";
 
@@ -17,6 +18,9 @@ class UserEdit extends Component {
 
   componentWillMount() {
     oldName = this.props.name;
+
+    this.props.childChoresFetch(oldName);
+
     console.log("oldName: ", oldName);
     console.log("this.props.rid: UserEdit.js: ", this.props.rid);
     _.each(this.props.reward, (value, prop) => {
@@ -32,9 +36,11 @@ class UserEdit extends Component {
       uid,
       password1,
       password2,
-      status
+      status,
+      chores
     } = this.props;
 
+    console.log("chores object: ", chores);
     const newName = this.props.name;
     console.log("oldName: ", oldName);
     console.log("newName: ", newName);
@@ -52,7 +58,10 @@ class UserEdit extends Component {
     });
 
     /// testing
-    this.props.choreUpdate2(oldName, newName);
+    // filter the chores prop by the old name
+    // then pass in the filtered chores prop to the choreUpdate2() funtction
+    console.log("chores right before the choreUpdate2 call");
+    this.props.choreUpdate2(oldName, newName, { chores });
 
     Actions.childHome();
   }
@@ -106,6 +115,14 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = state => {
+  const chores = _.map(state.chores, (val, cid) => {
+    return { ...val, cid };
+  });
+
+  // i think I need to call the choresFetch action in componentWillMount before state.chores can be used.
+  console.log("chores in mapStateToProps: ", chores);
+  //then I can filter this chores object by the child name before I pass it into the chore update function
+
   const {
     name,
     email,
@@ -116,12 +133,22 @@ const mapStateToProps = state => {
     earnedPoints
   } = state.userForm;
 
-  return { name, email, password1, password2, uid, status, earnedPoints };
+  return {
+    name,
+    email,
+    password1,
+    password2,
+    uid,
+    status,
+    earnedPoints,
+    chores: chores
+  };
 };
 
 export default connect(mapStateToProps, {
   userUpdate,
   userSave,
   userDelete,
-  choreUpdate2
+  choreUpdate2,
+  childChoresFetch
 })(UserEdit);

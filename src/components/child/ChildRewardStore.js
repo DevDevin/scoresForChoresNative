@@ -424,6 +424,9 @@ const mapStateToProps = state => {
     return { ...val, rid };
   });
 
+  console.log("rewards in mapStateToProps: ", rewards);
+  //then I can filter this chores object by the child name before I pass it into the chore update function
+
   const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
     return { ...val, rid };
   });

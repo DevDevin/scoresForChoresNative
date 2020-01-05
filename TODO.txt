@@ -14,7 +14,6 @@
 -- remove phone number field from admin user for and user form. 
 -- add correct icons for menu buttons
 -- display the error message in the account create error modal
-
-
+-- add delete user functionality for admin
 
 
