@@ -243,68 +243,28 @@ export const choreUpdate = () => {
   };
 };
 
-export const choreUpdate2 = (oldName, newName, chores) => {
-  console.log("chores in choreUpdate2: ", chores);
+export const choreUpdate2 = (newName, chores) => {
+  const { currentUser } = firebase.auth();
 
-  console.log("chores.chores[0].choreName", chores.chores[0].choreName);
   // simplify the object of arrays
   const choresObject = chores.chores;
 
   //might have to do this inside of the return dispatch area
-  _.map(choresObject, chore => {
-    console.log("chore map: ", chore);
-    firebase
-      .database()
-      .ref(`/users/${currentUser.uid}/chores/${chore.cid}`)
-      .set({
-        child: newName,
-        choreName: chore.choreName,
-        day: chore.day,
-        description: chore.description,
-        pointsValue: chore.pointsValue,
-        recuring: chore.recuring,
-        status: chore.status
-      });
-  });
-
-  const { currentUser } = firebase.auth();
-  console.log("oldName: ", oldName);
-  console.log("currentUser.uid: ", currentUser.uid);
-  console.log("inside chore update2");
-  console.log("chore.status: ", chore.status);
-
   return dispatch => {
-    firebase
-      .database()
-      .ref(`/users/${currentUser.uid}/chores/${chore.cid}`)
-      .orderByChild("child")
-      .equalTo(oldName)
-      .on("value", snapshot => {
-        console.log("payload: ", snapshot.val().uid);
-        _.map(snapshot.val(), chore => {
-          // may need to save a chore id value in with the chore objects so i can filter on that value instead of .orderbychild
-          // or i just need to figure out how to call the id value that comes in that payload
-          // firebase
-          //   .database()
-          //   .ref(`/users/${currentUser.uid}/chores`)
-          //   .orderByChild("choreName")
-          //   .equalTo(chore.choreName)
-          //   .on("value", snapshot => {})
-          //   .set({
-          //     child: newName,
-          //     choreName: chore.choreName,
-          //     day: chore.day,
-          //     description: chore.description,
-          //     pointsValue: chore.pointsValue,
-          //     recuring: true,
-          //     status: "In-Progress"
-          //   })
-          //   .then(() => {
-          //     console.log("actions.parent");
-          //     // Actions.parentChoreList();
-          //   });
+    _.map(choresObject, chore => {
+      firebase
+        .database()
+        .ref(`/users/${currentUser.uid}/chores/${chore.cid}`)
+        .set({
+          child: newName,
+          choreName: chore.choreName,
+          day: chore.day,
+          description: chore.description,
+          pointsValue: chore.pointsValue,
+          recuring: chore.recuring,
+          status: chore.status
         });
-      });
+    });
   };
 };
 

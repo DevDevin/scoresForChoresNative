@@ -42,7 +42,6 @@ class UserEdit extends Component {
 
     console.log("chores object: ", chores);
     const newName = this.props.name;
-    console.log("oldName: ", oldName);
     console.log("newName: ", newName);
 
     console.log("earnedPoints inside userEdit onButtonPress", earnedPoints);
@@ -61,7 +60,7 @@ class UserEdit extends Component {
     // filter the chores prop by the old name
     // then pass in the filtered chores prop to the choreUpdate2() funtction
     console.log("chores right before the choreUpdate2 call");
-    this.props.choreUpdate2(oldName, newName, { chores });
+    this.props.choreUpdate2(newName, { chores });
 
     Actions.childHome();
   }
