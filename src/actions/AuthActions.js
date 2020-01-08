@@ -243,6 +243,35 @@ export const choreUpdate = () => {
   };
 };
 
+/// update reward requests info when child changes name
+export const rewardRequestUpdate = (newName, rewardRequests) => {
+  const { currentUser } = firebase.auth();
+  console.log("rewardRequests in rewardRequestsUpdate: ", rewardRequests);
+  // simplify the object of arrays
+  const rewardRequestsObject = rewardRequests.rewardRequests;
+  console.log("rewardRequestsObject: ", rewardRequestsObject);
+
+  //might have to do this inside of the return dispatch area
+  return dispatch => {
+    _.map(rewardRequestsObject, rewardRequest => {
+      console.log("rewardRequests map: ", rewardRequest);
+      firebase
+        .database()
+        .ref(`/users/${currentUser.uid}/rewardRequests/${chore.cid}`)
+        .set({
+          childName: newName,
+          pointsValue: rewardRequest.pointsValue,
+          rejectionReason: rewardRequest.rejectionReason,
+          rewardDescription: rewardRequest.rewardDescription,
+          rewardName: rewardRequest.rewardName,
+          rid: rewardRequest.rid,
+          status: rewardRequest.status,
+          uid: rewardRequest.uid
+        });
+    });
+  };
+};
+
 export const choreUpdate2 = (newName, chores) => {
   const { currentUser } = firebase.auth();
 

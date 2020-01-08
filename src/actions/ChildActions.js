@@ -4,7 +4,8 @@ import {
   CHORE_FETCH_SUCCESS,
   REWARD_FETCH_SUCCESS,
   CHORE_SAVE_SUCCESS,
-  EARNED_REWARD_FETCH_SUCCESS
+  EARNED_REWARD_FETCH_SUCCESS,
+  REWARD_REQUESTS_FETCH_SUCCESS
 } from "./types";
 
 export const childChoresFetch = activeUser => {
@@ -23,6 +24,29 @@ export const childChoresFetch = activeUser => {
         console.log("payload: ", snapshot.val());
         dispatch({
           type: CHORE_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
+      });
+  };
+};
+
+export const childRewardRequestsFetch = activeUser => {
+  const { currentUser } = firebase.auth();
+  console.log("currentUser.uid: ", currentUser.uid);
+  console.log("inside childRewardRequestsFetch");
+
+  const child = activeUser;
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests`)
+      .orderByChild("childName")
+      .equalTo(child)
+      .on("value", snapshot => {
+        console.log("payload: ", snapshot.val());
+        dispatch({
+          type: REWARD_REQUESTS_FETCH_SUCCESS,
           payload: snapshot.val()
         });
       });
@@ -179,7 +203,6 @@ export const rewardRequestSend2 = (
         email: activeUserObject.email,
         name: activeUserObject.name,
         password: activeUserObject.password,
-        phone: activeUserObject.phone,
         status: activeUserObject.status
       })
       .then(() => {

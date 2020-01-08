@@ -202,7 +202,7 @@ export const requestAccept = (
 ) => {
   const { currentUser } = firebase.auth();
   let totalPoints;
-  let email, name, password, phone, status;
+  let email, name, password, status;
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -217,7 +217,6 @@ export const requestAccept = (
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = snapshot.val().password;
-        phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
@@ -238,7 +237,6 @@ export const requestAccept = (
         email: email,
         name: name,
         password: password,
-        phone: phone,
         status: status,
         earnedPoints: totalPoints
       })
@@ -338,7 +336,6 @@ export const rewardRequestAccept = (
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = snapshot.val().password;
-        phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
@@ -352,7 +349,6 @@ export const rewardRequestAccept = (
         email: email,
         name: name,
         password: password,
-        phone: phone,
         status: status,
         earnedPoints: totalPoints
       });
@@ -397,7 +393,6 @@ export const rewardRequestReject = (
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = snapshot.val().password;
-        phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
@@ -407,7 +402,6 @@ export const rewardRequestReject = (
         email: email,
         name: name,
         password: password,
-        phone: phone,
         status: status,
         earnedPoints: totalPoints
       });
