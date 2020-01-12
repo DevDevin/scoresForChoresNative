@@ -29,6 +29,7 @@ import ParentHomeSideMenu from "./components/parent/ParentHomeSideMenu";
 import UserEdit from "./components/UserEdit";
 import { logoutAuth } from "./actions/AuthActions";
 import RewardEdit from "./components/parent/RewardEdit";
+import ManageUsers from "./components/parent/ManageUsers";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -185,6 +186,11 @@ const RouterComponent = () => {
               key="rewardCreate"
               component={RewardCreate}
               title="New New Reward"
+            />
+            <Scene
+              key="manageUsers"
+              component={ManageUsers}
+              title="User Manager"
             />
           </Drawer>
         </Scene>

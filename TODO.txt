@@ -1,19 +1,19 @@
 -- try to get back buttons (maybe use back handler)
 -- beautify the style and design
--- add direction tips for first time users. 
 -- delete commented out code and console logs. 
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
 -- fix the edit feature for chores and rewards to have form autofilled with current values
 	-fix the edit and delte buttons functionality and style
 -- create edit reward functionality
--- edit user functionality (admin can edit any user), child can only edit their own
-	- with that I will need to edit any chores, rewardRequests, earnedRewards, completion requests, etc. that have the users name
--- confirm that the same name can't be used for a user in the same group.
+-- functionality to update admin user name
 -- determine wether or not I want the non-admin users to be able to create new users. Currently they can.  
 -- remove phone number field from admin user for and user form. 
 -- add correct icons for menu buttons
 -- display the error message in the account create error modal
 -- add delete user functionality for admin
+-- add an admin account siding side menue where the admin can update their personal info
+-- user manager row in admin home (with add, delete, and password reset options)
+-- fix the back arrow navigation. 
 
 

@@ -9,10 +9,8 @@ import {
   ActivityIndicator,
   Animated
 } from "react-native";
-import Spinner from "react-native-loading-spinner-overlay";
-import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
 
-class ParentHome extends Component {
+class ManageUsers extends Component {
   state = {
     slideUp: new Animated.Value(-100),
     SlideInLeft: new Animated.Value(-100)
@@ -37,10 +35,6 @@ class ParentHome extends Component {
     Actions.parentChoreList();
   }
 
-  onChoreListPress2() {
-    Actions.manageUsers();
-  }
-
   onRewardListPress() {
     Actions.parentRewardList();
   }
@@ -54,7 +48,6 @@ class ParentHome extends Component {
   }
 
   componentDidMount() {
-    this.props.loadingUsersEnd();
     this._start();
   }
 
@@ -183,7 +176,7 @@ class ParentHome extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/completionRequest.png")} />
+                <Image source={require("../../Images/choreList.png")} />
                 <Text style={{ fontSize: 22 }}>Completion Requests</Text>
               </View>
             </View>
@@ -233,7 +226,7 @@ class ParentHome extends Component {
             ]
           }}
         >
-          <TouchableWithoutFeedback onPress={this.onChoreListPress2.bind(this)}>
+          <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
             <View style={styles.choreListStyle}>
               <View
                 style={{
@@ -244,7 +237,7 @@ class ParentHome extends Component {
                 }}
               >
                 <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Manage Children</Text>
+                <Text style={{ fontSize: 22 }}>Users Manage</Text>
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -284,13 +277,4 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    activeUser: state.auth.activeUser,
-    loading: state.loading.loading
-  };
-};
-
-export default connect(mapStateToProps, { loadingUsersEnd, loadingUsersStart })(
-  ParentHome
-);
+export default connect(null, {})(ManageUsers);
