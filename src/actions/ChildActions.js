@@ -53,6 +53,30 @@ export const childRewardRequestsFetch = activeUser => {
   };
 };
 
+export const childRewardsEarnedFetch = activeUser => {
+  const { currentUser } = firebase.auth();
+  console.log("currentUser.uid: ", currentUser.uid);
+  console.log("inside childRewardsEarnedFetch");
+
+  const child = activeUser;
+  console.log("child in childRewardsEarnedFetch: ", child);
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardsEarned`)
+      .orderByChild("childName")
+      .equalTo(child)
+      .on("value", snapshot => {
+        console.log("payload: ", snapshot.val());
+        dispatch({
+          type: EARNED_REWARD_FETCH_SUCCESS,
+          payload: snapshot.val()
+        });
+      });
+  };
+};
+
 /// child rewards fetch ///
 export const rewardsFetch = () => {
   const { currentUser } = firebase.auth();

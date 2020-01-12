@@ -257,7 +257,7 @@ export const rewardRequestUpdate = (newName, rewardRequests) => {
       console.log("rewardRequests map: ", rewardRequest);
       firebase
         .database()
-        .ref(`/users/${currentUser.uid}/rewardRequests/${chore.cid}`)
+        .ref(`/users/${currentUser.uid}/rewardRequests/${rewardRequest.rid}`)
         .set({
           childName: newName,
           pointsValue: rewardRequest.pointsValue,
@@ -272,11 +272,38 @@ export const rewardRequestUpdate = (newName, rewardRequests) => {
   };
 };
 
+/// update reward requests info when child changes name
+export const rewardsEarnedUpdate = (newName, rewardsEarned) => {
+  const { currentUser } = firebase.auth();
+  console.log("rewardsEarned in rewardsEarnedUpdate: ", rewardsEarned);
+  // simplify the object of arrays
+  const rewardsEarnedObject = rewardsEarned.rewardsEarned;
+  console.log("rewardsEarnedObject: ", rewardsEarnedObject);
+
+  //might have to do this inside of the return dispatch area
+  return dispatch => {
+    _.map(rewardsEarnedObject, reward => {
+      console.log("rewardsEarnedObject map: ", reward.rewardName);
+      firebase
+        .database()
+        .ref(`/users/${currentUser.uid}/rewardsEarned/${reward.rid}`)
+        .set({
+          childName: newName,
+          pointsValue: reward.pointsValue,
+          rewardName: reward.rewardName,
+          status: reward.status,
+          uid: reward.uid
+        });
+    });
+  };
+};
+
 export const choreUpdate2 = (newName, chores) => {
   const { currentUser } = firebase.auth();
 
   // simplify the object of arrays
   const choresObject = chores.chores;
+  console.log("choresObject: ", choresObject);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {
@@ -290,7 +317,7 @@ export const choreUpdate2 = (newName, chores) => {
           day: chore.day,
           description: chore.description,
           pointsValue: chore.pointsValue,
-          recuring: chore.recuring,
+          recurring: chore.recurring,
           status: chore.status
         });
     });

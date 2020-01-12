@@ -8,11 +8,13 @@ import {
   userSave,
   userDelete,
   choreUpdate2,
-  rewardRequestUpdate
+  rewardRequestUpdate,
+  rewardsEarnedUpdate
 } from "../actions/AuthActions";
 import {
   childChoresFetch,
-  childRewardRequestsFetch
+  childRewardRequestsFetch,
+  childRewardsEarnedFetch
 } from "../actions/ChildActions";
 import { Card, CardSection, Button, Confirm } from "./common";
 import { Actions } from "react-native-router-flux";
@@ -29,6 +31,10 @@ class UserEdit extends Component {
     console.log("oldName in componentWillMount: ", oldName);
     this.props.childRewardRequestsFetch(oldName);
     console.log("this.props.rewardRequests: ", this.props.rewardRequests);
+
+    // get all of the earned rewards for that child
+    console.log("oldName before rewardsEarnedFetch: ", oldName);
+    this.props.childRewardsEarnedFetch(oldName);
 
     console.log("oldName: ", oldName);
     console.log("this.props.rid: UserEdit.js: ", this.props.rid);
@@ -47,13 +53,14 @@ class UserEdit extends Component {
       password2,
       status,
       chores,
-      rewardRequests
+      rewardRequests,
+      rewardsEarned
     } = this.props;
 
     console.log("oldName: ", oldName);
     //filter out rewards for just current user
 
-    console.log("chores object: ", chores);
+    console.log("rewardsEarned object: ", rewardsEarned);
     const newName = this.props.name;
     console.log("newName: ", newName);
 
@@ -74,6 +81,9 @@ class UserEdit extends Component {
     // update the rewardRequests info
     console.log("rewardRequests in onButtonPress: ", rewardRequests);
     this.props.rewardRequestUpdate(newName, { rewardRequests });
+
+    //update the rewardsEarned info
+    this.props.rewardsEarnedUpdate(newName, { rewardsEarned });
 
     Actions.childHome();
   }
@@ -127,14 +137,23 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("state.chores: ", state.chores);
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });
 
-  const rewardRequests = _.map(state.rewardRequests, (val, cid) => {
-    return { ...val, cid };
+  console.log("state.rewardRequests: ", state.rewardRequests);
+  const rewardRequests = _.map(state.rewardRequests, (val, rid) => {
+    return { ...val, rid };
   });
 
+  const rewardsEarned = _.map(state.earnedRewards, (val, rid) => {
+    return { ...val, rid };
+  });
+
+  console.log("rewardsEarned: ", rewardsEarned);
+  console.log("rewardRequests: ", rewardRequests);
+  console.log("chores: ", chores);
   // i think I need to call the choresFetch action in componentWillMount before state.chores can be used.
   console.log("chores in mapStateToProps: ", chores);
   //then I can filter this chores object by the child name before I pass it into the chore update function
@@ -158,7 +177,8 @@ const mapStateToProps = state => {
     status,
     earnedPoints,
     chores: chores,
-    rewardRequests: rewardRequests
+    rewardRequests: rewardRequests,
+    rewardsEarned: rewardsEarned
   };
 };
 
@@ -169,5 +189,7 @@ export default connect(mapStateToProps, {
   choreUpdate2,
   rewardRequestUpdate,
   childChoresFetch,
-  childRewardRequestsFetch
+  childRewardRequestsFetch,
+  childRewardsEarnedFetch,
+  rewardsEarnedUpdate
 })(UserEdit);
