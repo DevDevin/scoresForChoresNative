@@ -31,12 +31,12 @@ class ManageUsers extends Component {
     ]).start();
   };
 
-  onChoreListPress() {
-    Actions.parentChoreList();
+  onPasswordReset() {
+    Actions.passwordReset();
   }
 
-  onRewardListPress() {
-    Actions.parentRewardList();
+  onAddDeleteUser() {
+    Actions.addDeleteUsers();
   }
 
   onCompletionRequestPress() {
@@ -70,7 +70,7 @@ class ManageUsers extends Component {
 
   render() {
     let { slideUp, SlideInLeft } = this.state;
-    const { name } = this.props.activeUser;
+    // const { name } = this.props.activeUser;
 
     return (
       <View
@@ -80,7 +80,7 @@ class ManageUsers extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.6,
+            flex: 0.4,
             elevation: 5
           }}
         >
@@ -89,7 +89,7 @@ class ManageUsers extends Component {
               fontSize: 24
             }}
           >
-            Hello {name}
+            Manage Users
           </Text>
         </View>
 
@@ -106,7 +106,7 @@ class ManageUsers extends Component {
             ]
           }}
         >
-          <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
+          <TouchableWithoutFeedback onPress={this.onPasswordReset.bind(this)}>
             <View style={styles.choreListStyle}>
               <View
                 style={{
@@ -117,7 +117,7 @@ class ManageUsers extends Component {
                 }}
               >
                 <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Chore List</Text>
+                <Text style={{ fontSize: 22 }}>Reset Passwords</Text>
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -135,7 +135,7 @@ class ManageUsers extends Component {
             ]
           }}
         >
-          <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
+          <TouchableWithoutFeedback onPress={this.onAddDeleteUser.bind(this)}>
             <View style={styles.rewardListStyle}>
               <View
                 style={{
@@ -146,98 +146,7 @@ class ManageUsers extends Component {
                 }}
               >
                 <Image source={require("../../Images/rewardList.png")} />
-                <Text style={{ fontSize: 22 }}>Reward List</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: slideUp.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback
-            onPress={this.onCompletionRequestPress.bind(this)}
-          >
-            <View style={styles.completionRequestsStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Completion Requests</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: SlideInLeft.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [-100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback
-            onPress={this.onRewardRequestPress.bind(this)}
-          >
-            <View style={styles.completionRequestsStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/completionRequest.png")} />
-                <Text style={{ fontSize: 22 }}>Reward Requests</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: slideUp.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
-            <View style={styles.choreListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Users Manage</Text>
+                <Text style={{ fontSize: 22 }}>Add/Delete Users</Text>
               </View>
             </View>
           </TouchableWithoutFeedback>
