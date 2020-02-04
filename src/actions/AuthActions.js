@@ -167,7 +167,8 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.userList();
 };
 
-export const userCreate = ({ name, password1, status, email }) => {
+export const userCreate = ({ name, password1, status, email }, activeUser) => {
+  console.log("activeUser in userCreate", activeUser);
   const { currentUser } = firebase.auth();
   console.log("entered userCreate");
   return dispatch => {
@@ -183,7 +184,11 @@ export const userCreate = ({ name, password1, status, email }) => {
       })
       .then(() => {
         console.log("should have gone to choose user");
-        Actions.userList();
+        if (activeUser === "") {
+          Actions.userList();
+        } else {
+          Actions.addDeleteUsers();
+        }
       });
   };
 };

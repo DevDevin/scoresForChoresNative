@@ -58,8 +58,15 @@ class UserCreate extends Component {
       this.state.allowSubmit = false;
     }
 
+    let activeUser;
+
+    if (this.props.activeUser === undefined) {
+      activeUser = "";
+    } else {
+      activeUser = this.props.activeUser.name;
+    }
     if (this.state.allowSubmit) {
-      this.props.userCreate({ name, password1, status, email });
+      this.props.userCreate({ name, password1, status, email }, activeUser);
     }
   }
 
@@ -120,7 +127,8 @@ const mapStateToProps = state => {
     password2,
     status,
     email,
-    users: state.users
+    users: state.users,
+    activeUser: state.auth.activeUser
   };
 };
 

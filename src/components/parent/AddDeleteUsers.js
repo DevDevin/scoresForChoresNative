@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { View, FlatList, ScrollView, Animated, Text } from "react-native";
 import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
 import { FloatingAction } from "react-native-floating-action";
-import UserListItem from "../UserListItem";
+import EditDeleteUserListItem from "../parent/EditDeleteUserListItem";
 import Spinner from "react-native-loading-spinner-overlay";
 import { CardSection, Input, Button } from "../common";
 
@@ -116,7 +116,9 @@ class AddDeleteUser extends Component {
             >
               <FlatList
                 data={users}
-                renderItem={({ item }) => <UserListItem user={item} />}
+                renderItem={({ item }) => (
+                  <EditDeleteUserListItem user={item} />
+                )}
               />
             </Animated.View>
           </ScrollView>
@@ -125,16 +127,11 @@ class AddDeleteUser extends Component {
           color="#4280b3"
           style={{ justifyContent: "flex-end" }}
           // actions={actions}
-          onPressMain={this.onButtonPress.bind(this)}
-        />
-
-        <Button
-          onButtonPress={() => {
-            Actions.parentHome();
+          // onPressMain={this.onButtonPress.bind(this)}
+          onPressMain={() => {
+            Actions.userCreate();
           }}
-        >
-          Back to Home
-        </Button>
+        />
       </View>
     );
   }

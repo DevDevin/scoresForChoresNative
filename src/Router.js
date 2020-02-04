@@ -136,6 +136,9 @@ const RouterComponent = () => {
               initial
             />
           </Drawer>
+
+          <Scene key="userCreate" component={UserCreate} title="Create User" />
+
           <Drawer
             hideNavBar
             drawerPosition={"right"}
@@ -172,11 +175,7 @@ const RouterComponent = () => {
               component={CompletionRequestList}
               title="Completion Requests"
             />
-            <Scene
-              key="userCreate"
-              component={UserCreate}
-              title="Create User"
-            />
+
             <Scene
               key="passwordReset"
               component={ResetPassword}
