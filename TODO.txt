@@ -15,5 +15,6 @@
 -- add an admin account siding side menue where the admin can update their personal info
 -- user manager row in admin home (with add, delete, and password reset options)
 -- fix the back arrow navigation. 
+-- add the delete and edit functionality from the user manager. (cannot delete the admin user though.. only edit)
 
 

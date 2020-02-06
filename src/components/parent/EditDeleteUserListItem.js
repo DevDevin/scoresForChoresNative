@@ -14,7 +14,12 @@ import {
 import Modal from "react-native-modal";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Actions } from "react-native-router-flux";
-import { setActiveUser, loadingUsersStart } from "../../actions/AuthActions";
+import {
+  setActiveUser,
+  loadingUsersStart,
+  userDelete,
+  userUpdate
+} from "../../actions/AuthActions";
 import { Input, CardSection, Button } from "../common";
 
 class EditDeleteUserListItem extends Component {
@@ -24,42 +29,9 @@ class EditDeleteUserListItem extends Component {
     loginError: ""
   };
 
-  onSignIn(password, activeUser) {
-    console.log("this.state.enteredPassword: ", this.state.enteredPassword);
-    console.log("actualPassword: ", password);
-    // this.setState({
-    //   isModalVisible: !this.state.isModalVisible
-    // });
-
-    if (password === this.state.enteredPassword) {
-      console.log("passwords matched");
-      this.props.loadingUsersStart();
-
-      // redirect to parent or child depending on the user status
-      this.props.setActiveUser(activeUser);
-
-      if (activeUser.status === "parent") {
-        this.setState({ isModalVisible: false });
-        Actions.parent();
-      } else {
-        this.setState({ isModalVisible: false });
-        Actions.child();
-      }
-    } else {
-      this.setState({ loginError: "Incorrect Password" });
-      Alert.alert(
-        "Incorrect Password",
-        "Please Try Again",
-        [
-          {
-            text: "Okay",
-            // onPress: () => Actions.chooseUser(),
-            style: "cancel"
-          }
-        ],
-        { cancelable: false }
-      );
-    }
+  onDelete(uid) {
+    this.props.userDelete(uid);
+    this.toggleModal();
   }
 
   toggleModal = () => {
@@ -67,6 +39,24 @@ class EditDeleteUserListItem extends Component {
       isModalVisible: !this.state.isModalVisible
     });
   };
+
+  // I just need to update the userForm data to be the current user that is clicked on
+  setUserFormData(objUser) {
+    console.log("objUser.name: ", objUser.name);
+
+    // set the user form data
+    //set a prop that let's me know if it is the admin editing or not
+
+    this.props.userUpdate({ prop: "name", value: objUser.name });
+    // TODO: I will need to update the email, password, and username props as well.
+    // TODO: then I till need to make sure that all of the other objects get updated along with the new name
+    // TODO: childHome still being called sometimes. I need to get to the bottom of this.
+
+    /// why is childHome getting called whenever I navigate to the user edit???
+
+    Actions.userEdit();
+    this.toggleModal();
+  }
 
   rendorError() {
     return (
@@ -150,7 +140,7 @@ class EditDeleteUserListItem extends Component {
               }}
             >
               <Button
-                onPress={this.onSignIn.bind(this, password, this.props.user)}
+                onPress={this.setUserFormData.bind(this, this.props.user)}
               >
                 Edit {this.props.user.name}'s Profile
               </Button>
@@ -165,8 +155,26 @@ class EditDeleteUserListItem extends Component {
                 position: "relative"
               }}
             >
-              <Button onPress={this.toggleModal}>
+              <Button onPress={this.onDelete.bind(this, this.props.user.uid)}>
                 Delete {this.props.user.name}
+              </Button>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 1,
+                padding: 5,
+                backgroundColor: "#fff",
+                justifyContent: "flex-start",
+                borderColor: "#ddd",
+                position: "relative"
+              }}
+            >
+              <Button
+                onPress={() => {
+                  this.toggleModal;
+                }}
+              >
+                Cancel
               </Button>
             </View>
           </View>
@@ -254,6 +262,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setActiveUser, loadingUsersStart })(
-  EditDeleteUserListItem
-);
+export default connect(mapStateToProps, {
+  setActiveUser,
+  loadingUsersStart,
+  userDelete,
+  userUpdate
+})(EditDeleteUserListItem);

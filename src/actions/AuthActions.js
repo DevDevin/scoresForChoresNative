@@ -194,6 +194,7 @@ export const userCreate = ({ name, password1, status, email }, activeUser) => {
 };
 
 export const userUpdate = ({ prop, value }) => {
+  console.log("inside user update");
   console.log("prop: ", prop, " value: ", value);
   return {
     type: USER_UPDATE,

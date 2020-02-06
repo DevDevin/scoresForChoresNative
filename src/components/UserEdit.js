@@ -23,6 +23,14 @@ class UserEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
+    // if(this.props.adminUserAction === nothing){
+    //   console.log("adminUserAction is nothing")
+    // }
+
+    console.log(
+      "this.props.name from UserEdit componentWillMount: ",
+      this.props.name
+    );
     oldName = this.props.name;
 
     this.props.childChoresFetch(oldName);
@@ -39,8 +47,19 @@ class UserEdit extends Component {
     console.log("oldName: ", oldName);
     console.log("this.props.rid: UserEdit.js: ", this.props.rid);
     _.each(this.props.reward, (value, prop) => {
+      console.log("<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>");
+      console.log("prop: ", prop, "value: ", value);
       this.props.userUpdate({ prop, value });
     });
+
+    // this userForm name is being changed again. actually its not
+
+    /// child home is getting called somehow
+
+    console.log(
+      "this.props.name from UserEdit componentWillMount round 2: ",
+      this.props.name
+    );
   }
 
   onButtonPress() {
@@ -85,6 +104,9 @@ class UserEdit extends Component {
     //update the rewardsEarned info
     this.props.rewardsEarnedUpdate(newName, { rewardsEarned });
 
+    console.log(
+      "right before Actions.childHome>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    );
     Actions.childHome();
   }
 
@@ -166,6 +188,7 @@ const mapStateToProps = state => {
     uid,
     status,
     earnedPoints
+    // adminUserAction
   } = state.userForm;
 
   return {
@@ -177,6 +200,7 @@ const mapStateToProps = state => {
     status,
     earnedPoints,
     chores: chores,
+    // adminUserAction,
     rewardRequests: rewardRequests,
     rewardsEarned: rewardsEarned
   };

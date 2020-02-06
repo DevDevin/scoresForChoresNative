@@ -20,12 +20,12 @@ class ManageUsers extends Component {
     return Animated.parallel([
       Animated.timing(this.state.slideUp, {
         toValue: 1,
-        duration: 6000,
+        duration: 1000,
         useNativeDriver: true
       }),
       Animated.timing(this.state.SlideInLeft, {
         toValue: 1,
-        duration: 6000,
+        duration: 1000,
         useNativeDriver: true
       })
     ]).start();

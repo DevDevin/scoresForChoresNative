@@ -7,6 +7,7 @@ import RadioForm from "react-native-simple-radio-button";
 
 class UserForm extends Component {
   componentDidMount() {
+    console.log("this.props.user.name in UserForm.js: ", this.props.name);
     // reset props when opening form
     // this.props.userUpdate({ prop: "name", value: "" });
     // this.props.userUpdate({ prop: "email", value: 0 });
