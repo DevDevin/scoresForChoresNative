@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import {
   Text,
   TouchableWithoutFeedback,
@@ -20,6 +21,7 @@ import {
   userDelete,
   userUpdate
 } from "../../actions/AuthActions";
+import { userEditParent } from "../../actions/ParentActions";
 import { Input, CardSection, Button } from "../common";
 
 class EditDeleteUserListItem extends Component {
@@ -29,9 +31,27 @@ class EditDeleteUserListItem extends Component {
     loginError: ""
   };
 
-  onDelete(uid) {
-    this.props.userDelete(uid);
-    this.toggleModal();
+  onDelete(user) {
+    if (user.status === "parent") {
+      //alert we cannot delete an admin user
+
+      Alert.alert(
+        "Cannot delete admin user",
+        "You may edit, but not delete admin user",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              this.toggleModal();
+            }
+          }
+        ],
+        { cancelable: false }
+      );
+    } else {
+      this.props.userDelete(user);
+      this.toggleModal();
+    }
   }
 
   toggleModal = () => {
@@ -41,22 +61,25 @@ class EditDeleteUserListItem extends Component {
   };
 
   // I just need to update the userForm data to be the current user that is clicked on
-  setUserFormData(objUser) {
-    console.log("objUser.name: ", objUser.name);
+  setUserFormData = objUser => {
+    console.log("objUser.name: ", objUser);
 
     // set the user form data
     //set a prop that let's me know if it is the admin editing or not
 
     this.props.userUpdate({ prop: "name", value: objUser.name });
+    this.props.userUpdate({ prop: "email", value: objUser.email });
+    this.props.userUpdate({ prop: "uid", value: objUser.uid });
+    this.props.userUpdate({ prop: "password1", value: objUser.password });
+    this.props.userUpdate({ prop: "password2", value: objUser.password });
     // TODO: I will need to update the email, password, and username props as well.
     // TODO: then I till need to make sure that all of the other objects get updated along with the new name
     // TODO: childHome still being called sometimes. I need to get to the bottom of this.
 
     /// why is childHome getting called whenever I navigate to the user edit???
-
     Actions.userEdit();
     this.toggleModal();
-  }
+  };
 
   rendorError() {
     return (
@@ -155,7 +178,7 @@ class EditDeleteUserListItem extends Component {
                 position: "relative"
               }}
             >
-              <Button onPress={this.onDelete.bind(this, this.props.user.uid)}>
+              <Button onPress={this.onDelete.bind(this, this.props.user)}>
                 Delete {this.props.user.name}
               </Button>
             </View>
@@ -169,13 +192,7 @@ class EditDeleteUserListItem extends Component {
                 position: "relative"
               }}
             >
-              <Button
-                onPress={() => {
-                  this.toggleModal;
-                }}
-              >
-                Cancel
-              </Button>
+              <Button onPress={this.toggleModal}>Cancel</Button>
             </View>
           </View>
         </Modal>
@@ -266,5 +283,6 @@ export default connect(mapStateToProps, {
   setActiveUser,
   loadingUsersStart,
   userDelete,
-  userUpdate
+  userUpdate,
+  userEditParent
 })(EditDeleteUserListItem);

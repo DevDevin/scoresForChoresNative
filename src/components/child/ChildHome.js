@@ -47,17 +47,17 @@ class ChildHome extends Component {
       earnedPoints
     } = this.props.activeUser;
 
-    console.log("earnedPoints in ChildHome: ", earnedPoints);
+    if (status != "parent") {
+      this.props.userUpdate({ prop: "name", value: name });
+      this.props.userUpdate({ prop: "email", value: email });
+      this.props.userUpdate({ prop: "password1", value: password });
+      this.props.userUpdate({ prop: "password2", value: password });
+      this.props.userUpdate({ prop: "status", value: "Child" });
+      this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
-    this.props.userUpdate({ prop: "name", value: name });
-    this.props.userUpdate({ prop: "email", value: email });
-    this.props.userUpdate({ prop: "password1", value: password });
-    this.props.userUpdate({ prop: "password2", value: password });
-    this.props.userUpdate({ prop: "status", value: "Child" });
-    this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
-
-    this.props.loadingUsersEnd();
-    this._start();
+      this.props.loadingUsersEnd();
+      this._start();
+    }
   }
 
   onChoreListPress() {

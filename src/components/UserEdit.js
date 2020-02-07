@@ -92,7 +92,8 @@ class UserEdit extends Component {
       password1,
       status,
       uid,
-      earnedPoints
+      earnedPoints: 0
+      // earnedPoints
     });
 
     // update the chores info
@@ -104,10 +105,12 @@ class UserEdit extends Component {
     //update the rewardsEarned info
     this.props.rewardsEarnedUpdate(newName, { rewardsEarned });
 
-    console.log(
-      "right before Actions.childHome>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    );
-    Actions.childHome();
+    console.log("this.props.activeUser.name: ", this.props.activeUser);
+    if (this.props.activeUser.status != "child") {
+      Actions.parentHome();
+    } else {
+      Actions.childHome();
+    }
   }
 
   render() {
@@ -159,7 +162,7 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state.chores: ", state.chores);
+  console.log("state.auths: ", state.auth.activeUser.status);
   const chores = _.map(state.chores, (val, cid) => {
     return { ...val, cid };
   });
@@ -191,6 +194,8 @@ const mapStateToProps = state => {
     // adminUserAction
   } = state.userForm;
 
+  const activeUser = state.auth.activeUser;
+
   return {
     name,
     email,
@@ -202,7 +207,8 @@ const mapStateToProps = state => {
     chores: chores,
     // adminUserAction,
     rewardRequests: rewardRequests,
-    rewardsEarned: rewardsEarned
+    rewardsEarned: rewardsEarned,
+    activeUser: activeUser
   };
 };
 

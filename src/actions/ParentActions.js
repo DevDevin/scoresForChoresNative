@@ -86,6 +86,10 @@ export const rewardCreate = ({
   };
 };
 
+export const userEditParent = () => {
+  Actions.userEdit();
+};
+
 export const rewardUpdate = ({ prop, value }) => {
   return {
     type: REWARD_UPDATE,

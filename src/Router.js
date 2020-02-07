@@ -111,11 +111,11 @@ const RouterComponent = () => {
               component={ChildRewardRequestsList}
               title="Reward Requests"
             />
-            {/* <Scene
+            <Scene
               key="userCreate"
               component={UserCreate}
               title="Create User"
-            /> */}
+            />
             <Scene key="userEdit" component={UserEdit} title="Edit User" />
           </Drawer>
         </Scene>
