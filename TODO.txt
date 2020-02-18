@@ -2,11 +2,7 @@
 -- delete commented out code and console logs. 
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
--- remove phone number field from admin user for and user form. 
 -- add correct icons for menu buttons
--- display the error message in the account create error modal
 -- fix the back arrow navigation. 
--- when editing the admin user make sure the status stays as parent. Right now it doesn't
--- error with the earnedPoints when editing a user from the parent user manager. 
-
+-- admin user not being created after clicking create in the admin user form.
 

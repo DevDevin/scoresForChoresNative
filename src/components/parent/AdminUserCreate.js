@@ -13,17 +13,17 @@ class AdminUserCreate extends Component {
   componentDidMount() {
     this.props.userUpdate({ prop: "emptyName", value: false });
     this.props.userUpdate({ prop: "passwordMismatch", value: false });
-    this.props.userUpdate({ prop: "emptyPhone", value: false });
+    // this.props.userUpdate({ prop: "emptyPhone", value: false });
     this.props.userUpdate({ prop: "emptyEmail", value: false });
     this.props.userUpdate({ prop: "email", value: "" });
   }
 
   onButtonPress() {
     this.state.allowSubmit = true;
-    const { name, phone, password1, email, password2 } = this.props;
+    const { name, password1, email, password2 } = this.props;
     let passwordMismatch = false;
     let emptyName = false;
-    let emptyPhone = false;
+    // let emptyPhone = false;
     let emptyEmail = false;
 
     if (name === "") {
@@ -35,21 +35,21 @@ class AdminUserCreate extends Component {
       this.props.userUpdate({ prop: "passwordMismatch", value: true });
       this.state.allowSubmit = false;
     }
-    if (phone === "") {
-      this.props.userUpdate({ prop: "emptyPhone", value: true });
-      this.state.allowSubmit = false;
-    }
+    // if (phone === "") {
+    //   this.props.userUpdate({ prop: "emptyPhone", value: true });
+    //   this.state.allowSubmit = false;
+    // }
     if (email === "") {
       this.state.allowSubmit = false;
       this.props.userUpdate({ prop: "emptyEmail", value: true });
     }
 
     //if all of those are false then create user
-    console.log(emptyName, emptyEmail, emptyPhone, passwordMismatch);
+    console.log(emptyName, emptyEmail, passwordMismatch);
     if (this.state.allowSubmit) {
       this.props.userCreate({
         name,
-        phone,
+        // phone,
         password1,
         status: "parent",
         email
@@ -90,9 +90,9 @@ class AdminUserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, status, email, password2 } = state.userForm;
+  const { name, password1, status, email, password2 } = state.userForm;
 
-  return { name, phone, password1, status, email, password2 };
+  return { name, password1, status, email, password2 };
 };
 
 export default connect(mapStateToProps, {

@@ -72,6 +72,11 @@ class EditDeleteUserListItem extends Component {
     this.props.userUpdate({ prop: "uid", value: objUser.uid });
     this.props.userUpdate({ prop: "password1", value: objUser.password });
     this.props.userUpdate({ prop: "password2", value: objUser.password });
+    this.props.userUpdate({ prop: "status", value: objUser.status });
+    this.props.userUpdate({
+      prop: "earnedPoints",
+      value: objUser.earnedPoints
+    });
     // TODO: I will need to update the email, password, and username props as well.
     // TODO: then I till need to make sure that all of the other objects get updated along with the new name
     // TODO: childHome still being called sometimes. I need to get to the bottom of this.

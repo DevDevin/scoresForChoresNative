@@ -79,6 +79,8 @@ class UserEdit extends Component {
     console.log("oldName: ", oldName);
     //filter out rewards for just current user
 
+    console.log("this.props.status: >>>>>>>>", this.props.status);
+
     console.log("rewardsEarned object: ", rewardsEarned);
     const newName = this.props.name;
     console.log("newName: ", newName);
@@ -92,7 +94,7 @@ class UserEdit extends Component {
       password1,
       status,
       uid,
-      earnedPoints: 0
+      earnedPoints
       // earnedPoints
     });
 
@@ -194,6 +196,7 @@ const mapStateToProps = state => {
     // adminUserAction
   } = state.userForm;
 
+  console.log("this is the earnedPoints: ", earnedPoints);
   const activeUser = state.auth.activeUser;
 
   return {

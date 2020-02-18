@@ -17,7 +17,7 @@ class UserCreate extends Component {
     this.props.usersFetch();
     this.props.userUpdate({ prop: "emptyName", value: false });
     this.props.userUpdate({ prop: "passwordMismatch", value: false });
-    this.props.userUpdate({ prop: "emptyPhone", value: false });
+    // this.props.userUpdate({ prop: "emptyPhone", value: false });
     this.props.userUpdate({ prop: "emptyEmail", value: false });
     this.props.userUpdate({ prop: "email", value: "" });
     this.props.userUpdate({ prop: "userExists", value: false });
@@ -118,11 +118,11 @@ class UserCreate extends Component {
 }
 
 const mapStateToProps = state => {
-  const { name, phone, password1, password2, status, email } = state.userForm;
+  const { name, password1, password2, status, email } = state.userForm;
 
   return {
     name,
-    phone,
+    // phone,
     password1,
     password2,
     status,

@@ -14,7 +14,6 @@ class AdminUserForm extends Component {
     this.props.userUpdate({ prop: "email", value: 0 });
     this.props.userUpdate({ prop: "password1", value: "" });
     this.props.userUpdate({ prop: "password2", value: "" });
-    this.props.userUpdate({ prop: "phone", value: "" });
   }
 
   render() {
@@ -28,19 +27,6 @@ class AdminUserForm extends Component {
       );
     } else {
       emptyNameMessage = <View></View>;
-    }
-
-    let emptyPhoneMessage;
-    if (this.props.emptyPhone === true) {
-      emptyPhoneMessage = (
-        <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
-            Phone is Required
-          </Text>
-        </View>
-      );
-    } else {
-      emptyPhoneMessage = <View></View>;
     }
 
     let emptyEmailMessage;
@@ -113,19 +99,6 @@ class AdminUserForm extends Component {
 
         <CardSection>
           <Input
-            label="Phone"
-            placeholder="555-555-5555"
-            value={this.props.phone}
-            onChangeText={value => {
-              this.props.userUpdate({ prop: "emptyPhone", value: false });
-              this.props.userUpdate({ prop: "phone", value });
-            }}
-          />
-        </CardSection>
-        {emptyPhoneMessage}
-
-        <CardSection>
-          <Input
             secureTextEntry
             label="Password"
             placeholder="Password"
@@ -157,26 +130,22 @@ class AdminUserForm extends Component {
 const mapStateToProps = state => {
   const {
     name,
-    phone,
     password1,
     status,
     email,
     password2,
     emptyName,
-    emptyPhone,
     passwordMismatch,
     emptyEmail
   } = state.userForm;
 
   return {
     name,
-    phone,
     password1,
     status,
     email,
     password2,
     emptyName,
-    emptyPhone,
     passwordMismatch,
     emptyEmail
   };

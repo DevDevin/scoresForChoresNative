@@ -114,8 +114,8 @@ export const createAccount = ({ email, password, password2 }) => {
         .catch(err => {
           console.log("fail. Couldn't create user because: ", err);
           Alert.alert(
-            "Username Already Exists",
-            "Please choose another one.",
+            err.message,
+            "Please try again",
             [
               {
                 text: "OK",

@@ -166,7 +166,6 @@ const styles = {
 const mapStateToProps = state => {
   const {
     name,
-    phone,
     password1,
     password2,
     status,
@@ -179,7 +178,6 @@ const mapStateToProps = state => {
 
   return {
     name,
-    phone,
     password1,
     password2,
     status,
