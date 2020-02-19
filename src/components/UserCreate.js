@@ -26,13 +26,11 @@ class UserCreate extends Component {
   onButtonPress() {
     this.state.allowSubmit = true;
     const { name, password1, password2, status, email } = this.props;
-    console.log("this.props: ", this.props);
 
     if (name === "") {
       this.props.userUpdate({ prop: "emptyName", value: true });
       this.state.allowSubmit = false;
     }
-    console.log("password1: ", password1, " password2: ", password2);
     if (this.props.password1 != this.props.password2) {
       this.props.userUpdate({ prop: "passwordMismatch", value: true });
       this.state.allowSubmit = false;

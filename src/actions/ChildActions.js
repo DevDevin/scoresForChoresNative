@@ -10,8 +10,6 @@ import {
 
 export const childChoresFetch = activeUser => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser.uid: ", currentUser.uid);
-  console.log("inside chore childChoresFetch");
 
   const child = activeUser;
   return dispatch => {
@@ -21,7 +19,6 @@ export const childChoresFetch = activeUser => {
       .orderByChild("child")
       .equalTo(child)
       .on("value", snapshot => {
-        console.log("payload: ", snapshot.val());
         dispatch({
           type: CHORE_FETCH_SUCCESS,
           payload: snapshot.val()
@@ -32,8 +29,6 @@ export const childChoresFetch = activeUser => {
 
 export const childRewardRequestsFetch = activeUser => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser.uid: ", currentUser.uid);
-  console.log("inside childRewardRequestsFetch");
 
   const child = activeUser;
 
@@ -44,7 +39,6 @@ export const childRewardRequestsFetch = activeUser => {
       .orderByChild("childName")
       .equalTo(child)
       .on("value", snapshot => {
-        console.log("payload: ", snapshot.val());
         dispatch({
           type: REWARD_REQUESTS_FETCH_SUCCESS,
           payload: snapshot.val()
@@ -55,11 +49,8 @@ export const childRewardRequestsFetch = activeUser => {
 
 export const childRewardsEarnedFetch = activeUser => {
   const { currentUser } = firebase.auth();
-  console.log("currentUser.uid: ", currentUser.uid);
-  console.log("inside childRewardsEarnedFetch");
 
   const child = activeUser;
-  console.log("child in childRewardsEarnedFetch: ", child);
 
   return dispatch => {
     firebase
@@ -68,7 +59,6 @@ export const childRewardsEarnedFetch = activeUser => {
       .orderByChild("childName")
       .equalTo(child)
       .on("value", snapshot => {
-        console.log("payload: ", snapshot.val());
         dispatch({
           type: EARNED_REWARD_FETCH_SUCCESS,
           payload: snapshot.val()
@@ -154,7 +144,6 @@ export const undoCompletionRequest = (
 
 // delete reward request
 export const deleteRewardRequest = rrid => {
-  console.log("inside delete reward request");
   const { currentUser } = firebase.auth();
   return dispatch => {
     firebase
@@ -193,16 +182,9 @@ export const rewardRequestSend2 = (
   uid,
   rewardDescription
 ) => {
-  console.log("activeUserObject: ", activeUserObject);
-  console.log("currentPoints: ", currentPoints);
-  console.log("rewardDescription inside actions: ", rewardDescription);
-
-  console.log("params: ", pointsValue, rid, rewardName, activeUserObject);
   const { currentUser } = firebase.auth();
-  console.log("entered userCreate");
   return dispatch => {
     /// create reward Request
-    console.log("create reward request");
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/rewardRequests`)
@@ -217,7 +199,6 @@ export const rewardRequestSend2 = (
         rewardDescription: rewardDescription
       });
     // edit the childs points value
-    // console.log("edit childs points value. uid: ", uid);
     // i need to give the active user an id when it is first initialized
     firebase
       .database()
@@ -246,16 +227,9 @@ export const resubmitRewardRequest = (
   uid,
   rewardDescription
 ) => {
-  console.log("activeUserObject: ", activeUserObject);
-  console.log("currentPoints: ", currentPoints);
-  console.log("rewardDescription inside actions: ", rewardDescription);
-
-  console.log("params: ", pointsValue, rid, rewardName, activeUserObject);
   const { currentUser } = firebase.auth();
-  console.log("entered userCreate");
   return dispatch => {
     /// create reward Request
-    console.log("create reward request");
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/rewardRequests/${rid}`)
@@ -270,7 +244,6 @@ export const resubmitRewardRequest = (
         rewardDescription: rewardDescription
       });
     // edit the childs points value
-    // console.log("edit childs points value. uid: ", uid);
     // i need to give the active user an id when it is first initialized
     firebase
       .database()

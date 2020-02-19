@@ -33,11 +33,6 @@ class ChildHome extends Component {
   };
 
   componentDidMount() {
-    console.log(
-      "<<<<<<<<<<<<<<<<<<<<< INSIDE CHILD HOME >>>>>>>>>>>>>>>>>>>>>"
-    );
-    console.log("this.props.activeUser: ", this.props.activeUser);
-
     const {
       name,
       email,

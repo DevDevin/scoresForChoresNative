@@ -25,14 +25,7 @@ class UserListItem extends Component {
   };
 
   onSignIn(password, activeUser) {
-    console.log("this.state.enteredPassword: ", this.state.enteredPassword);
-    console.log("actualPassword: ", password);
-    // this.setState({
-    //   isModalVisible: !this.state.isModalVisible
-    // });
-
     if (password === this.state.enteredPassword) {
-      console.log("passwords matched");
       this.props.loadingUsersStart();
 
       // redirect to parent or child depending on the user status

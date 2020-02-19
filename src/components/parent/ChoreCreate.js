@@ -45,19 +45,16 @@ class ChoreCreate extends Component {
       this.props.choreUpdate({ prop: "emptyDay", value: true });
     }
 
-    console.log("child: ", child);
     if (child === "") {
       this.state.allowSubmit = false;
       this.props.choreUpdate({ prop: "emptyChild", value: true });
     }
 
-    console.log("pointsValue: ", pointsValue);
     if (pointsValue === 0) {
       this.state.allowSubmit = false;
       this.props.choreUpdate({ prop: "emptyPointsValue", value: true });
     }
 
-    console.log("allowSubmit before alert check: ", this.state.allowSubmit);
     if (this.state.allowSubmit) {
       this.props.choreCreate({
         choreName: choreName,

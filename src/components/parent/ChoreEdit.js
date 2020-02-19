@@ -15,22 +15,13 @@ class ChoreEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    console.log("this.props.chore:  in choreEdit.js", this.props.cid);
     _.each(this.props.chore, (value, prop) => {
       this.props.choreUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    console.log(
-      "this.props.chore.choreName: in choreEdit.js ",
-      this.props.choreName
-    );
-    console.log("this.props.cid: in chore edit", this.props.cid);
-    console.log("this.props: ", this.props);
-
     const { child, choreName, description, pointsValue, day, cid } = this.props;
-    console.log("cid: ", cid);
 
     this.props.choreSave({
       child,
@@ -45,7 +36,6 @@ class ChoreEdit extends Component {
   }
 
   onAccept() {
-    console.log("this.props.chore: ", this.props.chore);
     const { cid } = this.props;
 
     this.props.choreDelete({ cid });

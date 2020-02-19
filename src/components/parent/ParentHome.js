@@ -96,7 +96,8 @@ class ParentHome extends Component {
               fontSize: 24
             }}
           >
-            Hello {name}
+            {/* Hello {name} */}
+            Hello
           </Text>
         </View>
 

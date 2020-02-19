@@ -20,8 +20,6 @@ class ChoreForm extends Component {
     child: ""
   };
   componentDidMount() {
-    console.log("this.props.choreName: ", this.props.choreName);
-    console.log("this.props.cid: ", this.props.cid);
     this.props.choreUpdate({ prop: "cid", value: this.props.cid });
     this.props.choreUpdate({
       prop: "isRecurring",
@@ -87,7 +85,6 @@ class ChoreForm extends Component {
     }
 
     let emptyChildMessage;
-    console.log("emptyChild: ", this.props.emptyChild);
     if (this.props.emptyChild === true) {
       emptyChildMessage = (
         <View>
@@ -116,10 +113,8 @@ class ChoreForm extends Component {
     const users = this.props.users;
 
     const children = _.filter(users, function(item) {
-      console.log("item.status: ", item.status);
       return item.status === "Child";
     });
-    console.log("children: ", children, "users: ", users);
 
     return (
       <View>

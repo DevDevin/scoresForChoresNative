@@ -17,7 +17,6 @@ class AdminUserForm extends Component {
   }
 
   render() {
-    console.log("props.emptyName: ", this.props.emptyName);
     let emptyNameMessage;
     if (this.props.emptyName === true) {
       emptyNameMessage = (
@@ -30,7 +29,6 @@ class AdminUserForm extends Component {
     }
 
     let emptyEmailMessage;
-    console.log("this.props.emptyEmail: ", this.props.emptyEmail);
     if (this.props.emptyEmail === true) {
       emptyEmailMessage = (
         <View>

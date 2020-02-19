@@ -109,7 +109,6 @@ class ChildSideMenu extends Component {
         <TouchableWithoutFeedback
           onPress={() => {
             // logoutAuth();
-            console.log("inside onPress logout");
             Alert.alert(
               "Logout",
               "Are you sure you want to sign out?",

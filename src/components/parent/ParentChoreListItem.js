@@ -20,15 +20,11 @@ class ParentChoreListItem extends Component {
   };
 
   toggleModal = () => {
-    console.log("this.props.chore: ", this.props.chore);
-
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
   onEditPress() {
     // edit the chore
-    console.log("this.props.chore.cid editpress: ", this.props.chore.cid);
-    console.log("this.props.chore: ", this.props.chore);
     this.props.choreUpdate({
       prop: "choreName",
       value: this.props.chore.choreName
@@ -59,7 +55,6 @@ class ParentChoreListItem extends Component {
     const day = this.props.chore.day;
     const description = this.props.chore.description;
     const cid = this.props.chore.cid;
-    console.log("cid: ", cid);
 
     const childName = this.props.chore.child;
 

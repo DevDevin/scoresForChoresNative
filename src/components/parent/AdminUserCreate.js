@@ -30,7 +30,6 @@ class AdminUserCreate extends Component {
       this.props.userUpdate({ prop: "emptyName", value: true });
       this.state.allowSubmit = false;
     }
-    console.log("password1: ", password1, " password2: ", password2);
     if (this.props.password1 != this.props.password2) {
       this.props.userUpdate({ prop: "passwordMismatch", value: true });
       this.state.allowSubmit = false;
@@ -45,15 +44,17 @@ class AdminUserCreate extends Component {
     }
 
     //if all of those are false then create user
-    console.log(emptyName, emptyEmail, passwordMismatch);
     if (this.state.allowSubmit) {
-      this.props.userCreate({
-        name,
-        // phone,
-        password1,
-        status: "parent",
-        email
-      });
+      this.props.userCreate(
+        {
+          name,
+          // phone,
+          password1,
+          status: "parent",
+          email
+        },
+        ""
+      );
       Actions.chooseUser();
     }
   }

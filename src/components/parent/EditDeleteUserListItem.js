@@ -62,8 +62,6 @@ class EditDeleteUserListItem extends Component {
 
   // I just need to update the userForm data to be the current user that is clicked on
   setUserFormData = objUser => {
-    console.log("objUser.name: ", objUser);
-
     // set the user form data
     //set a prop that let's me know if it is the admin editing or not
 

@@ -27,16 +27,9 @@ class RewardListItem extends Component {
   componentDidMount() {
     // this.props.rewardsFetch();
     this.props.rewardRequestsFetch();
-
-    console.log("ChildRewardListItem component did mount");
   }
 
   toggleModal = () => {
-    console.log("rewardName: ", this.props.reward.rewardName);
-    console.log("pointsValue: ", this.props.reward.pointsValue);
-    console.log("description: ", this.props.reward.description);
-    console.log("rid: ", this.props.reward);
-
     this.props.rewardUpdate({
       prop: "rewardName",
       value: this.props.reward.rewardName
@@ -68,8 +61,7 @@ class RewardListItem extends Component {
 
   onButtonPress(rid) {
     // submit a completion
-    console.log("rid3: ", rid);
-    console.log("rid4: ", this.props.reward.cid);
+
     this.props.rewardDelete(rid);
   }
 
@@ -77,16 +69,13 @@ class RewardListItem extends Component {
     const rewardName = this.props.reward.rewardName;
     const pointsValue = this.props.reward.pointsValue;
     const rid = this.props.reward.cid;
-    console.log("rid1: ", this.props.reward.cid);
     const uid = this.props.activeUser.uid;
     const activeUserName = this.props.activeUser.name;
     const rewardRequests = this.props.rewardRequests;
 
     //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
     // have a undo button available.
-    _.map(rewardRequests, item => {
-      console.log(item);
-    });
+    _.map(rewardRequests, item => {});
 
     return (
       <View style={{ flex: 1 }}>

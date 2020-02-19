@@ -15,16 +15,12 @@ class RewardEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    console.log("this.props.rid: rewardEdit.js: ", this.props.rid);
     _.each(this.props.reward, (value, prop) => {
       this.props.rewardUpdate({ prop, value });
     });
   }
 
   onButtonPress() {
-    console.log("this.props.reward: ", this.props.rewardName);
-    console.log("this.props.cid: in chore edit", this.props);
-    console.log("this.props: ", this.props);
     const { rewardName, description, pointsValue, rid } = this.props;
     this.props.rewardSave({
       rewardName,
@@ -34,16 +30,6 @@ class RewardEdit extends Component {
     });
     Actions.parentRewardList();
   }
-
-  // onAccept() {
-  //   console.log("this.props.chore: ", this.props.chore);
-  //   const { rid } = this.props;
-  //   this.props.choreDelete({ rid });
-  // }
-
-  // onDecline() {
-  //   this.setState({ showModal: false });
-  // }
 
   render() {
     return (

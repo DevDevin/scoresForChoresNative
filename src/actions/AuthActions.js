@@ -95,7 +95,6 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const createAccount = ({ email, password, password2 }) => {
-  console.log("inside createAccount");
   return dispatch => {
     if (password != password2) {
       passwordMismatch(dispatch);
@@ -112,7 +111,6 @@ export const createAccount = ({ email, password, password2 }) => {
             });
         })
         .catch(err => {
-          console.log("fail. Couldn't create user because: ", err);
           Alert.alert(
             err.message,
             "Please try again",
@@ -168,9 +166,7 @@ const loginUserSuccess = (dispatch, user) => {
 };
 
 export const userCreate = ({ name, password1, status, email }, activeUser) => {
-  console.log("activeUser in userCreate", activeUser);
   const { currentUser } = firebase.auth();
-  console.log("entered userCreate");
   return dispatch => {
     firebase
       .database()
@@ -183,7 +179,6 @@ export const userCreate = ({ name, password1, status, email }, activeUser) => {
         earnedPoints: 0
       })
       .then(() => {
-        console.log("should have gone to choose user");
         if (activeUser === "") {
           Actions.userList();
         } else {
@@ -194,8 +189,6 @@ export const userCreate = ({ name, password1, status, email }, activeUser) => {
 };
 
 export const userUpdate = ({ prop, value }) => {
-  console.log("inside user update");
-  console.log("prop: ", prop, " value: ", value);
   return {
     type: USER_UPDATE,
     payload: { prop, value }
@@ -227,7 +220,6 @@ export const userSave = ({
         earnedPoints: earnedPoints
       })
       .then(() => {
-        console.log("name: ", name);
         // update all objects with this name. ex:
         choreUpdate2();
         // completionRequestUpdate()
@@ -252,15 +244,12 @@ export const choreUpdate = () => {
 /// update reward requests info when child changes name
 export const rewardRequestUpdate = (newName, rewardRequests) => {
   const { currentUser } = firebase.auth();
-  console.log("rewardRequests in rewardRequestsUpdate: ", rewardRequests);
   // simplify the object of arrays
   const rewardRequestsObject = rewardRequests.rewardRequests;
-  console.log("rewardRequestsObject: ", rewardRequestsObject);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {
     _.map(rewardRequestsObject, rewardRequest => {
-      console.log("rewardRequests map: ", rewardRequest);
       firebase
         .database()
         .ref(`/users/${currentUser.uid}/rewardRequests/${rewardRequest.rid}`)
@@ -281,15 +270,12 @@ export const rewardRequestUpdate = (newName, rewardRequests) => {
 /// update reward requests info when child changes name
 export const rewardsEarnedUpdate = (newName, rewardsEarned) => {
   const { currentUser } = firebase.auth();
-  console.log("rewardsEarned in rewardsEarnedUpdate: ", rewardsEarned);
   // simplify the object of arrays
   const rewardsEarnedObject = rewardsEarned.rewardsEarned;
-  console.log("rewardsEarnedObject: ", rewardsEarnedObject);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {
     _.map(rewardsEarnedObject, reward => {
-      console.log("rewardsEarnedObject map: ", reward.rewardName);
       firebase
         .database()
         .ref(`/users/${currentUser.uid}/rewardsEarned/${reward.rid}`)
@@ -309,7 +295,6 @@ export const choreUpdate2 = (newName, chores) => {
 
   // simplify the object of arrays
   const choresObject = chores.chores;
-  console.log("choresObject: ", choresObject);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {
@@ -331,13 +316,10 @@ export const choreUpdate2 = (newName, chores) => {
 };
 
 export const testFunc = () => {
-  console.log("testFunc");
+  ////
 };
 
 export const choreUpdate2_2 = (oldName, newName) => {
-  console.log("-----choreUpdate2------");
-  console.log("oldName: ", oldName);
-  console.log("newName: ", newName);
   const { currentUser } = firebase.auth();
   // const child = activeUser;
   // need to figure out why it is not going into the dispatch
@@ -348,10 +330,7 @@ export const choreUpdate2_2 = (oldName, newName) => {
       .orderByChild("child")
       .equalTo("Child 3")
       .on("value", snapshot => {
-        console.log("snapshot in choreUpdate2: ", snapshot);
         _.map(snapshot, chore => {
-          console.log("chore: ", chore);
-          console.log("snapshote: ", snapshot);
           firebase
             .database()
             .ref(`/users/${currentUser.uid}/chores`)
@@ -365,19 +344,15 @@ export const choreUpdate2_2 = (oldName, newName) => {
               status: "In-Progress"
             })
             .then(() => {
-              console.log("actions.parent");
               Actions.parentChoreList();
             });
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
 };
 
 export const userDelete = uid => {
-  console.log("inside of chore delete: ", uid);
   const { currentUser } = firebase.auth();
 
   return () => {
@@ -425,7 +400,6 @@ export const loadingUsersStart = () => {
 
 export const setActiveUser = activeUser => {
   const { currentUser } = firebase.auth();
-  console.log("entered setActiveUser: ", activeUser);
 
   return dispatch => {
     firebase
@@ -453,7 +427,6 @@ export const setActiveUser = activeUser => {
 
 export const updateActiveUser = (activeUser, pointsValue) => {
   const { currentUser } = firebase.auth();
-  console.log("entered updateActiveUser: ", activeUser);
 
   return dispatch => {
     firebase

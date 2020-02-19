@@ -46,7 +46,6 @@ class ChildRewardRequestsListItem extends Component {
   ) {
     // resubmit a reward request
     const activeUserObject = this.props.activeUser;
-    console.log("rewardDescription: ", rewardDescription);
 
     Alert.alert(
       "Logout",
@@ -103,14 +102,12 @@ class ChildRewardRequestsListItem extends Component {
 
   render() {
     const activeUserObject = this.props.activeUser;
-    console.log("activeUserObject: ", activeUserObject);
     const activeUserName = this.props.activeUser.name;
     const users = this.props.users;
     const currentUser = _.filter(users, function(item) {
       return item.name === activeUserName;
     });
 
-    console.log("currentUser **: ", currentUser);
     const currentPoints = currentUser[0].earnedPoints;
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
@@ -120,7 +117,6 @@ class ChildRewardRequestsListItem extends Component {
     const rejectionReason = this.props.rewardRequest.rejectionReason;
     const rewardStatus = this.props.rewardRequest.status;
     const rewardDescription = this.props.rewardRequest.rewardDescription;
-    console.log("rewardRequest prop: ", this.props.rewardRequest);
 
     let reSubmitButton;
 

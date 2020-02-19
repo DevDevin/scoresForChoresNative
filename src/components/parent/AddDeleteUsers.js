@@ -40,7 +40,6 @@ class AddDeleteUser extends Component {
   }
 
   onButtonPress() {
-    console.log("inside on button press");
     // may have to call an action that then redirects to the user create component
     Actions.userCreate();
   }

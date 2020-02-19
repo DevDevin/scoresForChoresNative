@@ -7,7 +7,6 @@ import { CardSection, Input } from "../common/index";
 class RewardForm extends Component {
   componentDidMount() {
     // reset props when opening form
-    console.log("reward form. this.props.reward: ", this.props.rid);
     this.props.rewardUpdate({ prop: "rid", value: this.props.rid });
     // this.props.rewardUpdate({ prop: "pointsValue", value: 0 });
     // this.props.rewardUpdate({ prop: "description", value: "" });

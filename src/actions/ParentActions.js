@@ -163,7 +163,6 @@ export const rewardSave = ({ rewardName, description, rid, pointsValue }) => {
 };
 
 export const choreDelete = cid => {
-  console.log("inside of chore delete: ", cid);
   const { currentUser } = firebase.auth();
 
   return () => {
@@ -179,7 +178,6 @@ export const choreDelete = cid => {
 
 // reward delete
 export const rewardDelete = rid => {
-  console.log("rid in rewardDelete: ", rid);
   const { currentUser } = firebase.auth();
 
   return () => {
@@ -334,7 +332,6 @@ export const rewardRequestAccept = (
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
       .on("value", snapshot => {
-        console.log("snapshot.val: ", snapshot.val());
         // set values for updating the child from the snapshot
         totalPoints = parseInt(snapshot.val().earnedPoints);
         email = snapshot.val().email;
@@ -451,7 +448,6 @@ export const choreReset = filteredChores => {
           status: "In-Progress"
         })
         .then(() => {
-          console.log("actions.parent");
           Actions.parentChoreList();
         });
     });

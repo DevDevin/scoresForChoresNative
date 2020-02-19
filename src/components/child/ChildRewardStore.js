@@ -37,10 +37,8 @@ class ChildRewardStore extends Component {
       rewardName: rewardName,
       description: description
     });
-    console.log("inisde of toggle modal");
-    console.log("before toggle: ", this.state.isModalVisible);
+
     this.setState({ isModalVisible: !this.state.isModalVisible });
-    console.log("after toggle: ", this.state.isModalVisible);
   };
 
   onButtonPress(
@@ -55,7 +53,6 @@ class ChildRewardStore extends Component {
     // submit a completion
     // the uid being passed in is nothing. If i can fix this it will fix most other things.
     const activeUserObject = this.props.activeUser;
-    console.log("currentPoints in button press: ", currentPoints);
 
     Alert.alert(
       "Logout",
@@ -104,7 +101,6 @@ class ChildRewardStore extends Component {
   };
 
   componentDidMount() {
-    console.log("childRewardStore did mount");
     this._start();
   }
 
@@ -123,7 +119,6 @@ class ChildRewardStore extends Component {
     uid,
     rewardDescription
   ) {
-    console.log("pointsValue: ", pointsValue);
     if (currentPoints >= pointsValue) {
       return (
         <TouchableOpacity
@@ -150,38 +145,27 @@ class ChildRewardStore extends Component {
   render() {
     const activeUserName = this.props.activeUser.name;
     const users = this.props.users;
-    console.log("users: ", users);
     // const activeUserObject = this.props.activeUser;
     const uid = this.props.activeUser.uid;
-    console.log("uid: ", uid);
 
     let { slideUp, SlideInLeft } = this.state;
     const rewards = this.props.rewards;
     const activeUser = this.props.activeUser;
-    console.log("activeUser: ", this.props.activeUser);
-    console.log("rewards: ", this.props.rewards);
+
     const earnedPoints = this.props.activeUser.earnedPoints;
-    console.log("earnedPoints1 ", earnedPoints);
-    console.log("reward description: ", this.props.rewards.description);
 
     const currentUser = _.filter(users, function(item) {
       return item.name === activeUserName;
     });
 
-    console.log("currentUser **: ", currentUser);
     const currentPoints = currentUser[0].earnedPoints;
-    console.log("currentPoints: ", currentPoints);
     const uid2 = currentUser[0].uid;
-    console.log("uid2: ", uid);
     // this.setState({ currentPoints: currentPoints });
 
     const rewardRequests = this.props.rewardRequestSend;
-    console.log("rewardRequests: ", rewardRequests);
     //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
     // have a undo button available.
-    _.map(rewardRequests, item => {
-      console.log(item);
-    });
+    _.map(rewardRequests, item => {});
 
     return (
       <View style={{ backgroundColor: "grey", flex: 1 }}>
@@ -424,7 +408,6 @@ const mapStateToProps = state => {
     return { ...val, rid };
   });
 
-  console.log("rewards in mapStateToProps: ", rewards);
   //then I can filter this chores object by the child name before I pass it into the chore update function
 
   const rewardRequests = _.map(state.rewardRequests, (val, rid) => {

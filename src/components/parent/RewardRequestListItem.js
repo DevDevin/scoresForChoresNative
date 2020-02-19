@@ -52,7 +52,6 @@ class RewardRequestListItem extends Component {
         {
           text: "OK",
           onPress: () => {
-            console.log("uid: ", uid);
             this.props.rewardRequestAccept(
               childName,
               uid,
@@ -104,7 +103,6 @@ class RewardRequestListItem extends Component {
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
     const uid = this.props.rewardRequest.uid;
-    console.log("uid original: ", uid);
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.state.rejectionReason;

@@ -102,9 +102,6 @@ class ResetPassword extends Component {
               selectedValue={this.state.user}
               style={{ height: 50, width: 200 }}
               onValueChange={(itemValue, itemIndex) => {
-                console.log("itemValue.uid: ", itemValue.uid);
-                console.log("itemValue.name: ", itemValue.name);
-
                 this.setState({
                   user: itemValue.uid,
                   userNothing: false,

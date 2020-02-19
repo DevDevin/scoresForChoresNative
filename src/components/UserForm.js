@@ -6,16 +6,6 @@ import { CardSection, Input } from "./common";
 import RadioForm from "react-native-simple-radio-button";
 
 class UserForm extends Component {
-  componentDidMount() {
-    console.log("this.props.user.name in UserForm.js: ", this.props.name);
-    // reset props when opening form
-    // this.props.userUpdate({ prop: "name", value: "" });
-    // this.props.userUpdate({ prop: "email", value: 0 });
-    // this.props.userUpdate({ prop: "password1", value: "" });
-    // this.props.userUpdate({ prop: "password2", value: "" });
-    // this.props.userUpdate({ prop: "status", value: "Child" });
-  }
-
   render() {
     let emptyNameMessage;
     if (this.props.emptyName === true) {
@@ -29,7 +19,6 @@ class UserForm extends Component {
     }
 
     let userExistsMessage;
-    console.log("exists: ", this.props.userExists);
     if (this.props.userExists === true) {
       userExistsMessage = (
         <View>
@@ -43,7 +32,6 @@ class UserForm extends Component {
     }
 
     let emptyEmailMessage;
-    console.log("this.props.emptyEmail: ", this.props.emptyEmail);
     if (this.props.emptyEmail === true) {
       emptyEmailMessage = (
         <View>
@@ -56,7 +44,6 @@ class UserForm extends Component {
       emptyEmailMessage = <View></View>;
     }
     let passwordMismatchMessage;
-    console.log("passwordMismatch: ", this.props.passwordMismatch);
     if (this.props.passwordMismatch === true) {
       passwordMismatchMessage = (
         <View>
@@ -69,7 +56,6 @@ class UserForm extends Component {
       passwordMismatchMessage = <View></View>;
     }
 
-    console.log("this.props.name: userForm", this.props.name);
     return (
       <View>
         <CardSection>

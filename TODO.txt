@@ -1,8 +1,6 @@
--- beautify the style and design
--- delete commented out code and console logs. 
+-- beautify the style and design 
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
 -- add correct icons for menu buttons
 -- fix the back arrow navigation. 
--- admin user not being created after clicking create in the admin user form.
 
