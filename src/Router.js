@@ -31,6 +31,9 @@ import { logoutAuth } from "./actions/AuthActions";
 import RewardEdit from "./components/parent/RewardEdit";
 import ManageUsers from "./components/parent/ManageUsers";
 import AddDeleteUsers from "./components/parent/AddDeleteUsers";
+import ChoreManager from "./components/parent/ChoreManager";
+import RewardManager from "./components/parent/RewardManager";
+import UserProfile from "./components/child/UserProfile";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -102,6 +105,11 @@ const RouterComponent = () => {
               title="Child Chore List"
             />
             <Scene
+              key="userProfile"
+              component={UserProfile}
+              title="User Profile"
+            />
+            <Scene
               key="childRewardStore"
               component={ChildRewardStore}
               title="Child Reward Store"
@@ -146,9 +154,9 @@ const RouterComponent = () => {
             drawerWidth={Dimensions.get("window").width * 0.4}
           >
             <Scene
+              title="Chores"
               key="parentChoreList"
               component={ParentChoreList}
-              title="Parent Chore List"
             />
             <Scene
               key="choreReset"
@@ -158,7 +166,7 @@ const RouterComponent = () => {
             <Scene
               key="parentRewardList"
               component={ParentRewardList}
-              title="Parent Reward List"
+              title="Rewards"
             />
             <Scene
               key="rewardRequestList"
@@ -206,6 +214,16 @@ const RouterComponent = () => {
               key="manageUsers"
               component={ManageUsers}
               title="User Manager"
+            />
+            <Scene
+              key="choreManager"
+              component={ChoreManager}
+              title="Chore Manager"
+            />
+            <Scene
+              key="rewardManager"
+              component={RewardManager}
+              title="Reward Manager"
             />
           </Drawer>
         </Scene>

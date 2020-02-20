@@ -29,7 +29,7 @@ class ChildHomeSideMenu extends Component {
               }}
             >
               <Image source={require("../../Images/signOut.png")} />
-              <Text style={{ fontSize: 16 }}>Account Settings</Text>
+              <Text style={{ fontSize: 16 }}>User Profile</Text>
             </View>
           </TouchableOpacity>
         </View>

@@ -15,45 +15,6 @@ class ParentHomeSideMenu extends Component {
       <View style={{ flex: 1, flexDirection: "column" }}>
         <TouchableWithoutFeedback
           onPress={() => {
-            Actions.choreReset();
-          }}
-        >
-          <View style={styles.rewardStoreStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/reset.png")} />
-              <Text style={{ fontSize: 16 }}>Reset Chores</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Actions.passwordReset();
-          }}
-        >
-          <View style={styles.rewardStoreStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/resetPassword.png")} />
-              <Text style={{ fontSize: 16 }}>Password Reset</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-        {/* new user */}
-        <TouchableWithoutFeedback
-          onPress={() => {
             Alert.alert(
               "Logout",
               "Are you sure you want to change users?",

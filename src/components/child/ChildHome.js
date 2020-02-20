@@ -63,6 +63,10 @@ class ChildHome extends Component {
     Actions.childRewardStore();
   }
 
+  onUserProfile() {
+    Actions.userProfile();
+  }
+
   render() {
     let { slideUp, SlideInLeft } = this.state;
     const { name } = this.props.activeUser;
@@ -122,6 +126,22 @@ class ChildHome extends Component {
             >
               <Image source={require("../../Images/rewardList.png")} />
               <Text style={{ fontSize: 22 }}>Reward Store</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback onPress={this.onUserProfile.bind(this)}>
+          <View style={styles.rewardStoreStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/genericUser.png")} />
+              <Text style={{ fontSize: 22 }}>User Profile</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

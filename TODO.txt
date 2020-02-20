@@ -1,6 +1,6 @@
 -- beautify the style and design 
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
--- add correct icons for menu buttons
 -- fix the back arrow navigation. 
-
+-- user profile cancel button for children navigates to parent reward list
+-- add a reward manager home page for children with reward store and reward requests

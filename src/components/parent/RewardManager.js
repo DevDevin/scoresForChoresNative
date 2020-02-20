@@ -9,10 +9,8 @@ import {
   ActivityIndicator,
   Animated
 } from "react-native";
-import Spinner from "react-native-loading-spinner-overlay";
-import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
 
-class ParentHome extends Component {
+class RewardManager extends Component {
   state = {
     slideUp: new Animated.Value(-100),
     SlideInLeft: new Animated.Value(-100)
@@ -22,39 +20,26 @@ class ParentHome extends Component {
     return Animated.parallel([
       Animated.timing(this.state.slideUp, {
         toValue: 1,
-        duration: 6000,
+        duration: 1000,
         useNativeDriver: true
       }),
       Animated.timing(this.state.SlideInLeft, {
         toValue: 1,
-        duration: 6000,
+        duration: 1000,
         useNativeDriver: true
       })
     ]).start();
   };
 
-  onChoreListPress() {
-    Actions.choreManager();
+  onRewardList() {
+    Actions.parentRewardList();
   }
 
-  onChoreListPress2() {
-    Actions.manageUsers();
-  }
-
-  onRewardListPress() {
-    Actions.rewardManager();
-  }
-
-  onCompletionRequestPress() {
-    Actions.completionRequestList();
-  }
-
-  onRewardRequestPress() {
+  onRewardRequests() {
     Actions.rewardRequestList();
   }
 
   componentDidMount() {
-    this.props.loadingUsersEnd();
     this._start();
   }
 
@@ -72,12 +57,12 @@ class ParentHome extends Component {
         </View>
       );
     }
-    return <Text style={{ fontSize: 22 }}>Chore List</Text>;
+    return <Text style={{ fontSize: 22 }}>Reward Manager</Text>;
   }
 
   render() {
     let { slideUp, SlideInLeft } = this.state;
-    const { name } = this.props.activeUser;
+    // const { name } = this.props.activeUser;
 
     return (
       <View
@@ -87,7 +72,7 @@ class ParentHome extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.6,
+            flex: 0.4,
             elevation: 5
           }}
         >
@@ -96,7 +81,7 @@ class ParentHome extends Component {
               fontSize: 24
             }}
           >
-            Hello {name}
+            Chore Manager
           </Text>
         </View>
 
@@ -113,7 +98,7 @@ class ParentHome extends Component {
             ]
           }}
         >
-          <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
+          <TouchableWithoutFeedback onPress={this.onRewardList.bind(this)}>
             <View style={styles.choreListStyle}>
               <View
                 style={{
@@ -124,36 +109,7 @@ class ParentHome extends Component {
                 }}
               >
                 <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Chore Manager</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: SlideInLeft.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [-100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
-            <View style={styles.rewardListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/rewardList.png")} />
-                <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+                <Text style={{ fontSize: 22 }}>Rewards List</Text>
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -172,7 +128,7 @@ class ParentHome extends Component {
             ]
           }}
         >
-          <TouchableWithoutFeedback onPress={this.onChoreListPress2.bind(this)}>
+          <TouchableWithoutFeedback onPress={this.onRewardRequests.bind(this)}>
             <View style={styles.choreListStyle}>
               <View
                 style={{
@@ -183,7 +139,7 @@ class ParentHome extends Component {
                 }}
               >
                 <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>User Manager</Text>
+                <Text style={{ fontSize: 22 }}>Reward Requests</Text>
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -223,13 +179,4 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    activeUser: state.auth.activeUser,
-    loading: state.loading.loading
-  };
-};
-
-export default connect(mapStateToProps, { loadingUsersEnd, loadingUsersStart })(
-  ParentHome
-);
+export default connect(null, {})(RewardManager);
