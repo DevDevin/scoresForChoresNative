@@ -31,6 +31,10 @@ class ChildRewardStore extends Component {
     description: ""
   };
 
+  componentWillUnmount() {
+    Actions.childHome();
+  }
+
   toggleModal = (pointsValue, rewardName, description) => {
     this.setState({
       pointsValue: pointsValue,
