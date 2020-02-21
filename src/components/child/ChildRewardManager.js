@@ -10,32 +10,7 @@ import {
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
 
-class ChildHome extends Component {
-  state = {
-    slideUp: new Animated.Value(0),
-    SlideInLeft: new Animated.Value(0)
-  };
-
-  // animation
-  _start = () => {
-    return Animated.parallel([
-      Animated.timing(this.state.slideUp, {
-        toValue: 1,
-        duration: 4000,
-        useNativeDriver: true
-      }),
-      Animated.timing(this.state.SlideInLeft, {
-        toValue: 1,
-        duration: 4000,
-        useNativeDriver: true
-      })
-    ]).start();
-  };
-
-  // componentWillUnmount() {
-  //   Actions.childHome();
-  // }
-
+class ChildRewardManager extends Component {
   componentDidMount() {
     const {
       name,
@@ -54,17 +29,21 @@ class ChildHome extends Component {
       this.props.userUpdate({ prop: "status", value: "Child" });
       this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
-      this.props.loadingUsersEnd();
-      this._start();
+      // this.props.loadingUsersEnd();
+      // this._start();
     }
   }
 
-  onChoreListPress() {
-    Actions.childChoreList();
+  // componentWillUnmount() {
+  //   Actions.childHome();
+  // }
+
+  onRewardRequests() {
+    Actions.rewardRequests();
   }
 
-  onRewardManager() {
-    Actions.childRewardManager();
+  onRewardStore() {
+    Actions.childRewardStore();
   }
 
   onUserProfile() {
@@ -72,7 +51,6 @@ class ChildHome extends Component {
   }
 
   render() {
-    let { slideUp, SlideInLeft } = this.state;
     const { name } = this.props.activeUser;
 
     return (
@@ -86,39 +64,10 @@ class ChildHome extends Component {
             elevation: 5
           }}
         >
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <Text style={{ fontSize: 24 }}>Hello {name}</Text>
-          </Animated.View>
+          <Text style={{ fontSize: 24 }}>Reward Manager</Text>
         </View>
 
-        <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
-          <View style={styles.choreListStyle}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
-              }}
-            >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 22 }}>Chore List</Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={this.onRewardManager.bind(this)}>
+        <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
           <View style={styles.rewardStoreStyle}>
             <View
               style={{
@@ -129,13 +78,13 @@ class ChildHome extends Component {
               }}
             >
               <Image source={require("../../Images/rewardList.png")} />
-              <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+              <Text style={{ fontSize: 22 }}>Reward Store</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback onPress={this.onUserProfile.bind(this)}>
-          <View style={styles.rewardStoreStyle}>
+        <TouchableWithoutFeedback onPress={this.onRewardRequests.bind(this)}>
+          <View style={styles.choreListStyle}>
             <View
               style={{
                 flex: 1,
@@ -144,8 +93,8 @@ class ChildHome extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/genericUser.png")} />
-              <Text style={{ fontSize: 22 }}>User Profile</Text>
+              <Image source={require("../../Images/completionRequest.png")} />
+              <Text style={{ fontSize: 22 }}>Reward Requests</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -186,5 +135,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { loadingUsersEnd, userUpdate })(
-  ChildHome
+  ChildRewardManager
 );

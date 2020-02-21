@@ -22,6 +22,10 @@ class ChildRewardRequestList extends Component {
     this.props.usersFetch();
   }
 
+  componentWillUnmount() {
+    Actions.childHome();
+  }
+
   onButtonPress() {
     Actions.userCreate();
   }

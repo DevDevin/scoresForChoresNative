@@ -6,6 +6,7 @@ import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View, Dimensions } from "react-native";
 import { CardSection } from "../common/index";
+import { Actions } from "react-native-router-flux";
 
 class ChildChoreList extends Component {
   state = {
@@ -14,6 +15,10 @@ class ChildChoreList extends Component {
     slideUp: new Animated.Value(0),
     SlideInLeft: new Animated.Value(0)
   };
+
+  componentWillUnmount() {
+    Actions.childHome();
+  }
 
   // animation
   _start = () => {

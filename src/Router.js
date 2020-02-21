@@ -34,6 +34,7 @@ import AddDeleteUsers from "./components/parent/AddDeleteUsers";
 import ChoreManager from "./components/parent/ChoreManager";
 import RewardManager from "./components/parent/RewardManager";
 import UserProfile from "./components/child/UserProfile";
+import ChildRewardManager from "./components/child/ChildRewardManager";
 
 // I can somehow use drawer for to create a dropdown with a logout and home button
 
@@ -114,6 +115,12 @@ const RouterComponent = () => {
               component={ChildRewardStore}
               title="Child Reward Store"
             />
+            <Scene
+              key="childRewardManager"
+              component={ChildRewardManager}
+              title="Child Reward Manager"
+            />
+
             <Scene
               key="rewardRequests"
               component={ChildRewardRequestsList}

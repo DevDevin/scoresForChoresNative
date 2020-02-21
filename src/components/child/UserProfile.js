@@ -10,6 +10,10 @@ import {
 import UserEdit from "../UserEdit";
 
 export default class UserProfile extends Component {
+  componentWillUnmount() {
+    Actions.childHome();
+  }
+
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>

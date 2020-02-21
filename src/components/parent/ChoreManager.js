@@ -7,7 +7,9 @@ import {
   View,
   Image,
   ActivityIndicator,
-  Animated
+  Animated,
+  BackHandler,
+  ToastAndroid
 } from "react-native";
 
 class ChoreManager extends Component {
@@ -43,9 +45,19 @@ class ChoreManager extends Component {
     Actions.completionRequestList();
   }
 
+  ///// back button example ////////
   componentDidMount() {
     this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.parentHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   renderSmallSpinner() {
     if (this.state.smallSpinner) {

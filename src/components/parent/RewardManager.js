@@ -43,6 +43,10 @@ class RewardManager extends Component {
     this._start();
   }
 
+  // componentWillUnmount() {
+  //   Actions.parentHome();
+  // }
+
   renderSmallSpinner() {
     if (this.state.smallSpinner) {
       return (
@@ -81,7 +85,7 @@ class RewardManager extends Component {
               fontSize: 24
             }}
           >
-            Chore Manager
+            Reward Manager
           </Text>
         </View>
 

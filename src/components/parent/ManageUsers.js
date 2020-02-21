@@ -51,6 +51,10 @@ class ManageUsers extends Component {
     this._start();
   }
 
+  // componentWillUnmount() {
+  //   Actions.parentHome();
+  // }
+
   renderSmallSpinner() {
     if (this.state.smallSpinner) {
       return (
