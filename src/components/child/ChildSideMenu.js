@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Alert,
+  BackHandler
+} from "react-native";
 import { logoutAuth } from "../../actions/AuthActions";
 
 class ChildSideMenu extends Component {
@@ -17,6 +24,10 @@ class ChildSideMenu extends Component {
         >
           <TouchableOpacity
             onPress={() => {
+              BackHandler.removeEventListener(
+                "hardwareBackPress",
+                this.handleBackButton
+              );
               Actions.childHome();
             }}
           >
@@ -55,6 +66,10 @@ class ChildSideMenu extends Component {
                   {
                     text: "OK",
                     onPress: () => {
+                      BackHandler.removeEventListener(
+                        "hardwareBackPress",
+                        this.handleBackButton
+                      );
                       Actions.userList();
                     }
                   }
@@ -98,6 +113,10 @@ class ChildSideMenu extends Component {
                   {
                     text: "OK",
                     onPress: () => {
+                      BackHandler.removeEventListener(
+                        "hardwareBackPress",
+                        this.handleBackButton
+                      );
                       logoutAuth();
                     }
                   }

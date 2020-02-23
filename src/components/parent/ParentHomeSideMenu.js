@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   TouchableWithoutFeedback,
-  Alert
+  Alert,
+  BackHandler
 } from "react-native";
 import { logoutAuth } from "../../actions/AuthActions";
 
@@ -27,6 +28,10 @@ class ParentHomeSideMenu extends Component {
                 {
                   text: "OK",
                   onPress: () => {
+                    BackHandler.removeEventListener(
+                      "hardwareBackPress",
+                      this.handleBackButton
+                    );
                     Actions.userList();
                   }
                 }
@@ -64,6 +69,10 @@ class ParentHomeSideMenu extends Component {
                 {
                   text: "OK",
                   onPress: () => {
+                    BackHandler.removeEventListener(
+                      "hardwareBackPress",
+                      this.handleBackButton
+                    );
                     logoutAuth();
                   }
                 }

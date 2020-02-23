@@ -7,7 +7,8 @@ import {
   View,
   Image,
   Animated,
-  BackHandler
+  BackHandler,
+  ToastAndroid
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
 
@@ -55,16 +56,14 @@ class ChildHome extends Component {
       this.props.userUpdate({ prop: "status", value: "Child" });
       this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
+      BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+
       this.props.loadingUsersEnd();
       this._start();
     }
   }
 
   ///// back button example ////////
-  componentDidMount() {
-    // this._start();
-    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
-  }
 
   componentWillUnmount() {
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
@@ -79,14 +78,17 @@ class ChildHome extends Component {
   ////////////////////////////////////////
 
   onChoreListPress() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     Actions.childChoreList();
   }
 
   onRewardManager() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     Actions.childRewardManager();
   }
 
   onUserProfile() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     Actions.userProfile();
   }
 

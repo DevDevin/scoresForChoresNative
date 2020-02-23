@@ -10,7 +10,8 @@ import {
   Animated,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Alert
+  Alert,
+  BackHandler
 } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import { rewardsFetch } from "../../actions/ChildActions";
@@ -31,9 +32,23 @@ class ChildRewardStore extends Component {
     description: ""
   };
 
-  componentWillUnmount() {
-    Actions.childHome();
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childRewardManager();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   toggleModal = (pointsValue, rewardName, description) => {
     this.setState({

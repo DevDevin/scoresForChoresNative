@@ -5,14 +5,29 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  Animated
+  Animated,
+  BackHandler
 } from "react-native";
 import UserEdit from "../UserEdit";
 
 export default class UserProfile extends Component {
-  componentWillUnmount() {
-    Actions.childHome();
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   render() {
     return (

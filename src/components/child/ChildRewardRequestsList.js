@@ -7,7 +7,7 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel
 } from "react-native-simple-radio-button";
-import { FlatList, View, ScrollView, Text } from "react-native";
+import { FlatList, View, ScrollView, Text, BackHandler } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import ChildRewardRequestsListItem from "./ChildRewardRequestsListItem";
 import { usersFetch } from "../../actions/AuthActions";
@@ -25,6 +25,24 @@ class ChildRewardRequestList extends Component {
   componentWillUnmount() {
     Actions.childHome();
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childRewardManager();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   onButtonPress() {
     Actions.userCreate();

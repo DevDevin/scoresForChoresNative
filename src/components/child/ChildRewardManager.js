@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  Animated
+  Animated,
+  BackHandler
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
 
@@ -49,6 +50,24 @@ class ChildRewardManager extends Component {
   onUserProfile() {
     Actions.userProfile();
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   render() {
     const { name } = this.props.activeUser;
