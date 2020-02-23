@@ -7,7 +7,9 @@ import {
   View,
   Image,
   ActivityIndicator,
-  Animated
+  Animated,
+  BackHandler,
+  ToastAndroid
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
@@ -54,9 +56,27 @@ class ParentHome extends Component {
   }
 
   componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+
     this.props.loadingUsersEnd();
     this._start();
   }
+
+  ///// back button example ////////
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    ToastAndroid.show(
+      "Cannot go back from here. Must log out.",
+      ToastAndroid.LONG
+    );
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   renderSmallSpinner() {
     if (this.state.smallSpinner) {

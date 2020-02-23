@@ -5,7 +5,8 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Alert
+  Alert,
+  BackHandler
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -34,6 +35,24 @@ class ChildChoreListItem extends Component {
       pointsValue
     );
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
     // submit a completion
@@ -259,7 +278,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { childChoresFetch, completionRequestSend, undoCompletionRequest }
-)(ChildChoreListItem);
+export default connect(mapStateToProps, {
+  childChoresFetch,
+  completionRequestSend,
+  undoCompletionRequest
+})(ChildChoreListItem);

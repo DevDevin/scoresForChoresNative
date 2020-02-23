@@ -7,7 +7,8 @@ import {
   View,
   Image,
   ActivityIndicator,
-  Animated
+  Animated,
+  BackHandler
 } from "react-native";
 
 class RewardManager extends Component {
@@ -42,6 +43,24 @@ class RewardManager extends Component {
   componentDidMount() {
     this._start();
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.parentHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   // componentWillUnmount() {
   //   Actions.parentHome();

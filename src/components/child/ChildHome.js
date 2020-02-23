@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Image,
-  Animated
+  Animated,
+  BackHandler
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
 
@@ -58,6 +59,24 @@ class ChildHome extends Component {
       this._start();
     }
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    // Actions.choreManager();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   onChoreListPress() {
     Actions.childChoreList();

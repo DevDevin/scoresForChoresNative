@@ -9,7 +9,8 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  TextInput
+  TextInput,
+  BackHandler
   // Modal
 } from "react-native";
 import Modal from "react-native-modal";
@@ -59,6 +60,24 @@ class EditDeleteUserListItem extends Component {
       isModalVisible: !this.state.isModalVisible
     });
   };
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.manageUsers();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   // I just need to update the userForm data to be the current user that is clicked on
   setUserFormData = objUser => {

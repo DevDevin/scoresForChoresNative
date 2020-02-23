@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Modal,
   Alert,
-  TextInput
+  TextInput,
+  BackHandler
 } from "react-native";
 import {
   completionRequestsFetch,
@@ -24,6 +25,24 @@ class CompletionRequestListItem extends Component {
   setModalVisible = () => {
     this.setState({ modalVisible: !this.state.modalVisible });
   };
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.choreManager();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
     Alert.alert(

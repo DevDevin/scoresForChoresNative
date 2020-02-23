@@ -6,7 +6,8 @@ import {
   Picker,
   TouchableOpacity,
   Alert,
-  Dimensions
+  Dimensions,
+  BackHandler
 } from "react-native";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
@@ -35,6 +36,24 @@ class ResetPassword extends Component {
     }
     return <View></View>;
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.manageUsers();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   renderUserNothing() {
     if (this.state.userNothing) {

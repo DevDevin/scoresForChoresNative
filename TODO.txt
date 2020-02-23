@@ -7,4 +7,7 @@
 -- user profile cancel button for children navigates to parent reward list
 -- make it so back button won't log out of that user. Maybe disable the back button at the child 
 	and parent home 
+-- might have to remove the back handler when performing other actions like using the 
+	navigation menu to logout. I think it's not getting called when I navigate some other way 
+	besides using the back button. 
 

@@ -7,7 +7,8 @@ import {
   Picker,
   ScrollView,
   Animated,
-  Dimensions
+  Dimensions,
+  BackHandler
 } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import { choresFetch } from "../../actions/ParentActions";
@@ -40,6 +41,24 @@ class ParentChoreList extends Component {
     ]).start();
   };
 
+  ///// back button example ////////
+  // componentDidMount() {
+  //   this._start();
+  //   BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  // }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.choreManager();
+    return true;
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  ////////////////////////////////////////
+
   componentWillMount() {
     this.props.choresFetch();
     this.props.usersFetch();
@@ -52,6 +71,7 @@ class ParentChoreList extends Component {
   componentDidMount() {
     this.props.loadingUsersEnd();
     this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   // const childArray = chores.

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { View, Alert } from "react-native";
+import { View, Alert, BackHandler } from "react-native";
 import { choreReset, choresFetch } from "../../actions/ParentActions";
 import { Button } from "../common";
 import { Actions } from "react-native-router-flux";
@@ -10,6 +10,24 @@ class ChoreReset extends Component {
   componentWillMount() {
     this.props.choresFetch();
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.choreManager();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   backToHome() {
     Actions.parent();

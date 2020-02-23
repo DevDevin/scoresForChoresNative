@@ -51,6 +51,10 @@ class ChoreManager extends Component {
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
   handleBackButton() {
     // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
     Actions.parentHome();
