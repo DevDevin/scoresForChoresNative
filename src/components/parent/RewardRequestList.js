@@ -9,7 +9,8 @@ import {
   ScrollView,
   Text,
   Animated,
-  Dimensions
+  Dimensions,
+  BackHandler
 } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import RewardRequestListItem from "./RewardRequestListItem";
@@ -39,8 +40,27 @@ class RewardRequestList extends Component {
   };
 
   componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this._start();
   }
+
+  ///// back button example ////////
+  // componentDidMount() {
+  //   this._start();
+  //   BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  // }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.rewardManager();
+    return true;
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  ////////////////////////////////////////
 
   componentWillMount() {
     this.props.rewardRequestsFetch();

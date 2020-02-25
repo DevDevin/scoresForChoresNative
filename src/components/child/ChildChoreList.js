@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FlatList, Picker, ScrollView, Animated } from "react-native";
 import { childChoresFetch } from "../../actions/ChildActions";
 import ChildChoreListItem from "./ChildChoreListItem";
-import { Text, View, Dimensions } from "react-native";
+import { Text, View, Dimensions, BackHandler } from "react-native";
 import { CardSection } from "../common/index";
 import { Actions } from "react-native-router-flux";
 
@@ -17,8 +17,27 @@ class ChildChoreList extends Component {
   };
 
   componentWillUnmount() {
-    Actions.childHome();
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+    // Actions.childHome();
   }
+
+  ///// back button example ////////
+  componentDidMount() {
+    // this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childHome();
+    return true;
+  }
+
+  ////////////////////////////////////////
 
   // animation
   _start = () => {

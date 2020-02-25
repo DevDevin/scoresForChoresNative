@@ -9,7 +9,8 @@ import {
   View,
   ScrollView,
   Text,
-  Animated
+  Animated,
+  BackHandler
 } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import Spinner from "react-native-loading-spinner-overlay";
@@ -48,12 +49,32 @@ class ParentRewardList extends Component {
   }
 
   componentDidMount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     loadingUsersEnd();
     this._start();
   }
   onButtonPress() {
     Actions.rewardCreate();
   }
+
+  ///// back button example ////////
+  // componentDidMount() {
+  //   this._start();
+  //   BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  // }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.rewardManager();
+    return true;
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  ////////////////////////////////////////
 
   renderSpinner() {
     if (this.props.loading) {

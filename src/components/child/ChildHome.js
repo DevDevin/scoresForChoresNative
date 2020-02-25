@@ -34,11 +34,11 @@ class ChildHome extends Component {
     ]).start();
   };
 
-  // componentWillUnmount() {
-  //   Actions.childHome();
-  // }
-
   componentDidMount() {
+    console.log("componentDidMount in child home");
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+
     const {
       name,
       email,
@@ -56,8 +56,6 @@ class ChildHome extends Component {
       this.props.userUpdate({ prop: "status", value: "Child" });
       this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
-      BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
-
       this.props.loadingUsersEnd();
       this._start();
     }
@@ -70,8 +68,9 @@ class ChildHome extends Component {
   }
 
   handleBackButton() {
+    console.log("handBackButton >>>>>>");
+    //// ^^^^ this is not getting called when I go back to it.
     ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
-    // Actions.choreManager();
     return true;
   }
 

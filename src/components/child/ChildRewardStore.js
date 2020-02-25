@@ -35,6 +35,8 @@ class ChildRewardStore extends Component {
   ///// back button example ////////
   componentDidMount() {
     // this._start();
+    this._start();
+
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -118,10 +120,6 @@ class ChildRewardStore extends Component {
       })
     ]).start();
   };
-
-  componentDidMount() {
-    this._start();
-  }
 
   componentWillMount() {
     this.props.usersFetch();

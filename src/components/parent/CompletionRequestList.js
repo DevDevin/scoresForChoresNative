@@ -1,12 +1,14 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Actions } from "react-native-router-flux";
 import {
   FlatList,
   Picker,
   ScrollView,
   Animated,
-  Dimensions
+  Dimensions,
+  BackHandler
 } from "react-native";
 import { completionRequestsFetch } from "../../actions/ParentActions";
 import CompletionRequestListItem from "./CompletionRequestListItem";
@@ -42,9 +44,28 @@ class CompletionRequestList extends Component {
   }
 
   componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this.props.loadingUsersEnd();
     this._start();
   }
+
+  ///// back button example ////////
+  // componentDidMount() {
+  //   this._start();
+  //   BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  // }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.choreManager();
+    return true;
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  ////////////////////////////////////////
 
   renderSpinner() {
     if (this.props.loading) {
