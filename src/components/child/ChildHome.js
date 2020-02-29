@@ -91,10 +91,16 @@ class ChildHome extends Component {
     Actions.userProfile();
   }
 
+  componentWillMount() {
+    console.log("component will mount");
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
   render() {
     let { slideUp, SlideInLeft } = this.state;
     const { name } = this.props.activeUser;
 
+    console.log("rendering child home");
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
         <View

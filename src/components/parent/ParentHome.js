@@ -56,6 +56,7 @@ class ParentHome extends Component {
   }
 
   componentDidMount() {
+    console.log("component did mount parent home");
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
 
     this.props.loadingUsersEnd();

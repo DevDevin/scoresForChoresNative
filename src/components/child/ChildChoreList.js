@@ -32,6 +32,8 @@ class ChildChoreList extends Component {
   }
 
   handleBackButton() {
+    console.log("handleBackButton in childChoreList");
+    // BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
     Actions.childHome();
     return true;
@@ -187,9 +189,14 @@ class ChildChoreList extends Component {
               }}
             >
               <Picker.Item label={"Any Status"} value={"All"} />
-              {choreStatuses.map(function(status) {
+              {/* //{_data.map(function(object, i){ */}
+              {choreStatuses.map(function(status, i) {
                 return (
-                  <Picker.Item label={status.value} value={status.value} />
+                  <Picker.Item
+                    label={status.value}
+                    key={i}
+                    value={status.value}
+                  />
                 );
               })}
             </Picker>
@@ -203,8 +210,10 @@ class ChildChoreList extends Component {
               }}
             >
               <Picker.Item label={"Any Day"} value={"All"} />
-              {days.map(function(day) {
-                return <Picker.Item label={day.value} value={day.value} />;
+              {days.map(function(day, i) {
+                return (
+                  <Picker.Item label={day.value} key={i} value={day.value} />
+                );
               })}
             </Picker>
           </View>
