@@ -82,6 +82,14 @@ class UserEdit extends Component {
     }
   }
 
+  onCancelPress() {
+    if (this.props.activeUser.status != "child") {
+      Actions.addDeleteUsers();
+    } else {
+      Actions.childHome();
+    }
+  }
+
   render() {
     let oldName;
     return (
@@ -115,13 +123,7 @@ class UserEdit extends Component {
                 position: "relative"
               }}
             >
-              <Button
-                onPress={() => {
-                  Actions.parentRewardList();
-                }}
-              >
-                Cancel
-              </Button>
+              <Button onPress={this.onCancelPress.bind(this)}>Cancel</Button>
             </View>
           </View>
         </ScrollView>

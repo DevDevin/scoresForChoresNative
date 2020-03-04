@@ -36,7 +36,7 @@ class ChildHome extends Component {
 
   componentDidMount() {
     console.log("componentDidMount in child home");
-    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
 
     const {
@@ -63,9 +63,9 @@ class ChildHome extends Component {
 
   ///// back button example ////////
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
-  }
+  // componentWillUnmount() {
+  //   BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  // }
 
   handleBackButton() {
     console.log("handBackButton >>>>>>");
@@ -77,7 +77,7 @@ class ChildHome extends Component {
   ////////////////////////////////////////
 
   onChoreListPress() {
-    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     Actions.childChoreList();
   }
 

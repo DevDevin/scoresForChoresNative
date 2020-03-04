@@ -16,31 +16,6 @@ class ChildChoreList extends Component {
     SlideInLeft: new Animated.Value(0)
   };
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
-    // Actions.childHome();
-  }
-
-  ///// back button example ////////
-  componentDidMount() {
-    // this._start();
-    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
-  }
-
-  handleBackButton() {
-    console.log("handleBackButton in childChoreList");
-    // BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
-    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
-    Actions.childHome();
-    return true;
-  }
-
-  ////////////////////////////////////////
-
   // animation
   _start = () => {
     return Animated.parallel([
@@ -57,8 +32,17 @@ class ChildChoreList extends Component {
     ]).start();
   };
 
+  ///// back button example ////////
   componentDidMount() {
     this._start();
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    console.log("back button in chore list");
+    Actions.childHome();
+    return true;
   }
 
   componentWillMount() {

@@ -1,13 +1,8 @@
 -- beautify the style and design 
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
--- user profile cancel button for children navigates to parent reward list
--- make sure the child status is always a capital "Child".
-	- it seems like it got changed to lowercase at one point and messed things up. 
-	- text search for any lowercase child. 
--- child chore manager is messing up the child home back button
-	- the other option would be to just add a chore manager before chore list
 -- add keys to all of the lists like in child chore manager
+-- when going into edit user the childhome componenent mounts. Fix this.
 
 
 
