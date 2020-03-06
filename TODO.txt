@@ -1,4 +1,4 @@
--- beautify the style and design 
+-- remove all the console.logs
 -- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
 -- add keys to all of the lists like in child chore manager
@@ -6,31 +6,17 @@
 -- fix chore list dropdowns and another like it
 -- earned points error when rejecting a reward request
 	- it seems like it tries to create another user somehow
--- status was "" when child was created
 -- recurring checkbox not visible on chore create
 -- add confirmation modal before deleting chore
--- git rid of back button on the admin user create page. Don't want to go back. 
 -- make the loading period shorter when signing into user. 
 -- submitted spelling in the child chore dropdown
--- restyle the child chore cards
--- when chore is submitted the recurring field does not get saved. 
+-- when chore is edited the recurring field does not get saved. 
 	-Causes issues when doing things related to the chores
--- when cancel is pressed on the child user profile, it is redirected back to the parent user manager. 
+-- make sure child and all check for status use lowercase "child"
 -- when clicking the back button on reset chores, it navigates back to child home
--- remove reward requests link from child reward store. 
--- add a confirmation modal when deleting a reward. 
--- require a point value when creating a reward. 
+-- remove reward requests link from child reward store.  
 -- reward store freezes when child submits a reward. 
 -- consider adding the swipe down to refresh feature. 
 -- when accepting reward requests the component doesn't reload and it appears like all of the reward 
 	-requests were deleted. Until you go out and come back in. 
--- can currently create a chore without assigning a points value
 -- false chores are not getting deleted when doing the reset chore
-
-
-
-
-
-
- 
-

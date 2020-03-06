@@ -216,35 +216,6 @@ class ChildRewardStore extends Component {
               Points Earned: {currentPoints}
             </Text>
           </Animated.View>
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [-600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                Actions.rewardRequests();
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 24,
-                  fontFamily: "Cochin",
-                  color: "black",
-                  padding: 7
-                }}
-              >
-                Reward Requests
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
         </View>
 
         {/* I may want to move this over to the list item component so that the value refreshes */}

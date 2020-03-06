@@ -30,7 +30,7 @@ class RewardCreate extends Component {
       this.props.rewardUpdate({ prop: "emptyRewardName", value: true });
       this.state.allowSubmit = false;
     }
-    if (pointsValue === 0) {
+    if (pointsValue === "") {
       this.props.rewardUpdate({ prop: "emptyPointsValue", value: true });
       this.state.allowSubmit = false;
     }

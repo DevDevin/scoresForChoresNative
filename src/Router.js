@@ -51,11 +51,7 @@ const RouterComponent = () => {
             initial
           />
           <Scene key="login" component={LoginForm} title="Please Login" />
-          <Scene
-            key="adminUserCreate"
-            component={AdminUserCreate}
-            title="Please Create Admin User"
-          />
+
           <Scene
             key="signUp"
             component={SignUpForm}
@@ -65,7 +61,11 @@ const RouterComponent = () => {
           <Scene key="userCreate" component={UserCreate} title="Create User" />
         </Scene>
         {/* Auth *************************** */}
-
+        <Scene
+          key="adminUserCreate"
+          component={AdminUserCreate}
+          title="Please Create Admin User"
+        />
         <Scene key="userList">
           <Scene key="userCreate" component={UserCreate} title="Create User" />
           <Scene

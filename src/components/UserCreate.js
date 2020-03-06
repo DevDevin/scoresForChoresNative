@@ -64,7 +64,10 @@ class UserCreate extends Component {
       activeUser = this.props.activeUser.name;
     }
     if (this.state.allowSubmit) {
-      this.props.userCreate({ name, password1, status, email }, activeUser);
+      this.props.userCreate(
+        { name, password1, status: "child", email },
+        activeUser
+      );
     }
   }
 

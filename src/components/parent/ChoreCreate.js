@@ -50,7 +50,7 @@ class ChoreCreate extends Component {
       this.props.choreUpdate({ prop: "emptyChild", value: true });
     }
 
-    if (pointsValue === 0) {
+    if (pointsValue === "") {
       this.state.allowSubmit = false;
       this.props.choreUpdate({ prop: "emptyPointsValue", value: true });
     }
