@@ -308,7 +308,7 @@ export const choreUpdate2 = (newName, chores) => {
           day: chore.day,
           description: chore.description,
           pointsValue: chore.pointsValue,
-          recurring: chore.recurring,
+          isRecurring: chore.recurring,
           status: chore.status
         });
     });

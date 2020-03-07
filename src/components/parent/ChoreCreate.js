@@ -19,6 +19,9 @@ class ChoreCreate extends Component {
   }
 
   onButtonPress() {
+    // set the status prop
+    this.props.choreUpdate({ prop: "status", value: "In-Progress" });
+
     this.state.allowSubmit = true;
     const {
       choreName,

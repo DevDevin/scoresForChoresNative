@@ -38,7 +38,7 @@ class ChildChoreListItem extends Component {
   onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
     // submit a completion
     Alert.alert(
-      "Logout",
+      "Delete Chore",
       "Are you sure you want to submit this chore?",
       [
         {

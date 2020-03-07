@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
@@ -46,8 +47,25 @@ class ParentChoreListItem extends Component {
   }
 
   onButtonPress(cid) {
-    ////
-    this.props.choreDelete(cid);
+    Alert.alert(
+      "Delete Chore",
+      "Are you sure you want to delete this chore?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            ////
+            this.props.choreDelete(cid);
+          }
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   render() {

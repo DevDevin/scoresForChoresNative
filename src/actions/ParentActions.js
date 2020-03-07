@@ -41,7 +41,7 @@ export const choreCreate = ({
         child: child,
         pointsValue: pointsValue,
         status: "In-Progress",
-        recurring: isRecurring
+        isRecurring: isRecurring
       })
       .then(() => {
         Actions.parentChoreList();
@@ -132,7 +132,9 @@ export const choreSave = ({
   description,
   cid,
   pointsValue,
-  day
+  day,
+  isRecurring,
+  status
 }) => {
   const { currentUser } = firebase.auth();
 
@@ -140,7 +142,15 @@ export const choreSave = ({
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/chores/${cid}`)
-      .set({ child, choreName, description, pointsValue, day })
+      .set({
+        child,
+        choreName,
+        description,
+        pointsValue,
+        day,
+        isRecurring,
+        status
+      })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });
       });

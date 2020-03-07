@@ -3,16 +3,11 @@
 -- remove the auto filled values from the form like email and password
 -- add keys to all of the lists like in child chore manager
 -- when going into edit user the childhome componenent mounts. Fix this.
--- fix chore list dropdowns and another like it
+-- fix chore list dropdowns and others like it
 -- earned points error when rejecting a reward request
 	- it seems like it tries to create another user somehow
 -- recurring checkbox not visible on chore create
--- add confirmation modal before deleting chore
 -- make the loading period shorter when signing into user. 
--- submitted spelling in the child chore dropdown
--- when chore is edited the recurring field does not get saved. 
-	-Causes issues when doing things related to the chores
--- make sure child and all check for status use lowercase "child"
 -- when clicking the back button on reset chores, it navigates back to child home
 -- remove reward requests link from child reward store.  
 -- reward store freezes when child submits a reward. 
@@ -20,3 +15,8 @@
 -- when accepting reward requests the component doesn't reload and it appears like all of the reward 
 	-requests were deleted. Until you go out and come back in. 
 -- false chores are not getting deleted when doing the reset chore
+	- might have to do with the "isRecurring" thing
+-- when chore is edited the recurring field and status field does not get saved. 
+	-Causes issues when doing things related to the chores
+	-change the "recurring" prop to "isRecurring" 
+	-set the status prop "choreUpdate" when creating and updating chores

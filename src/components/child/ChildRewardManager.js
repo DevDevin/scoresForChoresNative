@@ -27,17 +27,13 @@ class ChildRewardManager extends Component {
       this.props.userUpdate({ prop: "email", value: email });
       this.props.userUpdate({ prop: "password1", value: password });
       this.props.userUpdate({ prop: "password2", value: password });
-      this.props.userUpdate({ prop: "status", value: "Child" });
+      this.props.userUpdate({ prop: "status", value: "child" });
       this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
 
       // this.props.loadingUsersEnd();
       // this._start();
     }
   }
-
-  // componentWillUnmount() {
-  //   Actions.childHome();
-  // }
 
   onRewardRequests() {
     Actions.rewardRequests();

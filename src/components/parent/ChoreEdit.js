@@ -21,7 +21,18 @@ class ChoreEdit extends Component {
   }
 
   onButtonPress() {
-    const { child, choreName, description, pointsValue, day, cid } = this.props;
+    const {
+      child,
+      choreName,
+      description,
+      pointsValue,
+      day,
+      cid,
+      isRecurring,
+      status
+    } = this.props;
+
+    console.log("isRecurring: ", isRecurring, "status: ", status);
 
     this.props.choreSave({
       child,
@@ -29,7 +40,9 @@ class ChoreEdit extends Component {
       description,
       cid,
       pointsValue,
-      day
+      day,
+      isRecurring,
+      status
     });
 
     Actions.parentChoreList();
@@ -93,16 +106,28 @@ class ChoreEdit extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("state.choreForm: ", state.choreForm);
   const {
     child,
     choreName,
     day,
     description,
     pointsValue,
-    cid
+    cid,
+    isRecurring,
+    status
   } = state.choreForm;
 
-  return { child, choreName, day, description, pointsValue, cid };
+  return {
+    child,
+    choreName,
+    day,
+    description,
+    pointsValue,
+    cid,
+    isRecurring,
+    status
+  };
 };
 
 export default connect(mapStateToProps, {

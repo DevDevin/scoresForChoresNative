@@ -36,7 +36,7 @@ class ChoreReset extends Component {
     /////
     Alert.alert(
       "Confirm Reset",
-      "This will reset the status of your recurring chores and delete non-recurring chores.",
+      "This will reset the status of your isRecurring chores and delete non-recurring chores.",
       [
         {
           text: "Confirm",
