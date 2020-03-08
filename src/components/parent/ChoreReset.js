@@ -30,13 +30,13 @@ class ChoreReset extends Component {
   ////////////////////////////////////////
 
   backToHome() {
-    Actions.parent();
+    Actions.choreManager();
   }
   onPress = filteredChores => {
     /////
     Alert.alert(
       "Confirm Reset",
-      "This will reset the status of your isRecurring chores and delete non-recurring chores.",
+      "This will reset the status of your recurring chores and delete non-recurring chores.",
       [
         {
           text: "Confirm",
@@ -47,7 +47,7 @@ class ChoreReset extends Component {
         },
         {
           text: "Cancel",
-          onPress: () => Actions.parent(),
+          onPress: () => {},
           style: "cancel"
         }
       ],
@@ -94,7 +94,7 @@ class ChoreReset extends Component {
               position: "relative"
             }}
           >
-            <Button onPress={this.backToHome.bind(this)}>Back to Home</Button>
+            <Button onPress={this.backToHome.bind(this)}>Cancel</Button>
           </View>
         </View>
       </View>

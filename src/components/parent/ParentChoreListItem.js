@@ -42,6 +42,11 @@ class ParentChoreListItem extends Component {
       prop: "cid",
       value: this.props.chore.cid
     });
+    this.props.choreUpdate({
+      prop: "status",
+      value: this.props.chore.status
+    });
+    console.log("this.props.chore.status: ", this.props.chore.status);
     this.setState({ isModalVisible: !this.state.isModalVisible });
     Actions.choreEdit({ chore: this.props.chore });
   }

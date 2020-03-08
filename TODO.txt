@@ -14,9 +14,5 @@
 -- consider adding the swipe down to refresh feature. 
 -- when accepting reward requests the component doesn't reload and it appears like all of the reward 
 	-requests were deleted. Until you go out and come back in. 
--- false chores are not getting deleted when doing the reset chore
+-- chores that are not recurring are not getting deleted when doing the reset chore
 	- might have to do with the "isRecurring" thing
--- when chore is edited the recurring field and status field does not get saved. 
-	-Causes issues when doing things related to the chores
-	-change the "recurring" prop to "isRecurring" 
-	-set the status prop "choreUpdate" when creating and updating chores

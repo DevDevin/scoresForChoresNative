@@ -15,6 +15,7 @@ class ChoreEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
+    console.log("this.props.chore: ", this.props.chore);
     _.each(this.props.chore, (value, prop) => {
       this.props.choreUpdate({ prop, value });
     });

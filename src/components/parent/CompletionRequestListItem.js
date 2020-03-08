@@ -45,6 +45,7 @@ class CompletionRequestListItem extends Component {
   ////////////////////////////////////////
 
   onAccept(cid, choreName, day, child, description, pointsValue) {
+    // this.props.choreUpdate({ prop: "status", value: "Complete" });
     Alert.alert(
       "Logout",
       "Are you sure you want to accept this chore?",
@@ -74,6 +75,7 @@ class CompletionRequestListItem extends Component {
   }
 
   onReject(cid, choreName, day, child, description, pointsValue, reason) {
+    // this.props.choreUpdate({ prop: "status", value: "Rework" });
     Alert.alert(
       "Logout",
       "Are you sure you want to reject this chore?",
@@ -105,6 +107,7 @@ class CompletionRequestListItem extends Component {
 
   render() {
     const choreName = this.props.completionRequest.choreName;
+    console.log("this.props.completionRequest: ", this.props.completionRequest);
     const day = this.props.completionRequest.day;
     const cid = this.props.completionRequest.cid;
     const { description, pointsValue } = this.props.completionRequest;
