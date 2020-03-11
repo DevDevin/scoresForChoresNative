@@ -438,8 +438,31 @@ export const rewardRequestReject = (
 export const choreReset = filteredChores => {
   const { currentUser } = firebase.auth();
 
-  // right here I need to filter between recurring chores and non-recurring chores
-  // then we can delete the non-recurring and reset the recurring.
+  // non-recurring chores
+  const nonrecurringChores = _.filter(filteredChores, function(item) {
+    return item.isRecurring === false;
+  });
+
+  console.log("non-recurringChores: ", nonrecurringChores);
+
+  // delete nonrecurring chores
+  // _.map(recurringChores, chore => {
+  //   firebase
+  //     .database()
+  //     .ref(`/users/${currentUser.uid}/chores`)
+  //     .push({
+  //       child: chore.child,
+  //       choreName: chore.choreName,
+  //       day: chore.day,
+  //       description: chore.description,
+  //       pointsValue: chore.pointsValue,
+  //       isRecurring: true,
+  //       status: "In-Progress"
+  //     })
+  //     .then(() => {
+  //       Actions.parentChoreList();
+  //     });
+  // });
 
   return () => {
     firebase
@@ -449,35 +472,13 @@ export const choreReset = filteredChores => {
 
     console.log("filteredChores: ", filteredChores);
 
-    //I think there is a better way to map through this. I've used it somewhere else.
-    // const recurringChores = _.map(filteredChores, chore => {
-    //   console.log("filteredChores.isRecurring", filteredChores.isRecurring);
-    //   if (chore.isRecurring === true) {
-    //     return {
-    //       child: chore.childName,
-    //       choreName: chore.choreName,
-    //       day: chore.day,
-    //       description: chore.description,
-    //       pointsValue: chore.pointsValue,
-    //       isRecurring: chore.recurring,
-    //       status: chore.status
-    //     };
-    //   }
-    // });
-
-    /// this might be the best way >>>>
-    const recurringChores = _.filter(chores, function(item) {
+    //filter the chores
+    const recurringChores = _.filter(filteredChores, function(item) {
       return item.isRecurring === true;
     });
     console.log("recurringChores: ", recurringChores);
-    // non-recurring chores
-    const nonrecurringChores = _.filter(chores, function(item) {
-      return item.isRecurring === false;
-    });
 
-    console.log("non-recurringChores: ", non - recurringChores);
-
-    _.map(filteredChores, chore => {
+    _.map(recurringChores, chore => {
       firebase
         .database()
         .ref(`/users/${currentUser.uid}/chores`)

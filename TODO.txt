@@ -3,7 +3,7 @@
 -- remove the auto filled values from the form like email and password
 -- add keys to all of the lists like in child chore manager
 -- when going into edit user the childhome componenent mounts. Fix this.
--- fix chore list dropdowns and others like it
+-- fix parent chore list dropdowns and others like it
 -- earned points error when rejecting a reward request
 	- it seems like it tries to create another user somehow
 -- recurring checkbox not visible on chore create
@@ -14,5 +14,3 @@
 -- consider adding the swipe down to refresh feature. 
 -- when accepting reward requests the component doesn't reload and it appears like all of the reward 
 	-requests were deleted. Until you go out and come back in. 
--- chores that are not recurring are not getting deleted when doing the reset chore
-	- might have to do with the "isRecurring" thing
