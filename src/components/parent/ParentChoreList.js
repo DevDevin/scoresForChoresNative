@@ -227,8 +227,10 @@ class ParentChoreList extends Component {
             >
               <Picker.Item label={"All Chores"} value={"All"} />
 
-              {children.map(function(child) {
-                return <Picker.Item label={child.name} value={child.name} />;
+              {children.map(function(child, i) {
+                return (
+                  <Picker.Item label={child.name} key={i} value={child.name} />
+                );
               })}
             </Picker>
           </View>
@@ -251,8 +253,10 @@ class ParentChoreList extends Component {
               }}
             >
               <Picker.Item label={"All Chores"} value={"All"} />
-              {days.map(function(day) {
-                return <Picker.Item label={day.value} value={day.value} />;
+              {days.map(function(day, i) {
+                return (
+                  <Picker.Item label={day.value} key={i} value={day.value} />
+                );
               })}
             </Picker>
           </View>

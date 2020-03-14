@@ -173,7 +173,7 @@ class ChildChoreList extends Component {
               }}
             >
               <Picker.Item label={"Any Status"} value={"All"} />
-              {/* //{_data.map(function(object, i){ */}
+
               {choreStatuses.map(function(status, i) {
                 return (
                   <Picker.Item

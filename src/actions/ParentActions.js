@@ -445,25 +445,6 @@ export const choreReset = filteredChores => {
 
   console.log("non-recurringChores: ", nonrecurringChores);
 
-  // delete nonrecurring chores
-  // _.map(recurringChores, chore => {
-  //   firebase
-  //     .database()
-  //     .ref(`/users/${currentUser.uid}/chores`)
-  //     .push({
-  //       child: chore.child,
-  //       choreName: chore.choreName,
-  //       day: chore.day,
-  //       description: chore.description,
-  //       pointsValue: chore.pointsValue,
-  //       isRecurring: true,
-  //       status: "In-Progress"
-  //     })
-  //     .then(() => {
-  //       Actions.parentChoreList();
-  //     });
-  // });
-
   return () => {
     firebase
       .database()

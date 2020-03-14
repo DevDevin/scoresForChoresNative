@@ -130,9 +130,14 @@ class ResetPassword extends Component {
             >
               <Picker.Item label="Users" value="nothing" key="null" />
 
-              {users.map(function(user) {
+              {users.map(function(user, i) {
                 return (
-                  <Picker.Item label={user.name} value={user} key={user.uid} />
+                  <Picker.Item
+                    label={user.name}
+                    key={i}
+                    value={user}
+                    key={user.uid}
+                  />
                 );
               })}
             </Picker>

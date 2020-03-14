@@ -118,7 +118,7 @@ class ChoreForm extends Component {
 
     return (
       <View>
-        <View style={{ backgroundColor: "blue" }}>
+        <View style={{ backgroundColor: "blue", flex: 1 }}>
           <ScrollView>
             <CardSection>
               <Input
@@ -183,8 +183,14 @@ class ChoreForm extends Component {
                 }}
               >
                 <Picker.Item label="Assign chore to a child:" value="" />
-                {children.map(function(child) {
-                  return <Picker.Item label={child.name} value={child.name} />;
+                {children.map(function(child, i) {
+                  return (
+                    <Picker.Item
+                      label={child.name}
+                      key={i}
+                      value={child.name}
+                    />
+                  );
                 })}
               </Picker>
             </View>

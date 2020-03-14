@@ -156,8 +156,10 @@ class CompletionRequestList extends Component {
             }
           >
             <Picker.Item label="All Requests" value="All" />
-            {children.map(function(child) {
-              return <Picker.Item label={child.name} value={child.name} />;
+            {children.map(function(child, i) {
+              return (
+                <Picker.Item label={child.name} key={i} value={child.name} />
+              );
             })}
           </Picker>
         </View>
