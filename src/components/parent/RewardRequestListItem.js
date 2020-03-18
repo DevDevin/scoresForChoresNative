@@ -39,7 +39,8 @@ class RewardRequestListItem extends Component {
     // actions.something
   }
 
-  onAccept(childName, uid, pointsValue, rid, rewardName) {
+  onAccept(childName, uid, pointsValue, rid, rewardName, rewardDescription) {
+    console.log("onAccept in listItem: ", rewardDescription);
     Alert.alert(
       "Logout",
       "Are you sure you want to accept this reward request?",
@@ -57,7 +58,8 @@ class RewardRequestListItem extends Component {
               uid,
               pointsValue,
               rid,
-              rewardName
+              rewardName,
+              rewardDescription
             );
           }
         }
@@ -66,7 +68,16 @@ class RewardRequestListItem extends Component {
     );
   }
 
-  onReject(childName, uid, pointsValue, rid, rewardName, rejectionReason) {
+  onReject(
+    childName,
+    uid,
+    pointsValue,
+    rid,
+    rewardName,
+    rejectionReason,
+    rewardDescription
+  ) {
+    console.log("onReject: ", rewardDescription);
     Alert.alert(
       "Logout",
       "Are you sure you want to reject this reward request?",
@@ -85,7 +96,8 @@ class RewardRequestListItem extends Component {
               pointsValue,
               rid,
               rewardName,
-              rejectionReason
+              rejectionReason,
+              rewardDescription
             );
           }
         }
@@ -100,12 +112,15 @@ class RewardRequestListItem extends Component {
   }
 
   render() {
+    console.log("rewardRequest: ", this.props.rewardRequest);
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
+    const rewardDescription = this.props.rewardRequest.rewardDescription;
     const uid = this.props.rewardRequest.uid;
     const rid = this.props.rewardRequest.rid;
     const rewardName = this.props.rewardRequest.rewardName;
     const rejectionReason = this.state.rejectionReason;
+    console.log("render component: ", rewardDescription);
 
     return (
       <View style={{ flex: 1 }}>
@@ -129,7 +144,8 @@ class RewardRequestListItem extends Component {
                     uid,
                     pointsValue,
                     rid,
-                    rewardName
+                    rewardName,
+                    rewardDescription
                   )}
                   style={styles.buttonStyle}
                 >
@@ -194,7 +210,8 @@ class RewardRequestListItem extends Component {
                   pointsValue,
                   rid,
                   rewardName,
-                  rejectionReason
+                  rejectionReason,
+                  rewardDescription
                 )}
               >
                 Submit

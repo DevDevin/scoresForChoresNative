@@ -331,9 +331,12 @@ export const rewardRequestAccept = (
   uid,
   pointsValue,
   rid,
-  rewardName
+  rewardName,
+  rewardDescription
 ) => {
   const { currentUser } = firebase.auth();
+
+  console.log("inside rewardRequestAccept parentActions: ", rewardDescription);
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -352,7 +355,15 @@ export const rewardRequestAccept = (
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/rewardRequests/${rid}`)
-      .remove();
+      .set({
+        rewardName: rewardName,
+        uid: uid,
+        childName: childName,
+        rewardName: rewardName,
+        pointsValue: pointsValue,
+        status: "Accepted",
+        rewardDescription: rewardDescription
+      });
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users/${uid}`)
@@ -387,7 +398,8 @@ export const rewardRequestReject = (
   pointsValue,
   rid,
   rewardName,
-  rejectionReason
+  rejectionReason,
+  rewardDescription
 ) => {
   const { currentUser } = firebase.auth();
 
@@ -426,7 +438,8 @@ export const rewardRequestReject = (
         rewardName: rewardName,
         pointsValue: pointsValue,
         status: "Rejected",
-        rejectionReason: rejectionReason
+        rejectionReason: rejectionReason,
+        rewardDescription: rewardDescription
       })
       .then(() => {
         dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });

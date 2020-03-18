@@ -73,7 +73,10 @@ class RewardRequestList extends Component {
 
   render() {
     let { slideUp, SlideInLeft } = this.state;
-    const rewardRequests = this.props.rewardRequests;
+    const rewardRequestsPre = this.props.rewardRequests;
+    const rewardRequests = _.filter(rewardRequestsPre, function(item) {
+      return item.status === "Submitted";
+    });
     const users = this.props.users;
     const children = _.filter(users, function(item) {
       return item.status === "child";
