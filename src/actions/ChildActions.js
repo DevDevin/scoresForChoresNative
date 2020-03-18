@@ -253,7 +253,6 @@ export const resubmitRewardRequest = (
         email: activeUserObject.email,
         name: activeUserObject.name,
         password: activeUserObject.password,
-        phone: activeUserObject.phone,
         status: activeUserObject.status
       })
       .then(() => {

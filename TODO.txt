@@ -1,13 +1,10 @@
 -- remove all the console.logs
--- make all the forms like the sign in form in style
 -- remove the auto filled values from the form like email and password
+-- make all the forms like the sign in form in style
+-- re-structure the visual layout of the list items(icon on left, data on right)
 -- when going into edit user the childhome componenent mounts. Fix this.
--- fix parent chore list dropdowns and others like it
--- consider adding the swipe down to refresh feature.   
--- reward store problems
-	- error when trying to resubmit a rejected reward request(phone number error)
-	- after accepting reward requests the component doesn't reload. Reward requests don't show
-	- reward store freezes when child submits a reward.
+-- fix parent chore list dropdowns and others like it.
+-- consider adding the swipe down to refresh feature.
 	
 
 

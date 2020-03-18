@@ -386,8 +386,8 @@ export const rewardRequestAccept = (
         status: "Accepted"
       })
       .then(() => {
-        dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
-        Actions.parentHome({ type: "reset" });
+        // dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
+        // Actions.parentHome({ type: "reset" });
       });
   };
 };
@@ -442,8 +442,8 @@ export const rewardRequestReject = (
         rewardDescription: rewardDescription
       })
       .then(() => {
-        dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
-        Actions.rewardRequestList({ type: "reset" });
+        // dispatch({ type: REWARD_REQUEST_SAVE_SUCCESS });
+        // Actions.rewardRequestList({ type: "reset" });
       });
   };
 };
