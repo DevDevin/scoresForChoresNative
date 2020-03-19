@@ -5,7 +5,8 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
@@ -85,11 +86,28 @@ class ParentChoreListItem extends Component {
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{choreName}</Text>
-              <Text style={styles.choreInfoStyle}>
-                {day}: {childName}
+            <View
+              style={{
+                backgroundColor: "powderblue",
+                flex: 0.6,
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+            </View>
+            <View
+              style={{
+                backgroundColor: "skyblue",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Text style={styles.generalStyle}>
+                {choreName} <Text style={styles.choreInfoStyle}>({day}) </Text>
               </Text>
+              <Text style={styles.choreInfoStyle}>{childName}</Text>
               <TouchableOpacity
                 onPress={this.onButtonPress.bind(this, cid)}
                 style={styles.buttonStyle}
@@ -99,6 +117,7 @@ class ParentChoreListItem extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
@@ -151,26 +170,27 @@ class ParentChoreListItem extends Component {
 }
 
 const styles = {
-  choreNameStyle: {
+  generalStyle: {
     fontSize: 26,
-    paddingLeft: 15,
-    flex: 1,
-    flexDirection: "row",
+    paddingLeft: 5,
+    // flex: 1,
+    // flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold"
   },
   childStyle: {
     flex: 1,
+    flexDirection: "row",
     borderWidth: 1,
     borderRadius: 2,
     borderColor: "#ddd",
-    borderBottomWidth: 0,
+    borderBottomWidth: 1,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 1,
+    elevation: 2,
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
@@ -185,14 +205,6 @@ const styles = {
     justifyContent: "center",
     alignItems: "center"
   },
-  choreStyle: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    backgroundColor: "skyblue",
-    alignItems: "center",
-    borderColor: "#ddd"
-  },
   modalTextStyle: {
     fontSize: 24,
     paddingLeft: 5
@@ -204,7 +216,9 @@ const styles = {
     borderWidth: 1,
     borderColor: "#007aff",
     marginLeft: 5,
-    marginRight: 5
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5
   },
   textStyle: {
     alignSelf: "center",
