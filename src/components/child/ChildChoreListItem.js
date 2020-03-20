@@ -5,7 +5,8 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -133,11 +134,49 @@ class ChildChoreListItem extends Component {
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{choreName}</Text>
-              <Text style={styles.choreInfoStyle}>{day}</Text>
-              <Text style={styles.choreInfoStyle}>{status}</Text>
-              {submitOption}
+            <View
+              style={{
+                flex: 0.4,
+                backgroundColor: "powderblue",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Image source={require("../../Images/choreList.png")} />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: "skyblue",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <View style={{ flex: 1 }}>
+                <Text style={styles.choreNameStyle}>
+                  {choreName} (<Text style={styles.choreInfoStyle}>{day}</Text>)
+                </Text>
+              </View>
+              <View style={{ flex: 1, flexDirection: "row", paddingTop: 15 }}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text style={styles.choreInfoStyle}>{status}</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  {submitOption}
+                </View>
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -201,6 +240,7 @@ const styles = {
   childStyle: {
     flex: 1,
     borderWidth: 1,
+    flexDirection: "row",
     borderRadius: 2,
     borderColor: "#ddd",
     borderBottomWidth: 0,
@@ -243,6 +283,7 @@ const styles = {
     borderColor: "#007aff",
     marginLeft: 5,
     marginRight: 5
+    // paddingBottom: 5
   },
   textStyle: {
     alignSelf: "center",
