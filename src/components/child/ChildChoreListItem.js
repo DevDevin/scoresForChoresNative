@@ -171,7 +171,8 @@ class ChildChoreListItem extends Component {
                   style={{
                     flex: 1,
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
+                    paddingBottom: 7
                   }}
                 >
                   {submitOption}

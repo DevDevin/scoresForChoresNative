@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
@@ -84,15 +85,37 @@ class RewardListItem extends Component {
           onPress={this.toggleModal}
         >
           <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{rewardName}</Text>
-              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
-              <TouchableOpacity
-                onPress={this.onButtonPress.bind(this, rid)}
-                style={styles.buttonStyle}
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View
+                style={{
+                  flex: 0.5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "powderblue"
+                }}
               >
-                <Text style={styles.textStyle}>Delete</Text>
-              </TouchableOpacity>
+                <Image source={require("../../Images/rewardList.png")} />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "skyblue",
+                  paddingBottom: 5
+                }}
+              >
+                <Text style={styles.choreNameStyle}>
+                  {rewardName} (
+                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+                </Text>
+                <TouchableOpacity
+                  onPress={this.onButtonPress.bind(this, rid)}
+                  style={styles.buttonStyle}
+                >
+                  <Text style={styles.textStyle}>Delete</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -161,7 +184,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingBottom: 5
   },
   childStyle: {
     flex: 1,

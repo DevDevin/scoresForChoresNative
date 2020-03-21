@@ -11,7 +11,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
-  BackHandler
+  BackHandler,
+  Image
 } from "react-native";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import { rewardsFetch } from "../../actions/ChildActions";
@@ -185,7 +186,7 @@ class ChildRewardStore extends Component {
     _.map(rewardRequests, item => {});
 
     return (
-      <View style={{ backgroundColor: "grey", flex: 1 }}>
+      <View style={{ backgroundColor: "#d1d4e3", flex: 1 }}>
         <View
           style={{
             flexDirection: "row",
@@ -209,7 +210,7 @@ class ChildRewardStore extends Component {
             <Text
               style={{
                 fontSize: 24,
-                color: "white",
+                // color: "white",
                 padding: 7
               }}
             >
@@ -247,23 +248,46 @@ class ChildRewardStore extends Component {
                       )}
                     >
                       <View style={styles.childStyle}>
-                        <View style={styles.choreStyle}>
-                          <Text style={styles.choreNameStyle}>
-                            {item.rewardName}
-                          </Text>
-                          <Text style={styles.choreInfoStyle}>
-                            {item.pointsValue}
-                          </Text>
+                        <View style={{ flex: 1, flexDirection: "row" }}>
+                          <View
+                            style={{
+                              flex: 0.5,
+                              backgroundColor: "powderblue",
+                              justifyContent: "center",
+                              alignItems: "center"
+                            }}
+                          >
+                            <Image
+                              source={require("../../Images/rewardList.png")}
+                            />
+                          </View>
+                          <View
+                            style={{
+                              flex: 1,
+                              backgroundColor: "skyblue",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              paddingBottom: 10
+                            }}
+                          >
+                            <Text style={styles.choreNameStyle}>
+                              {item.rewardName} (
+                              <Text style={styles.choreInfoStyle}>
+                                {item.pointsValue}
+                              </Text>
+                              )
+                            </Text>
 
-                          {this.renderRequestButton(
-                            activeUserName,
-                            item.pointsValue,
-                            item.rid,
-                            item.rewardName,
-                            currentPoints,
-                            uid,
-                            item.description
-                          )}
+                            {this.renderRequestButton(
+                              activeUserName,
+                              item.pointsValue,
+                              item.rid,
+                              item.rewardName,
+                              currentPoints,
+                              uid,
+                              item.description
+                            )}
+                          </View>
                         </View>
                       </View>
                     </TouchableWithoutFeedback>
@@ -334,7 +358,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingBottom: 5
   },
   childStyle: {
     flex: 1,

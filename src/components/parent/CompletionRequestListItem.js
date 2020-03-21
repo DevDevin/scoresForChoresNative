@@ -7,7 +7,8 @@ import {
   Modal,
   Alert,
   TextInput,
-  BackHandler
+  BackHandler,
+  Image
 } from "react-native";
 import {
   completionRequestsFetch,
@@ -119,38 +120,62 @@ class CompletionRequestListItem extends Component {
       <View style={{ flex: 1 }}>
         <View style={styles.childStyle}>
           <View style={styles.choreStyle}>
-            <Text style={styles.choreNameStyle}>{choreName}</Text>
-            <Text style={styles.choreInfoStyle}>{child}</Text>
-            <Text style={styles.choreInfoStyle}>{day}</Text>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <TouchableOpacity
-                onPress={this.onAccept.bind(
-                  this,
-                  cid,
-                  choreName,
-                  day,
-                  child,
-                  description,
-                  pointsValue
-                )}
-                style={styles.buttonStyle}
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View
+                style={{
+                  flex: 0.4,
+                  backgroundColor: "powderblue",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
               >
-                <Text style={styles.textStyle}>Accept</Text>
-              </TouchableOpacity>
+                <Image source={require("../../Images/completionRequest.png")} />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: "skyblue",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingBottom: 5
+                }}
+              >
+                <Text style={styles.choreNameStyle}>
+                  {choreName} (
+                  <Text style={styles.choreInfoStyle}>{child}</Text>)
+                </Text>
 
-              <TouchableOpacity
-                onPress={this.setModalVisible}
-                style={styles.buttonStyle}
-              >
-                <Text style={styles.textStyle}>Reject</Text>
-              </TouchableOpacity>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={this.onAccept.bind(
+                      this,
+                      cid,
+                      choreName,
+                      day,
+                      child,
+                      description,
+                      pointsValue
+                    )}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Accept</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={this.setModalVisible}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
           </View>
         </View>
@@ -269,7 +294,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingBottom: 5
   },
   labelStyle: {
     fontSize: 18,

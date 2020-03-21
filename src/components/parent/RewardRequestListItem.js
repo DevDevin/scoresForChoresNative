@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Alert,
   Modal,
-  TextInput
+  TextInput,
+  Image
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 // import Modal from "react-native-modal";
@@ -126,38 +127,61 @@ class RewardRequestListItem extends Component {
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>{childName}</Text>
-              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View
+                style={{
+                  flex: 0.5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "powderblue"
+                }}
+              >
+                <Image source={require("../../Images/completionRequest.png")} />
+              </View>
               <View
                 style={{
                   flex: 1,
-                  flexDirection: "row",
                   justifyContent: "center",
-                  alignItems: "center"
+                  alignItems: "center",
+                  backgroundColor: "skyblue"
                 }}
               >
-                <TouchableOpacity
-                  onPress={this.onAccept.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName,
-                    rewardDescription
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Accept</Text>
-                </TouchableOpacity>
+                <Text style={styles.choreNameStyle}>
+                  {childName} (
+                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+                </Text>
 
-                <TouchableOpacity
-                  onPress={this.toggleModal}
-                  style={styles.buttonStyle}
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingBottom: 5
+                  }}
                 >
-                  <Text style={styles.textStyle}>Reject</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={this.onAccept.bind(
+                      this,
+                      childName,
+                      uid,
+                      pointsValue,
+                      rid,
+                      rewardName,
+                      rewardDescription
+                    )}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Accept</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={this.toggleModal}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -254,7 +278,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingBottom: 5
   },
   childStyle: {
     flex: 1,

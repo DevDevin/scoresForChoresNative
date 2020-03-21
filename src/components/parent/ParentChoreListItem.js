@@ -107,13 +107,39 @@ class ParentChoreListItem extends Component {
               <Text style={styles.generalStyle}>
                 {choreName} <Text style={styles.choreInfoStyle}>({day}) </Text>
               </Text>
-              <Text style={styles.choreInfoStyle}>{childName}</Text>
-              <TouchableOpacity
-                onPress={this.onButtonPress.bind(this, cid)}
-                style={styles.buttonStyle}
-              >
-                <Text style={styles.textStyle}>Delete</Text>
-              </TouchableOpacity>
+              {/* child name and button view */}
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 18
+                    }}
+                  >
+                    {childName}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={this.onButtonPress.bind(this, cid)}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              {/* child name and button view */}
             </View>
           </View>
         </TouchableWithoutFeedback>

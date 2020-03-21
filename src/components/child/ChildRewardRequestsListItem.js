@@ -7,7 +7,8 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  Alert
+  Alert,
+  Image
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
@@ -177,19 +178,32 @@ class ChildRewardRequestsListItem extends Component {
       <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.rewardNameStyle}>{rewardName}</Text>
-              <Text style={styles.choreInfoStyle}>{rewardStatus}</Text>
-              {reSubmitButton}
-
+            <View style={{ flex: 1, flexDirection: "row" }}>
               <View
                 style={{
-                  flex: 1,
-                  flexDirection: "row",
+                  flex: 0.5,
+                  backgroundColor: "powderblue",
                   justifyContent: "center",
                   alignItems: "center"
                 }}
-              ></View>
+              >
+                <Image source={require("../../Images/rewardList.png")} />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: "skyblue",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingBottom: 10
+                }}
+              >
+                <Text style={styles.rewardNameStyle}>
+                  {rewardName} (
+                  <Text style={styles.choreInfoStyle}>{rewardStatus}</Text>)
+                </Text>
+                {reSubmitButton}
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -261,7 +275,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingBottom: 5
   },
   childStyle: {
     flex: 1,
