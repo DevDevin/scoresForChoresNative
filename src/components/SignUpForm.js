@@ -86,19 +86,14 @@ class LoginForm extends Component {
   render() {
     return (
       <View style={styles.ContainerStyle}>
-        <View
-          style={{
-            paddingLeft: 8,
-            paddingRight: 8
-          }}
-        >
+        <View>
           <View
             style={{
               height: 60,
-              backgroundColor: "steelblue",
+              backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center",
-              elevation: 5
+              elevation: 4
             }}
           >
             <Text style={{ fontSize: 22 }}>Enter Account Credentials</Text>
@@ -135,7 +130,7 @@ class LoginForm extends Component {
           <Modal isVisible={this.state.isModalVisible}>
             <View
               style={{
-                backgroundColor: "powderblue",
+                backgroundColor: "#fff",
                 justifyContent: "center"
               }}
             >
@@ -198,7 +193,7 @@ const styles = {
   cardSectionStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: "powderblue",
+    backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
     borderColor: "#ddd",
@@ -207,8 +202,8 @@ const styles = {
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "powderblue",
+    padding: 10,
+    backgroundColor: "#fff",
     // flexDirection: "row",
     borderColor: "#ddd",
     // position: "relative",

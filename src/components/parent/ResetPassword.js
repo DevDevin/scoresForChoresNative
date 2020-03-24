@@ -68,7 +68,7 @@ class ResetPassword extends Component {
 
   renderPickerLabel() {
     if (this.state.user === "nothing") {
-      return <Text style={{ fontSize: 22 }}>Choose a user</Text>;
+      return <Text style={{ fontSize: 18 }}>Select User</Text>;
     } else {
       return <Text style={{ fontSize: 22 }}>{this.state.pickerLabel}</Text>;
     }
@@ -83,25 +83,23 @@ class ResetPassword extends Component {
         <View
           style={{
             height: 60,
-            backgroundColor: "steelblue",
+            backgroundColor: "powderblue",
             alignItems: "center",
-            justifyContent: "center"
-            // elevation: 5
+            justifyContent: "center",
+            elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }} t>
-            Reset Password
-          </Text>
+          <Text style={{ fontSize: 22 }}>Reset Password</Text>
         </View>
         {this.renderUserNothing()}
         <View style={{ flexDirection: "row" }}>
           <View
             style={{
               height: 60,
-              backgroundColor: "powderblue",
+              backgroundColor: "#fff",
               alignItems: "center",
               justifyContent: "center",
-              elevation: 5,
+              // elevation: 5,
               width: Dimensions.get("window").width / 2
             }}
           >
@@ -110,10 +108,10 @@ class ResetPassword extends Component {
           <View
             style={{
               height: 60,
-              backgroundColor: "powderblue",
+              backgroundColor: "#fff",
               alignItems: "center",
               justifyContent: "center",
-              elevation: 5,
+              // elevation: 5,
               width: Dimensions.get("window").width / 2
             }}
           >
@@ -147,7 +145,7 @@ class ResetPassword extends Component {
         <View
           style={{
             height: 60,
-            backgroundColor: "steelblue",
+            backgroundColor: "#fff",
             alignItems: "center",
             justifyContent: "center"
             // elevation: 3
@@ -155,7 +153,7 @@ class ResetPassword extends Component {
         >
           <Input
             secureTextEntry
-            label="password"
+            label="Password"
             placeholder="password"
             value={this.state.passwordReset}
             onChangeText={value => this.setState({ password1: value })}
@@ -165,7 +163,7 @@ class ResetPassword extends Component {
         <View
           style={{
             height: 60,
-            backgroundColor: "steelblue",
+            backgroundColor: "#fff",
             alignItems: "center",
             justifyContent: "center"
             // elevation: 3
@@ -173,7 +171,7 @@ class ResetPassword extends Component {
         >
           <Input
             secureTextEntry
-            label="passwordConfirm"
+            label="Confirm"
             placeholder="confirm password"
             value={this.state.password2}
             onChangeText={value => this.setState({ password2: value })}
@@ -185,7 +183,7 @@ class ResetPassword extends Component {
           style={{
             borderBottomWidth: 1,
             padding: 10,
-            backgroundColor: "steelblue",
+            backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
             position: "relative"
@@ -232,7 +230,7 @@ class ResetPassword extends Component {
           style={{
             borderBottomWidth: 1,
             padding: 10,
-            backgroundColor: "steelblue",
+            backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
             position: "relative"

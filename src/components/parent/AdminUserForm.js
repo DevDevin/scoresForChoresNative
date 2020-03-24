@@ -57,17 +57,14 @@ class AdminUserForm extends Component {
       <View>
         <View
           style={{
-            borderBottomWidth: 1,
-            padding: 5,
-            backgroundColor: "#fff",
-            borderColor: "#ddd",
+            height: 60,
+            backgroundColor: "powderblue",
             alignItems: "center",
-            padding: 10,
-            backgroundColor: "steelblue",
-            elevation: 5
+            justifyContent: "center",
+            elevation: 4
           }}
         >
-          <Text style={{ fontSize: 20 }}>Create Admin User</Text>
+          <Text style={{ fontSize: 22 }}>Create Admin User</Text>
         </View>
         <CardSection>
           <Input

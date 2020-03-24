@@ -119,6 +119,17 @@ class ChoreForm extends Component {
     return (
       <View>
         <View style={{ backgroundColor: "blue", flex: 1 }}>
+          <View
+            style={{
+              height: 60,
+              backgroundColor: "powderblue",
+              alignItems: "center",
+              justifyContent: "center",
+              elevation: 3
+            }}
+          >
+            <Text style={{ fontSize: 22 }}>Create New Chore</Text>
+          </View>
           <ScrollView>
             <CardSection>
               <Input

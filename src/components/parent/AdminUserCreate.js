@@ -74,8 +74,8 @@ class AdminUserCreate extends Component {
           <View
             style={{
               borderBottomWidth: 1,
-              padding: 5,
-              backgroundColor: "steelblue",
+              padding: 10,
+              backgroundColor: "#fff",
               justifyContent: "flex-start",
               borderColor: "#ddd",
               position: "relative",

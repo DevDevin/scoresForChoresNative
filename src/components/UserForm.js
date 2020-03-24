@@ -58,6 +58,17 @@ class UserForm extends Component {
 
     return (
       <View>
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "powderblue",
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 3
+          }}
+        >
+          <Text style={{ fontSize: 22 }}>Add New User</Text>
+        </View>
         <CardSection>
           <Text style={styles.labelStyle}>Name</Text>
           <TextInput

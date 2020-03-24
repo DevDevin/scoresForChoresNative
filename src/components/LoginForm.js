@@ -141,10 +141,12 @@ class LoginForm extends Component {
     return (
       <View style={styles.ContainerStyle}>
         <View
-          style={{
-            paddingLeft: 8,
-            paddingRight: 8
-          }}
+          style={
+            {
+              // paddingLeft: 8,
+              // paddingRight: 8
+            }
+          }
         >
           <View
             style={{
@@ -189,23 +191,16 @@ class LoginForm extends Component {
                 <Text style={styles.textStyle}>Login</Text>
               </Button>
             </View>
-
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({ modalVisible: true });
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 20,
-                  paddingTop: 10,
-                  paddingLeft: 10,
-                  color: "black"
+            <View style={styles.buttonSectionStyle}>
+              <Button
+                onPress={() => {
+                  this.setState({ modalVisible: true });
                 }}
+                // style={styles.buttonStyle}
               >
-                Forgot Password?
-              </Text>
-            </TouchableOpacity>
+                <Text style={styles.textStyle}>Forgot Password</Text>
+              </Button>
+            </View>
           </Animated.View>
 
           <Modal
@@ -223,7 +218,7 @@ class LoginForm extends Component {
             >
               <View
                 style={{
-                  height: 60,
+                  // height: 60,
                   backgroundColor: "powderblue",
                   alignItems: "center",
                   justifyContent: "center",
@@ -235,11 +230,11 @@ class LoginForm extends Component {
               <View>
                 <View
                   style={{
-                    borderBottomWidth: 1,
+                    // borderBottomWidth: 1,
                     padding: 5,
-                    backgroundColor: "steelblue",
+                    // backgroundColor: "steelblue",
                     justifyContent: "flex-start",
-                    borderColor: "#ddd",
+                    // borderColor: "#ddd",
                     position: "relative",
                     flexDirection: "row"
                   }}
@@ -259,11 +254,11 @@ class LoginForm extends Component {
 
                 <View
                   style={{
-                    borderBottomWidth: 1,
-                    padding: 5,
-                    backgroundColor: "steelblue",
+                    // borderBottomWidth: 1,
+                    // padding: 5,
+                    backgroundColor: "#fff",
                     justifyContent: "flex-start",
-                    borderColor: "#ddd",
+                    // borderColor: "#ddd",
                     position: "relative"
                   }}
                 >
@@ -279,11 +274,11 @@ class LoginForm extends Component {
 
                 <View
                   style={{
-                    borderBottomWidth: 1,
-                    padding: 5,
-                    backgroundColor: "steelblue",
+                    // borderBottomWidth: 1,
+                    // padding: 5,
+                    backgroundColor: "#fff",
                     justifyContent: "flex-start",
-                    borderColor: "#ddd",
+                    // borderColor: "#ddd",
                     position: "relative"
                   }}
                 >
@@ -327,21 +322,21 @@ const styles = {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "steelblue"
+    backgroundColor: "#fff"
     // borderColor: "powderblue"
   },
   ContainerStyle: {
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: "#ddd",
-    borderBottomWidth: 0,
-    shadowColor: "#000",
+    // borderWidth: 1,
+    // borderRadius: 2,
+    // borderColor: "#ddd",
+    // borderBottomWidth: 0,
+    // shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    // marginLeft: 5,
+    // marginRight: 5,
     marginTop: 10,
     flex: 5,
     flexDirection: "column",
@@ -349,9 +344,9 @@ const styles = {
     backgroundColor: "grey"
   },
   cardSectionStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "steelblue",
+    // borderBottomWidth: 1,
+    padding: 10,
+    backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
     borderColor: "black",
@@ -360,8 +355,8 @@ const styles = {
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "steelblue",
+    padding: 10,
+    backgroundColor: "#fff",
     // flexDirection: "row",
     borderColor: "#ddd",
     position: "relative",

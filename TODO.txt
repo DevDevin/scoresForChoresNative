@@ -1,9 +1,10 @@
 -- remove all the console.logs
 -- remove the auto filled values from the form like email and password
 -- make all the forms like the sign in form in style
--- re-structure the visual layout of the list items(icon on left, data on right)
+	- create new account form
+	- create admin user form
 -- when going into edit user the childhome componenent mounts. Fix this.
 -- fix parent chore list dropdowns and others like it.
 -- consider adding the swipe down to refresh feature.
--- fix modal info layout
+-- fix modal info layout (possibly make into table format)
 

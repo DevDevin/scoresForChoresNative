@@ -124,11 +124,32 @@ class UserListItem extends Component {
           >
             <View
               style={{
+                height: 60,
+                backgroundColor: "powderblue",
+                alignItems: "center",
+                justifyContent: "center",
+                elevation: 3
+              }}
+            >
+              <Text style={{ fontSize: 22 }}>Enter Password</Text>
+            </View>
+            <View
+              style={{
                 justifyContent: "center",
                 alignItems: "center"
               }}
             >
-              <CardSection>
+              <View
+                style={{
+                  borderBottomWidth: 1,
+                  padding: 5,
+                  backgroundColor: "steelblue",
+                  justifyContent: "flex-start",
+                  flexDirection: "row",
+                  borderColor: "#ddd",
+                  position: "relative"
+                }}
+              >
                 <View style={styles.containerStyle}>
                   <Text style={styles.labelStyle}>Password</Text>
                   <TextInput
@@ -142,13 +163,13 @@ class UserListItem extends Component {
                     }}
                   />
                 </View>
-              </CardSection>
+              </View>
             </View>
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
-                backgroundColor: "#fff",
+                padding: 15,
+                backgroundColor: "steelblue",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
                 position: "relative"
@@ -163,8 +184,8 @@ class UserListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
-                backgroundColor: "#fff",
+                padding: 15,
+                backgroundColor: "steelblue",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
                 position: "relative"

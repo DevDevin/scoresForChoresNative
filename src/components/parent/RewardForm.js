@@ -68,9 +68,17 @@ class RewardForm extends Component {
 
     return (
       <View>
-        <CardSection>
-          <Text style={styles.labelStyle}>New Reward</Text>
-        </CardSection>
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "powderblue",
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 3
+          }}
+        >
+          <Text style={{ fontSize: 22 }}>Add New Reward</Text>
+        </View>
 
         <CardSection>
           <Input
