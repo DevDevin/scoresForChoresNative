@@ -7,7 +7,8 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
@@ -19,6 +20,7 @@ import {
 } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class RewardListItem extends Component {
   state = {
@@ -73,6 +75,7 @@ class RewardListItem extends Component {
     const uid = this.props.activeUser.uid;
     const activeUserName = this.props.activeUser.name;
     const rewardRequests = this.props.rewardRequests;
+    const description = this.props.reward.description;
 
     //map through the reward requests and compare with the rewards. If the reward Request exists with the current child then
     // have a undo button available.
@@ -122,34 +125,37 @@ class RewardListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "#EFEFF4"
             }}
           >
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 28,
-                textDecorationLine: "underline",
-                fontWeight: "bold"
-              }}
-            >
-              Details
-            </Text>
-            <Text style={styles.modalTextStyle}>Reward Name: {rewardName}</Text>
-            <Text style={styles.modalTextStyle}>
-              Reward Value: {pointsValue}
-            </Text>
-            {/* <Text style={styles.modalTextStyle}>Day: {day}</Text>
-            <Text style={styles.modalTextStyle}>
-              Description: {description}
-            </Text> */}
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Name"
+                    detail={rewardName}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Reward Description"
+                    detail={description}
+                  />
+
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Value"
+                    detail={pointsValue}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
+
             <View
               style={{
-                flexDirection: "row",
                 justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
+                alignItems: "center"
               }}
             >
               <TouchableOpacity
@@ -176,6 +182,11 @@ const styles = {
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  stage: {
+    backgroundColor: "#EFEFF4"
+    // paddingTop: 20
+    // paddingBottom: 20
   },
   choreNameStyle: {
     fontSize: 26,
@@ -225,13 +236,15 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    width: 100,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 14,
+    marginRight: 14,
+    alignSelf: "stretch",
+    marginTop: 7,
+    marginBottom: 12
   },
   textStyle: {
     alignSelf: "center",

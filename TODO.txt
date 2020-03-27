@@ -10,6 +10,9 @@
 -- fix responsiveness
 -- error when closing child reward store modal
 -- look into a loading react native model that is better than what i currently have
+-- the whold reward request card is clickable in the parent reward requests manager
+-- in the add or delete user manager the modal has sort of a funky shape. 
+
 
 
 

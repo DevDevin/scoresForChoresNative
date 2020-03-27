@@ -5,12 +5,14 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
 import { rewardFetch } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class ParentRewardListItem extends Component {
   state = {
@@ -77,10 +79,27 @@ class ParentRewardListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "#EFEFF4"
             }}
           >
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Name"
+                    detail={rewardName}
+                  />
+
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Value"
+                    detail={pointsValue}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
             <Text
               style={{
                 alignSelf: "center",
@@ -177,6 +196,11 @@ const styles = {
   modalTextStyle: {
     fontSize: 24,
     paddingLeft: 5
+  },
+  stage: {
+    backgroundColor: "#EFEFF4"
+    // paddingTop: 20
+    // paddingBottom: 20
   },
   buttonStyle: {
     width: 100,

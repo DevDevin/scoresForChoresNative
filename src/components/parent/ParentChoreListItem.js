@@ -81,6 +81,7 @@ class ParentChoreListItem extends Component {
     const day = this.props.chore.day;
     const description = this.props.chore.description;
     const cid = this.props.chore.cid;
+    const status = this.props.chore.status;
 
     const childName = this.props.chore.child;
 
@@ -149,8 +150,7 @@ class ParentChoreListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "#EFEFF4"
             }}
           >
             <ScrollView contentContainerStyle={styles.stage}>
@@ -174,8 +174,8 @@ class ParentChoreListItem extends Component {
                   />
                   <Cell
                     cellStyle="RightDetail"
-                    title="Status??"
-                    detail="Status"
+                    title="Status"
+                    detail={status}
                   />
                   <Cell
                     cellStyle="RightDetail"
@@ -185,28 +185,13 @@ class ParentChoreListItem extends Component {
                 </Section>
               </TableView>
             </ScrollView>
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 28,
-                textDecorationLine: "underline",
-                fontWeight: "bold"
-              }}
-            >
-              Details
-            </Text>
-            <Text style={styles.modalTextStyle}>Child Name: {childName}</Text>
-            <Text style={styles.modalTextStyle}>Chore Name: {choreName}</Text>
-            <Text style={styles.modalTextStyle}>Day: {day}</Text>
-            <Text style={styles.modalTextStyle}>
-              Description: {description}
-            </Text>
+
             <View
               style={{
-                flexDirection: "row",
+                // flexDirection: "row",
                 justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
+                alignItems: "center"
+                // paddingTop: 10
               }}
             >
               <TouchableOpacity
@@ -270,15 +255,16 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    width: 100,
+    // width: 100,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 5,
-    marginBottom: 5
+    marginLeft: 14,
+    marginRight: 14,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: "stretch"
   },
   textStyle: {
     alignSelf: "center",
