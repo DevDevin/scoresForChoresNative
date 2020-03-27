@@ -7,4 +7,9 @@
 	- copy ChildChoreListItem
 -- fix color scheme
 -- fix icons
+-- fix responsiveness
+-- error when closing child reward store modal
+-- look into a loading react native model that is better than what i currently have
+
+
 

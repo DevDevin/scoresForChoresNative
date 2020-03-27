@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
@@ -15,6 +16,7 @@ import {
   choreDelete,
   choreUpdate
 } from "../../actions/ParentActions";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class ParentChoreListItem extends Component {
   state = {
@@ -151,6 +153,38 @@ class ParentChoreListItem extends Component {
               justifyContent: "center"
             }}
           >
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Chore Name"
+                    detail={choreName}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Chore Description"
+                    detail={description}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Child Assigned To"
+                    detail={childName}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Status??"
+                    detail="Status"
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Day Assigned"
+                    detail={day}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
             <Text
               style={{
                 alignSelf: "center",

@@ -19,6 +19,7 @@ import { rewardsFetch } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 import { rewardRequestSend2 } from "../../actions/ChildActions";
 import Modal from "react-native-modal";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class ChildRewardStore extends Component {
   state = {
@@ -300,36 +301,37 @@ class ChildRewardStore extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "#EFEFF4"
             }}
           >
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 28,
-                textDecorationLine: "underline",
-                fontWeight: "bold"
-              }}
-            >
-              Details
-            </Text>
-            <Text style={styles.modalTextStyle}>
-              Reward Name: {this.state.rewardName}
-            </Text>
-            <Text style={styles.modalTextStyle}>
-              Reward Value: {this.state.pointsValue}
-            </Text>
-            <Text style={styles.modalTextStyle}>
-              Reward Description: {this.state.description}
-            </Text>
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Name"
+                    detail={this.state.rewardName}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Reward Description"
+                    detail={this.state.description}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Value"
+                    detail={this.state.pointsValue}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
 
             <View
               style={{
-                flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingTop: 10
+                paddingBottom: 14
               }}
             >
               <TouchableOpacity
@@ -350,6 +352,11 @@ const styles = {
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  stage: {
+    backgroundColor: "#EFEFF4"
+    // paddingTop: 20
+    // paddingBottom: 20
   },
   choreNameStyle: {
     fontSize: 26,
@@ -399,13 +406,13 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    width: 100,
+    alignSelf: "stretch",
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 16,
+    marginRight: 16
   },
   textStyle: {
     alignSelf: "center",

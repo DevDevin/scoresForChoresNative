@@ -8,7 +8,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Alert,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
 import { Actions } from "react-native-router-flux";
@@ -18,6 +19,7 @@ import {
   deleteRewardRequest
 } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
@@ -137,7 +139,13 @@ class ChildRewardRequestsListItem extends Component {
 
     if (rewardStatus === "Rejected") {
       reSubmitButton = (
-        <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 1,
+            marginRight: 5
+          }}
+        >
           <TouchableOpacity
             onPress={this.onButtonPress.bind(
               this,
@@ -149,13 +157,31 @@ class ChildRewardRequestsListItem extends Component {
               currentPoints,
               rewardDescription
             )}
-            style={styles.buttonStyle}
+            style={{
+              alignSelf: "stretch",
+              backgroundColor: "#fff",
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: "#007aff",
+              marginLeft: 10,
+              marginRight: 10,
+              flex: 1
+            }}
           >
             <Text style={styles.textStyle}>Resubmit</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this.onDeleteRewardRequest.bind(this, rid)}
-            style={styles.buttonStyle}
+            style={{
+              alignSelf: "stretch",
+              backgroundColor: "#fff",
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: "#007aff",
+              marginLeft: 5,
+              marginRight: 5,
+              flex: 1
+            }}
           >
             <Text style={styles.textStyle}>Remove</Text>
           </TouchableOpacity>
@@ -210,42 +236,37 @@ class ChildRewardRequestsListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "steelblue",
-              justifyContent: "center",
-              alignItems: "center"
+              backgroundColor: "#EFEFF4"
             }}
           >
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Name"
+                    detail={rewardName}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Reward Value"
+                    detail={pointsValue}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Description"
+                    detail={rewardDescription}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
+
             <View
               style={{
-                padding: 8
-              }}
-            >
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                <Text style={{ fontSize: 22, fontWeight: "bold" }}>
-                  {rewardName}
-                </Text>
-              </View>
-              {rejectionReasonView}
-              <Text style={{ fontSize: 18, padding: 1 }}>
-                <Text style={{ fontWeight: "bold" }}>Points: </Text>
-                {pointsValue}
-              </Text>
-              <Text style={{ fontSize: 18, padding: 1 }}>
-                <Text style={{ fontWeight: "bold" }}>Description: </Text>{" "}
-                {rewardDescription}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
+                // flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingTop: 10,
                 paddingBottom: 10
               }}
             >
@@ -267,6 +288,11 @@ const styles = {
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  stage: {
+    backgroundColor: "#EFEFF4"
+    // paddingTop: 20
+    // paddingBottom: 20
   },
   rewardNameStyle: {
     fontSize: 26,
@@ -316,13 +342,13 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    width: 100,
+    alignSelf: "stretch",
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 10,
+    marginRight: 10
   },
   textStyle: {
     alignSelf: "center",
