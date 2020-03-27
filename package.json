@@ -28,6 +28,7 @@
     "react-native-router-flux": "^4.0.6",
     "react-native-scroll-view": "^0.1.0",
     "react-native-simple-radio-button": "^2.7.3",
+    "react-native-tableview-simple": "^2.4.1",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"

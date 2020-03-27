@@ -6,7 +6,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -14,6 +15,7 @@ import {
   completionRequestSend,
   undoCompletionRequest
 } from "../../actions/ChildActions";
+import { Cell, Section, TableView } from "react-native-tableview-simple";
 
 class ChildChoreListItem extends Component {
   state = {
@@ -97,7 +99,6 @@ class ChildChoreListItem extends Component {
     } else if (status === "Submitted") {
       submitOption = (
         <View>
-          <Text>Submitted</Text>
           <TouchableOpacity
             onPress={this.undoRequest.bind(
               this,
@@ -184,34 +185,49 @@ class ChildChoreListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              backgroundColor: "powderblue",
-              justifyContent: "center"
+              backgroundColor: "#EFEFF4"
+              // justifyContent: "center"
             }}
           >
-            <Text
-              style={{
-                alignSelf: "center",
-                fontSize: 28,
-                textDecorationLine: "underline",
-                fontWeight: "bold"
-              }}
-            >
-              Details
-            </Text>
-            <Text style={styles.modalTextStyle}>Chore Name: {choreName}</Text>
-            {rejectionReasonView}
-            <Text style={styles.modalTextStyle}>Day: {day}</Text>
-            <Text style={styles.modalTextStyle}>Status: {status}</Text>
+            <ScrollView contentContainerStyle={styles.stage}>
+              <TableView>
+                <Section header="" footer="">
+                  <Cell cellStyle="Basic" title="Details" />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Chore Name"
+                    detail={choreName}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Description"
+                    detail={description}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Completion Status"
+                    detail={status}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Day Assigned"
+                    detail={day}
+                  />
+                  <Cell
+                    cellStyle="Subtitle"
+                    title="Rejection Reason"
+                    detail={rejectionReason}
+                  />
+                </Section>
+              </TableView>
+            </ScrollView>
 
-            <Text style={styles.modalTextStyle}>
-              Description: {description}
-            </Text>
             <View
               style={{
-                flexDirection: "row",
+                // flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingTop: 10
+                paddingBottom: 20
               }}
             >
               <TouchableOpacity
@@ -277,13 +293,14 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    width: 100,
+    // width: 200,
+    alignSelf: "stretch",
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 16,
+    marginRight: 16
     // paddingBottom: 5
   },
   textStyle: {
@@ -292,6 +309,11 @@ const styles = {
     fontWeight: "600",
     paddingTop: 10,
     paddingBottom: 10
+  },
+  stage: {
+    backgroundColor: "#EFEFF4"
+    // paddingTop: 20
+    // paddingBottom: 20
   }
 };
 

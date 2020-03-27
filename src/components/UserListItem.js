@@ -143,7 +143,7 @@ class UserListItem extends Component {
                 style={{
                   borderBottomWidth: 1,
                   padding: 5,
-                  backgroundColor: "steelblue",
+                  backgroundColor: "#fff",
                   justifyContent: "flex-start",
                   flexDirection: "row",
                   borderColor: "#ddd",
@@ -169,7 +169,7 @@ class UserListItem extends Component {
               style={{
                 borderBottomWidth: 1,
                 padding: 15,
-                backgroundColor: "steelblue",
+                backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
                 position: "relative"
@@ -185,7 +185,7 @@ class UserListItem extends Component {
               style={{
                 borderBottomWidth: 1,
                 padding: 15,
-                backgroundColor: "steelblue",
+                backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
                 position: "relative"
