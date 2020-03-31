@@ -67,7 +67,7 @@ class UserForm extends Component {
             elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }}>Add New User</Text>
+          <Text style={{ fontSize: 22 }}>Add/Edit User</Text>
         </View>
         <CardSection>
           <Text style={styles.labelStyle}>Name</Text>

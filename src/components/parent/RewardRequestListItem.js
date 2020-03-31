@@ -125,67 +125,65 @@ class RewardRequestListItem extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <TouchableWithoutFeedback onPress={this.toggleModal}>
-          <View style={styles.childStyle}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View
-                style={{
-                  flex: 0.5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "powderblue"
-                }}
-              >
-                <Image source={require("../../Images/completionRequest.png")} />
-              </View>
+        <View style={styles.childStyle}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View
+              style={{
+                flex: 0.5,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "powderblue"
+              }}
+            >
+              <Image source={require("../../Images/completionRequest.png")} />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "skyblue"
+              }}
+            >
+              <Text style={styles.choreNameStyle}>
+                {childName} (
+                <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+              </Text>
+
               <View
                 style={{
                   flex: 1,
+                  flexDirection: "row",
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: "skyblue"
+                  paddingBottom: 5
                 }}
               >
-                <Text style={styles.choreNameStyle}>
-                  {childName} (
-                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
-                </Text>
-
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    paddingBottom: 5
-                  }}
+                <TouchableOpacity
+                  onPress={this.onAccept.bind(
+                    this,
+                    childName,
+                    uid,
+                    pointsValue,
+                    rid,
+                    rewardName,
+                    rewardDescription
+                  )}
+                  style={styles.buttonStyle}
                 >
-                  <TouchableOpacity
-                    onPress={this.onAccept.bind(
-                      this,
-                      childName,
-                      uid,
-                      pointsValue,
-                      rid,
-                      rewardName,
-                      rewardDescription
-                    )}
-                    style={styles.buttonStyle}
-                  >
-                    <Text style={styles.textStyle}>Accept</Text>
-                  </TouchableOpacity>
+                  <Text style={styles.textStyle}>Accept</Text>
+                </TouchableOpacity>
 
-                  <TouchableOpacity
-                    onPress={this.toggleModal}
-                    style={styles.buttonStyle}
-                  >
-                    <Text style={styles.textStyle}>Reject</Text>
-                  </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                  onPress={this.toggleModal}
+                  style={styles.buttonStyle}
+                >
+                  <Text style={styles.textStyle}>Reject</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </View>
         <Modal
           visible={this.state.isModalVisible}
           animationType="slide"
@@ -201,7 +199,6 @@ class RewardRequestListItem extends Component {
           >
             <View style={{ marginTop: 22 }}>
               <View style={styles.containerStyle}>
-                <Text style={styles.labelStyle}> Description </Text>
                 <TextInput
                   multiline={true}
                   numberOfLines={2}

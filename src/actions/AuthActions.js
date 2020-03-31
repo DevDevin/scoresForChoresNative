@@ -295,6 +295,7 @@ export const choreUpdate2 = (newName, chores) => {
 
   // simplify the object of arrays
   const choresObject = chores.chores;
+  console.log("chores object: ", chores);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {
@@ -308,7 +309,7 @@ export const choreUpdate2 = (newName, chores) => {
           day: chore.day,
           description: chore.description,
           pointsValue: chore.pointsValue,
-          isRecurring: chore.recurring,
+          isRecurring: chore.isRecurring,
           status: chore.status
         });
     });
