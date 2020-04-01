@@ -135,7 +135,7 @@ class ManageUsers extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
+                <Image source={require("../../Images/resetPassword.png")} />
                 <Text style={{ fontSize: 22 }}>Reset Passwords</Text>
               </View>
             </View>
@@ -164,7 +164,7 @@ class ManageUsers extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/rewardList.png")} />
+                <Image source={require("../../Images/genericUser.png")} />
                 <Text style={{ fontSize: 22 }}>Add/Delete Users</Text>
               </View>
             </View>

@@ -203,7 +203,7 @@ class ParentHome extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
+                <Image source={require("../../Images/genericUser.png")} />
                 <Text style={{ fontSize: 22 }}>User Manager</Text>
               </View>
             </View>

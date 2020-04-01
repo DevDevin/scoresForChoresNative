@@ -131,7 +131,7 @@ class RewardManager extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
+                <Image source={require("../../Images/rewardList.png")} />
                 <Text style={{ fontSize: 22 }}>Rewards List</Text>
               </View>
             </View>
@@ -161,7 +161,7 @@ class RewardManager extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
+                <Image source={require("../../Images/completionRequest.png")} />
                 <Text style={{ fontSize: 22 }}>Reward Requests</Text>
               </View>
             </View>

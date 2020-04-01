@@ -37,12 +37,10 @@ export default class UserProfile extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "grey",
-            flex: 0.3,
+            flex: 1,
             elevation: 5
           }}
-        >
-          <Text style={{ fontSize: 24 }}>User Profile </Text>
-        </View>
+        ></View>
         <UserEdit />
       </View>
     );

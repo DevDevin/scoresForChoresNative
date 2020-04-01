@@ -162,7 +162,7 @@ class ChoreManager extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
+                <Image source={require("../../Images/completionRequest.png")} />
                 <Text style={{ fontSize: 22 }}>Completion Requests</Text>
               </View>
             </View>
@@ -192,7 +192,7 @@ class ChoreManager extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/rewardList.png")} />
+                <Image source={require("../../Images/reset.png")} />
                 <Text style={{ fontSize: 22 }}>Reset Chores</Text>
               </View>
             </View>
