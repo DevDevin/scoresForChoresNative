@@ -13,6 +13,12 @@ import {
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { loadingUsersEnd, loadingUsersStart } from "../../actions/AuthActions";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ParentHome extends Component {
   state = {
@@ -56,6 +62,7 @@ class ParentHome extends Component {
   }
 
   componentDidMount() {
+    loc(this);
     console.log("component did mount parent home");
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
 
@@ -66,6 +73,7 @@ class ParentHome extends Component {
   ///// back button example ////////
 
   componentWillUnmount() {
+    rol();
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -102,7 +110,13 @@ class ParentHome extends Component {
 
     return (
       <View
-        style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "grey",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
       >
         <View
           style={{
@@ -164,7 +178,7 @@ class ParentHome extends Component {
           }}
         >
           <TouchableWithoutFeedback onPress={this.onRewardListPress.bind(this)}>
-            <View style={styles.rewardListStyle}>
+            <View style={styles.choreListStyle}>
               <View
                 style={{
                   flex: 1,
@@ -216,13 +230,17 @@ class ParentHome extends Component {
 
 const styles = {
   choreListStyle: {
-    height: 100,
+    // height: 100,
+    width: wp("80%"),
+    // height: hp("60%"),
     borderRadius: 4,
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
     flex: 1,
-    backgroundColor: "powderblue"
+    backgroundColor: "powderblue",
+    paddingTop: 10,
+    paddingBottom: 10
   },
   rewardListStyle: {
     height: 100,

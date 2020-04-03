@@ -7,6 +7,6 @@
 -- fix responsiveness
 	-parent reward requests
 	-put everything inside of scrollview
-	-child home
-	-parent home
+	-child home - make scrollable like forms
+	-parent home - make scrollable like forms
 -- fix back button on parent completion request
