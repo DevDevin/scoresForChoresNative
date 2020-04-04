@@ -130,6 +130,7 @@ class ChoreForm extends Component {
           >
             <Text style={{ fontSize: 22 }}>Create New Chore</Text>
           </View>
+
           <ScrollView>
             <CardSection>
               <Input

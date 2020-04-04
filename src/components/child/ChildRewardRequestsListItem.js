@@ -16,7 +16,8 @@ import { Actions } from "react-native-router-flux";
 import { rewardRequestsFetch } from "../../actions/ParentActions";
 import {
   resubmitRewardRequest,
-  deleteRewardRequest
+  deleteRewardRequest,
+  earnedRewardSpend
 } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
@@ -38,6 +39,27 @@ class ChildRewardRequestsListItem extends Component {
     // actions.something
   }
 
+  spendReward(rid) {
+    Alert.alert(
+      "Spend Reward",
+      "Are you sure you want to use spend this reward?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.earnedRewardSpend(rid);
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  }
+
   onButtonPress(
     activeUserName,
     uid,
@@ -51,7 +73,7 @@ class ChildRewardRequestsListItem extends Component {
     const activeUserObject = this.props.activeUser;
 
     Alert.alert(
-      "Logout",
+      "Request Reward:",
       "Are you sure you want to request this reward?",
       [
         {
@@ -82,7 +104,7 @@ class ChildRewardRequestsListItem extends Component {
   // delete reward request with reward rewquest id passed in.
   onDeleteRewardRequest(rid) {
     Alert.alert(
-      "Logout",
+      "Delete Reward",
       "Are you sure you want to delete this reward rewquest?",
       [
         {
@@ -194,6 +216,15 @@ class ChildRewardRequestsListItem extends Component {
           style={styles.buttonStyle}
         >
           <Text style={styles.textStyle}>Undo Submit</Text>
+        </TouchableOpacity>
+      );
+    } else if (rewardStatus === "Accepted") {
+      reSubmitButton = (
+        <TouchableOpacity
+          onPress={this.spendReward.bind(this, rid)}
+          style={styles.buttonStyle}
+        >
+          <Text style={styles.textStyle}>Spend</Text>
         </TouchableOpacity>
       );
     } else {
@@ -371,5 +402,6 @@ export default connect(mapStateToProps, {
   resubmitRewardRequest,
   deleteRewardRequest,
   setActiveUser,
-  usersFetch
+  usersFetch,
+  earnedRewardSpend
 })(ChildRewardRequestsListItem);

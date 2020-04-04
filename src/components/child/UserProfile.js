@@ -32,15 +32,6 @@ export default class UserProfile extends Component {
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "grey",
-            flex: 1,
-            elevation: 5
-          }}
-        ></View>
         <UserEdit />
       </View>
     );

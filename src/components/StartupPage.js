@@ -35,7 +35,7 @@ class StartupPage extends Component {
           flex: 1,
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: "grey"
+          backgroundColor: "#EFEFF4"
         }}
       >
         <View style={styles.ContainerStyle}>
@@ -110,8 +110,8 @@ const styles = {
   ContainerStyle: {
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: "charcoal",
-    borderBottomWidth: 0,
+    // borderColor: "charcoal",
+    // borderBottomWidth: 0,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,

@@ -187,7 +187,7 @@ class ChildRewardStore extends Component {
     _.map(rewardRequests, item => {});
 
     return (
-      <View style={{ backgroundColor: "#d1d4e3", flex: 1 }}>
+      <View style={{ backgroundColor: "#EFEFF4", flex: 1 }}>
         <View
           style={{
             flexDirection: "row",

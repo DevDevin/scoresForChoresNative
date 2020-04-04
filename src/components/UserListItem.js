@@ -119,7 +119,7 @@ class UserListItem extends Component {
               flex: 1,
               flexDirection: "column",
               justifyContent: "center",
-              backgroundColor: "grey"
+              backgroundColor: "#EFEFF4"
             }}
           >
             <View

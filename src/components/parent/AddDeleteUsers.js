@@ -67,7 +67,7 @@ class AddDeleteUser extends Component {
     // i may want to set the loading in the login action as well. Thats how its being done in other projects.
 
     return (
-      <View style={{ flex: 1, backgroundColor: "grey" }}>
+      <View style={{ flex: 1, backgroundColor: "#EFEFF4" }}>
         <View
           style={{
             justifyContent: "center",
@@ -99,7 +99,7 @@ class AddDeleteUser extends Component {
           </Animated.View>
         </View>
         {this.renderSpinner()}
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <Animated.View
               style={{

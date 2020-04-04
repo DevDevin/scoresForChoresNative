@@ -262,7 +262,7 @@ class ParentChoreList extends Component {
           </View>
         </View>
 
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <View>

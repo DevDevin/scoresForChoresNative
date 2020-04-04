@@ -184,10 +184,12 @@ class ChildChoreListItem extends Component {
         </TouchableWithoutFeedback>
         <Modal isVisible={this.state.isModalVisible}>
           <View
-            style={{
-              backgroundColor: "#EFEFF4"
-              // justifyContent: "center"
-            }}
+            style={
+              {
+                //  backgroundColor: "#EFEFF4",
+                // justifyContent: "center"
+              }
+            }
           >
             <ScrollView contentContainerStyle={styles.stage}>
               <TableView>
@@ -311,7 +313,7 @@ const styles = {
     paddingBottom: 10
   },
   stage: {
-    backgroundColor: "#EFEFF4"
+    // backgroundColor: "#EFEFF4"
     // paddingTop: 20
     // paddingBottom: 20
   }

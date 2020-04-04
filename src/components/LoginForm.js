@@ -341,7 +341,7 @@ const styles = {
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "grey"
+    backgroundColor: "#EFEFF4"
   },
   cardSectionStyle: {
     // borderBottomWidth: 1,

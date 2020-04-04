@@ -8,9 +8,16 @@ import {
   Image,
   Animated,
   BackHandler,
-  ToastAndroid
+  ToastAndroid,
+  ScrollView
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildHome extends Component {
   state = {
@@ -35,6 +42,7 @@ class ChildHome extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     console.log("componentDidMount in child home");
     // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
@@ -92,6 +100,7 @@ class ChildHome extends Component {
   }
 
   componentWillMount() {
+    rol();
     console.log("component will mount");
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
@@ -102,79 +111,222 @@ class ChildHome extends Component {
 
     console.log("rendering child home");
     return (
-      <View style={{ flex: 1, flexDirection: "column" }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "grey",
-            flex: 0.3,
-            elevation: 5
-          }}
-        >
-          <Animated.View
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "#EFEFF4",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <ScrollView>
+          <View
             style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
             }}
           >
-            <Text style={{ fontSize: 24 }}>Hello {name}</Text>
-          </Animated.View>
-        </View>
-
-        <TouchableWithoutFeedback onPress={this.onChoreListPress.bind(this)}>
-          <View style={styles.choreListStyle}>
             <View
               style={{
+                // height: 100,
+                width: wp("95%"),
+                height: hp("10%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
+                backgroundColor: "skyblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
               }}
             >
-              <Image source={require("../../Images/choreList.png")} />
-              <Text style={{ fontSize: 22 }}>Chore List</Text>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Text style={{ fontSize: 22 }}>Hello {name}</Text>
+              </View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={this.onRewardManager.bind(this)}>
-          <View style={styles.rewardStoreStyle}>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
             <View
               style={{
+                // height: 100,
+                width: wp("95%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
               }}
             >
-              <Image source={require("../../Images/rewardList.png")} />
-              <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+              <Animated.View
+                style={{
+                  flex: 1,
+                  transform: [
+                    {
+                      translateX: slideUp.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [100, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <TouchableWithoutFeedback
+                  onPress={this.onChoreListPress.bind(this)}
+                >
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <Image source={require("../../Images/choreList.png")} />
+                    <Text style={{ fontSize: 22 }}>Chore List</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </Animated.View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={this.onUserProfile.bind(this)}>
-          <View style={styles.rewardStoreStyle}>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
             <View
               style={{
+                // height: 100,
+                width: wp("95%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
               }}
             >
-              <Image source={require("../../Images/genericUser.png")} />
-              <Text style={{ fontSize: 22 }}>User Profile</Text>
+              <Animated.View
+                style={{
+                  flex: 1,
+                  transform: [
+                    {
+                      translateX: SlideInLeft.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [100, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <TouchableWithoutFeedback
+                  onPress={this.onRewardManager.bind(this)}
+                >
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <Image source={require("../../Images/rewardList.png")} />
+                    <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </Animated.View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("95%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
+              }}
+            >
+              <Animated.View
+                style={{
+                  flex: 1,
+                  transform: [
+                    {
+                      translateX: slideUp.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [100, 0]
+                      })
+                    }
+                  ]
+                }}
+              >
+                <TouchableWithoutFeedback
+                  onPress={this.onUserProfile.bind(this)}
+                >
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <Image source={require("../../Images/genericUser.png")} />
+                    <Text style={{ fontSize: 22 }}>User Profile</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+              </Animated.View>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }

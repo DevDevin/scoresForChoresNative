@@ -285,7 +285,7 @@ export const earnedRewardSpend = rewardId => {
   return () => {
     firebase
       .database()
-      .ref(`/users/${currentUser.uid}/rewardsEarned/${rewardId}`)
+      .ref(`/users/${currentUser.uid}/rewardRequests/${rewardId}`)
       .remove()
       .then(() => {
         Actions.earnedRewards({ type: "reset" });

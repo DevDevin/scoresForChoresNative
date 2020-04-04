@@ -3,10 +3,9 @@
 -- fix parent chore list dropdowns and others like it.
 -- error when closing child reward store modal
 -- fix color scheme
-	- make everything same background color as child reward store.
 -- fix responsiveness
 	-parent reward requests
 	-put everything inside of scrollview
-	-child home - make scrollable like forms
-	-parent home - make scrollable like forms
+	-make all managers like the child and parent home
 -- fix back button on parent completion request
+-- make sure the back button can't be pressed when in admin user create.

@@ -55,7 +55,7 @@ class ChildRewardRequestList extends Component {
   render() {
     var radio_props = [
       { label: "All", value: "All" },
-      { label: "Accepted", value: "Accepted" },
+      { label: "Earned", value: "Accepted" },
       { label: "Rejected", value: "Rejected" },
       { label: "Spent", value: "Spent" },
       { label: "Submitted", value: "Submitted" }
@@ -114,7 +114,7 @@ class ChildRewardRequestList extends Component {
             }}
           />
         </View>
-        <View style={{ flex: 0.9, backgroundColor: "#999897" }}>
+        <View style={{ flex: 0.9, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <FlatList

@@ -102,7 +102,7 @@ class CompletionRequestList extends Component {
     }
 
     return (
-      <View style={{ backgroundColor: "grey", flex: 1 }}>
+      <View style={{ backgroundColor: "#EFEFF4", flex: 1 }}>
         <View
           style={{
             justifyContent: "center",
@@ -163,7 +163,7 @@ class CompletionRequestList extends Component {
             })}
           </Picker>
         </View>
-        <View style={{ flex: 0.85, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <Animated.View

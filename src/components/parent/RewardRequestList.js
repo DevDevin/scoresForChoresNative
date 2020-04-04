@@ -121,7 +121,7 @@ class RewardRequestList extends Component {
                 fontSize: 24
               }}
             >
-              Reward Requests
+              Reward Request
             </Text>
           </Animated.View>
         </View>
@@ -156,7 +156,7 @@ class RewardRequestList extends Component {
             })}
           </Picker>
         </View>
-        <View style={{ flex: 0.9, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.9, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <Animated.View

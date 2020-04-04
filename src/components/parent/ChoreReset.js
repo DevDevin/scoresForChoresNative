@@ -68,7 +68,7 @@ class ChoreReset extends Component {
           flex: 1,
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: "grey"
+          backgroundColor: "#EFEFF4"
         }}
       >
         <View style={{ elevation: 15 }}>

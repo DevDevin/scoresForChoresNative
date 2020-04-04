@@ -78,7 +78,7 @@ class LoginForm extends Component {
 
   rendorError() {
     return (
-      <View style={{ backgroundColor: "grey" }}>
+      <View style={{ backgroundColor: "#EFEFF4" }}>
         <Text style={styles.errorTextStyle}>{this.props.error}</Text>
       </View>
     );
@@ -188,7 +188,7 @@ const styles = {
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
-    backgroundColor: "grey"
+    backgroundColor: "#EFEFF4"
   },
   cardSectionStyle: {
     borderBottomWidth: 1,

@@ -202,7 +202,7 @@ class ChildChoreList extends Component {
             </Picker>
           </View>
         </View>
-        <View style={{ flex: 0.9, backgroundColor: "grey" }}>
+        <View style={{ flex: 0.9, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <Animated.View
