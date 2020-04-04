@@ -21,7 +21,7 @@ class AdminUserForm extends Component {
     if (this.props.emptyName === true) {
       emptyNameMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>Name is Required</Text>
+          <Text style={{ color: "grey", fontSize: 22 }}>Name is Required</Text>
         </View>
       );
     } else {
@@ -32,9 +32,7 @@ class AdminUserForm extends Component {
     if (this.props.emptyEmail === true) {
       emptyEmailMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
-            Email is Required
-          </Text>
+          <Text style={{ color: "grey", fontSize: 22 }}>Email is Required</Text>
         </View>
       );
     } else {
@@ -44,7 +42,7 @@ class AdminUserForm extends Component {
     if (this.props.passwordMismatch === true) {
       passwordMismatchMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "grey", fontSize: 22 }}>
             Passwords must match
           </Text>
         </View>

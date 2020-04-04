@@ -4,18 +4,28 @@ import { connect } from "react-redux";
 import { Card, CardSection, Button } from "../common/index";
 import { userCreate, userUpdate } from "../../actions/AuthActions";
 import AdminUserForm from "./AdminUserForm";
-import { View, Text } from "react-native";
+import { View, Text, BackHandler, ToastAndroid } from "react-native";
 
 class AdminUserCreate extends Component {
   state = {
     allowSubmit: true
   };
   componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     this.props.userUpdate({ prop: "emptyName", value: false });
     this.props.userUpdate({ prop: "passwordMismatch", value: false });
     // this.props.userUpdate({ prop: "emptyPhone", value: false });
     this.props.userUpdate({ prop: "emptyEmail", value: false });
     this.props.userUpdate({ prop: "email", value: "" });
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    ToastAndroid.show("Cannot go back from here.", ToastAndroid.LONG);
+    return true;
   }
 
   onButtonPress() {

@@ -7,5 +7,3 @@
 	-parent reward requests
 	-put everything inside of scrollview
 	-make all managers like the child and parent home
--- fix back button on parent completion request
--- make sure the back button can't be pressed when in admin user create.
