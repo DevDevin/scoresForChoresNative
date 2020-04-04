@@ -78,7 +78,7 @@ class ChildHome extends Component {
   handleBackButton() {
     console.log("handBackButton >>>>>>");
     //// ^^^^ this is not getting called when I go back to it.
-    ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    ToastAndroid.show("Cannot go back. Must Log out.", ToastAndroid.SHORT);
     return true;
   }
 

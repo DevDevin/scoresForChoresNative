@@ -6,4 +6,3 @@
 -- fix responsiveness
 	-parent reward requests
 	-put everything inside of scrollview
-	-make all managers like the child and parent home

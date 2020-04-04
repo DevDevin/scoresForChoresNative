@@ -7,9 +7,16 @@ import {
   View,
   Image,
   Animated,
-  BackHandler
+  BackHandler,
+  ScrollView
 } from "react-native";
 import { loadingUsersEnd, userUpdate } from "../../actions/AuthActions";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildRewardManager extends Component {
   componentDidMount() {
@@ -50,12 +57,14 @@ class ChildRewardManager extends Component {
   ///// back button example ////////
   componentDidMount() {
     // this._start();
+    loc(this);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
-  // componentWillUnmount() {
-  //   BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
-  // }
+  componentWillUnmount() {
+    rol();
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
 
   handleBackButton() {
     // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
@@ -69,50 +78,140 @@ class ChildRewardManager extends Component {
     const { name } = this.props.activeUser;
 
     return (
-      <View style={{ flex: 1, flexDirection: "column" }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "grey",
-            flex: 0.3,
-            elevation: 5
-          }}
-        >
-          <Text style={{ fontSize: 24 }}>Reward Manager</Text>
-        </View>
-
-        <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
-          <View style={styles.rewardStoreStyle}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "#EFEFF4",
+          alignItems: "center",
+          justifyContent: "center"
+          // margin: 5
+        }}
+      >
+        <ScrollView>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
             <View
               style={{
+                // height: 100,
+                width: wp("92%"),
+                height: hp("10%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
+                backgroundColor: "skyblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
               }}
             >
-              <Image source={require("../../Images/rewardList.png")} />
-              <Text style={{ fontSize: 22 }}>Reward Store</Text>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+              </View>
             </View>
           </View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={this.onRewardRequests.bind(this)}>
-          <View style={styles.choreListStyle}>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
             <View
               style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("38%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column"
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10,
+                margin: 3
+                // justifyContent: "center"
               }}
             >
-              <Image source={require("../../Images/completionRequest.png")} />
-              <Text style={{ fontSize: 22 }}>Reward Requests</Text>
+              <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image source={require("../../Images/rewardList.png")} />
+                  <Text style={{ fontSize: 22 }}>Reward Store</Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
           </View>
-        </TouchableWithoutFeedback>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("38%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // margin: 1
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback
+                onPress={this.onRewardRequests.bind(this)}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image
+                    source={require("../../Images/completionRequest.png")}
+                  />
+                  <Text style={{ fontSize: 22 }}>Reward Requests</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -9,8 +9,15 @@ import {
   ActivityIndicator,
   Animated,
   BackHandler,
-  ToastAndroid
+  ToastAndroid,
+  ScrollView
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChoreManager extends Component {
   state = {
@@ -47,11 +54,13 @@ class ChoreManager extends Component {
 
   ///// back button example ////////
   componentDidMount() {
+    loc(this);
     this._start();
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
+    rol();
     console.log("componentWillUnmount in ChoreManager");
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
@@ -88,40 +97,40 @@ class ChoreManager extends Component {
 
     return (
       <View
-        style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "#EFEFF4",
+          alignItems: "center",
+          justifyContent: "center"
+          // margin: 5
+        }}
       >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 0.4,
-            elevation: 5
-          }}
-        >
-          <Text
+        <ScrollView>
+          <View
             style={{
-              fontSize: 24
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
             }}
           >
-            Chore Manager
-          </Text>
-        </View>
-
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: slideUp.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onChoreList.bind(this)}>
-            <View style={styles.choreListStyle}>
+            <View
+              style={{
+                // height: 100,
+                width: wp("92%"),
+                height: hp("10%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "skyblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // justifyContent: "center"
+              }}
+            >
               <View
                 style={{
                   flex: 1,
@@ -130,74 +139,139 @@ class ChoreManager extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Image source={require("../../Images/choreList.png")} />
-                <Text style={{ fontSize: 22 }}>Chore List</Text>
+                <Text style={{ fontSize: 22 }}>Chore Manager</Text>
               </View>
             </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: slideUp.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback
-            onPress={this.onCompletionRequests.bind(this)}
+          </View>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
           >
-            <View style={styles.choreListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/completionRequest.png")} />
-                <Text style={{ fontSize: 22 }}>Completion Requests</Text>
-              </View>
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10,
+                margin: 3
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback onPress={this.onChoreList.bind(this)}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image source={require("../../Images/choreList.png")} />
+                  <Text style={{ fontSize: 22 }}>Chore List</Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
+          </View>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // margin: 1
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback
+                onPress={this.onCompletionRequests.bind(this)}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image
+                    source={require("../../Images/completionRequest.png")}
+                  />
+                  <Text style={{ fontSize: 22 }}>Completion Requests</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </View>
 
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: SlideInLeft.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [-100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onResetChores.bind(this)}>
-            <View style={styles.rewardListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Image source={require("../../Images/reset.png")} />
-                <Text style={{ fontSize: 22 }}>Reset Chores</Text>
-              </View>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("30%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // margin: 1
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback onPress={this.onResetChores.bind(this)}>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image source={require("../../Images/reset.png")} />
+                  <Text style={{ fontSize: 22 }}>Reset Chores</Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -210,26 +284,21 @@ const styles = {
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
+    paddingLeft: 15,
     flex: 1,
+    paddingBottom: 15,
     backgroundColor: "powderblue"
   },
-  rewardListStyle: {
+  rewardStoreStyle: {
     height: 100,
     borderRadius: 4,
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
+    paddingLeft: 15,
     flex: 1,
+    paddingBottom: 15,
     backgroundColor: "skyblue"
-  },
-  completionRequestsStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    flex: 1,
-    backgroundColor: "steelblue"
   }
 };
 
