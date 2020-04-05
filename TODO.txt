@@ -1,8 +1,8 @@
 -- remove all the console.logs
 -- remove the auto filled values from the form like email and password
--- fix parent chore list dropdowns and others like it.
 -- error when closing child reward store modal
 -- fix color scheme
+	-possibly change the color of the sub-managers to be different than the parent managers
 -- fix responsiveness
 	-put everything inside of scrollview
 	-put everything at right width
@@ -10,3 +10,11 @@
 	-get rid of headers for managers, maybe for lists
 	-give all the headers a smaller width than full screen
 	-style all headers like the AddDeleteUser header
+-- change the decode of Monday-Wednesday-Friday chores to Mon-Wed-Fri or M-W-F 
+	-and other days to their abbreviations
+-- remove the spent toggle option in child reward requests
+-- add the reset passwords image/icon back to parent user manager
+-- change undo submit button in child chore list to undo
+-- move the day value in child chore list to be above the status. 
+-- remove "child" from router labels ex: "Child Reward Manager" -> "Reward Manager"
+-- shorten the loading times
