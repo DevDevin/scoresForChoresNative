@@ -104,47 +104,11 @@ class RewardManager extends Component {
           flexDirection: "column",
           backgroundColor: "#EFEFF4",
           alignItems: "center",
-          justifyContent: "center"
-          // margin: 5
+          justifyContent: "center",
+          marginTop: 5
         }}
       >
         <ScrollView>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              // flex: 0.6,
-              elevation: 5
-            }}
-          >
-            <View
-              style={{
-                // height: 100,
-                width: wp("92%"),
-                height: hp("10%"),
-                borderRadius: 4,
-                borderWidth: 2,
-                borderColor: "#d6d7da",
-                fontSize: 30,
-                flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
-                // justifyContent: "center"
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Text style={{ fontSize: 22 }}>Reward Manager</Text>
-              </View>
-            </View>
-          </View>
           {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
           <View
             style={{
@@ -158,7 +122,7 @@ class RewardManager extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("38%"),
+                height: hp("43%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
@@ -199,7 +163,7 @@ class RewardManager extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("38%"),
+                height: hp("43%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",

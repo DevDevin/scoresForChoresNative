@@ -8,6 +8,12 @@ import { FloatingAction } from "react-native-floating-action";
 import EditDeleteUserListItem from "../parent/EditDeleteUserListItem";
 import Spinner from "react-native-loading-spinner-overlay";
 import { CardSection, Input, Button } from "../common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class AddDeleteUser extends Component {
   state = {
@@ -35,8 +41,14 @@ class AddDeleteUser extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     this._start();
     this.props.loadingUsersEnd();
+  }
+
+  componentWillUnmount() {
+    rol();
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   onButtonPress() {
@@ -67,14 +79,22 @@ class AddDeleteUser extends Component {
     // i may want to set the loading in the login action as well. Thats how its being done in other projects.
 
     return (
-      <View style={{ flex: 1, backgroundColor: "#EFEFF4" }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "#EFEFF4",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "steelblue",
-            flex: 0.1,
-            elevation: 10
+            height: wp("8%"),
+            // elevation: 10,
+            width: wp("97%")
           }}
         >
           <Animated.View
@@ -94,12 +114,18 @@ class AddDeleteUser extends Component {
                 fontSize: 24
               }}
             >
-              Add or Delete Users
+              Users
             </Text>
           </Animated.View>
         </View>
         {this.renderSpinner()}
-        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
+        <View
+          style={{
+            flex: 0.85,
+            backgroundColor: "#EFEFF4",
+            width: wp("95%")
+          }}
+        >
           <ScrollView>
             <Animated.View
               style={{

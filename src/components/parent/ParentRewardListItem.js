@@ -13,6 +13,12 @@ import Modal from "react-native-modal";
 import { rewardFetch } from "../../actions/ParentActions";
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  rewardRequestsFetch,
+  rewardRequestAccept,
+  rewardRequestReject,
+  rejectionReasonChange
+} from "../../actions/ParentActions";
 
 class ParentRewardListItem extends Component {
   state = {
@@ -22,6 +28,14 @@ class ParentRewardListItem extends Component {
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
+
+  componentDidMount() {
+    loc(this);
+  }
+
+  componentWillUnmount() {
+    rol();
+  }
 
   onEditPress() {
     // edit the chore
@@ -50,32 +64,34 @@ class ParentRewardListItem extends Component {
     return (
       // maybe i want to remove the flex on this...
       <View style={{ flex: 1 }}>
-        <TouchableWithoutFeedback
-          value={this.props.reward.rewardName}
-          onPress={this.toggleModal}
-        >
-          <View style={styles.childStyle}>
-            <View style={styles.choreStyle}>
-              <Text style={styles.choreNameStyle}>
-                {rewardName}Pareent Reward List Item
-              </Text>
-              <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
-              <TouchableOpacity
-                onPress={this.onButtonPress.bind(
-                  this,
-                  activeUserName,
-                  uid,
-                  pointsValue,
-                  rid,
-                  rewardName
-                )}
-                style={styles.buttonStyle}
-              >
-                <Text style={styles.textStyle}>Submit</Text>
-              </TouchableOpacity>
+        <View style={{ width: wp("50%") }}>
+          <TouchableWithoutFeedback
+            value={this.props.reward.rewardName}
+            onPress={this.toggleModal}
+          >
+            <View style={styles.childStyle}>
+              <View style={styles.choreStyle}>
+                <Text style={styles.choreNameStyle}>
+                  {rewardName}Pareent Reward List Item
+                </Text>
+                <Text style={styles.choreInfoStyle}>{pointsValue}</Text>
+                <TouchableOpacity
+                  onPress={this.onButtonPress.bind(
+                    this,
+                    activeUserName,
+                    uid,
+                    pointsValue,
+                    rid,
+                    rewardName
+                  )}
+                  style={styles.buttonStyle}
+                >
+                  <Text style={styles.textStyle}>Submit</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </View>
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
@@ -88,7 +104,7 @@ class ParentRewardListItem extends Component {
                   <Cell cellStyle="Basic" title="Details" />
                   <Cell
                     cellStyle="RightDetail"
-                    title="Reward Name"
+                    title="Reward Name do"
                     detail={rewardName}
                   />
 
@@ -161,7 +177,7 @@ const styles = {
     fontWeight: "bold"
   },
   childStyle: {
-    flex: 1,
+    // flex: 1,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: "#ddd",
@@ -186,7 +202,7 @@ const styles = {
     alignItems: "center"
   },
   choreStyle: {
-    flex: 1,
+    // flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "skyblue",

@@ -8,8 +8,15 @@ import {
   Image,
   ActivityIndicator,
   Animated,
-  BackHandler
+  BackHandler,
+  ScrollView
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ManageUsers extends Component {
   state = {
@@ -48,17 +55,15 @@ class ManageUsers extends Component {
     Actions.rewardRequestList();
   }
 
-  componentDidMount() {
-    this._start();
-  }
-
   //  ///// back button example ////////
   componentDidMount() {
+    loc(this);
     this._start();
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
+    rol();
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -93,83 +98,103 @@ class ManageUsers extends Component {
 
     return (
       <View
-        style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "#EFEFF4",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 5
+        }}
       >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 0.4,
-            elevation: 5
-          }}
-        >
-          <Text
+        <ScrollView>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
             style={{
-              fontSize: 24
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
             }}
           >
-            Manage Users
-          </Text>
-        </View>
-
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: slideUp.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onPasswordReset.bind(this)}>
-            <View style={styles.choreListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("43%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10,
+                margin: 3
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback
+                onPress={this.onPasswordReset.bind(this)}
               >
-                <Image source={require("../../Images/resetPassword.png")} />
-                <Text style={{ fontSize: 22 }}>Reset Passwords</Text>
-              </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image source={require("../../Images/resetPassword.png")} />
+                  <Text style={{ fontSize: 22 }}>Reset Passwords</Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
-        <Animated.View
-          style={{
-            flex: 1,
-            transform: [
-              {
-                translateX: SlideInLeft.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [-100, 0]
-                })
-              }
-            ]
-          }}
-        >
-          <TouchableWithoutFeedback onPress={this.onAddDeleteUser.bind(this)}>
-            <View style={styles.rewardListStyle}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
+          </View>
+          {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("90%"),
+                height: hp("43%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1,
+                backgroundColor: "steelblue",
+                paddingTop: 10,
+                paddingBottom: 10
+                // margin: 1
+                // justifyContent: "center"
+              }}
+            >
+              <TouchableWithoutFeedback
+                onPress={this.onAddDeleteUser.bind(this)}
               >
-                <Image source={require("../../Images/genericUser.png")} />
-                <Text style={{ fontSize: 22 }}>Add/Delete Users</Text>
-              </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column"
+                  }}
+                >
+                  <Image source={require("../../Images/genericUser.png")} />
+                  <Text style={{ fontSize: 22 }}>Add/Delete Users</Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
-          </TouchableWithoutFeedback>
-        </Animated.View>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -182,26 +207,21 @@ const styles = {
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
+    paddingLeft: 15,
     flex: 1,
+    paddingBottom: 15,
     backgroundColor: "powderblue"
   },
-  rewardListStyle: {
+  rewardStoreStyle: {
     height: 100,
     borderRadius: 4,
     borderWidth: 2,
     borderColor: "#d6d7da",
     fontSize: 30,
+    paddingLeft: 15,
     flex: 1,
+    paddingBottom: 15,
     backgroundColor: "skyblue"
-  },
-  completionRequestsStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    flex: 1,
-    backgroundColor: "steelblue"
   }
 };
 

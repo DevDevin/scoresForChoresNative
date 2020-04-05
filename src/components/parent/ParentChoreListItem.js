@@ -17,6 +17,12 @@ import {
   choreUpdate
 } from "../../actions/ParentActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ParentChoreListItem extends Component {
   state = {
@@ -26,6 +32,14 @@ class ParentChoreListItem extends Component {
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
+
+  componentDidMount() {
+    loc(this);
+  }
+  componentWillUnmount() {
+    rol();
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
 
   onEditPress() {
     // edit the chore
@@ -86,66 +100,73 @@ class ParentChoreListItem extends Component {
     const childName = this.props.chore.child;
 
     return (
-      <View style={{ flex: 1 }}>
-        <TouchableWithoutFeedback onPress={this.toggleModal}>
-          <View style={styles.childStyle}>
-            <View
-              style={{
-                backgroundColor: "powderblue",
-                flex: 0.6,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Image source={require("../../Images/choreList.png")} />
-            </View>
-            <View
-              style={{
-                backgroundColor: "skyblue",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Text style={styles.generalStyle}>
-                {choreName} <Text style={styles.choreInfoStyle}>({day}) </Text>
-              </Text>
-              {/* child name and button view */}
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={{ width: wp("95%") }}>
+          <TouchableWithoutFeedback onPress={this.toggleModal}>
+            <View style={styles.childStyle}>
+              <View
+                style={{
+                  backgroundColor: "powderblue",
+                  flex: 0.6,
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Image source={require("../../Images/choreList.png")} />
+              </View>
+              <View
+                style={{
+                  backgroundColor: "skyblue",
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text style={styles.generalStyle}>{choreName} </Text>
+                {/* child name and button view */}
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <View
                     style={{
-                      fontSize: 18
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center"
                     }}
                   >
-                    {childName}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={this.onButtonPress.bind(this, cid)}
-                    style={styles.buttonStyle}
+                    <Text
+                      style={{
+                        fontSize: 18
+                      }}
+                    >
+                      ({day}){" "}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 18
+                      }}
+                    >
+                      {childName}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
                   >
-                    <Text style={styles.textStyle}>Delete</Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={this.onButtonPress.bind(this, cid)}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.textStyle}>Delete</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
+                {/* child name and button view */}
               </View>
-              {/* child name and button view */}
             </View>
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </View>
 
         <Modal isVisible={this.state.isModalVisible}>
           <View

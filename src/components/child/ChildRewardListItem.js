@@ -21,6 +21,12 @@ import {
 import { rewardRequestSend } from "../../actions/ChildActions";
 import { setActiveUser, updateActiveUser } from "../../actions/AuthActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class RewardListItem extends Component {
   state = {
@@ -28,8 +34,14 @@ class RewardListItem extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     // this.props.rewardsFetch();
     this.props.rewardRequestsFetch();
+  }
+
+  componentWillUnmount() {
+    rol();
+    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   toggleModal = () => {
@@ -82,46 +94,54 @@ class RewardListItem extends Component {
     _.map(rewardRequests, item => {});
 
     return (
-      <View style={{ flex: 1 }}>
-        <TouchableWithoutFeedback
-          value={this.props.reward.rewardName}
-          onPress={this.toggleModal}
-        >
-          <View style={styles.childStyle}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View
-                style={{
-                  flex: 0.5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "powderblue"
-                }}
-              >
-                <Image source={require("../../Images/rewardList.png")} />
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "skyblue",
-                  paddingBottom: 5
-                }}
-              >
-                <Text style={styles.choreNameStyle}>
-                  {rewardName} (
-                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
-                </Text>
-                <TouchableOpacity
-                  onPress={this.onButtonPress.bind(this, rid)}
-                  style={styles.buttonStyle}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <View style={{ width: wp("95%") }}>
+          <TouchableWithoutFeedback
+            value={this.props.reward.rewardName}
+            onPress={this.toggleModal}
+          >
+            <View style={styles.childStyle}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <View
+                  style={{
+                    flex: 0.5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "powderblue"
+                  }}
                 >
-                  <Text style={styles.textStyle}>Delete</Text>
-                </TouchableOpacity>
+                  <Image source={require("../../Images/rewardList.png")} />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "skyblue",
+                    paddingBottom: 5
+                  }}
+                >
+                  <Text style={styles.choreNameStyle}>
+                    {rewardName} (
+                    <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+                  </Text>
+                  <TouchableOpacity
+                    onPress={this.onButtonPress.bind(this, rid)}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </View>
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{

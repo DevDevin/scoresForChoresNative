@@ -120,55 +120,20 @@ class ParentHome extends Component {
         }}
       >
         <ScrollView>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              // flex: 0.6,
-              elevation: 5
-            }}
-          >
-            <View
-              style={{
-                // height: 100,
-                width: wp("95%"),
-                height: hp("10%"),
-                borderRadius: 4,
-                borderWidth: 2,
-                borderColor: "#d6d7da",
-                fontSize: 30,
-                flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
-                // justifyContent: "center"
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column"
-                }}
-              >
-                <Text style={{ fontSize: 22 }}>Hello {name}</Text>
-              </View>
-            </View>
-          </View>
           {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
           <View
             style={{
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginTop: 5
             }}
           >
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
@@ -224,7 +189,7 @@ class ParentHome extends Component {
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
@@ -281,7 +246,7 @@ class ParentHome extends Component {
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,

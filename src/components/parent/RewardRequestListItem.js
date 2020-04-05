@@ -10,7 +10,8 @@ import {
   Alert,
   Modal,
   TextInput,
-  Image
+  Image,
+  ScrollView
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 // import Modal from "react-native-modal";
@@ -21,12 +22,26 @@ import {
   rejectionReasonChange
 } from "../../actions/ParentActions";
 import { Input, CardSection, Button } from "../common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class RewardRequestListItem extends Component {
   state = {
     isModalVisible: false,
     rejectionReason: ""
   };
+
+  componentDidMount() {
+    loc(this);
+  }
+
+  componentWillUnmount() {
+    rol();
+  }
 
   componentWillMount() {
     this.props.rewardRequestsFetch();
@@ -124,62 +139,64 @@ class RewardRequestListItem extends Component {
     console.log("render component: ", rewardDescription);
 
     return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.childStyle}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <View
-              style={{
-                flex: 0.5,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "powderblue"
-              }}
-            >
-              <Image source={require("../../Images/completionRequest.png")} />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "skyblue"
-              }}
-            >
-              <Text style={styles.choreNameStyle}>
-                {childName} (
-                <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
-              </Text>
-
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={{ width: wp("95%") }}>
+          <View style={styles.childStyle}>
+            <View style={{ flexDirection: "row" }}>
+              <View
+                style={{
+                  flex: 0.5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "powderblue"
+                }}
+              >
+                <Image source={require("../../Images/completionRequest.png")} />
+              </View>
               <View
                 style={{
                   flex: 1,
-                  flexDirection: "row",
                   justifyContent: "center",
                   alignItems: "center",
-                  paddingBottom: 5
+                  backgroundColor: "skyblue"
                 }}
               >
-                <TouchableOpacity
-                  onPress={this.onAccept.bind(
-                    this,
-                    childName,
-                    uid,
-                    pointsValue,
-                    rid,
-                    rewardName,
-                    rewardDescription
-                  )}
-                  style={styles.buttonStyle}
-                >
-                  <Text style={styles.textStyle}>Accept</Text>
-                </TouchableOpacity>
+                <Text style={styles.choreNameStyle}>
+                  {childName} (
+                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+                </Text>
 
-                <TouchableOpacity
-                  onPress={this.toggleModal}
-                  style={styles.buttonStyle}
+                <View
+                  style={{
+                    // flex: 1,
+                    flexDirection: "row",
+                    // justifyContent: "center",
+                    // alignItems: "center",
+                    paddingBottom: 5
+                  }}
                 >
-                  <Text style={styles.textStyle}>Reject</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={this.onAccept.bind(
+                      this,
+                      childName,
+                      uid,
+                      pointsValue,
+                      rid,
+                      rewardName,
+                      rewardDescription
+                    )}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Accept</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={this.toggleModal}
+                    style={styles.buttonStyle}
+                  >
+                    <Text style={styles.textStyle}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -292,8 +309,7 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-    backgroundColor: "powderblue",
-    width: Dimensions.get("window").width
+    backgroundColor: "powderblue"
   },
   choreInfoStyle: {
     fontSize: 18,

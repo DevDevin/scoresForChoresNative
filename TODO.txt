@@ -4,5 +4,9 @@
 -- error when closing child reward store modal
 -- fix color scheme
 -- fix responsiveness
-	-parent reward requests
 	-put everything inside of scrollview
+	-put everything at right width
+		- managers 90% (done for parent), lists 95% (done for parent), headers 97%
+	-get rid of headers for managers, maybe for lists
+	-give all the headers a smaller width than full screen
+	-style all headers like the AddDeleteUser header

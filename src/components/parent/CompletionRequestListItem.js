@@ -17,6 +17,12 @@ import {
   requestReject
 } from "../../actions/ParentActions";
 import { CardSection, Input, Button } from "../common/index";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class CompletionRequestListItem extends Component {
   state = {
@@ -31,10 +37,12 @@ class CompletionRequestListItem extends Component {
   ///// back button example ////////
   componentDidMount() {
     // this._start();
+    loc(this);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
+    rol();
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -118,63 +126,67 @@ class CompletionRequestListItem extends Component {
     const completionRequest = this.props.completionRequest;
 
     return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.childStyle}>
-          <View style={styles.choreStyle}>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <View
-                style={{
-                  flex: 0.4,
-                  backgroundColor: "powderblue",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                <Image source={require("../../Images/completionRequest.png")} />
-              </View>
-              <View
-                style={{
-                  flex: 1,
-                  backgroundColor: "skyblue",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  paddingBottom: 5
-                }}
-              >
-                <Text style={styles.choreNameStyle}>
-                  {choreName} (
-                  <Text style={styles.choreInfoStyle}>{child}</Text>)
-                </Text>
-
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ width: wp("95%") }}>
+          <View style={styles.childStyle}>
+            <View style={styles.choreStyle}>
+              <View style={{ flex: 1, flexDirection: "row" }}>
                 <View
                   style={{
-                    flex: 1,
-                    flexDirection: "row",
+                    flex: 0.4,
+                    backgroundColor: "powderblue",
                     justifyContent: "center",
                     alignItems: "center"
                   }}
                 >
-                  <TouchableOpacity
-                    onPress={this.onAccept.bind(
-                      this,
-                      cid,
-                      choreName,
-                      day,
-                      child,
-                      description,
-                      pointsValue
-                    )}
-                    style={styles.buttonStyle}
-                  >
-                    <Text style={styles.textStyle}>Accept</Text>
-                  </TouchableOpacity>
+                  <Image
+                    source={require("../../Images/completionRequest.png")}
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    backgroundColor: "skyblue",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingBottom: 5
+                  }}
+                >
+                  <Text style={styles.choreNameStyle}>{choreName}</Text>
+                  <Text style={styles.choreNameStyle}>
+                    <Text style={styles.choreInfoStyle}>({child})</Text>
+                  </Text>
 
-                  <TouchableOpacity
-                    onPress={this.setModalVisible}
-                    style={styles.buttonStyle}
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
                   >
-                    <Text style={styles.textStyle}>Reject</Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={this.onAccept.bind(
+                        this,
+                        cid,
+                        choreName,
+                        day,
+                        child,
+                        description,
+                        pointsValue
+                      )}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.textStyle}>Accept</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={this.setModalVisible}
+                      style={styles.buttonStyle}
+                    >
+                      <Text style={styles.textStyle}>Reject</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </View>
