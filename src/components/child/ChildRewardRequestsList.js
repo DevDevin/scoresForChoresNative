@@ -57,7 +57,6 @@ class ChildRewardRequestList extends Component {
       { label: "All", value: "All" },
       { label: "Earned", value: "Accepted" },
       { label: "Rejected", value: "Rejected" },
-      { label: "Spent", value: "Spent" },
       { label: "Submitted", value: "Submitted" }
     ];
 

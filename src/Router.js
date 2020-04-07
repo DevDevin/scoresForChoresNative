@@ -87,12 +87,7 @@ const RouterComponent = () => {
             contentComponent={ChildHomeSideMenu}
             drawerWidth={Dimensions.get("window").width * 0.4}
           >
-            <Scene
-              initial
-              key="childHome"
-              component={ChildHome}
-              title="Child Home"
-            />
+            <Scene initial key="childHome" component={ChildHome} title="Home" />
           </Drawer>
           <Drawer
             hideNavBar
@@ -103,7 +98,7 @@ const RouterComponent = () => {
             <Scene
               key="childChoreList"
               component={ChildChoreList}
-              title="Child Chore List"
+              title="This Week's Chores"
             />
             <Scene
               key="userProfile"
@@ -113,12 +108,12 @@ const RouterComponent = () => {
             <Scene
               key="childRewardStore"
               component={ChildRewardStore}
-              title="Child Reward Store"
+              title="Reward Store"
             />
             <Scene
               key="childRewardManager"
               component={ChildRewardManager}
-              title="Child Reward Manager"
+              title="Reward Manager"
             />
 
             <Scene
@@ -147,7 +142,7 @@ const RouterComponent = () => {
             <Scene
               key="parentHome"
               component={ParentHome}
-              title="Parent Home"
+              title="Home"
               initial
             />
           </Drawer>
@@ -215,7 +210,7 @@ const RouterComponent = () => {
             <Scene
               key="rewardCreate"
               component={RewardCreate}
-              title="New New Reward"
+              title="New Reward"
             />
             <Scene
               key="manageUsers"

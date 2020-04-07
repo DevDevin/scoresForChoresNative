@@ -103,15 +103,15 @@ class ParentChoreList extends Component {
     const users = this.props.users;
 
     const days = [
-      { value: "Monday" },
-      { value: "Tuesday" },
-      { value: "Wednesday" },
-      { value: "Thursday" },
-      { value: "Friday" },
-      { value: "Saturday" },
+      { value: "Mon" },
+      { value: "Tues" },
+      { value: "Wed" },
+      { value: "Thurs" },
+      { value: "Fri" },
+      { value: "Sat" },
       { value: "Sunday" },
-      { value: "Monday-Wednesday-Friday" },
-      { value: "Tuesday-Thursday" },
+      { value: "M-W-F" },
+      { value: "T-Th" },
       { value: "Daily" }
     ];
 
@@ -145,74 +145,18 @@ class ParentChoreList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 0.1,
-            backgroundColor: "grey",
-            elevation: 5
-          }}
-        >
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24
-              }}
-            >
-              Chore Manager
-            </Text>
-          </Animated.View>
-        </View>
-
         {this.renderSpinner()}
         <View
           style={{
             flexDirection: "row"
           }}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "skyblue",
-              borderColor: "black",
-              flex: 1,
-              borderRightWidth: 0.2
-            }}
-          >
-            <Text style={styles.labelStyle}> Child </Text>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "skyblue",
-              borderColor: "black",
-              flex: 1,
-              borderRightWidth: 0.2
-            }}
-          >
-            <Text style={styles.labelStyle}> Day </Text>
-          </View>
-        </View>
+        ></View>
         <View style={{ flexDirection: "row" }}>
           <View
             style={{
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "steelblue",
+              // backgroundColor: "steelblue",
               borderColor: "black",
               flex: 1,
               borderRightWidth: 0.2
@@ -239,10 +183,10 @@ class ParentChoreList extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "steelblue",
+              // backgroundColor: "steelblue",
               borderColor: "black",
-              flex: 1,
-              borderRightWidth: 0.2
+              flex: 1
+              // borderRightWidth: 0.2,
             }}
           >
             <Picker
@@ -252,7 +196,7 @@ class ParentChoreList extends Component {
                 this.setState({ day: itemValue });
               }}
             >
-              <Picker.Item label={"All Chores"} value={"All"} />
+              <Picker.Item label={"All Days"} value={"All"} />
               {days.map(function(day, i) {
                 return (
                   <Picker.Item label={day.value} key={i} value={day.value} />

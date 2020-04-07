@@ -47,15 +47,15 @@ class ChoreForm extends Component {
     this.props.choreUpdate({ prop: "cid", value: this.props.cid });
     var radio_props = [
       { label: "Daily", value: "Daily" },
-      { label: "Monday-Wednesday-Friday", value: "Monday-Wednesday-Friday" },
-      { label: "Tuesday-Thursday", value: "Tuesday-Thursday" },
-      { label: "Monday", value: "Monday" },
-      { label: "Tuesday", value: "Tuesday" },
-      { label: "Wednesday", value: "Wednesday" },
-      { label: "Thursday", value: "Thursday" },
-      { label: "Friday", value: "Friday" },
-      { label: "Saturday", value: "Saturday" },
-      { label: "Sunday", value: "Sunday" }
+      { label: "Monday-Wednesday-Friday", value: "M-W-F" },
+      { label: "Tuesday-Thursday", value: "T-Th" },
+      { label: "Monday", value: "Mon" },
+      { label: "Tuesday", value: "Tues" },
+      { label: "Wednesday", value: "Wed" },
+      { label: "Thursday", value: "Thurs" },
+      { label: "Friday", value: "Fri" },
+      { label: "Saturday", value: "Sat" },
+      { label: "Sunday", value: "Sun" }
     ];
 
     let emptyChoreNameMessage;

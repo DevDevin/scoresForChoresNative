@@ -98,23 +98,21 @@ class ChildChoreListItem extends Component {
       );
     } else if (status === "Submitted") {
       submitOption = (
-        <View>
-          <TouchableOpacity
-            onPress={this.undoRequest.bind(
-              this,
-              choreName,
-              day,
-              description,
-              pointsValue,
-              cid,
-              child,
-              uid
-            )}
-            style={styles.buttonStyle}
-          >
-            <Text style={styles.textStyle}>Undo Submit</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          onPress={this.undoRequest.bind(
+            this,
+            choreName,
+            day,
+            description,
+            pointsValue,
+            cid,
+            child,
+            uid
+          )}
+          style={styles.buttonStyle}
+        >
+          <Text style={styles.textStyle}>Undo</Text>
+        </TouchableOpacity>
       );
     } else {
       submitOption = <Text>Complete</Text>;
@@ -154,9 +152,7 @@ class ChildChoreListItem extends Component {
               }}
             >
               <View style={{ flex: 1 }}>
-                <Text style={styles.choreNameStyle}>
-                  {choreName} (<Text style={styles.choreInfoStyle}>{day}</Text>)
-                </Text>
+                <Text style={styles.choreNameStyle}>{choreName}</Text>
               </View>
               <View style={{ flex: 1, flexDirection: "row", paddingTop: 15 }}>
                 <View
@@ -166,6 +162,7 @@ class ChildChoreListItem extends Component {
                     alignItems: "center"
                   }}
                 >
+                  <Text style={styles.choreInfoStyle}>({day})</Text>
                   <Text style={styles.choreInfoStyle}>{status}</Text>
                 </View>
                 <View
