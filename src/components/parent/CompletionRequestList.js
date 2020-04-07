@@ -105,41 +105,11 @@ class CompletionRequestList extends Component {
       <View style={{ backgroundColor: "#EFEFF4", flex: 1 }}>
         <View
           style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "skyblue",
-            flex: 0.1,
-            elevation: 5
-          }}
-        >
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24
-              }}
-            >
-              Completion Requests
-            </Text>
-          </Animated.View>
-        </View>
-        <View
-          style={{
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            borderColor: "black",
-            borderBottomWidth: 0.9,
+            // borderColor: "black",
+            // borderBottomWidth: 0.9,
             elevation: 1
           }}
         >

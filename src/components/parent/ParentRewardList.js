@@ -98,29 +98,6 @@ class ParentRewardList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            flex: 0.1,
-            backgroundColor: "#EFEFF4",
-            elevation: 5
-          }}
-        >
-          <Animated.View
-            style={{
-              opacity: this.state.fadeValue
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24
-              }}
-            >
-              Rewards
-            </Text>
-          </Animated.View>
-        </View>
         <View style={{ flex: 0.9, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>

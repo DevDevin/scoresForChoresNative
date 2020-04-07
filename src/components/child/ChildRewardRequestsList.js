@@ -82,25 +82,8 @@ class ChildRewardRequestList extends Component {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "steelblue",
-            flex: 0.1,
-            elevation: 5
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 24
-            }}
-          >
-            Reward Requests
-          </Text>
-        </View>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            paddingTop: 5,
-            backgroundColor: "powderblue"
+            paddingTop: 10
+            // backgroundColor: "powderblue"
           }}
         >
           <RadioForm

@@ -133,15 +133,15 @@ class ChildHome extends Component {
               style={{
                 // height: 100,
                 width: wp("95%"),
-                height: hp("10%"),
+                height: hp("7%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
                 fontSize: 30,
-                flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                flex: 1
+                // backgroundColor: "skyblue",
+                // paddingTop: 3,
+                // paddingBottom: 3
                 // justifyContent: "center"
               }}
             >

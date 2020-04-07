@@ -83,45 +83,14 @@ class AddDeleteUser extends Component {
         style={{
           flex: 1,
           backgroundColor: "#EFEFF4",
-          justifyContent: "center",
+          // justifyContent: "center",
           alignItems: "center"
         }}
       >
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "steelblue",
-            height: wp("8%"),
-            // elevation: 10,
-            width: wp("97%")
-          }}
-        >
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24
-              }}
-            >
-              Users
-            </Text>
-          </Animated.View>
-        </View>
         {this.renderSpinner()}
         <View
           style={{
-            flex: 0.85,
+            // flex: 0.85,
             backgroundColor: "#EFEFF4",
             width: wp("95%")
           }}
