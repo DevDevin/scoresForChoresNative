@@ -8,3 +8,4 @@
 -- make the login and startup pages more responsive
 -- change all hardcoded values to percentages
 -- test out on a tablet simulator
+-- fix side manager layout, color, size etc... 

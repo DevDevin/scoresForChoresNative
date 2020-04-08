@@ -171,7 +171,7 @@ class ChildHome extends Component {
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
@@ -228,7 +228,7 @@ class ChildHome extends Component {
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
@@ -285,7 +285,7 @@ class ChildHome extends Component {
             <View
               style={{
                 // height: 100,
-                width: wp("95%"),
+                width: wp("90%"),
                 height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
