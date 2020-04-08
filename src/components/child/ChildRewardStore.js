@@ -335,7 +335,9 @@ class ChildRewardStore extends Component {
               }}
             >
               <TouchableOpacity
-                onPress={this.toggleModal}
+                onPress={() => {
+                  this.setState({ isModalVisible: !this.state.isModalVisible });
+                }}
                 style={styles.buttonStyle}
               >
                 <Text style={styles.textStyle}>Close</Text>

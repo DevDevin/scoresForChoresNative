@@ -130,7 +130,7 @@ class ManageUsers extends Component {
                 backgroundColor: "steelblue",
                 paddingTop: 10,
                 paddingBottom: 10,
-                margin: 3
+                margin: 5
                 // justifyContent: "center"
               }}
             >
@@ -157,7 +157,8 @@ class ManageUsers extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 9
             }}
           >
             <View
@@ -170,7 +171,7 @@ class ManageUsers extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "skyblue",
                 paddingTop: 10,
                 paddingBottom: 10
                 // margin: 1

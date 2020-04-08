@@ -120,6 +120,42 @@ class ParentHome extends Component {
         }}
       >
         <ScrollView>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              // flex: 0.6,
+              elevation: 5
+            }}
+          >
+            <View
+              style={{
+                // height: 100,
+                width: wp("95%"),
+                height: hp("7%"),
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: "#d6d7da",
+                fontSize: 30,
+                flex: 1
+                // backgroundColor: "skyblue",
+                // paddingTop: 3,
+                // paddingBottom: 3
+                // justifyContent: "center"
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column"
+                }}
+              >
+                <Text style={{ fontSize: 22 }}>Hello {name}</Text>
+              </View>
+            </View>
+          </View>
           {/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */}
           <View
             style={{
@@ -127,7 +163,8 @@ class ParentHome extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginTop: 5
+              marginTop: 5,
+              marginBottom: 5
             }}
           >
             <View
@@ -183,7 +220,8 @@ class ParentHome extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 5
             }}
           >
             <View
@@ -196,7 +234,7 @@ class ParentHome extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "powderblue",
                 paddingTop: 10,
                 paddingBottom: 10
                 // justifyContent: "center"
@@ -253,10 +291,11 @@ class ParentHome extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "skyblue",
                 paddingTop: 10,
-                paddingBottom: 10
+                paddingBottom: 10,
                 // justifyContent: "center"
+                marginBottom: 10
               }}
             >
               <Animated.View

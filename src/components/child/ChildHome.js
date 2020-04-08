@@ -21,8 +21,8 @@ import {
 
 class ChildHome extends Component {
   state = {
-    slideUp: new Animated.Value(0),
-    SlideInLeft: new Animated.Value(0)
+    slideUp: new Animated.Value(-100),
+    SlideInLeft: new Animated.Value(-100)
   };
 
   // animation
@@ -126,7 +126,8 @@ class ChildHome extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              margin: 5
             }}
           >
             <View
@@ -163,7 +164,8 @@ class ChildHome extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 3
             }}
           >
             <View
@@ -219,7 +221,8 @@ class ChildHome extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 5
             }}
           >
             <View
@@ -232,7 +235,7 @@ class ChildHome extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "skyblue",
                 paddingTop: 10,
                 paddingBottom: 10
                 // justifyContent: "center"
@@ -289,9 +292,10 @@ class ChildHome extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "powderblue",
                 paddingTop: 10,
-                paddingBottom: 10
+                paddingBottom: 10,
+                marginBottom: 10
                 // justifyContent: "center"
               }}
             >

@@ -115,7 +115,9 @@ class RewardManager extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 5,
+              marginTop: 5
             }}
           >
             <View
@@ -128,10 +130,11 @@ class RewardManager extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "skyblue",
                 paddingTop: 10,
-                paddingBottom: 10,
-                margin: 3
+                paddingBottom: 10
+                // margin: 5
+
                 // justifyContent: "center"
               }}
             >
@@ -156,7 +159,8 @@ class RewardManager extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 10
             }}
           >
             <View
@@ -169,7 +173,7 @@ class RewardManager extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "powderblue",
                 paddingTop: 10,
                 paddingBottom: 10
                 // margin: 1

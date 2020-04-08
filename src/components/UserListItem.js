@@ -16,6 +16,12 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { Actions } from "react-native-router-flux";
 import { setActiveUser, loadingUsersStart } from "../actions/AuthActions";
 import { Input, CardSection, Button } from "./common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class UserListItem extends Component {
   state = {
@@ -23,6 +29,14 @@ class UserListItem extends Component {
     enteredPassword: "test",
     loginError: ""
   };
+
+  componentDidMount() {
+    loc(this);
+  }
+
+  componentWillUnmount() {
+    rol();
+  }
 
   onSignIn(password, activeUser) {
     if (password === this.state.enteredPassword) {
@@ -96,18 +110,20 @@ class UserListItem extends Component {
 
     return (
       <View>
-        <TouchableWithoutFeedback
-          value={this.props.user.name}
-          onPress={this.toggleModal}
-          // onPress={this.onRowPress.bind(this, this.props.user)}
-        >
-          <View style={styles.childStyle}>
-            <View style={styles.cardSectionStyle}>
-              <Image source={require("../Images/genericUser.png")} />
-              <Text style={styles.titleStyle}>{name}</Text>
+        <View style={{ width: wp("90%"), alignSelf: "center" }}>
+          <TouchableWithoutFeedback
+            value={this.props.user.name}
+            onPress={this.toggleModal}
+            // onPress={this.onRowPress.bind(this, this.props.user)}
+          >
+            <View style={styles.childStyle}>
+              <View style={styles.cardSectionStyle}>
+                <Image source={require("../Images/genericUser.png")} />
+                <Text style={styles.titleStyle}>{name}</Text>
+              </View>
             </View>
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </View>
 
         <Modal
           visible={this.state.isModalVisible}
@@ -125,7 +141,7 @@ class UserListItem extends Component {
             <View
               style={{
                 height: 60,
-                backgroundColor: "powderblue",
+                backgroundColor: "steelblue",
                 alignItems: "center",
                 justifyContent: "center",
                 elevation: 3
@@ -230,18 +246,22 @@ const styles = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
+    elevation: 5,
+
+    // marginLeft: 10,
+    // marginRight: 10,
     marginTop: 10,
-    backgroundColor: "powderblue"
+    backgroundColor: "steelblue"
+    // padding
+    // margin: 3
     // width: Dimensions.get("window").width
   },
   cardSectionStyle: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    padding: 7
   },
   errorTextStyle: {
     fontSize: 20,
@@ -264,9 +284,9 @@ const styles = {
     height: 40,
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
     // backgroundColor: "powderblue",
-    borderColor: "powderblue"
+    // borderColor: "powderblue"
   }
 };
 

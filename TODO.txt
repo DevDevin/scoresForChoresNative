@@ -1,16 +1,10 @@
 -- remove all the console.logs
 -- remove the auto filled values from the form like email and password
--- error when closing child reward store modal
 -- fix color scheme
-	-possibly change the color of the sub-managers to be different than the parent managers
-	-alternate colors of cards in managers. 
+	-change colors of lists if necessary
 -- fix responsiveness
-	-put everything inside of scrollview
 	-put everything at right width
 		- managers 90% (done for parent), lists 95% (done for parent), headers 97%
-	-give all the headers a smaller width than full screen
-	-style all headers like the AddDeleteUser header
--- fix the spacing of the child chore list item
--- shorten the loading times
 -- make the login and startup pages more responsive
--- add parent home header back. Copy child home header
+-- change all hardcoded values to percentages
+-- test out on a tablet simulator

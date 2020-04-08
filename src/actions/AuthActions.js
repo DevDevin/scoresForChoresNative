@@ -389,7 +389,7 @@ export const loadingUsersEnd = () => {
   return dispatch => {
     setTimeout(() => {
       dispatch({ type: LOADING_USERS_END });
-    }, 4 * 1000);
+    }, 2 * 1000);
   };
 };
 

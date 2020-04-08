@@ -74,36 +74,6 @@ class ChooseUser extends Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: "#EFEFF4" }}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "steelblue",
-            flex: 0.1,
-            elevation: 10
-          }}
-        >
-          <Animated.View
-            style={{
-              transform: [
-                {
-                  translateX: slideUp.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [600, 0]
-                  })
-                }
-              ]
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24
-              }}
-            >
-              Users
-            </Text>
-          </Animated.View>
-        </View>
         {this.renderSpinner()}
         <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
           <ScrollView>

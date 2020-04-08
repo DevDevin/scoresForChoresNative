@@ -95,7 +95,8 @@ class ChildRewardManager extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: 3
             }}
           >
             <View
@@ -149,7 +150,7 @@ class ChildRewardManager extends Component {
                 borderColor: "#d6d7da",
                 fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "skyblue",
                 paddingTop: 10,
                 paddingBottom: 10
                 // margin: 1

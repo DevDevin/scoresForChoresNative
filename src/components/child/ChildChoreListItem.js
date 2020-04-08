@@ -154,12 +154,13 @@ class ChildChoreListItem extends Component {
               <View style={{ flex: 1 }}>
                 <Text style={styles.choreNameStyle}>{choreName}</Text>
               </View>
-              <View style={{ flex: 1, flexDirection: "row", paddingTop: 15 }}>
+              <View style={{ flex: 1, flexDirection: "row", paddingTop: 7 }}>
                 <View
                   style={{
                     flex: 1,
                     justifyContent: "center",
-                    alignItems: "center"
+                    alignItems: "center",
+                    paddingBottom: 7
                   }}
                 >
                   <Text style={styles.choreInfoStyle}>({day})</Text>
