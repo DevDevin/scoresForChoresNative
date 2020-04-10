@@ -16,6 +16,12 @@ import {
   undoCompletionRequest
 } from "../../actions/ChildActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildChoreListItem extends Component {
   state = {
@@ -25,6 +31,14 @@ class ChildChoreListItem extends Component {
   toggleModal = () => {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
+
+  componentDidMount() {
+    loc(this);
+  }
+
+  componentWillUnmount() {
+    rol(this);
+  }
 
   undoRequest(choreName, day, description, pointsValue, cid, child, uid) {
     // undo completion request
@@ -130,7 +144,7 @@ class ChildChoreListItem extends Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, width: wp("95%"), alignSelf: "center" }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
             <View

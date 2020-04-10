@@ -99,7 +99,6 @@ class ParentChoreList extends Component {
   render() {
     let { slideUp, SlideInLeft } = this.state;
     const chores = this.props.chores;
-    console.log("this.props.chores in ParentChoreLIst: ", this.props.chores);
     const users = this.props.users;
 
     const days = [

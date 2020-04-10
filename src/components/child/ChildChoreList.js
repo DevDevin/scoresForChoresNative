@@ -40,7 +40,6 @@ class ChildChoreList extends Component {
 
   handleBackButton() {
     // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
-    console.log("back button in chore list");
     Actions.childHome();
     return true;
   }

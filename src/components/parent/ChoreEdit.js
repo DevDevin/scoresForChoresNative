@@ -15,7 +15,6 @@ class ChoreEdit extends Component {
   state = { showModal: false };
 
   componentWillMount() {
-    console.log("this.props.chore: ", this.props.chore);
     _.each(this.props.chore, (value, prop) => {
       this.props.choreUpdate({ prop, value });
     });
@@ -32,8 +31,6 @@ class ChoreEdit extends Component {
       isRecurring,
       status
     } = this.props;
-
-    console.log("isRecurring: ", isRecurring, "status: ", status);
 
     this.props.choreSave({
       child,
@@ -107,7 +104,6 @@ class ChoreEdit extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state.choreForm: ", state.choreForm);
   const {
     child,
     choreName,

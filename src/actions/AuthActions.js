@@ -295,7 +295,6 @@ export const choreUpdate2 = (newName, chores) => {
 
   // simplify the object of arrays
   const choresObject = chores.chores;
-  console.log("chores object: ", chores);
 
   //might have to do this inside of the return dispatch area
   return dispatch => {

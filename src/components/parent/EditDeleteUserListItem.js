@@ -24,6 +24,12 @@ import {
 } from "../../actions/AuthActions";
 import { userEditParent } from "../../actions/ParentActions";
 import { Input, CardSection, Button } from "../common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class EditDeleteUserListItem extends Component {
   state = {
@@ -63,11 +69,13 @@ class EditDeleteUserListItem extends Component {
 
   ///// back button example ////////
   componentDidMount() {
+    loc(this);
     // this._start();
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
+    rol();
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -137,7 +145,7 @@ class EditDeleteUserListItem extends Component {
     var height = Dimensions.get("window").height; //full height
 
     return (
-      <View>
+      <View style={{ width: wp("90%"), alignSelf: "center" }}>
         <TouchableWithoutFeedback
           value={this.props.user.name}
           onPress={this.toggleModal}

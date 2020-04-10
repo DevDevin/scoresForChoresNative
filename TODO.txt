@@ -1,11 +1,11 @@
--- remove all the console.logs
 -- remove the auto filled values from the form like email and password
 -- fix color scheme
 	-change colors of lists if necessary
--- fix responsiveness
-	-put everything at right width
-		- managers 90% (done for parent), lists 95% (done for parent), headers 97%
 -- make the login and startup pages more responsive
 -- change all hardcoded values to percentages
 -- test out on a tablet simulator
 -- fix side manager layout, color, size etc... 
+-- test reset chores and style if necessary
+-- test reset passwords and style if necessary
+-- test forgotten password and style if necessary
+-- remove any unsecure keys to the database. replace with tokens or whatever is needed

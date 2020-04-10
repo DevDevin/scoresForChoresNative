@@ -20,6 +20,12 @@ import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 import { rewardRequestSend2 } from "../../actions/ChildActions";
 import Modal from "react-native-modal";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildRewardStore extends Component {
   state = {
@@ -36,6 +42,7 @@ class ChildRewardStore extends Component {
 
   ///// back button example ////////
   componentDidMount() {
+    loc(this);
     // this._start();
     this._start();
 
@@ -43,6 +50,7 @@ class ChildRewardStore extends Component {
   }
 
   componentWillUnmount() {
+    rol();
     BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -187,7 +195,14 @@ class ChildRewardStore extends Component {
     _.map(rewardRequests, item => {});
 
     return (
-      <View style={{ backgroundColor: "#EFEFF4", flex: 1 }}>
+      <View
+        style={{
+          backgroundColor: "#EFEFF4",
+          flex: 1,
+          width: wp("95%"),
+          alignSelf: "center"
+        }}
+      >
         <View
           style={{
             flexDirection: "row",

@@ -43,7 +43,6 @@ class ChildHome extends Component {
 
   componentDidMount() {
     loc(this);
-    console.log("componentDidMount in child home");
     // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
 
@@ -76,7 +75,6 @@ class ChildHome extends Component {
   // }
 
   handleBackButton() {
-    console.log("handBackButton >>>>>>");
     //// ^^^^ this is not getting called when I go back to it.
     ToastAndroid.show("Cannot go back. Must Log out.", ToastAndroid.SHORT);
     return true;
@@ -101,7 +99,6 @@ class ChildHome extends Component {
 
   componentWillMount() {
     rol();
-    console.log("component will mount");
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -109,7 +106,6 @@ class ChildHome extends Component {
     let { slideUp, SlideInLeft } = this.state;
     const { name } = this.props.activeUser;
 
-    console.log("rendering child home");
     return (
       <View
         style={{

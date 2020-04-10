@@ -21,6 +21,12 @@ import {
 } from "../../actions/ChildActions";
 import { usersFetch, setActiveUser } from "../../actions/AuthActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildRewardRequestsListItem extends Component {
   state = {
@@ -28,7 +34,12 @@ class ChildRewardRequestsListItem extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     this.props.usersFetch();
+  }
+
+  componentWillUnmount() {
+    rol();
   }
 
   toggleModal = () => {
@@ -232,7 +243,7 @@ class ChildRewardRequestsListItem extends Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, width: wp("95%"), alignSelf: "center" }}>
         <TouchableWithoutFeedback onPress={this.toggleModal}>
           <View style={styles.childStyle}>
             <View style={{ flex: 1, flexDirection: "row" }}>
@@ -349,8 +360,8 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-    backgroundColor: "steelblue",
-    width: Dimensions.get("window").width
+    backgroundColor: "steelblue"
+    // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
     fontSize: 18,
@@ -380,6 +391,7 @@ const styles = {
     borderColor: "#007aff",
     marginLeft: 10,
     marginRight: 10
+    // alignItems: "center"
   },
   textStyle: {
     alignSelf: "center",

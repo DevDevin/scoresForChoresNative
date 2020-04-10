@@ -117,7 +117,6 @@ class CompletionRequestListItem extends Component {
 
   render() {
     const choreName = this.props.completionRequest.choreName;
-    console.log("this.props.completionRequest: ", this.props.completionRequest);
     const day = this.props.completionRequest.day;
     const cid = this.props.completionRequest.cid;
     const { description, pointsValue } = this.props.completionRequest;

@@ -336,8 +336,6 @@ export const rewardRequestAccept = (
 ) => {
   const { currentUser } = firebase.auth();
 
-  console.log("inside rewardRequestAccept parentActions: ", rewardDescription);
-
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
   return dispatch => {
@@ -456,21 +454,16 @@ export const choreReset = filteredChores => {
     return item.isRecurring === false;
   });
 
-  console.log("non-recurringChores: ", nonrecurringChores);
-
   return () => {
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/chores`)
       .remove();
 
-    console.log("filteredChores: ", filteredChores);
-
     //filter the chores
     const recurringChores = _.filter(filteredChores, function(item) {
       return item.isRecurring === true;
     });
-    console.log("recurringChores: ", recurringChores);
 
     _.map(recurringChores, chore => {
       firebase
