@@ -125,6 +125,7 @@ class RewardRequestListItem extends Component {
     this.setState({ rejectionReason: text });
   }
 
+  ///
   render() {
     const childName = this.props.rewardRequest.childName;
     const pointsValue = this.props.rewardRequest.pointsValue;
