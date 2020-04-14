@@ -75,7 +75,7 @@ class ChooseUser extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: "#EFEFF4" }}>
         {this.renderSpinner()}
-        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
+        <View style={{ flex: 0.98, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <Animated.View
               style={{
@@ -97,7 +97,7 @@ class ChooseUser extends Component {
           </ScrollView>
         </View>
         <FloatingAction
-          color="#4280b3"
+          color="steelblue"
           style={{ justifyContent: "flex-end" }}
           // actions={actions}
           onPressMain={this.onButtonPress.bind(this)}

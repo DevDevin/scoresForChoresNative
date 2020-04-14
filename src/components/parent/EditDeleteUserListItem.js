@@ -119,6 +119,29 @@ class EditDeleteUserListItem extends Component {
     );
   }
 
+  renderDeleteButton() {
+    if (this.props.user.status === "child") {
+      return (
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 10,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
+          <Button onPress={this.onDelete.bind(this, this.props.user)}>
+            Delete {this.props.user.name}
+          </Button>
+        </View>
+      );
+    } else {
+      return <View></View>;
+    }
+  }
+
   renderSpinner() {
     if (this.props.loading) {
       return (
@@ -185,7 +208,7 @@ class EditDeleteUserListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                padding: 10,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -198,24 +221,13 @@ class EditDeleteUserListItem extends Component {
                 Edit {this.props.user.name}'s Profile
               </Button>
             </View>
+
+            {this.renderDeleteButton()}
+
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
-                backgroundColor: "#fff",
-                justifyContent: "flex-start",
-                borderColor: "#ddd",
-                position: "relative"
-              }}
-            >
-              <Button onPress={this.onDelete.bind(this, this.props.user)}>
-                Delete {this.props.user.name}
-              </Button>
-            </View>
-            <View
-              style={{
-                borderBottomWidth: 1,
-                padding: 5,
+                padding: 10,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",

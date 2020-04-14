@@ -90,7 +90,7 @@ class AddDeleteUser extends Component {
         {this.renderSpinner()}
         <View
           style={{
-            // flex: 0.85,
+            flex: 0.98,
             backgroundColor: "#EFEFF4",
             width: wp("95%")
           }}

@@ -251,7 +251,7 @@ const styles = {
     // marginLeft: 10,
     // marginRight: 10,
     marginTop: 10,
-    backgroundColor: "steelblue"
+    backgroundColor: "skyblue"
     // padding
     // margin: 3
     // width: Dimensions.get("window").width

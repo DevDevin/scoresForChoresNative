@@ -9,3 +9,11 @@
 -- test reset passwords and style if necessary
 -- test forgotten password and style if necessary
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed
+-- require a number to be entered for point value when adding/editing a chore or reward 
+-- submitting a completion request somehow changes the child to a parent. 
+	- you have access to the parents menu. 
+-- add a description of the functionality in the reset chores home page
+-- bring reset password form to the top instead of centering. Either that or center child user profile
+-- delete user in add delete user not working. error happening. 
+
+

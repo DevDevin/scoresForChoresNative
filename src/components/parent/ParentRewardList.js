@@ -98,7 +98,7 @@ class ParentRewardList extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 0.9, backgroundColor: "#EFEFF4" }}>
+        <View style={{ flex: 0.98, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <Animated.View

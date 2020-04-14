@@ -145,11 +145,7 @@ class ParentChoreList extends Component {
     return (
       <View style={{ flex: 1 }}>
         {this.renderSpinner()}
-        <View
-          style={{
-            flexDirection: "row"
-          }}
-        ></View>
+
         <View style={{ flexDirection: "row" }}>
           <View
             style={{
@@ -205,7 +201,7 @@ class ParentChoreList extends Component {
           </View>
         </View>
 
-        <View style={{ flex: 0.85, backgroundColor: "#EFEFF4" }}>
+        <View style={{ flex: 0.98, backgroundColor: "#EFEFF4" }}>
           <ScrollView>
             <View>
               <View>
