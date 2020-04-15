@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  ScrollView
+  ScrollView,
+  BackHandler
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -16,6 +17,7 @@ import {
   undoCompletionRequest
 } from "../../actions/ChildActions";
 import { Cell, Section, TableView } from "react-native-tableview-simple";
+import { Actions } from "react-native-router-flux";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -34,10 +36,18 @@ class ChildChoreListItem extends Component {
 
   componentDidMount() {
     loc(this);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
     rol(this);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
+  }
+
+  handleBackButton() {
+    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
+    Actions.childHome();
+    return true;
   }
 
   undoRequest(choreName, day, description, pointsValue, cid, child, uid) {

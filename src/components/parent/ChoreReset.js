@@ -5,6 +5,7 @@ import { View, Alert, BackHandler } from "react-native";
 import { choreReset, choresFetch } from "../../actions/ParentActions";
 import { Button } from "../common";
 import { Actions } from "react-native-router-flux";
+import { Text } from "react-native";
 
 class ChoreReset extends Component {
   componentWillMount() {
@@ -76,7 +77,29 @@ class ChoreReset extends Component {
             style={{
               padding: 15,
               paddingTop: 25,
-              backgroundColor: "steelblue",
+              backgroundColor: "skyblue",
+              justifyContent: "flex-start",
+              position: "relative"
+            }}
+          >
+            <Text
+              style={{
+                alignSelf: "center",
+                color: "black",
+                fontSize: 22,
+                fontWeight: "600",
+                paddingTop: 5,
+                paddingBottom: 5
+              }}
+            >
+              Reset Non-Recurring Chores
+            </Text>
+          </View>
+          <View
+            style={{
+              padding: 15,
+              paddingTop: 25,
+              backgroundColor: "#fff",
               justifyContent: "flex-start",
               position: "relative"
             }}
@@ -89,7 +112,7 @@ class ChoreReset extends Component {
             style={{
               padding: 15,
               paddingBottom: 25,
-              backgroundColor: "steelblue",
+              backgroundColor: "#fff",
               justifyContent: "flex-start",
               position: "relative"
             }}

@@ -39,26 +39,28 @@ class EditDeleteUserListItem extends Component {
   };
 
   onDelete(user) {
-    if (user.status === "parent") {
-      //alert we cannot delete an admin user
-
-      Alert.alert(
-        "Cannot delete admin user",
-        "You may edit, but not delete admin user",
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              this.toggleModal();
-            }
+    Alert.alert(
+      "Logout",
+      `Are you sure you want to delete the user: ${user.name}`,
+      [
+        {
+          text: "No",
+          onPress: () => {
+            // this.toggleModal();
+          },
+          style: "cancel"
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            this.props.userDelete(user.uid);
+            this.toggleModal();
+            // this.props.setActiveUser(activeUserObject);
           }
-        ],
-        { cancelable: false }
-      );
-    } else {
-      this.props.userDelete(user);
-      this.toggleModal();
-    }
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   toggleModal = () => {
