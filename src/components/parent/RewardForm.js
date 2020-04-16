@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, TextInput, Text } from "react-native";
 import { connect } from "react-redux";
 import { rewardUpdate } from "../../actions/ParentActions";
-import { CardSection, Input } from "../common/index";
+import { CardSection, Input, NumberInput } from "../common/index";
 
 class RewardForm extends Component {
   componentDidMount() {
@@ -68,18 +68,6 @@ class RewardForm extends Component {
 
     return (
       <View>
-        <View
-          style={{
-            height: 60,
-            backgroundColor: "powderblue",
-            alignItems: "center",
-            justifyContent: "center",
-            elevation: 3
-          }}
-        >
-          <Text style={{ fontSize: 22 }}>Add New Reward</Text>
-        </View>
-
         <CardSection>
           <Input
             label="Reward Name"
@@ -99,7 +87,7 @@ class RewardForm extends Component {
         {rewardExistsMessage}
 
         <CardSection>
-          <Input
+          <NumberInput
             label="Point Value"
             placeholder="Points the reward is worth"
             value={this.props.pointsValue}

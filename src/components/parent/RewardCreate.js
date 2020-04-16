@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { Alert, View } from "react-native";
+import { Alert, View, Text } from "react-native";
 import { connect } from "react-redux";
 import { Card, CardSection, Button } from "../common/index";
 import {
@@ -9,6 +9,7 @@ import {
   rewardUpdate
 } from "../../actions/ParentActions";
 import RewardForm from "./RewardForm";
+import { Actions } from "react-native-router-flux";
 
 class RewardCreate extends Component {
   state = {
@@ -68,24 +69,52 @@ class RewardCreate extends Component {
           flex: 1,
           flexDirection: "column",
           justifyContent: "center",
-          backgroundColor: "grey"
+          backgroundColor: "#fff"
         }}
       >
-        <Card>
-          <RewardForm {...this.props} />
-          <View
-            style={{
-              borderBottomWidth: 1,
-              padding: 5,
-              backgroundColor: "#fff",
-              justifyContent: "flex-start",
-              borderColor: "#ddd",
-              position: "relative"
+        <View
+          style={{
+            height: 60,
+            backgroundColor: "powderblue",
+            alignItems: "center",
+            justifyContent: "center",
+            elevation: 3
+          }}
+        >
+          <Text style={{ fontSize: 22 }}>Add New Reward</Text>
+        </View>
+
+        <RewardForm {...this.props} />
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
+          <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
+        </View>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 5,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
+          <Button
+            onPress={() => {
+              Actions.parentRewardList();
             }}
           >
-            <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-          </View>
-        </Card>
+            Cancel
+          </Button>
+        </View>
       </View>
     );
   }

@@ -10,7 +10,7 @@ import RadioForm, {
 import { connect } from "react-redux";
 import { choreUpdate } from "../../actions/ParentActions";
 import { usersFetch } from "../../actions/AuthActions";
-import { CardSection, Input } from "../common/index";
+import { CardSection, Input, NumberInput } from "../common/index";
 
 class ChoreForm extends Component {
   // Initital State Data
@@ -209,7 +209,7 @@ class ChoreForm extends Component {
             {emptyChildMessage}
 
             <CardSection>
-              <Input
+              <NumberInput
                 label="Points"
                 placeholder="Points the chore is worth."
                 value={this.props.pointsValue}

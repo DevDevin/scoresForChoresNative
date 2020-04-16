@@ -1,4 +1,5 @@
 -- remove the auto filled values from the form like email and password
+-- make sure form is cleared out when opening form to add new reward, chore, user, etc...
 -- fix color scheme
 	-change colors of lists if necessary
 	-fix color of side menus
@@ -6,8 +7,12 @@
 -- change all hardcoded values to percentages
 -- test out on a tablet simulator
 -- fix side manager layout, color, size etc... 
--- test reset chores and style if necessary
--- test reset passwords and style if necessary
+-- test reset chores, style if necessary
+-- test reset passwords
+	- fix style to look like every other form. 
 -- test forgotten password and style if necessary
--- remove any unsecure keys to the database. replace with tokens or whatever is needed
--- require a number to be entered for point value when adding/editing a chore or reward 
+-- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
+-- reward request does not specify the reward. Just the child. 
+	- put the reward information in the modal. Put the reward name in the front. 
+-- when clicking back button from the parent reward list I was taken to the child home. 
+	- add back button handling. 

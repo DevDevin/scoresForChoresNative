@@ -189,6 +189,11 @@ class ParentChoreListItem extends Component {
                   />
                   <Cell
                     cellStyle="RightDetail"
+                    title="Points Value"
+                    detail={this.props.chore.pointsValue}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
                     title="Child Assigned To"
                     detail={childName}
                   />

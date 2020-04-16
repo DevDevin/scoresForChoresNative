@@ -206,12 +206,11 @@ class ChildChoreListItem extends Component {
         </TouchableWithoutFeedback>
         <Modal isVisible={this.state.isModalVisible}>
           <View
-            style={
-              {
-                //  backgroundColor: "#EFEFF4",
-                // justifyContent: "center"
-              }
-            }
+            style={{
+              //  backgroundColor: "#EFEFF4",
+              // justifyContent: "center"
+              backgroundColor: "#EFEFF4"
+            }}
           >
             <ScrollView contentContainerStyle={styles.stage}>
               <TableView>
@@ -226,6 +225,11 @@ class ChildChoreListItem extends Component {
                     cellStyle="Subtitle"
                     title="Description"
                     detail={description}
+                  />
+                  <Cell
+                    cellStyle="RightDetail"
+                    title="Points Value"
+                    detail={pointsValue}
                   />
                   <Cell
                     cellStyle="RightDetail"
@@ -250,8 +254,8 @@ class ChildChoreListItem extends Component {
               style={{
                 // flexDirection: "row",
                 justifyContent: "center",
-                alignItems: "center",
-                paddingBottom: 20
+                alignItems: "center"
+                // paddingBottom: 20
               }}
             >
               <TouchableOpacity
@@ -317,15 +321,15 @@ const styles = {
     paddingLeft: 5
   },
   buttonStyle: {
-    // width: 200,
-    alignSelf: "stretch",
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 16,
-    marginRight: 16
-    // paddingBottom: 5
+    marginLeft: 14,
+    marginRight: 14,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: "stretch"
   },
   textStyle: {
     alignSelf: "center",
