@@ -62,7 +62,17 @@ class ChildChoreListItem extends Component {
     );
   }
 
-  onButtonPress(choreName, day, description, pointsValue, cid, child, uid) {
+  onButtonPress(
+    choreName,
+    day,
+    description,
+    pointsValue,
+    cid,
+    child,
+    uid,
+    isRecurring
+  ) {
+    console.log("isRecurring: ", isRecurring);
     // submit a completion
     Alert.alert(
       "Delete Chore",
@@ -83,7 +93,8 @@ class ChildChoreListItem extends Component {
               pointsValue,
               cid,
               child,
-              uid
+              uid,
+              isRecurring
             );
           }
         }
@@ -97,6 +108,8 @@ class ChildChoreListItem extends Component {
     const day = this.props.chore.day;
     const rejectionReason = this.props.chore.rejectionReason;
     const status = this.props.chore.status;
+    const isRecurring = this.props.chore.isRecurring;
+    console.log("this.props.chore: ", this.props.chore);
     const { description, pointsValue, cid, child } = this.props.chore;
     const uid = this.props.activeUser.uid;
 
@@ -113,7 +126,8 @@ class ChildChoreListItem extends Component {
             pointsValue,
             cid,
             child,
-            uid
+            uid,
+            isRecurring
           )}
           style={styles.buttonStyle}
         >

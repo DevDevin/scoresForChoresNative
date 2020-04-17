@@ -88,7 +88,8 @@ export const completionRequestSend = (
   pointsValue,
   cid,
   child,
-  uid
+  uid,
+  isRecurring
 ) => {
   const { currentUser } = firebase.auth();
 
@@ -103,7 +104,8 @@ export const completionRequestSend = (
         child: child,
         description: description,
         pointsValue: pointsValue,
-        uid: uid
+        uid: uid,
+        isRecurring: isRecurring
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });

@@ -157,9 +157,20 @@ class RewardRequestListItem extends Component {
                   backgroundColor: "skyblue"
                 }}
               >
-                <Text style={styles.choreNameStyle}>
-                  {childName} (
-                  <Text style={styles.choreInfoStyle}>{pointsValue}</Text>)
+                <Text style={styles.choreNameStyle}>{rewardName}</Text>
+
+                <Text
+                  style={{
+                    fontSize: 20,
+                    paddingLeft: 15,
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingBottom: 5
+                  }}
+                >
+                  {childName}
                 </Text>
 
                 <View
@@ -282,7 +293,7 @@ const styles = {
     paddingLeft: 15
   },
   choreNameStyle: {
-    fontSize: 26,
+    fontSize: 23,
     paddingLeft: 15,
     flex: 1,
     flexDirection: "row",

@@ -12,7 +12,10 @@
 	- fix style to look like every other form. 
 -- test forgotten password and style if necessary
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
--- reward request does not specify the reward. Just the child. 
-	- put the reward information in the modal. Put the reward name in the front. 
--- when clicking back button from the parent reward list I was taken to the child home. 
-	- add back button handling. 
+-- add functionality so that deleting users also deletes corresponding reward requests, earned rewards, chores
+-- add a cancel button in the create chore form. 
+-- re style the edit user modal 
+-- add/fix functionality so that when a completion request is accepted. The earned points of that child is updated.
+-- when a completion request is accepted it loses it's isRecurring attribute. It needs to keep it
+	- this is important for resetting chores
+	- make sure that isn't happening when it is rejected 
