@@ -210,7 +210,8 @@ export const requestAccept = (
   child,
   description,
   pointsValue,
-  uid
+  uid,
+  isRecurring
 ) => {
   const { currentUser } = firebase.auth();
   let totalPoints;
@@ -240,7 +241,8 @@ export const requestAccept = (
         day: day,
         child: child,
         description: description,
-        pointsValue: pointsValue
+        pointsValue: pointsValue,
+        isRecurring: isRecurring
       });
     firebase
       .database()
@@ -266,7 +268,8 @@ export const requestReject = (
   child,
   description,
   pointsValue,
-  reason
+  reason,
+  isRecurring
 ) => {
   const { currentUser } = firebase.auth();
 
@@ -281,7 +284,8 @@ export const requestReject = (
         child: child,
         description: description,
         pointsValue: pointsValue,
-        rejectionReason: reason
+        rejectionReason: reason,
+        isRecurring: isRecurring
       })
       .then(() => {
         dispatch({ type: CHORE_SAVE_SUCCESS });

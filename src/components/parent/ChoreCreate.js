@@ -4,6 +4,7 @@ import { Card, CardSection, Button, Text } from "../common/index";
 import { choreCreate, choreUpdate } from "../../actions/ParentActions";
 import ChoreForm from "./ChoreForm";
 import { ScrollView, Alert, View } from "react-native";
+import { Actions } from "react-native-router-flux";
 
 class ChoreCreate extends Component {
   state = {
@@ -78,7 +79,7 @@ class ChoreCreate extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 5,
+            padding: 10,
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -86,6 +87,24 @@ class ChoreCreate extends Component {
           }}
         >
           <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
+        </View>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            padding: 10,
+            backgroundColor: "#fff",
+            justifyContent: "flex-start",
+            borderColor: "#ddd",
+            position: "relative"
+          }}
+        >
+          <Button
+            onPress={() => {
+              Actions.parentChoreList();
+            }}
+          >
+            Cancel
+          </Button>
         </View>
       </ScrollView>
     );

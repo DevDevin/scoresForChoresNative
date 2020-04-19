@@ -54,7 +54,7 @@ class CompletionRequestListItem extends Component {
 
   ////////////////////////////////////////
 
-  onAccept(cid, choreName, day, child, description, pointsValue) {
+  onAccept(cid, choreName, day, child, description, pointsValue, isRecurring) {
     // this.props.choreUpdate({ prop: "status", value: "Complete" });
     Alert.alert(
       "Logout",
@@ -75,7 +75,8 @@ class CompletionRequestListItem extends Component {
               child,
               description,
               pointsValue,
-              this.props.completionRequest.uid
+              this.props.completionRequest.uid,
+              isRecurring
             );
           }
         }
@@ -84,7 +85,16 @@ class CompletionRequestListItem extends Component {
     );
   }
 
-  onReject(cid, choreName, day, child, description, pointsValue, reason) {
+  onReject(
+    cid,
+    choreName,
+    day,
+    child,
+    description,
+    pointsValue,
+    reason,
+    isRecurring
+  ) {
     // this.props.choreUpdate({ prop: "status", value: "Rework" });
     Alert.alert(
       "Logout",
@@ -105,7 +115,8 @@ class CompletionRequestListItem extends Component {
               child,
               description,
               pointsValue,
-              reason
+              reason,
+              isRecurring
             );
             this.setState({ modalVisible: !this.state.modalVisible });
           }
@@ -123,6 +134,8 @@ class CompletionRequestListItem extends Component {
     const child = this.props.completionRequest.child;
     const uid = this.props.completionRequest.uid;
     const completionRequest = this.props.completionRequest;
+    const isRecurring = this.props.completionRequest.isRecurring;
+    console.log("isRecurring: ", isRecurring);
 
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -172,7 +185,8 @@ class CompletionRequestListItem extends Component {
                         day,
                         child,
                         description,
-                        pointsValue
+                        pointsValue,
+                        isRecurring
                       )}
                       style={styles.buttonStyle}
                     >
@@ -240,7 +254,8 @@ class CompletionRequestListItem extends Component {
                   child,
                   description,
                   pointsValue,
-                  this.state.reason
+                  this.state.reason,
+                  isRecurring
                 )}
               >
                 Submit

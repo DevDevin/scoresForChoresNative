@@ -189,8 +189,8 @@ class EditDeleteUserListItem extends Component {
             style={{
               flex: 1,
               flexDirection: "column",
-              justifyContent: "center",
-              backgroundColor: "grey"
+              justifyContent: "center"
+              // backgroundColor: "grey"
             }}
           >
             <View
@@ -310,6 +310,7 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     borderColor: "powderblue"
+    // backgroundColor: "powderblue"
   }
 };
 
