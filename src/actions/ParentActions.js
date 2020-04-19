@@ -186,6 +186,64 @@ export const choreDelete = cid => {
   };
 };
 
+export const choreDeleteByUser = child => {
+  console.log("entered choreDeleteByUser: ", child);
+  const { currentUser } = firebase.auth();
+
+  // do i need to do a for loop for this?
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/chores`)
+      .orderByChild("child")
+      .equalTo(child)
+      .on("value", snapshot => {
+        const data = snapshot.val() || null;
+        if (data) {
+          // will need to map through each object and remove it
+          // below works in finding the chore id
+          const id = Object.keys(data)[0];
+          console.log("id: ", id);
+        }
+      });
+  };
+};
+
+export const rewardRequestsDeleteByUser = child => {
+  console.log("entered rewardRequestsDeleteByUser: ");
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardRequests`)
+      .orderByChild("childName")
+      .equalTo(child)
+      .remove()
+      .then(() => {
+        // Actions.employeeList({ type: "reset" });
+      });
+  };
+};
+
+export const rewardEarnedDeleteByUser = child => {
+  console.log("entered rewardEarnedDeleteByUser: ");
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/rewardsEarned`)
+      .orderByChild("childName")
+      .equalTo(child)
+      .remove()
+      .then(() => {
+        // Actions.employeeList({ type: "reset" });
+      });
+  };
+};
+
 // reward delete
 export const rewardDelete = rid => {
   const { currentUser } = firebase.auth();

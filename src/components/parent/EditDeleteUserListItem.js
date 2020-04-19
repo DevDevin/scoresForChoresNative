@@ -22,7 +22,12 @@ import {
   userDelete,
   userUpdate
 } from "../../actions/AuthActions";
-import { userEditParent } from "../../actions/ParentActions";
+import {
+  userEditParent,
+  choreDeleteByUser,
+  rewardRequestsDeleteByUser,
+  rewardEarnedDeleteByUser
+} from "../../actions/ParentActions";
 import { Input, CardSection, Button } from "../common";
 import {
   widthPercentageToDP as wp,
@@ -53,7 +58,17 @@ class EditDeleteUserListItem extends Component {
         {
           text: "Yes",
           onPress: () => {
+            //choreDeleteByUser
+            this.props.choreDeleteByUser(user.name);
+
             this.props.userDelete(user.uid);
+
+            //rewards earned
+            // this.props.rewardEarnedDeleteByUser(user.name);
+
+            // //reward requests
+            // this.props.rewardRequestsDeleteByUser(user.name);
+
             this.toggleModal();
             // this.props.setActiveUser(activeUserObject);
           }
@@ -327,5 +342,8 @@ export default connect(mapStateToProps, {
   loadingUsersStart,
   userDelete,
   userUpdate,
-  userEditParent
+  userEditParent,
+  choreDeleteByUser,
+  rewardRequestsDeleteByUser,
+  rewardEarnedDeleteByUser
 })(EditDeleteUserListItem);
