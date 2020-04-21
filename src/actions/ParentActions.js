@@ -203,8 +203,15 @@ export const choreDeleteByUser = child => {
         if (data) {
           // will need to map through each object and remove it
           // below works in finding the chore id
-          const id = Object.keys(data)[0];
-          console.log("id: ", id);
+
+          const length = Object.keys(data).length;
+          console.log("length: ", length);
+
+          for (i = 0; i < length; i++) {
+            const id = Object.keys(data)[i];
+            console.log("id: ", id);
+            // now in this for loop I can call the firebase.remove function for each chore
+          }
         }
       });
   };
