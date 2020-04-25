@@ -12,5 +12,4 @@
 	- fix style to look like every other form. 
 -- test forgotten password and style if necessary
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
--- add functionality so that deleting users also deletes corresponding reward requests, earned rewards, chores
 -- take away the background color of modals if possible

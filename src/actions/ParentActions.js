@@ -208,9 +208,16 @@ export const choreDeleteByUser = child => {
           console.log("length: ", length);
 
           for (i = 0; i < length; i++) {
-            const id = Object.keys(data)[i];
-            console.log("id: ", id);
+            const cid = Object.keys(data)[i];
+            console.log("id: ", cid);
             // now in this for loop I can call the firebase.remove function for each chore
+            firebase
+              .database()
+              .ref(`/users/${currentUser.uid}/chores/${cid}`)
+              .remove()
+              .then(() => {
+                // do nothing
+              });
           }
         }
       });
@@ -218,8 +225,10 @@ export const choreDeleteByUser = child => {
 };
 
 export const rewardRequestsDeleteByUser = child => {
-  console.log("entered rewardRequestsDeleteByUser: ");
+  console.log("entered rewardRequests: ", child);
   const { currentUser } = firebase.auth();
+
+  // do i need to do a for loop for this?
 
   return () => {
     firebase
@@ -227,16 +236,38 @@ export const rewardRequestsDeleteByUser = child => {
       .ref(`/users/${currentUser.uid}/rewardRequests`)
       .orderByChild("childName")
       .equalTo(child)
-      .remove()
-      .then(() => {
-        // Actions.employeeList({ type: "reset" });
+      .on("value", snapshot => {
+        console.log("reward Requests snapshot: ", snapshot.val());
+        const data = snapshot.val() || null;
+        if (data) {
+          // will need to map through each object and remove it
+          // below works in finding the chore id
+
+          const length = Object.keys(data).length;
+          console.log("length of rewardRequests: ", length);
+
+          for (i = 0; i < length; i++) {
+            const rid = Object.keys(data)[i];
+            console.log("id: ", rid);
+            // now in this for loop I can call the firebase.remove function for each chore
+            firebase
+              .database()
+              .ref(`/users/${currentUser.uid}/rewardRequests/${rid}`)
+              .remove()
+              .then(() => {
+                // do nothing
+              });
+          }
+        }
       });
   };
 };
 
 export const rewardEarnedDeleteByUser = child => {
-  console.log("entered rewardEarnedDeleteByUser: ");
+  console.log("entered rewardRequests: ", child);
   const { currentUser } = firebase.auth();
+
+  // do i need to do a for loop for this?
 
   return () => {
     firebase
@@ -244,9 +275,29 @@ export const rewardEarnedDeleteByUser = child => {
       .ref(`/users/${currentUser.uid}/rewardsEarned`)
       .orderByChild("childName")
       .equalTo(child)
-      .remove()
-      .then(() => {
-        // Actions.employeeList({ type: "reset" });
+      .on("value", snapshot => {
+        console.log("reward Requests snapshot: ", snapshot.val());
+        const data = snapshot.val() || null;
+        if (data) {
+          // will need to map through each object and remove it
+          // below works in finding the chore id
+
+          const length = Object.keys(data).length;
+          console.log("length of rewardsEarned: ", length);
+
+          for (i = 0; i < length; i++) {
+            const rid = Object.keys(data)[i];
+            console.log("id: ", rid);
+            // now in this for loop I can call the firebase.remove function for each chore
+            firebase
+              .database()
+              .ref(`/users/${currentUser.uid}/rewardsEarned/${rid}`)
+              .remove()
+              .then(() => {
+                // do nothing
+              });
+          }
+        }
       });
   };
 };

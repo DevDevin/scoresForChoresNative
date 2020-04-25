@@ -64,10 +64,10 @@ class EditDeleteUserListItem extends Component {
             this.props.userDelete(user.uid);
 
             //rewards earned
-            // this.props.rewardEarnedDeleteByUser(user.name);
+            this.props.rewardEarnedDeleteByUser(user.name);
 
             // //reward requests
-            // this.props.rewardRequestsDeleteByUser(user.name);
+            this.props.rewardRequestsDeleteByUser(user.name);
 
             this.toggleModal();
             // this.props.setActiveUser(activeUserObject);
