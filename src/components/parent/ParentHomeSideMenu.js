@@ -40,7 +40,7 @@ class ParentHomeSideMenu extends Component {
             );
           }}
         >
-          <View style={styles.rewardStoreStyle}>
+          <View style={styles.choreListStyle}>
             <View
               style={{
                 flex: 1,
@@ -121,7 +121,7 @@ const styles = {
     paddingLeft: 15,
     flex: 1,
     paddingBottom: 15,
-    backgroundColor: "skyblue"
+    backgroundColor: "steelblue"
   }
 };
 

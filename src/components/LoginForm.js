@@ -208,17 +208,10 @@ class LoginForm extends Component {
             transparent={true}
             visible={this.state.modalVisible}
           >
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "column",
-                justifyContent: "center",
-                backgroundColor: "grey"
-              }}
-            >
+            <View style={styles.ContainerStyle}>
               <View
                 style={{
-                  // height: 60,
+                  height: 60,
                   backgroundColor: "powderblue",
                   alignItems: "center",
                   justifyContent: "center",
@@ -228,40 +221,16 @@ class LoginForm extends Component {
                 <Text style={{ fontSize: 22 }}>Enter your email address</Text>
               </View>
               <View>
-                <View
-                  style={{
-                    // borderBottomWidth: 1,
-                    padding: 5,
-                    // backgroundColor: "steelblue",
-                    justifyContent: "flex-start",
-                    // borderColor: "#ddd",
-                    position: "relative",
-                    flexDirection: "row"
-                  }}
-                >
-                  <View style={styles.containerStyle}>
-                    <Text style={styles.labelStyle}>Email Address</Text>
-
-                    <TextInput
-                      autoCorrect={false}
-                      style={styles.inputStyle}
-                      placeholder="Email"
-                      value={this.state.resetEmail}
-                      onChangeText={this.resetPasswordEmailChange.bind(this)}
-                    />
-                  </View>
+                <View style={styles.cardSectionStyle}>
+                  <Input
+                    label="Email"
+                    placeholder="email"
+                    onChangeText={this.resetPasswordEmailChange.bind(this)}
+                    value={this.state.resetEmail}
+                  />
                 </View>
 
-                <View
-                  style={{
-                    // borderBottomWidth: 1,
-                    // padding: 5,
-                    backgroundColor: "#fff",
-                    justifyContent: "flex-start",
-                    // borderColor: "#ddd",
-                    position: "relative"
-                  }}
-                >
+                <View style={styles.buttonSectionStyle}>
                   <Button
                     onPress={() => {
                       this.setState({ emailSent: true });
@@ -272,16 +241,7 @@ class LoginForm extends Component {
                   </Button>
                 </View>
 
-                <View
-                  style={{
-                    // borderBottomWidth: 1,
-                    // padding: 5,
-                    backgroundColor: "#fff",
-                    justifyContent: "flex-start",
-                    // borderColor: "#ddd",
-                    position: "relative"
-                  }}
-                >
+                <View style={styles.buttonSectionStyle}>
                   <Button
                     onPress={() => {
                       this.setState({ modalVisible: false });

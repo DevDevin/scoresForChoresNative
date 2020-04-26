@@ -39,7 +39,7 @@ class ChildHomeSideMenu extends Component {
                 flexDirection: "column"
               }}
             >
-              <Image source={require("../../Images/signOut.png")} />
+              <Image source={require("../../Images/genericUser.png")} />
               <Text style={{ fontSize: 16 }}>User Profile</Text>
             </View>
           </TouchableOpacity>
@@ -49,7 +49,7 @@ class ChildHomeSideMenu extends Component {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#999897"
+            backgroundColor: "steelblue"
           }}
         >
           <TouchableOpacity
@@ -96,7 +96,7 @@ class ChildHomeSideMenu extends Component {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "skyblue"
+            backgroundColor: "powderblue"
           }}
         >
           <TouchableOpacity

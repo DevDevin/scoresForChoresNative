@@ -105,7 +105,7 @@ class ChildSideMenu extends Component {
             );
           }}
         >
-          <View style={styles.rewardStoreStyle}>
+          <View style={styles.logoutStyle}>
             <View
               style={{
                 flex: 1,
@@ -146,6 +146,17 @@ const styles = {
     flex: 1,
     paddingBottom: 15,
     backgroundColor: "skyblue"
+  },
+  logoutStyle: {
+    height: 100,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#d6d7da",
+    fontSize: 30,
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15,
+    backgroundColor: "steelblue"
   }
 };
 

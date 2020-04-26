@@ -49,7 +49,7 @@ class ChildSideMenu extends Component {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#999897"
+            backgroundColor: "powderblue"
           }}
         >
           <TouchableOpacity
@@ -96,7 +96,7 @@ class ChildSideMenu extends Component {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "skyblue"
+            backgroundColor: "steelblue"
           }}
         >
           <TouchableOpacity

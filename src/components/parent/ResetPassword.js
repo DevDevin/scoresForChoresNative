@@ -28,7 +28,7 @@ class ResetPassword extends Component {
     if (this.state.passwordMismatch) {
       return (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "grey", fontSize: 22 }}>
             Passwords Do Not Match
           </Text>
         </View>
