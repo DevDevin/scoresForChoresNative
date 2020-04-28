@@ -78,7 +78,7 @@ class UserListItem extends Component {
   rendorError() {
     return (
       <View>
-        <Text style={styles.errorTextStyle}>{this.state.loginError} </Text>
+        <Text>{this.state.loginError} </Text>
       </View>
     );
   }
@@ -89,7 +89,6 @@ class UserListItem extends Component {
         <Spinner
           visible={true}
           textContent={"Loading..."}
-          // textStyle={styles.spinnerTextStyle}
           textStyle={{ color: "#FFF" }}
           overlayColor="blue"
         />
@@ -140,14 +139,14 @@ class UserListItem extends Component {
           >
             <View
               style={{
-                height: 60,
+                height: hp("9%"),
                 backgroundColor: "steelblue",
                 alignItems: "center",
                 justifyContent: "center",
                 elevation: 3
               }}
             >
-              <Text style={{ fontSize: 22 }}>Enter Password</Text>
+              <Text style={{ fontSize: wp("6.5%") }}>Enter Password</Text>
             </View>
             <View
               style={{
@@ -158,7 +157,7 @@ class UserListItem extends Component {
               <View
                 style={{
                   borderBottomWidth: 1,
-                  padding: 5,
+                  padding: wp("3%"),
                   backgroundColor: "#fff",
                   justifyContent: "flex-start",
                   flexDirection: "row",
@@ -184,7 +183,7 @@ class UserListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 15,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -200,7 +199,7 @@ class UserListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 15,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -218,23 +217,7 @@ class UserListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 24
-  },
-  buttonStyle: {
-    width: 100,
-    backgroundColor: "#fff",
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
-  },
-  textStyle: {
-    alignSelf: "center",
-    fontSize: 16,
-    fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    fontSize: wp("6%")
   },
   childStyle: {
     flex: 1,
@@ -247,46 +230,31 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 5,
-
-    // marginLeft: 10,
-    // marginRight: 10,
-    marginTop: 10,
+    marginTop: wp("2%"),
     backgroundColor: "skyblue"
-    // padding
-    // margin: 3
-    // width: Dimensions.get("window").width
   },
   cardSectionStyle: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: 7
-  },
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: "center",
-    color: "red"
+    padding: wp("2%")
   },
   inputStyle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    paddingRight: wp("3%"),
+    paddingLeft: wp("3.5%"),
+    fontSize: wp("4.5%"),
     flex: 2
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
+    fontSize: wp("5%"),
     flex: 1
   },
   containerStyle: {
-    height: 40,
+    height: wp("10%"),
     flex: 1,
     flexDirection: "row",
     alignItems: "center"
-    // backgroundColor: "powderblue",
-    // borderColor: "powderblue"
   }
 };
 
