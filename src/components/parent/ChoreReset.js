@@ -6,6 +6,12 @@ import { choreReset, choresFetch } from "../../actions/ParentActions";
 import { Button } from "../common";
 import { Actions } from "react-native-router-flux";
 import { Text } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChoreReset extends Component {
   componentWillMount() {
@@ -75,8 +81,8 @@ class ChoreReset extends Component {
         <View style={{ elevation: 15 }}>
           <View
             style={{
-              padding: 15,
-              paddingTop: 25,
+              padding: wp("5%"),
+              // paddingTop: 25,
               backgroundColor: "skyblue",
               justifyContent: "flex-start",
               position: "relative"
@@ -86,10 +92,10 @@ class ChoreReset extends Component {
               style={{
                 alignSelf: "center",
                 color: "black",
-                fontSize: 22,
-                fontWeight: "600",
-                paddingTop: 5,
-                paddingBottom: 5
+                fontSize: wp("5%"),
+                fontWeight: "600"
+                // paddingTop: 5,
+                // paddingBottom: 5
               }}
             >
               Reset Non-Recurring Chores
@@ -97,8 +103,8 @@ class ChoreReset extends Component {
           </View>
           <View
             style={{
-              padding: 15,
-              paddingTop: 25,
+              padding: wp("2%"),
+              paddingTop: wp("5%"),
               backgroundColor: "#fff",
               justifyContent: "flex-start",
               position: "relative"
@@ -110,8 +116,8 @@ class ChoreReset extends Component {
           </View>
           <View
             style={{
-              padding: 15,
-              paddingBottom: 25,
+              padding: wp("2%"),
+              paddingBottom: wp("5%"),
               backgroundColor: "#fff",
               justifyContent: "flex-start",
               position: "relative"

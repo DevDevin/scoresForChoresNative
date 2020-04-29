@@ -133,14 +133,14 @@ class ParentChoreListItem extends Component {
                   >
                     <Text
                       style={{
-                        fontSize: 18
+                        fontSize: wp("4%")
                       }}
                     >
                       ({day}){" "}
                     </Text>
                     <Text
                       style={{
-                        fontSize: 18
+                        fontSize: wp("4%")
                       }}
                     >
                       {childName}
@@ -241,7 +241,7 @@ class ParentChoreListItem extends Component {
 
 const styles = {
   generalStyle: {
-    fontSize: 26,
+    fontSize: wp("6%"),
     paddingLeft: 5,
     // flex: 1,
     // flexDirection: "row",
@@ -261,23 +261,11 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 2,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    marginTop: wp("2%"),
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
-  },
-  choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
   },
   buttonStyle: {
     // width: 100,
@@ -287,16 +275,16 @@ const styles = {
     borderColor: "#007aff",
     marginLeft: 14,
     marginRight: 14,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: wp("2%"),
+    marginBottom: wp("2%"),
     alignSelf: "stretch"
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("2%"),
+    paddingBottom: wp("2%")
   }
 };
 

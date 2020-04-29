@@ -105,7 +105,7 @@ class RewardManager extends Component {
           backgroundColor: "#EFEFF4",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: 5
+          marginTop: wp("1%")
         }}
       >
         <ScrollView>
@@ -116,8 +116,8 @@ class RewardManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: 5,
-              marginTop: 5
+              marginBottom: wp("2%"),
+              marginTop: wp("2%")
             }}
           >
             <View
@@ -128,11 +128,11 @@ class RewardManager extends Component {
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "skyblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 5
 
                 // justifyContent: "center"
@@ -148,7 +148,7 @@ class RewardManager extends Component {
                   }}
                 >
                   <Image source={require("../../Images/rewardList.png")} />
-                  <Text style={{ fontSize: 22 }}>Rewards List</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Rewards List</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -160,7 +160,7 @@ class RewardManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: 10
+              marginBottom: wp("2.5%")
             }}
           >
             <View
@@ -171,11 +171,11 @@ class RewardManager extends Component {
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                fontSize: wp("2%"),
                 flex: 1,
-                backgroundColor: "powderblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "powderblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 1
                 // justifyContent: "center"
               }}
@@ -194,7 +194,7 @@ class RewardManager extends Component {
                   <Image
                     source={require("../../Images/completionRequest.png")}
                   />
-                  <Text style={{ fontSize: 22 }}>Reward Requests</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Reward Requests</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -204,30 +204,5 @@ class RewardManager extends Component {
     );
   }
 }
-
-const styles = {
-  choreListStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "powderblue"
-  },
-  rewardStoreStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "skyblue"
-  }
-};
 
 export default connect(null, {})(RewardManager);

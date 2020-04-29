@@ -101,7 +101,7 @@ class ChoreManager extends Component {
           backgroundColor: "#EFEFF4",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: 5
+          marginTop: wp("1.5%")
         }}
       >
         <ScrollView>
@@ -112,7 +112,7 @@ class ChoreManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginTop: 5
+              marginTop: wp("1.5%")
             }}
           >
             <View
@@ -123,11 +123,11 @@ class ChoreManager extends Component {
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                fontSize: wp("2%"),
                 flex: 1,
-                backgroundColor: "powderblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "powderblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 3
                 // justifyContent: "center"
               }}
@@ -142,7 +142,7 @@ class ChoreManager extends Component {
                   }}
                 >
                   <Image source={require("../../Images/choreList.png")} />
-                  <Text style={{ fontSize: 22 }}>Chore List</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Chore List</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -164,12 +164,12 @@ class ChoreManager extends Component {
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                fontSize: wp("6%"),
                 flex: 1,
                 backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10,
-                margin: 3
+                // paddingTop: 10,
+                // paddingBottom: 10,
+                margin: wp("1%")
                 // justifyContent: "center"
               }}
             >
@@ -187,7 +187,9 @@ class ChoreManager extends Component {
                   <Image
                     source={require("../../Images/completionRequest.png")}
                   />
-                  <Text style={{ fontSize: 22 }}>Completion Requests</Text>
+                  <Text style={{ fontSize: wp("6%") }}>
+                    Completion Requests
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -211,11 +213,11 @@ class ChoreManager extends Component {
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                fontSize: wp("6%"),
                 flex: 1,
-                backgroundColor: "steelblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "steelblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 1
                 // justifyContent: "center"
               }}
@@ -230,7 +232,7 @@ class ChoreManager extends Component {
                   }}
                 >
                   <Image source={require("../../Images/reset.png")} />
-                  <Text style={{ fontSize: 22 }}>Reset Chores</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Reset Chores</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -240,30 +242,5 @@ class ChoreManager extends Component {
     );
   }
 }
-
-const styles = {
-  choreListStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "powderblue"
-  },
-  rewardStoreStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "skyblue"
-  }
-};
 
 export default connect(null, {})(ChoreManager);

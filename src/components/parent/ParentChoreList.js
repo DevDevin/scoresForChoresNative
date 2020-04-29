@@ -241,7 +241,7 @@ class ParentChoreList extends Component {
 const styles = {
   labelStyle: {
     fontSize: 18,
-    paddingLeft: 20,
+    // paddingLeft: 20,
     // flex: 1,
     color: "black",
     paddingBottom: 5,

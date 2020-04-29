@@ -238,7 +238,7 @@ class CompletionRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -264,7 +264,7 @@ class CompletionRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -289,15 +289,15 @@ class CompletionRequestListItem extends Component {
 const styles = {
   inputStyle: {
     color: "#000",
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: wp("4.5%"),
+    // lineHeight: 23,
     flex: 2
   },
   containerStyle: {
     borderBottomWidth: 1,
-    padding: 5,
+    padding: wp(".5%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -306,26 +306,22 @@ const styles = {
     alignItems: "center"
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
+    // fontSize: 18,
+    // paddingLeft: 20,
     flex: 1
   },
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   choreNameStyle: {
-    fontSize: 26,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
-    paddingBottom: 5
+    paddingBottom: wp(".5%")
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: wp("5%"),
     paddingLeft: 20,
     flex: 1,
     alignSelf: "center"
@@ -341,15 +337,15 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    // marginTop: 10,
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
+    // fontSize: 18,
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -363,25 +359,22 @@ const styles = {
     alignItems: "center",
     borderColor: "#ddd"
   },
-  modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
-  },
   buttonStyle: {
-    width: 100,
+    width: wp("25%"),
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: wp("1%"),
+    marginRight: wp("1%"),
+    elevation: wp("12%")
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("2.5%"),
+    paddingBottom: wp("2.5%")
   }
 };
 

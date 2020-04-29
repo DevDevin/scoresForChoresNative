@@ -2,6 +2,9 @@
 -- make sure form is cleared out when opening form to add new reward, chore, user, etc...
 -- make the login and startup pages more responsive
 -- change all hardcoded values to percentages
+	The following are completed
+		- Parent Home, Everything in parent chore manager
+		- Parent Reward Manager
 -- test out on a tablet simulator
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
