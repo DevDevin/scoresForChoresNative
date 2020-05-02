@@ -263,7 +263,7 @@ class ChildRewardRequestsListItem extends Component {
                   backgroundColor: "skyblue",
                   justifyContent: "center",
                   alignItems: "center",
-                  paddingBottom: 10
+                  paddingBottom: wp("2%")
                 }}
               >
                 <Text style={styles.rewardNameStyle}>
@@ -309,7 +309,7 @@ class ChildRewardRequestsListItem extends Component {
                 // flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingBottom: 10
+                paddingBottom: wp("3%")
               }}
             >
               <TouchableOpacity
@@ -327,24 +327,20 @@ class ChildRewardRequestsListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   stage: {
     backgroundColor: "#EFEFF4"
     // paddingTop: 20
     // paddingBottom: 20
   },
   rewardNameStyle: {
-    fontSize: 26,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
-    paddingBottom: 5
+    paddingBottom: wp("1%")
   },
   childStyle: {
     flex: 1,
@@ -357,15 +353,15 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    marginTop: wp("3%"),
     backgroundColor: "steelblue"
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
+    fontSize: wp("4%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -379,26 +375,22 @@ const styles = {
     alignItems: "center",
     borderColor: "#ddd"
   },
-  modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
-  },
   buttonStyle: {
     alignSelf: "stretch",
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 10,
-    marginRight: 10
+    marginLeft: wp("3%"),
+    marginRight: wp("3%")
     // alignItems: "center"
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4.5%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("3%"),
+    paddingBottom: wp("3%")
   }
 };
 

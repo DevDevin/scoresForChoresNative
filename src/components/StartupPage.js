@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { View, Text, BackHandler, Alert } from "react-native";
 import { Button, Card } from "../components/common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class StartupPage extends Component {
   componentDidMount() {
@@ -41,19 +47,21 @@ class StartupPage extends Component {
         <View style={styles.ContainerStyle}>
           <View
             style={{
-              height: 100,
+              height: wp("25%"),
               backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center"
             }}
           >
             <Text style={styles.titleStyle}>Scores 4 Chores</Text>
-            <Text style={{ fontSize: 18 }}>Sign in or create new account</Text>
+            <Text style={{ fontSize: wp("6%") }}>
+              Sign in or create new account
+            </Text>
           </View>
 
           <View
             style={{
-              height: 100,
+              height: wp("25%"),
               backgroundColor: "steelblue",
               alignItems: "center",
               justifyContent: "center"
@@ -68,7 +76,7 @@ class StartupPage extends Component {
           </View>
           <View
             style={{
-              height: 100,
+              height: wp("25%"),
               backgroundColor: "steelblue",
               alignItems: "center",
               justifyContent: "center"
@@ -88,24 +96,17 @@ class StartupPage extends Component {
 }
 
 const styles = {
-  textStyle: {
-    alignSelf: "center",
-    fontSize: 16,
-    fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
-  },
   buttonStyle: {
-    width: 200,
+    // width: 200,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    borderColor: "#007aff"
+    // marginLeft: 5,
+    // marginRight: 5
   },
   titleStyle: {
-    fontSize: 28
+    fontSize: wp("8%")
   },
   ContainerStyle: {
     borderWidth: 1,
@@ -116,10 +117,10 @@ const styles = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 9,
-    elevation: 10,
+    elevation: 10
     // marginLeft: 10,
     // marginRight: 10,
-    marginTop: 10
+    // marginTop: 10
   }
 };
 

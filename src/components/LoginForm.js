@@ -22,6 +22,12 @@ import {
   turnOffAuthError
 } from "../actions/AuthActions";
 import { Input, CardSection, Button } from "./common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class LoginForm extends Component {
   state = {
@@ -150,14 +156,14 @@ class LoginForm extends Component {
         >
           <View
             style={{
-              height: 60,
+              height: wp("20%"),
               backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center",
               elevation: 3
             }}
           >
-            <Text style={{ fontSize: 22 }}>Enter Login Credentials</Text>
+            <Text style={{ fontSize: wp("6%") }}>Enter Login Credentials</Text>
           </View>
           <Animated.View
             style={{
@@ -211,14 +217,16 @@ class LoginForm extends Component {
             <View style={styles.ContainerStyle}>
               <View
                 style={{
-                  height: 60,
+                  height: wp("15%"),
                   backgroundColor: "powderblue",
                   alignItems: "center",
                   justifyContent: "center",
                   elevation: 3
                 }}
               >
-                <Text style={{ fontSize: 22 }}>Enter your email address</Text>
+                <Text style={{ fontSize: wp("6%") }}>
+                  Enter your email address
+                </Text>
               </View>
               <View>
                 <View style={styles.cardSectionStyle}>
@@ -260,25 +268,8 @@ class LoginForm extends Component {
 }
 
 const styles = {
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: "center",
-    color: "red"
-  },
-  inputStyle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
-    flex: 2
-  },
-  labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
-  },
   containerStyle: {
-    height: 40,
+    // height: 40,
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
@@ -297,7 +288,7 @@ const styles = {
     elevation: 10,
     // marginLeft: 5,
     // marginRight: 5,
-    marginTop: 10,
+    // marginTop: 10,
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
@@ -305,7 +296,7 @@ const styles = {
   },
   cardSectionStyle: {
     // borderBottomWidth: 1,
-    padding: 10,
+    padding: wp("3%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -315,7 +306,7 @@ const styles = {
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
-    padding: 10,
+    padding: wp("4%"),
     backgroundColor: "#fff",
     // flexDirection: "row",
     borderColor: "#ddd",
@@ -334,20 +325,20 @@ const styles = {
   // },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    // fontSize: 16,
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10,
+    // paddingTop: 10,
+    // paddingBottom: 10,
     color: "steelblue"
   },
   buttonStyle: {
-    width: 200,
+    // width: 200,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    borderColor: "#007aff"
+    // marginLeft: 5,
+    // marginRight: 5
   }
 };
 

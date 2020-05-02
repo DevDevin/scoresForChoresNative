@@ -10,6 +10,12 @@ import {
   password2Changed
 } from "../actions/AuthActions";
 import { Card, CardSection, Spinner, Input, Button } from "./common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class LoginForm extends Component {
   state = {
@@ -52,7 +58,7 @@ class LoginForm extends Component {
     if (this.state.passwordMismatch === true) {
       return (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "black", fontSize: wp("5%") }}>
             Passwords Do Not Match
           </Text>
         </View>
@@ -89,14 +95,16 @@ class LoginForm extends Component {
         <View>
           <View
             style={{
-              height: 60,
+              height: wp("20%"),
               backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center",
               elevation: 4
             }}
           >
-            <Text style={{ fontSize: 22 }}>Enter Account Credentials</Text>
+            <Text style={{ fontSize: wp("6%") }}>
+              Enter Account Credentials
+            </Text>
           </View>
           <View style={styles.cardSectionStyle}>
             <Input
@@ -137,7 +145,7 @@ class LoginForm extends Component {
               <Text
                 style={{
                   alignSelf: "center",
-                  fontSize: 28,
+                  fontSize: wp("6%"),
                   fontWeight: "bold"
                 }}
               >
@@ -148,7 +156,7 @@ class LoginForm extends Component {
                   flexDirection: "row",
                   justifyContent: "center",
                   alignItems: "center",
-                  paddingTop: 10
+                  paddingTop: wp("8%")
                 }}
               >
                 <TouchableOpacity
@@ -168,7 +176,7 @@ class LoginForm extends Component {
 
 const styles = {
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: wp("6%"),
     alignSelf: "center",
     color: "black"
   },
@@ -182,9 +190,9 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    // marginTop: 10,
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
@@ -192,7 +200,7 @@ const styles = {
   },
   cardSectionStyle: {
     borderBottomWidth: 1,
-    padding: 5,
+    padding: wp("3%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -202,7 +210,7 @@ const styles = {
   },
   buttonSectionStyle: {
     borderBottomWidth: 1,
-    padding: 10,
+    padding: wp("4%"),
     backgroundColor: "#fff",
     // flexDirection: "row",
     borderColor: "#ddd",
@@ -221,20 +229,20 @@ const styles = {
   // },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    // fontSize: 16,
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10,
+    // paddingTop: 10,
+    // paddingBottom: 10,
     color: "steelblue"
   },
   buttonStyle: {
-    width: 200,
+    // width: 200,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    borderColor: "#007aff"
+    // marginLeft: 5,
+    // marginRight: 5
   }
 };
 

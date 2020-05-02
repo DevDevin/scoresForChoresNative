@@ -95,24 +95,24 @@ class ChildRewardManager extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5,
-              marginBottom: 3
+              elevation: 5
+              // marginBottom: 3
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("38%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
                 backgroundColor: "steelblue",
-                paddingTop: 10,
-                paddingBottom: 10,
-                margin: 3
+                // paddingTop: 10,
+                // paddingBottom: 10,
+                margin: wp("6%")
                 // justifyContent: "center"
               }}
             >
@@ -126,7 +126,7 @@ class ChildRewardManager extends Component {
                   }}
                 >
                   <Image source={require("../../Images/rewardList.png")} />
-                  <Text style={{ fontSize: 22 }}>Reward Store</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Reward Store</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -144,15 +144,15 @@ class ChildRewardManager extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("38%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "skyblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 1
                 // justifyContent: "center"
               }}
@@ -171,7 +171,7 @@ class ChildRewardManager extends Component {
                   <Image
                     source={require("../../Images/completionRequest.png")}
                   />
-                  <Text style={{ fontSize: 22 }}>Reward Requests</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Reward Requests</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -181,31 +181,6 @@ class ChildRewardManager extends Component {
     );
   }
 }
-
-const styles = {
-  choreListStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "powderblue"
-  },
-  rewardStoreStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "skyblue"
-  }
-};
 
 const mapStateToProps = state => {
   return {

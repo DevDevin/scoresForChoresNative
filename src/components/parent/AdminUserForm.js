@@ -3,6 +3,12 @@ import { View, Text, Picker } from "react-native";
 import { connect } from "react-redux";
 import { userUpdate } from "../../actions/AuthActions";
 import { CardSection, Input } from "../common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class AdminUserForm extends Component {
   state = {
@@ -21,7 +27,9 @@ class AdminUserForm extends Component {
     if (this.props.emptyName === true) {
       emptyNameMessage = (
         <View>
-          <Text style={{ color: "grey", fontSize: 22 }}>Name is Required</Text>
+          <Text style={{ color: "grey", fontSize: wp("6%") }}>
+            Name is Required
+          </Text>
         </View>
       );
     } else {
@@ -32,7 +40,9 @@ class AdminUserForm extends Component {
     if (this.props.emptyEmail === true) {
       emptyEmailMessage = (
         <View>
-          <Text style={{ color: "grey", fontSize: 22 }}>Email is Required</Text>
+          <Text style={{ color: "grey", fontSize: wp("6%") }}>
+            Email is Required
+          </Text>
         </View>
       );
     } else {
@@ -42,7 +52,7 @@ class AdminUserForm extends Component {
     if (this.props.passwordMismatch === true) {
       passwordMismatchMessage = (
         <View>
-          <Text style={{ color: "grey", fontSize: 22 }}>
+          <Text style={{ color: "grey", fontSize: wp("6%") }}>
             Passwords must match
           </Text>
         </View>
@@ -55,14 +65,14 @@ class AdminUserForm extends Component {
       <View>
         <View
           style={{
-            height: 60,
+            height: wp("15%"),
             backgroundColor: "powderblue",
             alignItems: "center",
             justifyContent: "center",
             elevation: 4
           }}
         >
-          <Text style={{ fontSize: 22 }}>Create Admin User</Text>
+          <Text style={{ fontSize: wp("6%") }}>Create Admin User</Text>
         </View>
         <CardSection>
           <Input

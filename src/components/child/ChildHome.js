@@ -130,11 +130,11 @@ class ChildHome extends Component {
               style={{
                 // height: 100,
                 width: wp("95%"),
-                height: hp("7%"),
+                // height: hp("7%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: wp("6%"),
                 flex: 1
                 // backgroundColor: "skyblue",
                 // paddingTop: 3,
@@ -150,7 +150,7 @@ class ChildHome extends Component {
                   flexDirection: "column"
                 }}
               >
-                <Text style={{ fontSize: 22 }}>Hello {name}</Text>
+                <Text style={{ fontSize: wp("6%") }}>Hello {name}</Text>
               </View>
             </View>
           </View>
@@ -161,22 +161,23 @@ class ChildHome extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: 3
+              // marginBottom: wp("2%")
+              margin: wp("2%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: wp("6%"),
                 flex: 1,
-                backgroundColor: "steelblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "steelblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // justifyContent: "center"
               }}
             >
@@ -205,7 +206,7 @@ class ChildHome extends Component {
                     }}
                   >
                     <Image source={require("../../Images/choreList.png")} />
-                    <Text style={{ fontSize: 22 }}>Chore List</Text>
+                    <Text style={{ fontSize: wp("6%") }}>Chore List</Text>
                   </View>
                 </TouchableWithoutFeedback>
               </Animated.View>
@@ -218,22 +219,22 @@ class ChildHome extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: 5
+              marginBottom: wp("2%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "skyblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // justifyContent: "center"
               }}
             >
@@ -262,7 +263,7 @@ class ChildHome extends Component {
                     }}
                   >
                     <Image source={require("../../Images/rewardList.png")} />
-                    <Text style={{ fontSize: 22 }}>Reward Manager</Text>
+                    <Text style={{ fontSize: wp("6%") }}>Reward Manager</Text>
                   </View>
                 </TouchableWithoutFeedback>
               </Animated.View>
@@ -282,16 +283,16 @@ class ChildHome extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "powderblue",
-                paddingTop: 10,
-                paddingBottom: 10,
-                marginBottom: 10
+                backgroundColor: "powderblue"
+                // paddingTop: 10,
+                // paddingBottom: 10,
+                // marginBottom: 10
                 // justifyContent: "center"
               }}
             >
@@ -320,7 +321,7 @@ class ChildHome extends Component {
                     }}
                   >
                     <Image source={require("../../Images/genericUser.png")} />
-                    <Text style={{ fontSize: 22 }}>User Profile</Text>
+                    <Text style={{ fontSize: wp("6%") }}>User Profile</Text>
                   </View>
                 </TouchableWithoutFeedback>
               </Animated.View>
@@ -331,31 +332,6 @@ class ChildHome extends Component {
     );
   }
 }
-
-const styles = {
-  choreListStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "powderblue"
-  },
-  rewardStoreStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "skyblue"
-  }
-};
 
 const mapStateToProps = state => {
   return {
