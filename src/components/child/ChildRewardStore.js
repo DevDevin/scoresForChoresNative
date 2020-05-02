@@ -225,7 +225,7 @@ class ChildRewardStore extends Component {
           >
             <Text
               style={{
-                fontSize: 24,
+                fontSize: wp("6%"),
                 // color: "white",
                 padding: 7
               }}
@@ -283,7 +283,7 @@ class ChildRewardStore extends Component {
                               backgroundColor: "skyblue",
                               justifyContent: "center",
                               alignItems: "center",
-                              paddingBottom: 10
+                              paddingBottom: wp("2%")
                             }}
                           >
                             <Text style={styles.choreNameStyle}>
@@ -366,24 +366,20 @@ class ChildRewardStore extends Component {
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   stage: {
     backgroundColor: "#EFEFF4"
     // paddingTop: 20
     // paddingBottom: 20
   },
   choreNameStyle: {
-    fontSize: 26,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
-    paddingBottom: 5
+    paddingBottom: wp("2%")
   },
   childStyle: {
     flex: 1,
@@ -396,15 +392,15 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    marginTop: wp("2%"),
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
+    fontSize: wp("5%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -419,8 +415,8 @@ const styles = {
     borderColor: "#ddd"
   },
   modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
+    // fontSize: 24,
+    // paddingLeft: 5
   },
   buttonStyle: {
     alignSelf: "stretch",
@@ -428,15 +424,15 @@ const styles = {
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 16,
-    marginRight: 16
+    marginLeft: wp("4%"),
+    marginRight: wp("4%")
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("2%"),
+    paddingBottom: wp("2%")
   }
 };
 

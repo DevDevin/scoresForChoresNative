@@ -119,7 +119,7 @@ class ParentRewardListItem extends Component {
             <Text
               style={{
                 alignSelf: "center",
-                fontSize: 28,
+                // fontSize: wp("2%"),
                 textDecorationLine: "underline",
                 fontWeight: "bold"
               }}
@@ -138,8 +138,8 @@ class ParentRewardListItem extends Component {
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                alignItems: "center",
-                paddingTop: 10
+                alignItems: "center"
+                // paddingTop: 10
               }}
             >
               <TouchableOpacity
@@ -163,10 +163,6 @@ class ParentRewardListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   choreNameStyle: {
     fontSize: 26,
     paddingLeft: 15,

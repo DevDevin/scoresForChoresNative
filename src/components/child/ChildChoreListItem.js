@@ -208,8 +208,8 @@ class ChildChoreListItem extends Component {
                   style={{
                     flex: 1,
                     justifyContent: "center",
-                    alignItems: "center",
-                    paddingBottom: 7
+                    alignItems: "center"
+                    // paddingBottom: 7
                   }}
                 >
                   {submitOption}
@@ -288,8 +288,8 @@ class ChildChoreListItem extends Component {
 
 const styles = {
   choreNameStyle: {
-    fontSize: 26,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -308,15 +308,15 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    // marginTop: 10,
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
+    fontSize: wp("5%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -331,26 +331,26 @@ const styles = {
     borderColor: "#ddd"
   },
   modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
+    // fontSize: 24,
+    // paddingLeft: 5
   },
   buttonStyle: {
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 14,
-    marginRight: 14,
-    marginTop: 10,
-    marginBottom: 10,
+    marginLeft: wp("2%"),
+    marginRight: wp("2%"),
+    // marginTop: 10,
+    // marginBottom: 10,
     alignSelf: "stretch"
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("2.5%"),
+    paddingBottom: wp("2.5%")
   },
   stage: {
     // backgroundColor: "#EFEFF4"

@@ -161,13 +161,13 @@ class RewardRequestListItem extends Component {
 
                 <Text
                   style={{
-                    fontSize: 20,
-                    paddingLeft: 15,
+                    fontSize: wp("4.5%"),
+                    // paddingLeft: 15,
                     flex: 1,
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
-                    paddingBottom: 5
+                    paddingBottom: wp("1%")
                   }}
                 >
                   {childName}
@@ -179,7 +179,7 @@ class RewardRequestListItem extends Component {
                     flexDirection: "row",
                     // justifyContent: "center",
                     // alignItems: "center",
-                    paddingBottom: 5
+                    paddingBottom: wp("2%")
                   }}
                 >
                   <TouchableOpacity
@@ -221,7 +221,7 @@ class RewardRequestListItem extends Component {
               backgroundColor: "grey"
             }}
           >
-            <View style={{ marginTop: 22 }}>
+            <View style={{ marginTop: wp("5%") }}>
               <View style={styles.containerStyle}>
                 <TextInput
                   multiline={true}
@@ -240,7 +240,7 @@ class RewardRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -265,7 +265,7 @@ class RewardRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -288,19 +288,15 @@ class RewardRequestListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   choreNameStyle: {
-    fontSize: 23,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold",
-    paddingBottom: 5
+    fontWeight: "bold"
+    // paddingBottom: 5
   },
   childStyle: {
     flex: 1,
@@ -313,78 +309,44 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    marginTop: wp("2%"),
     backgroundColor: "powderblue"
   },
-  choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  choreStyle: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    backgroundColor: "skyblue",
-    alignItems: "center",
-    borderColor: "#ddd"
-  },
-  modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
-  },
   buttonStyle: {
-    width: 100,
+    width: wp("25%"),
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: wp("1%"),
+    marginRight: wp("1%")
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
-  },
-  cardSectionStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "powderblue",
-    justifyContent: "flex-start",
-    flexDirection: "row",
-    borderColor: "#ddd",
-    position: "relative"
+    paddingTop: wp("2%"),
+    paddingBottom: wp("2%")
   },
   inputStyle: {
     color: "#000",
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: wp("5%"),
+    lineHeight: wp("5%"),
     flex: 2
   },
   containerStyle: {
     borderBottomWidth: 1,
-    padding: 5,
+    // padding: 5,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
     borderColor: "#ddd",
     position: "relative",
     alignItems: "center"
-  },
-  labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
   }
 };
 

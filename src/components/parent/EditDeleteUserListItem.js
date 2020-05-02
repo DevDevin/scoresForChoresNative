@@ -142,7 +142,7 @@ class EditDeleteUserListItem extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 10,
+            padding: wp("3%"),
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -225,7 +225,7 @@ class EditDeleteUserListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 10,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -243,8 +243,8 @@ class EditDeleteUserListItem extends Component {
 
             <View
               style={{
-                borderBottomWidth: 1,
-                padding: 10,
+                // borderBottomWidth: 1,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -262,38 +262,30 @@ class EditDeleteUserListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 24
-  },
-  buttonStyle: {
-    width: 100,
-    backgroundColor: "#fff",
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
+    fontSize: wp("6%")
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
-    fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    // fontSize: 16,
+    fontWeight: "600"
+    // paddingTop: 10,
+    // paddingBottom: 10
   },
   childStyle: {
     flex: 1,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: "#ddd",
-    borderBottomWidth: 0,
+    // borderBottomWidth: 0,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    // marginTop: wp("2%"),
+    marginTop: wp("2%"),
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
   },
@@ -301,24 +293,14 @@ const styles = {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: wp("2%"),
+    marginBottom: wp("1%")
   },
   errorTextStyle: {
-    fontSize: 20,
+    fontSize: wp("6%"),
     alignSelf: "center",
     color: "red"
-  },
-  inputStyle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
-    flex: 2
-  },
-  labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
   },
   containerStyle: {
     flex: 1,

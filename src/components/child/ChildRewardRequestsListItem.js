@@ -160,7 +160,7 @@ class ChildRewardRequestsListItem extends Component {
     if (rejectionReason != "") {
       rejectionReasonView = (
         <View>
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: wp("6%") }}>
             <Text style={{ fontWeight: "bold" }}>Rejection Reason: </Text>
             {rejectionReason}
           </Text>
@@ -196,8 +196,8 @@ class ChildRewardRequestsListItem extends Component {
               borderRadius: 5,
               borderWidth: 1,
               borderColor: "#007aff",
-              marginLeft: 10,
-              marginRight: 10,
+              marginLeft: wp("2%"),
+              marginRight: wp("2%"),
               flex: 1
             }}
           >
@@ -211,8 +211,8 @@ class ChildRewardRequestsListItem extends Component {
               borderRadius: 5,
               borderWidth: 1,
               borderColor: "#007aff",
-              marginLeft: 5,
-              marginRight: 5,
+              // marginLeft: wp("2%"),
+              // marginRight: wp("2%"),
               flex: 1
             }}
           >

@@ -124,7 +124,7 @@ class RewardListItem extends Component {
                     justifyContent: "center",
                     alignItems: "center",
                     backgroundColor: "skyblue",
-                    paddingBottom: 5
+                    paddingBottom: wp("2%")
                   }}
                 >
                   <Text style={styles.choreNameStyle}>
@@ -199,24 +199,20 @@ class RewardListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  },
   stage: {
     backgroundColor: "#EFEFF4"
     // paddingTop: 20
     // paddingBottom: 20
   },
   choreNameStyle: {
-    fontSize: 26,
-    paddingLeft: 15,
+    fontSize: wp("6%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold",
-    paddingBottom: 5
+    fontWeight: "bold"
+    // paddingBottom: 5
   },
   childStyle: {
     flex: 1,
@@ -229,49 +225,37 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    marginTop: wp("2%"),
     backgroundColor: "powderblue"
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
+    fontSize: wp("5%"),
+    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
-  },
-  choreStyle: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    backgroundColor: "skyblue",
-    alignItems: "center",
-    borderColor: "#ddd"
-  },
-  modalTextStyle: {
-    fontSize: 24,
-    paddingLeft: 5
   },
   buttonStyle: {
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff",
-    marginLeft: 14,
-    marginRight: 14,
+    marginLeft: wp("5%"),
+    marginRight: wp("5%"),
     alignSelf: "stretch",
-    marginTop: 7,
-    marginBottom: 12
+    marginTop: wp("2%"),
+    marginBottom: wp("3%")
   },
   textStyle: {
     alignSelf: "center",
-    fontSize: 16,
+    fontSize: wp("4%"),
     fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingTop: wp("3%"),
+    paddingBottom: wp("3%")
   }
 };
 

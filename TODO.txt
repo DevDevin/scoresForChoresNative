@@ -3,9 +3,11 @@
 -- make the login and startup pages more responsive
 -- change all hardcoded values to percentages
 	The following are completed
-		- Parent Home, Everything in parent chore manager
-		- Parent Reward Manager
+		- All the parent stuff
+		- child reward store
 -- test out on a tablet simulator
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
 -- says that email is already in use even though I cleared all my data. I wonder why? Need to clean up old emails somehow.
+-- fix the reward request rejection reason style. 
+-- reward requests not showing up. 
