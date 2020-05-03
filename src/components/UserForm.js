@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import { userUpdate } from "../actions/AuthActions";
 import { CardSection, Input } from "./common";
 import RadioForm from "react-native-simple-radio-button";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class UserForm extends Component {
   render() {
@@ -11,7 +17,9 @@ class UserForm extends Component {
     if (this.props.emptyName === true) {
       emptyNameMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>Name is Required</Text>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
+            Name is Required
+          </Text>
         </View>
       );
     } else {
@@ -22,7 +30,7 @@ class UserForm extends Component {
     if (this.props.userExists === true) {
       userExistsMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             That name is already chosen. Pick another one please
           </Text>
         </View>
@@ -35,7 +43,7 @@ class UserForm extends Component {
     if (this.props.emptyEmail === true) {
       emptyEmailMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Email is Required
           </Text>
         </View>
@@ -47,7 +55,7 @@ class UserForm extends Component {
     if (this.props.passwordMismatch === true) {
       passwordMismatchMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Passwords must match
           </Text>
         </View>
@@ -60,14 +68,14 @@ class UserForm extends Component {
       <View>
         <View
           style={{
-            height: 60,
+            height: wp("15%"),
             backgroundColor: "powderblue",
             alignItems: "center",
             justifyContent: "center",
             elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }}>Add/Edit User</Text>
+          <Text style={{ fontSize: wp("6%") }}>Add/Edit User</Text>
         </View>
         <CardSection>
           <Text style={styles.labelStyle}>Name</Text>
@@ -138,26 +146,17 @@ class UserForm extends Component {
 const styles = {
   inputStyle: {
     color: "#000",
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: wp("4%"),
+    // lineHeight: 23,
     flex: 2
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
+    fontSize: wp("4%"),
+    paddingLeft: wp("5%"),
     flex: 1,
     alignSelf: "center"
-  },
-  containerStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "#fff",
-    justifyContent: "flex-start",
-    flexDirection: "row",
-    borderColor: "#ddd",
-    position: "relative"
   }
 };
 const mapStateToProps = state => {

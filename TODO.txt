@@ -6,9 +6,10 @@
 		- All the parent stuff, except maybe user edit and password reset. 
 		- child reward store, child reward requests, child reward manager. child home, child chore list
 		- home page, login page, user list item, admin user form, create acccount
+		-  user forms
 	The following have not yet been completed: 
 		- user edit, password reset (parent) 
-		- user forms, chore forms, reward forms
+		- chore forms, reward forms
 -- test out on a tablet simulator
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
