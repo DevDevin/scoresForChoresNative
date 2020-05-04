@@ -89,7 +89,7 @@ class ManageUsers extends Component {
         </View>
       );
     }
-    return <Text style={{ fontSize: 22 }}>Chore List</Text>;
+    return <Text style={{ fontSize: wp("6%") }}>Chore List</Text>;
   }
 
   render() {
@@ -104,7 +104,7 @@ class ManageUsers extends Component {
           backgroundColor: "#EFEFF4",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: 5
+          marginTop: wp("6%")
         }}
       >
         <ScrollView>
@@ -121,16 +121,16 @@ class ManageUsers extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
                 backgroundColor: "steelblue",
-                paddingTop: 10,
-                paddingBottom: 10,
-                margin: 5
+                // paddingTop: 10,
+                // paddingBottom: 10,
+                margin: wp("6%")
                 // justifyContent: "center"
               }}
             >
@@ -146,7 +146,7 @@ class ManageUsers extends Component {
                   }}
                 >
                   <Image source={require("../../Images/resetPassword.png")} />
-                  <Text style={{ fontSize: 22 }}>Reset Passwords</Text>
+                  <Text style={{ fontSize: wp("6%") }}>Reset Passwords</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -157,23 +157,23 @@ class ManageUsers extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5,
-              marginBottom: 9
+              elevation: 5
+              // marginBottom: 9
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("30%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                fontSize: 30,
+                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "skyblue",
-                paddingTop: 10,
-                paddingBottom: 10
+                backgroundColor: "skyblue"
+                // paddingTop: 10,
+                // paddingBottom: 10
                 // margin: 1
                 // justifyContent: "center"
               }}
@@ -190,7 +190,7 @@ class ManageUsers extends Component {
                   }}
                 >
                   <Image source={require("../../Images/genericUser.png")} />
-                  <Text style={{ fontSize: 22 }}>User Manager</Text>
+                  <Text style={{ fontSize: wp("6%") }}>User Manager</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -200,30 +200,5 @@ class ManageUsers extends Component {
     );
   }
 }
-
-const styles = {
-  choreListStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "powderblue"
-  },
-  rewardStoreStyle: {
-    height: 100,
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "#d6d7da",
-    fontSize: 30,
-    paddingLeft: 15,
-    flex: 1,
-    paddingBottom: 15,
-    backgroundColor: "skyblue"
-  }
-};
 
 export default connect(null, {})(ManageUsers);

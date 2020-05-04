@@ -13,6 +13,12 @@ import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import { usersFetch, passwordReset } from "../../actions/AuthActions";
 import { CardSection, Input, Button } from "../common";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ResetPassword extends Component {
   state = {
@@ -28,7 +34,7 @@ class ResetPassword extends Component {
     if (this.state.passwordMismatch) {
       return (
         <View>
-          <Text style={{ color: "grey", fontSize: 22 }}>
+          <Text style={{ color: "grey", fontSize: wp("6%") }}>
             Passwords Do Not Match
           </Text>
         </View>
@@ -59,7 +65,9 @@ class ResetPassword extends Component {
     if (this.state.userNothing) {
       return (
         <View>
-          <Text style={{ color: "white", size: 32 }}>User not selected.</Text>
+          <Text style={{ color: "black", fontSize: wp("5%") }}>
+            User not selected.
+          </Text>
         </View>
       );
     }
@@ -68,9 +76,11 @@ class ResetPassword extends Component {
 
   renderPickerLabel() {
     if (this.state.user === "nothing") {
-      return <Text style={{ fontSize: 18 }}>Select User</Text>;
+      return <Text style={{ fontSize: wp("4%") }}>Select User</Text>;
     } else {
-      return <Text style={{ fontSize: 22 }}>{this.state.pickerLabel}</Text>;
+      return (
+        <Text style={{ fontSize: wp("6%") }}>{this.state.pickerLabel}</Text>
+      );
     }
   }
 
@@ -82,7 +92,7 @@ class ResetPassword extends Component {
       <View style={styles.ContainerStyle}>
         <View
           style={{
-            height: 60,
+            height: wp("15%"),
             backgroundColor: "powderblue",
             alignItems: "center",
             justifyContent: "center",
@@ -95,7 +105,7 @@ class ResetPassword extends Component {
         <View style={{ flexDirection: "row" }}>
           <View
             style={{
-              height: 60,
+              height: wp("15%"),
               backgroundColor: "#fff",
               alignItems: "center",
               justifyContent: "center",
@@ -107,17 +117,17 @@ class ResetPassword extends Component {
           </View>
           <View
             style={{
-              height: 60,
+              height: wp("15%"),
               backgroundColor: "#fff",
               alignItems: "center",
               justifyContent: "center",
               // elevation: 5,
-              width: Dimensions.get("window").width / 2
+              width: hp("28%")
             }}
           >
             <Picker
               selectedValue={this.state.user}
-              style={{ height: 50, width: 200 }}
+              style={{ width: hp("20%") }}
               onValueChange={(itemValue, itemIndex) => {
                 this.setState({
                   user: itemValue.uid,
@@ -144,7 +154,7 @@ class ResetPassword extends Component {
 
         <View
           style={{
-            height: 60,
+            height: wp("15%"),
             backgroundColor: "#fff",
             alignItems: "center",
             justifyContent: "center"
@@ -162,7 +172,7 @@ class ResetPassword extends Component {
 
         <View
           style={{
-            height: 60,
+            height: wp("15%"),
             backgroundColor: "#fff",
             alignItems: "center",
             justifyContent: "center"
@@ -182,7 +192,7 @@ class ResetPassword extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 10,
+            padding: wp("3%"),
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -229,7 +239,7 @@ class ResetPassword extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 10,
+            padding: wp("3%"),
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -250,11 +260,6 @@ class ResetPassword extends Component {
 }
 
 const styles = {
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: "center",
-    color: "red"
-  },
   ContainerStyle: {
     borderWidth: 1,
     borderRadius: 2,
@@ -265,51 +270,13 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 10,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    // marginLeft: 5,
+    // marginRight: 5,
+    // marginTop: 10,
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "#EFEFF4"
-  },
-  cardSectionStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "steelblue",
-    justifyContent: "flex-start",
-    flexDirection: "row",
-    borderColor: "black",
-    position: "relative",
-    elevation: 5
-  },
-  buttonSectionStyle: {
-    borderBottomWidth: 1,
-    padding: 5,
-    backgroundColor: "steelblue",
-    // flexDirection: "row",
-    borderColor: "#ddd",
-    position: "relative",
-    justifyContent: "center",
-    alignItems: "center",
-    elevation: 5
-  },
-  textStyle: {
-    alignSelf: "center",
-    fontSize: 16,
-    fontWeight: "600",
-    paddingTop: 10,
-    paddingBottom: 10,
-    color: "steelblue"
-  },
-  buttonStyle: {
-    width: 200,
-    backgroundColor: "#fff",
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#007aff",
-    marginLeft: 5,
-    marginRight: 5
   }
 };
 

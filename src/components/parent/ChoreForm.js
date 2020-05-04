@@ -11,6 +11,12 @@ import { connect } from "react-redux";
 import { choreUpdate } from "../../actions/ParentActions";
 import { usersFetch } from "../../actions/AuthActions";
 import { CardSection, Input, NumberInput } from "../common/index";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChoreForm extends Component {
   // Initital State Data
@@ -62,7 +68,7 @@ class ChoreForm extends Component {
     if (this.props.emptyChoreName === true) {
       emptyChoreNameMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Chore name is required
           </Text>
         </View>
@@ -75,7 +81,7 @@ class ChoreForm extends Component {
     if (this.props.emptyDescription === true) {
       emptyDescriptionMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Description is required.
           </Text>
         </View>
@@ -88,7 +94,7 @@ class ChoreForm extends Component {
     if (this.props.emptyChild === true) {
       emptyChildMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Chore must be assigned to a child
           </Text>
         </View>
@@ -101,7 +107,7 @@ class ChoreForm extends Component {
     if (this.props.emptyPointsValue === true) {
       emptyPointsValueMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Points is required.
           </Text>
         </View>
@@ -121,14 +127,14 @@ class ChoreForm extends Component {
         <View style={{ backgroundColor: "blue", flex: 1 }}>
           <View
             style={{
-              height: 60,
+              height: wp("15%"),
               backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center",
               elevation: 3
             }}
           >
-            <Text style={{ fontSize: 22 }}>Create New Chore</Text>
+            <Text style={{ fontSize: wp("6%") }}>Create New Chore</Text>
           </View>
 
           <ScrollView>
@@ -171,7 +177,7 @@ class ChoreForm extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -180,11 +186,13 @@ class ChoreForm extends Component {
             >
               <Picker
                 selectedValue={this.state.child}
-                style={{
-                  height: 50
-                  // width: 200
-                  // TOTmake equal to width
-                }}
+                style={
+                  {
+                    // height: 50
+                    // width: 200
+                    // TOTmake equal to width
+                  }
+                }
                 onValueChange={(itemValue, itemIndex) => {
                   this.props.choreUpdate({
                     prop: "emptyChild",
@@ -244,7 +252,7 @@ class ChoreForm extends Component {
 
             <CardSection>
               <CheckBox
-                style={{ flex: 1, padding: 10 }}
+                style={{ flex: 1, padding: wp("6%") }}
                 onClick={() => {
                   this.onCheckBoxClicked();
                 }}
@@ -262,7 +270,7 @@ class ChoreForm extends Component {
 const styles = {
   CardSection: {
     borderBottomWidth: 1,
-    padding: 5,
+    // padding: 5,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     borderColor: "#ddd",
@@ -270,15 +278,15 @@ const styles = {
   },
   inputStyle: {
     color: "#000",
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: wp("4%"),
+    // lineHeight: 23,
     flex: 2
   },
   containerStyle: {
     borderBottomWidth: 1,
-    padding: 5,
+    // padding: wp("2%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -287,7 +295,7 @@ const styles = {
     alignItems: "center"
   },
   labelStyle: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     paddingLeft: 20,
     flex: 1
   }

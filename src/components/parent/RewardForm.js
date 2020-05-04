@@ -3,6 +3,12 @@ import { View, TextInput, Text } from "react-native";
 import { connect } from "react-redux";
 import { rewardUpdate } from "../../actions/ParentActions";
 import { CardSection, Input, NumberInput } from "../common/index";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class RewardForm extends Component {
   componentDidMount() {
@@ -18,7 +24,7 @@ class RewardForm extends Component {
     if (this.props.emptyRewardName === true) {
       emptyRewardNameMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Reward Name is Required
           </Text>
         </View>
@@ -31,7 +37,7 @@ class RewardForm extends Component {
     if (this.props.emptyPointsValue === true) {
       emptyPointsValueMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Points Value is Required
           </Text>
         </View>
@@ -44,7 +50,7 @@ class RewardForm extends Component {
     if (this.props.emptyDescription === true) {
       emptyDescriptionMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             Description is Required
           </Text>
         </View>
@@ -57,7 +63,7 @@ class RewardForm extends Component {
     if (this.props.rewardExists === true) {
       rewardExistsMessage = (
         <View>
-          <Text style={{ color: "white", fontSize: 22 }}>
+          <Text style={{ color: "white", fontSize: wp("6%") }}>
             This Reward Already Exists
           </Text>
         </View>
@@ -129,7 +135,7 @@ class RewardForm extends Component {
 const styles = {
   containerStyle: {
     borderBottomWidth: 1,
-    padding: 5,
+    padding: wp("1%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -138,16 +144,16 @@ const styles = {
     alignItems: "center"
   },
   labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
+    fontSize: wp("4%"),
+    paddingLeft: wp("4%"),
     flex: 1
   },
   inputStyle: {
     color: "#000",
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
+    // paddingRight: 5,
+    // paddingLeft: 5,
+    fontSize: wp("4%"),
+    // lineHeight: 23,
     flex: 2
   }
 };

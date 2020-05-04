@@ -2,16 +2,11 @@
 -- make sure form is cleared out when opening form to add new reward, chore, user, etc...
 -- make the login and startup pages more responsive
 -- change all hardcoded values to percentages
-	The following are completed:
-		- All the parent stuff, except maybe user edit and password reset. 
-		- child reward store, child reward requests, child reward manager. child home, child chore list
-		- home page, login page, user list item, admin user form, create acccount
-		-  user forms
-	The following have not yet been completed: 
-		- user edit, password reset (parent) 
-		- chore forms, reward forms
+	- do a search for fontSize: 22 or 18 or padding: 5 or margin: 5
 -- test out on a tablet simulator
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
 -- says that email is already in use even though I cleared all my data. I wonder why? Need to clean up old emails somehow.
 -- fix the reward request rejection reason style.
+-- make the blocks in managers smaller and vertically center on page. 
+-- remove commented out code

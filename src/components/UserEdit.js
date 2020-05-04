@@ -18,6 +18,12 @@ import {
 } from "../actions/ChildActions";
 import { Card, CardSection, Button, Confirm } from "./common";
 import { Actions } from "react-native-router-flux";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class UserEdit extends Component {
   state = { showModal: false };
@@ -101,7 +107,7 @@ class UserEdit extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -116,7 +122,7 @@ class UserEdit extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                padding: 5,
+                padding: wp("3%"),
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
