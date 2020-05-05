@@ -10,6 +10,12 @@ import {
 } from "../../actions/ParentActions";
 import RewardForm from "./RewardForm";
 import { Actions } from "react-native-router-flux";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class RewardCreate extends Component {
   state = {
@@ -81,14 +87,14 @@ class RewardCreate extends Component {
             elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }}>Add New Reward</Text>
+          <Text style={{ fontSize: wp("6%") }}>Add New Reward</Text>
         </View>
 
         <RewardForm {...this.props} />
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 5,
+            padding: wp("2%"),
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",
@@ -100,7 +106,7 @@ class RewardCreate extends Component {
         <View
           style={{
             borderBottomWidth: 1,
-            padding: 5,
+            padding: wp("2%"),
             backgroundColor: "#fff",
             justifyContent: "flex-start",
             borderColor: "#ddd",

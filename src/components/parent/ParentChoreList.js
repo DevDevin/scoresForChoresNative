@@ -16,6 +16,12 @@ import ParentChoreListItem from "./ParentChoreListItem";
 import { View, Text } from "react-native";
 import { usersFetch, loadingUsersEnd } from "../../actions/AuthActions";
 import Spinner from "react-native-loading-spinner-overlay";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ParentChoreList extends Component {
   state = {
@@ -240,7 +246,7 @@ class ParentChoreList extends Component {
 
 const styles = {
   labelStyle: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     // paddingLeft: 20,
     // flex: 1,
     color: "black",

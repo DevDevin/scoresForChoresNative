@@ -5,6 +5,12 @@ import { Alert, View, Text } from "react-native";
 import { Card, CardSection, Button } from "./common/index";
 import { userCreate, usersFetch, userUpdate } from "../actions/AuthActions";
 import UserForm from "./UserForm";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class UserCreate extends Component {
   state = {
@@ -102,7 +108,7 @@ class UserCreate extends Component {
           <View
             style={{
               borderBottomWidth: 1,
-              padding: 5,
+              padding: wp("2%"),
               backgroundColor: "#fff",
               justifyContent: "flex-start",
               borderColor: "#ddd",

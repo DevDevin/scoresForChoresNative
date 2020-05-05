@@ -99,7 +99,7 @@ class ResetPassword extends Component {
             elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }}>Reset Password</Text>
+          <Text style={{ fontSize: wp("6%") }}>Reset Password</Text>
         </View>
         {this.renderUserNothing()}
         <View style={{ flexDirection: "row" }}>

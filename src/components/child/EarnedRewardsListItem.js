@@ -12,6 +12,12 @@ import {
   earnedRewardsFetch,
   earnedRewardSpend
 } from "../../actions/ChildActions";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class EarnedRewardListItem extends Component {
   state = {
@@ -63,7 +69,7 @@ class EarnedRewardListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     paddingLeft: 15
   },
   choreNameStyle: {
@@ -93,7 +99,7 @@ const styles = {
     width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
@@ -136,7 +142,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { earnedRewardsFetch, earnedRewardSpend }
-)(EarnedRewardListItem);
+export default connect(mapStateToProps, {
+  earnedRewardsFetch,
+  earnedRewardSpend
+})(EarnedRewardListItem);

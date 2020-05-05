@@ -101,7 +101,7 @@ class ParentHome extends Component {
         </View>
       );
     }
-    return <Text style={{ fontSize: 22 }}>Chore List</Text>;
+    return <Text style={{ fontSize: wp("6%") }}>Chore List</Text>;
   }
 
   render() {
@@ -155,13 +155,13 @@ class ParentHome extends Component {
               alignItems: "center",
               elevation: 5,
               marginTop: wp("2%"),
-              marginBottom: wp("1%")
+              marginBottom: wp("3%")
             }}
           >
             <View
               style={{
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
@@ -207,14 +207,14 @@ class ParentHome extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: wp("1.4%")
+              marginBottom: wp("3%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
@@ -268,7 +268,7 @@ class ParentHome extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",

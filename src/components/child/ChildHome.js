@@ -123,7 +123,7 @@ class ChildHome extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              margin: 5
+              margin: wp("2%")
             }}
           >
             <View

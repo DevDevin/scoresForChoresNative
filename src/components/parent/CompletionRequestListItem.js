@@ -306,7 +306,6 @@ const styles = {
     alignItems: "center"
   },
   labelStyle: {
-    // fontSize: 18,
     // paddingLeft: 20,
     flex: 1
   },
@@ -344,7 +343,6 @@ const styles = {
     // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
-    // fontSize: 18,
     // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",

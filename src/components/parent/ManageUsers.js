@@ -104,7 +104,7 @@ class ManageUsers extends Component {
           backgroundColor: "#EFEFF4",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: wp("6%")
+          marginTop: wp("10%")
         }}
       >
         <ScrollView>
@@ -114,23 +114,23 @@ class ManageUsers extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: wp("10%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
                 // fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
+                backgroundColor: "steelblue"
                 // paddingTop: 10,
                 // paddingBottom: 10,
-                margin: wp("6%")
                 // justifyContent: "center"
               }}
             >
@@ -157,15 +157,15 @@ class ManageUsers extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
-              // marginBottom: 9
+              elevation: 5,
+              marginBottom: wp("7%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",

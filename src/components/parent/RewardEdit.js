@@ -10,6 +10,12 @@ import {
 } from "../../actions/ParentActions";
 import { Card, CardSection, Button, Confirm } from "../common";
 import { Actions } from "react-native-router-flux";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class RewardEdit extends Component {
   state = { showModal: false };
@@ -50,7 +56,7 @@ class RewardEdit extends Component {
             elevation: 3
           }}
         >
-          <Text style={{ fontSize: 22 }}>Edit Reward</Text>
+          <Text style={{ fontSize: wp("6%") }}>Edit Reward</Text>
         </View>
 
         <RewardForm />
@@ -59,7 +65,7 @@ class RewardEdit extends Component {
           <View
             style={{
               borderBottomWidth: 1,
-              padding: 5,
+              padding: wp("2%"),
               backgroundColor: "#fff",
               justifyContent: "flex-start",
               borderColor: "#ddd",
@@ -74,7 +80,7 @@ class RewardEdit extends Component {
           <View
             style={{
               borderBottomWidth: 1,
-              padding: 5,
+              padding: wp("2%"),
               backgroundColor: "#fff",
               justifyContent: "flex-start",
               borderColor: "#ddd",

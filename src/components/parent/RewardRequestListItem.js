@@ -240,7 +240,6 @@ class RewardRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -265,7 +264,6 @@ class RewardRequestListItem extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -340,7 +338,6 @@ const styles = {
   },
   containerStyle: {
     borderBottomWidth: 1,
-    // padding: 5,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     flexDirection: "row",

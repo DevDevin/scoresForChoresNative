@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Text, View, Modal } from "react-native";
 import { CardSection } from "./CardSection";
 import { Button } from "./Button";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 const Confirm = ({ children, visible, onAccept, onDecline }) => {
   const { containerStyle, textStyle, cardSectionStyle } = styles;
@@ -33,7 +39,7 @@ const styles = {
   },
   textStyle: {
     flex: 1,
-    fontSize: 18,
+    fontSize: wp("4%"),
     textAlign: "center",
     lineHeight: 40
   },

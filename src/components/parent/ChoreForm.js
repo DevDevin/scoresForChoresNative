@@ -177,7 +177,6 @@ class ChoreForm extends Component {
             <View
               style={{
                 borderBottomWidth: 1,
-                // padding: 5,
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
@@ -270,7 +269,6 @@ class ChoreForm extends Component {
 const styles = {
   CardSection: {
     borderBottomWidth: 1,
-    // padding: 5,
     backgroundColor: "#fff",
     justifyContent: "flex-start",
     borderColor: "#ddd",

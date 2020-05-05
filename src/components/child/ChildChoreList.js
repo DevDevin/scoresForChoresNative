@@ -7,6 +7,12 @@ import ChildChoreListItem from "./ChildChoreListItem";
 import { Text, View, Dimensions, BackHandler } from "react-native";
 import { CardSection } from "../common/index";
 import { Actions } from "react-native-router-flux";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
 
 class ChildChoreList extends Component {
   state = {
@@ -169,7 +175,7 @@ class ChildChoreList extends Component {
 
 const styles = {
   labelStyle: {
-    fontSize: 18,
+    fontSize: wp("4%"),
     paddingLeft: 20,
     // flex: 1,
     color: "black",

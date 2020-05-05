@@ -85,7 +85,6 @@ class ChildRewardManager extends Component {
           backgroundColor: "#EFEFF4",
           alignItems: "center",
           justifyContent: "center"
-          // margin: 5
         }}
       >
         <ScrollView>
@@ -94,26 +93,20 @@ class ChildRewardManager extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
-              elevation: 5
-              // marginBottom: 3
+              elevation: 5,
+              marginBottom: wp("10%"),
+              marginTop: wp("10%")
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("90%"),
-                height: hp("38%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "steelblue",
-                // paddingTop: 10,
-                // paddingBottom: 10,
-                margin: wp("6%")
-                // justifyContent: "center"
+                backgroundColor: "steelblue"
               }}
             >
               <TouchableWithoutFeedback onPress={this.onRewardStore.bind(this)}>
@@ -136,25 +129,19 @@ class ChildRewardManager extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
               elevation: 5
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("90%"),
-                height: hp("38%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: 30,
                 flex: 1,
-                backgroundColor: "skyblue"
-                // paddingTop: 10,
-                // paddingBottom: 10
-                // margin: 1
-                // justifyContent: "center"
+                backgroundColor: "skyblue",
+                marginBottom: wp("7%")
               }}
             >
               <TouchableWithoutFeedback

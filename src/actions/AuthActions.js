@@ -32,7 +32,6 @@ export const passwordReset = (uid, newPassword) => {
         email = snapshot.val().email;
         name = snapshot.val().name;
         password = newPassword;
-        // phone = snapshot.val().phone;
         status = snapshot.val().status;
       });
     firebase
@@ -43,7 +42,6 @@ export const passwordReset = (uid, newPassword) => {
         email: email,
         name: name,
         password: password,
-        // phone: phone,
         status: status
       })
       .then(() => {
@@ -222,8 +220,6 @@ export const userSave = ({
       .then(() => {
         // update all objects with this name. ex:
         choreUpdate2();
-        // completionRequestUpdate()
-        // rewardRequestUpdate()
       });
   };
 };

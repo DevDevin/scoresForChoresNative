@@ -86,7 +86,7 @@ class ChoreManager extends Component {
         </View>
       );
     }
-    return <Text style={{ fontSize: 22 }}>Chore Manager</Text>;
+    return <Text style={{ fontSize: wp("6%") }}>Chore Manager</Text>;
   }
 
   render() {
@@ -112,14 +112,15 @@ class ChoreManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginTop: wp("1.5%")
+              marginTop: wp("4%"),
+              marginBottom: wp("4%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
@@ -153,14 +154,15 @@ class ChoreManager extends Component {
               justifyContent: "center",
               alignItems: "center",
               // flex: 0.6,
-              elevation: 5
+              elevation: 5,
+              marginBottom: wp("4%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
@@ -209,7 +211,7 @@ class ChoreManager extends Component {
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("30%"),
+                height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",

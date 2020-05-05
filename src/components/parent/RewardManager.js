@@ -90,7 +90,7 @@ class RewardManager extends Component {
         </View>
       );
     }
-    return <Text style={{ fontSize: 22 }}>Reward Manager</Text>;
+    return <Text style={{ fontSize: wp("6%") }}>Reward Manager</Text>;
   }
 
   render() {
@@ -116,26 +116,21 @@ class RewardManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: wp("2%"),
-              marginTop: wp("2%")
+              marginBottom: wp("10%"),
+              marginTop: wp("10%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
                 // fontSize: 30,
                 flex: 1,
                 backgroundColor: "skyblue"
-                // paddingTop: 10,
-                // paddingBottom: 10
-                // margin: 5
-
-                // justifyContent: "center"
               }}
             >
               <TouchableWithoutFeedback onPress={this.onRewardList.bind(this)}>
@@ -160,14 +155,14 @@ class RewardManager extends Component {
               alignItems: "center",
               // flex: 0.6,
               elevation: 5,
-              marginBottom: wp("2.5%")
+              marginBottom: wp("7%")
             }}
           >
             <View
               style={{
                 // height: 100,
                 width: wp("90%"),
-                height: hp("43%"),
+                height: hp("35%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
