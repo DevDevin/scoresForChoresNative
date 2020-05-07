@@ -95,6 +95,46 @@ class ParentHomeSideMenu extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Alert.alert(
+              "Logout",
+              "Are you sure you want to sign out?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {},
+                  style: "cancel"
+                },
+                {
+                  text: "OK",
+                  onPress: () => {
+                    BackHandler.removeEventListener(
+                      "hardwareBackPress",
+                      this.handleBackButton
+                    );
+                    logoutAuth();
+                  }
+                }
+              ],
+              { cancelable: false }
+            );
+          }}
+        >
+          <View style={styles.deleteAccountStyle}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column"
+              }}
+            >
+              <Image source={require("../../Images/deleteAccount.png")} />
+              <Text style={{ fontSize: 16 }}>Delete Account</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -122,6 +162,17 @@ const styles = {
     flex: 1,
     paddingBottom: 15,
     backgroundColor: "steelblue"
+  },
+  deleteAccountStyle: {
+    height: 100,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#d6d7da",
+    fontSize: 30,
+    paddingLeft: 15,
+    flex: 1,
+    paddingBottom: 15,
+    backgroundColor: "skyblue"
   }
 };
 

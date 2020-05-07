@@ -6,3 +6,4 @@
 -- says that email is already in use even though I cleared all my data. I wonder why? Need to clean up old emails somehow.
 -- fix the reward request rejection reason style.
 -- remove commented out code
+-- add delete account functionality

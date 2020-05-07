@@ -217,8 +217,8 @@ class RewardRequestListItem extends Component {
             style={{
               flex: 1,
               flexDirection: "column",
-              justifyContent: "center",
-              backgroundColor: "grey"
+              justifyContent: "center"
+              // backgroundColor: "grey"
             }}
           >
             <View style={{ marginTop: wp("5%") }}>
