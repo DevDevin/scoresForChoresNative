@@ -221,12 +221,23 @@ class RewardRequestListItem extends Component {
               // backgroundColor: "grey"
             }}
           >
+            <View
+              style={{
+                height: wp("20%"),
+                backgroundColor: "powderblue",
+                alignItems: "center",
+                justifyContent: "center",
+                elevation: 3
+              }}
+            >
+              <Text style={{ fontSize: wp("6%") }}>Enter Rejection Reason</Text>
+            </View>
             <View style={{ marginTop: wp("5%") }}>
               <View style={styles.containerStyle}>
                 <TextInput
                   multiline={true}
                   numberOfLines={2}
-                  placeholder="Rejection Reason"
+                  placeholder="   Rejection Reason"
                   autoCorrect={false}
                   style={styles.inputStyle}
                   value={this.state.reason}
@@ -243,7 +254,11 @@ class RewardRequestListItem extends Component {
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
-                position: "relative"
+                position: "relative",
+                // marginTop: wp("5%"),
+                // marginBottom: wp("5%"),
+                paddingBottom: wp("5%"),
+                paddingTop: wp("5%")
               }}
             >
               <Button
@@ -267,7 +282,9 @@ class RewardRequestListItem extends Component {
                 backgroundColor: "#fff",
                 justifyContent: "flex-start",
                 borderColor: "#ddd",
-                position: "relative"
+                position: "relative",
+                paddingBottom: wp("5%"),
+                paddingTop: wp("5%")
               }}
             >
               <Button
