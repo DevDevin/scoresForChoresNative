@@ -3,6 +3,7 @@
 -- make the login and startup pages more responsive
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
--- says that email is already in use even though I cleared all my data. I wonder why? Need to clean up old emails somehow.
 -- remove commented out code
 -- add delete account functionality
+	- the account is deleting and being removed but an error about earned points is occuring. 
+-- update the login error to say incorrect username or password. not just password. 

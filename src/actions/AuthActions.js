@@ -18,6 +18,21 @@ import {
 } from "./types";
 import { Alert } from "react-native";
 
+export const accountDelete = () => {
+  const { currentUser } = firebase.auth();
+  console.log("Inside the return");
+  firebase
+    .database()
+    .ref(`/users/${currentUser.uid}`)
+    .remove()
+    .then(() => {
+      console.log("inside currentUser.delete");
+      currentUser.delete().then(() => {
+        Actions.auth();
+      });
+    });
+};
+
 export const passwordReset = (uid, newPassword) => {
   const { currentUser } = firebase.auth();
 

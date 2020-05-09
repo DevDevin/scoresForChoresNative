@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import firebase from "firebase";
 import { Actions } from "react-native-router-flux";
 import {
   View,
@@ -8,9 +9,18 @@ import {
   Alert,
   BackHandler
 } from "react-native";
-import { logoutAuth } from "../../actions/AuthActions";
+import { logoutAuth, accountDelete } from "../../actions/AuthActions";
 
 class ParentHomeSideMenu extends Component {
+  deleteAndRemove() {
+    const { currentUser } = firebase.auth();
+    console.log("Inside the deleteAndRemove");
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}`)
+      .remove();
+  }
+
   render() {
     return (
       <View style={{ flex: 1, flexDirection: "column" }}>
@@ -98,8 +108,8 @@ class ParentHomeSideMenu extends Component {
         <TouchableWithoutFeedback
           onPress={() => {
             Alert.alert(
-              "Logout",
-              "Are you sure you want to sign out?",
+              "Delete Account",
+              "Are you sure you want to delete this account?",
               [
                 {
                   text: "Cancel",
@@ -113,7 +123,8 @@ class ParentHomeSideMenu extends Component {
                       "hardwareBackPress",
                       this.handleBackButton
                     );
-                    logoutAuth();
+                    this.deleteAndRemove();
+                    //accountDelete()
                   }
                 }
               ],
