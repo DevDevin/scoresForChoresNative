@@ -125,8 +125,8 @@ class LoginForm extends Component {
 
     if (showAlert === true) {
       Alert.alert(
-        "Incorrect Password",
-        "Please Try Again",
+        "Failed Login",
+        "Incorrect Username or password",
         [
           {
             text: "Okay",

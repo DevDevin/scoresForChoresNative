@@ -20,20 +20,16 @@ import { Alert } from "react-native";
 
 export const accountDelete = () => {
   const { currentUser } = firebase.auth();
-  console.log("Inside the return");
-  firebase
-    .database()
-    .ref(`/users/${currentUser.uid}`)
-    .remove()
-    .then(() => {
-      console.log("inside currentUser.delete");
-      currentUser.delete().then(() => {
-        Actions.auth();
-      });
-    });
+
+  console.log("inside currentUser.delete");
+  currentUser.delete().then(() => {
+    // Actions.auth();
+    logoutAuth();
+  });
 };
 
 export const passwordReset = (uid, newPassword) => {
+  console.log("passwordReset");
   const { currentUser } = firebase.auth();
 
   let email, name, password, phone, status, earnedPoints;
@@ -412,6 +408,7 @@ export const loadingUsersStart = () => {
 };
 
 export const setActiveUser = activeUser => {
+  console.log("setActiveUser");
   const { currentUser } = firebase.auth();
 
   return dispatch => {
@@ -439,6 +436,7 @@ export const setActiveUser = activeUser => {
 };
 
 export const updateActiveUser = (activeUser, pointsValue) => {
+  console.log("updateActiveUser");
   const { currentUser } = firebase.auth();
 
   return dispatch => {

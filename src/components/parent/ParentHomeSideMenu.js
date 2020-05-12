@@ -15,10 +15,11 @@ class ParentHomeSideMenu extends Component {
   deleteAndRemove() {
     const { currentUser } = firebase.auth();
     console.log("Inside the deleteAndRemove");
-    firebase
-      .database()
-      .ref(`/users/${currentUser.uid}`)
-      .remove();
+    // firebase
+    //   .database()
+    //   .ref(`/users/${currentUser.uid}`)
+    //   .remove();
+    accountDelete();
   }
 
   render() {

@@ -333,6 +333,8 @@ export const requestAccept = (
   let totalPoints;
   let email, name, password, status;
 
+  console.log("requestAccept in parentActions");
+
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
   return dispatch => {
@@ -455,6 +457,7 @@ export const rewardRequestAccept = (
   rewardDescription
 ) => {
   const { currentUser } = firebase.auth();
+  console.log("rewardRequestAccept in parentActions");
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total
@@ -520,6 +523,8 @@ export const rewardRequestReject = (
   rewardDescription
 ) => {
   const { currentUser } = firebase.auth();
+
+  console.log("rewardRequestReject in parentActions");
 
   // use the database to grab the earned points of the current user
   // then use a variable to add the old and the new together for the new total

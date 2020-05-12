@@ -4,6 +4,4 @@
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- take away the background color of modals if possible
 -- remove commented out code
--- add delete account functionality
-	- the account is deleting and being removed but an error about earned points is occuring. 
 -- update the login error to say incorrect username or password. not just password. 
