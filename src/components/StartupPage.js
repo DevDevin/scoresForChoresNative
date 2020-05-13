@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
-import { View, Text, BackHandler, Alert } from "react-native";
-import { Button, Card } from "../components/common";
+import {
+  View,
+  Text,
+  BackHandler,
+  Alert,
+  StyleSheet,
+  Image,
+  Button
+} from "react-native";
+import { Card } from "../components/common";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -36,58 +44,35 @@ class StartupPage extends Component {
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          justifyContent: "center",
-          backgroundColor: "#EFEFF4"
-        }}
-      >
-        <View style={styles.ContainerStyle}>
-          <View
-            style={{
-              height: wp("25%"),
-              backgroundColor: "powderblue",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Text style={styles.titleStyle}>Scores 4 Chores</Text>
-            <Text style={{ fontSize: wp("6%") }}>
-              Sign in or create new account
-            </Text>
-          </View>
-
-          <View
-            style={{
-              height: wp("25%"),
-              backgroundColor: "steelblue",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <Text style={styles.h1}>Scores 4 Chores</Text>
+          <Text style={styles.h2}>
+            Mangage family jobs in a fun and organized way.
+          </Text>
+        </View>
+        <View style={styles.middleContainer}>
+          <Image
+            source={require("../Images/genericUser.png")}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.bottomContainer}>
+          <View style={styles.buttonContainer}>
             <Button
+              title="Login"
+              style={styles.button}
               onPress={this.onLoginPress.bind(this)}
-              // style={styles.buttonStyle}
-            >
-              Login
-            </Button>
+              color="skyblue"
+            />
           </View>
-          <View
-            style={{
-              height: wp("25%"),
-              backgroundColor: "steelblue",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
+          <View style={styles.buttonContainer}>
             <Button
+              title="Create Account"
+              style={styles.button}
               onPress={this.onSignUpPress.bind(this)}
-              // style={styles.buttonStyle}
-            >
-              Create Account
-            </Button>
+              color="skyblue"
+            />
           </View>
         </View>
       </View>
@@ -95,33 +80,77 @@ class StartupPage extends Component {
   }
 }
 
-const styles = {
-  buttonStyle: {
-    // width: 200,
-    backgroundColor: "#fff",
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#EFEFF4",
+    alignItems: "center",
+    width: "100%"
+  },
+  h1: {
+    color: "black",
+    fontSize: 40
+  },
+  h2: {
+    color: "black",
+    fontSize: 18,
+    marginTop: 8
+  },
+  image: {
+    width: wp("50%"),
+    height: wp("50%"),
+    justifyContent: "center"
+  },
+  buttonContainer: {
+    backgroundColor: "skyblue",
     borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#007aff"
-    // marginLeft: 5,
-    // marginRight: 5
+    padding: 8,
+    margin: 8
   },
-  titleStyle: {
-    fontSize: wp("8%")
+  topContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "steelblue",
+    width: "100%"
   },
-  ContainerStyle: {
-    borderWidth: 1,
-    borderRadius: 2,
-    // borderColor: "charcoal",
-    // borderBottomWidth: 0,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 9,
-    elevation: 10
-    // marginLeft: 10,
-    // marginRight: 10,
-    // marginTop: 10
+  middleContainer: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "steelblue",
+    width: "100%"
+  },
+  bottomContainer: {
+    justifyContent: "flex-end",
+    width: "100%",
+    // margin: 20,
+    padding: 10,
+    backgroundColor: "steelblue"
   }
-};
+});
+
+// const styles = {
+//   buttonStyle: {
+//     backgroundColor: "#fff",
+//     borderRadius: 5,
+//     borderWidth: 1,
+//     borderColor: "#007aff"
+//   },
+//   titleStyle: {
+//     fontSize: wp("8%")
+//   },
+//   ContainerStyle: {
+//     borderWidth: 1,
+//     borderRadius: 2,
+
+//     shadowColor: "#000",
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowOpacity: 0.8,
+//     shadowRadius: 9,
+//     elevation: 10
+//   }
+// };
 
 export default StartupPage;
