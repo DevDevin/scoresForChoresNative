@@ -12,6 +12,12 @@ import {
 } from "react-native-responsive-screen";
 
 class UserForm extends Component {
+  componentDidMount() {
+    this.props.userUpdate({ prop: "name", value: "" });
+    this.props.userUpdate({ prop: "password1", value: "" });
+    this.props.userUpdate({ prop: "password2", value: "" });
+  }
+
   render() {
     let emptyNameMessage;
     if (this.props.emptyName === true) {

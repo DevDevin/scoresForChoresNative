@@ -26,6 +26,11 @@ class ChoreForm extends Component {
     child: ""
   };
   componentDidMount() {
+    // set all the props to ""
+    this.props.choreUpdate({ prop: "choreName", value: "" });
+    this.props.choreUpdate({ prop: "description", value: "" });
+    this.props.choreUpdate({ prop: "pointsValue", value: 0 });
+
     this.props.choreUpdate({ prop: "cid", value: this.props.cid });
     this.props.choreUpdate({
       prop: "isRecurring",

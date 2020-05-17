@@ -7,7 +7,8 @@ import {
   Alert,
   StyleSheet,
   Image,
-  Button
+  Button,
+  ScrollView
 } from "react-native";
 import { Card } from "../components/common";
 import {
@@ -19,6 +20,8 @@ import {
 
 class StartupPage extends Component {
   componentDidMount() {
+    loc(this);
+
     BackHandler.addEventListener("hardwareBackPress", () => {
       Alert.alert(
         "Confirm exit",
@@ -32,6 +35,8 @@ class StartupPage extends Component {
   }
 
   componentWillUnmount() {
+    rol();
+
     BackHandler.removeEventListener("hardwareBackPress", () => {});
   }
   onLoginPress() {
@@ -57,6 +62,7 @@ class StartupPage extends Component {
             style={styles.image}
           />
         </View>
+
         <View style={styles.bottomContainer}>
           <View style={styles.buttonContainer}>
             <Button
@@ -98,8 +104,8 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   image: {
-    width: wp("50%"),
-    height: wp("50%"),
+    width: hp("35%"),
+    height: hp("35%"),
     justifyContent: "center"
   },
   buttonContainer: {

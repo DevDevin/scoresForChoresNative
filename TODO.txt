@@ -1,7 +1,6 @@
 -- remove the auto filled values from the form like email and password
--- make sure form is cleared out when opening form to add new reward, chore, user, etc...
--- make the login and startup pages more responsive
+-- make the login and startup pages more responsive (use the loc and rol functionality)
+	- make the login form a scroll view
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
--- take away the background color of modals if possible
 -- remove commented out code
--- update the login error to say incorrect username or password. not just password. 
+-- find good image for homescreen
