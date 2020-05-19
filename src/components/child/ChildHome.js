@@ -68,22 +68,13 @@ class ChildHome extends Component {
     }
   }
 
-  ///// back button example ////////
-
-  // componentWillUnmount() {
-  //   BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
-  // }
-
   handleBackButton() {
     //// ^^^^ this is not getting called when I go back to it.
     ToastAndroid.show("Cannot go back. Must Log out.", ToastAndroid.SHORT);
     return true;
   }
 
-  ////////////////////////////////////////
-
   onChoreListPress() {
-    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
     Actions.childChoreList();
   }
 
@@ -121,25 +112,17 @@ class ChildHome extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
               elevation: 5,
               margin: wp("2%")
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("95%"),
-                // height: hp("7%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: wp("6%"),
                 flex: 1
-                // backgroundColor: "skyblue",
-                // paddingTop: 3,
-                // paddingBottom: 3
-                // justifyContent: "center"
               }}
             >
               <View
@@ -159,26 +142,19 @@ class ChildHome extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
               elevation: 5,
-              // marginBottom: wp("2%")
               margin: wp("2%")
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("90%"),
                 height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: wp("6%"),
                 flex: 1,
                 backgroundColor: "steelblue"
-                // paddingTop: 10,
-                // paddingBottom: 10
-                // justifyContent: "center"
               }}
             >
               <Animated.View
@@ -217,25 +193,19 @@ class ChildHome extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
               elevation: 5,
               marginBottom: wp("2%")
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("90%"),
                 height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: 30,
                 flex: 1,
                 backgroundColor: "skyblue"
-                // paddingTop: 10,
-                // paddingBottom: 10
-                // justifyContent: "center"
               }}
             >
               <Animated.View
@@ -275,25 +245,18 @@ class ChildHome extends Component {
             style={{
               justifyContent: "center",
               alignItems: "center",
-              // flex: 0.6,
               elevation: 5
             }}
           >
             <View
               style={{
-                // height: 100,
                 width: wp("90%"),
                 height: hp("25%"),
                 borderRadius: 4,
                 borderWidth: 2,
                 borderColor: "#d6d7da",
-                // fontSize: 30,
                 flex: 1,
                 backgroundColor: "powderblue"
-                // paddingTop: 10,
-                // paddingBottom: 10,
-                // marginBottom: 10
-                // justifyContent: "center"
               }}
             >
               <Animated.View

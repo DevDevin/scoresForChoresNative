@@ -28,7 +28,6 @@ class ChildRewardRequestList extends Component {
 
   ///// back button example ////////
   componentDidMount() {
-    // this._start();
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
@@ -37,12 +36,9 @@ class ChildRewardRequestList extends Component {
   }
 
   handleBackButton() {
-    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
     Actions.childRewardManager();
     return true;
   }
-
-  ////////////////////////////////////////
 
   onButtonPress() {
     Actions.userCreate();
@@ -83,7 +79,6 @@ class ChildRewardRequestList extends Component {
             justifyContent: "center",
             alignItems: "center",
             paddingTop: 10
-            // backgroundColor: "powderblue"
           }}
         >
           <RadioForm

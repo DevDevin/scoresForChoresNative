@@ -26,7 +26,7 @@ import {
 class UserListItem extends Component {
   state = {
     isModalVisible: false,
-    enteredPassword: "test",
+    enteredPassword: "",
     loginError: ""
   };
 

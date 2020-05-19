@@ -39,7 +39,7 @@ import {
 class EditDeleteUserListItem extends Component {
   state = {
     isModalVisible: false,
-    enteredPassword: "test",
+    enteredPassword: "",
     loginError: ""
   };
 

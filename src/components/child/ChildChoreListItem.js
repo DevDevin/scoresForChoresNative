@@ -209,7 +209,6 @@ class ChildChoreListItem extends Component {
                     flex: 1,
                     justifyContent: "center",
                     alignItems: "center"
-                    // paddingBottom: 7
                   }}
                 >
                   {submitOption}
@@ -221,8 +220,6 @@ class ChildChoreListItem extends Component {
         <Modal isVisible={this.state.isModalVisible}>
           <View
             style={{
-              //  backgroundColor: "#EFEFF4",
-              // justifyContent: "center"
               backgroundColor: "#EFEFF4"
             }}
           >
@@ -266,10 +263,8 @@ class ChildChoreListItem extends Component {
 
             <View
               style={{
-                // flexDirection: "row",
                 justifyContent: "center",
                 alignItems: "center"
-                // paddingBottom: 20
               }}
             >
               <TouchableOpacity
@@ -289,7 +284,6 @@ class ChildChoreListItem extends Component {
 const styles = {
   choreNameStyle: {
     fontSize: wp("6%"),
-    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -308,15 +302,10 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    // marginLeft: 5,
-    // marginRight: 5,
-    // marginTop: 10,
     backgroundColor: "powderblue"
-    // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
     fontSize: wp("5%"),
-    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
@@ -330,10 +319,6 @@ const styles = {
     alignItems: "center",
     borderColor: "#ddd"
   },
-  modalTextStyle: {
-    // fontSize: 24,
-    // paddingLeft: 5
-  },
   buttonStyle: {
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -341,8 +326,6 @@ const styles = {
     borderColor: "#007aff",
     marginLeft: wp("2%"),
     marginRight: wp("2%"),
-    // marginTop: 10,
-    // marginBottom: 10,
     alignSelf: "stretch"
   },
   textStyle: {
@@ -351,11 +334,6 @@ const styles = {
     fontWeight: "600",
     paddingTop: wp("2.5%"),
     paddingBottom: wp("2.5%")
-  },
-  stage: {
-    // backgroundColor: "#EFEFF4"
-    // paddingTop: 20
-    // paddingBottom: 20
   }
 };
 

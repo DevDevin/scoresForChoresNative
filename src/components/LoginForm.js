@@ -32,7 +32,7 @@ import {
 class LoginForm extends Component {
   state = {
     modalVisible: false,
-    resetEmail: "test@test.co",
+    resetEmail: "",
     emailSent: false,
     fadeValue: new Animated.Value(0)
   };
@@ -45,10 +45,16 @@ class LoginForm extends Component {
   };
 
   componentDidMount() {
+    loc(this);
     this.props.loadingUsersEnd();
     this.props.error = "";
     this._start();
   }
+
+  componentWillUnmount() {
+    rol();
+  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -77,7 +83,6 @@ class LoginForm extends Component {
         {
           text: "Back to Login",
           onPress: () => {
-            // Actions.login();
             this.setState({ modalVisible: false });
           },
           style: "cancel"
@@ -87,27 +92,12 @@ class LoginForm extends Component {
     );
   }
 
-  renderButton() {
-    if (this.props.loading) {
-      return <Spinner />;
-    }
-    return (
-      <TouchableOpacity
-        onPress={this.onButtonPress.bind(this)}
-        style={styles.buttonStyle}
-      >
-        <Text style={styles.textStyle}>Login</Text>
-      </TouchableOpacity>
-    );
-  }
-
   renderSpinner() {
     if (this.props.loading) {
       return (
         <Spinner
           visible={true}
           textContent={"Loading..."}
-          // textStyle={styles.spinnerTextStyle}
           textStyle={{ color: "#FFF" }}
           overlayColor="blue"
         />
@@ -146,17 +136,10 @@ class LoginForm extends Component {
 
     return (
       <View style={styles.ContainerStyle}>
-        <View
-          style={
-            {
-              // paddingLeft: 8,
-              // paddingRight: 8
-            }
-          }
-        >
+        <View style={{}}>
           <View
             style={{
-              height: wp("20%"),
+              height: wp("15%"),
               backgroundColor: "powderblue",
               alignItems: "center",
               justifyContent: "center",
@@ -188,12 +171,8 @@ class LoginForm extends Component {
                 value={this.props.password}
               />
             </View>
-            {/* {this.renderSpinner()} */}
             <View style={styles.buttonSectionStyle}>
-              <Button
-                onPress={this.onButtonPress.bind(this)}
-                // style={styles.buttonStyle}
-              >
+              <Button onPress={this.onButtonPress.bind(this)}>
                 <Text style={styles.textStyle}>Login</Text>
               </Button>
             </View>
@@ -202,7 +181,6 @@ class LoginForm extends Component {
                 onPress={() => {
                   this.setState({ modalVisible: true });
                 }}
-                // style={styles.buttonStyle}
               >
                 <Text style={styles.textStyle}>Forgot Password</Text>
               </Button>
@@ -269,33 +247,23 @@ class LoginForm extends Component {
 
 const styles = {
   containerStyle: {
-    // height: 40,
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff"
-    // borderColor: "powderblue"
   },
   ContainerStyle: {
-    // borderWidth: 1,
-    // borderRadius: 2,
-    // borderColor: "#ddd",
-    // borderBottomWidth: 0,
-    // shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 10,
-    // marginLeft: 5,
-    // marginRight: 5,
-    // marginTop: 10,
+
     flex: 5,
     flexDirection: "column",
     justifyContent: "center",
     backgroundColor: "#EFEFF4"
   },
   cardSectionStyle: {
-    // borderBottomWidth: 1,
     padding: wp("3%"),
     backgroundColor: "#fff",
     justifyContent: "flex-start",
@@ -308,37 +276,23 @@ const styles = {
     borderBottomWidth: 1,
     padding: wp("4%"),
     backgroundColor: "#fff",
-    // flexDirection: "row",
     borderColor: "#ddd",
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
     elevation: 5
   },
-  // textStyle: {
-  //   alignSelf: "center",
-  //   color: "#007aff",
-  //   fontSize: 16,
-  //   fontWeight: "600",
-  //   paddingTop: 10,
-  //   paddingBottom: 10
-  // },
+
   textStyle: {
     alignSelf: "center",
-    // fontSize: 16,
     fontWeight: "600",
-    // paddingTop: 10,
-    // paddingBottom: 10,
     color: "steelblue"
   },
   buttonStyle: {
-    // width: 200,
     backgroundColor: "#fff",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#007aff"
-    // marginLeft: 5,
-    // marginRight: 5
   }
 };
 

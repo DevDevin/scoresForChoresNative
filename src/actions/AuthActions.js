@@ -23,7 +23,6 @@ export const accountDelete = () => {
 
   console.log("inside currentUser.delete");
   currentUser.delete().then(() => {
-    // Actions.auth();
     logoutAuth();
   });
 };
@@ -68,7 +67,6 @@ export const emailChanged = text => {
   };
 };
 
-// forgotten password
 export const forgotPassword = resetEmail => {
   return dispatch => {
     firebase.auth().sendPasswordResetEmail(resetEmail);
@@ -215,7 +213,6 @@ export const userSave = ({
 }) => {
   const { currentUser } = firebase.auth();
   // old name to reference when changing the chore and other objects
-  // const newName = currentUser;
 
   return dispatch => {
     firebase
@@ -324,14 +321,9 @@ export const choreUpdate2 = (newName, chores) => {
   };
 };
 
-export const testFunc = () => {
-  ////
-};
-
 export const choreUpdate2_2 = (oldName, newName) => {
   const { currentUser } = firebase.auth();
-  // const child = activeUser;
-  // need to figure out why it is not going into the dispatch
+
   return dispatch => {
     firebase
       .database()
@@ -379,8 +371,6 @@ export const usersFetch = () => {
   const { currentUser } = firebase.auth();
 
   return dispatch => {
-    // dispatch({ type: LOADING_USERS_START });
-
     firebase
       .database()
       .ref(`/users/${currentUser.uid}/users`)
@@ -392,8 +382,6 @@ export const usersFetch = () => {
 };
 
 export const loadingUsersEnd = () => {
-  // startTimer();
-
   return dispatch => {
     setTimeout(() => {
       dispatch({ type: LOADING_USERS_END });
@@ -459,27 +447,9 @@ export const updateActiveUser = (activeUser, pointsValue) => {
   };
 };
 
-// for updating from the reward request child action
-// export const setActiveUser = uid => {
-//   const { currentUser } = firebase.auth();
-
-//   return dispatch => {
-//     firebase
-//       .database()
-//       .ref(`/users/${currentUser.uid}/users/${}`)
-//       .on("value", snapshot => {
-//         dispatch({ type: SET_ACTIVE_USER, payload: activeUser });
-//       });
-//   };
-// };
-
 export const setActiveUserId = activeUserId => {
   dispatch({ type: SET_ACTIVE_USER_ID, payload: activeUserId });
 };
-
-// either call a separate function that sets the active user id. Or instead of doing a snapshot I
-// I could just pass in all of the values to the function setActiveUser individually including the active user id.
-// the second option worked. Now whenever a child submits a completion request i need to also submit the uid which I will need // turn into a prop from the state data on the component where the child submits the completion request.
 
 export const logoutAuth = () => {
   firebase

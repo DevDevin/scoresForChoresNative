@@ -7,10 +7,9 @@ import {
   Alert,
   StyleSheet,
   Image,
-  Button,
   ScrollView
 } from "react-native";
-import { Card } from "../components/common";
+import { Button } from "./common";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -39,6 +38,7 @@ class StartupPage extends Component {
 
     BackHandler.removeEventListener("hardwareBackPress", () => {});
   }
+
   onLoginPress() {
     Actions.login();
   }
@@ -53,32 +53,27 @@ class StartupPage extends Component {
         <View style={styles.topContainer}>
           <Text style={styles.h1}>Scores 4 Chores</Text>
           <Text style={styles.h2}>
-            Mangage family jobs in a fun and organized way.
+            Mangage family jobs in a fun and rewarding way.
           </Text>
         </View>
         <View style={styles.middleContainer}>
           <Image
-            source={require("../Images/genericUser.png")}
+            source={require("../Images/choresLogo.png")}
             style={styles.image}
           />
         </View>
 
         <View style={styles.bottomContainer}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="Login"
-              style={styles.button}
-              onPress={this.onLoginPress.bind(this)}
-              color="skyblue"
-            />
+          <View style={styles.buttonSectionStyle}>
+            <Button onPress={this.onLoginPress.bind(this)}>
+              <Text>Login</Text>
+            </Button>
           </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="Create Account"
-              style={styles.button}
-              onPress={this.onSignUpPress.bind(this)}
-              color="skyblue"
-            />
+
+          <View style={styles.buttonSectionStyle}>
+            <Button onPress={this.onSignUpPress.bind(this)}>
+              <Text>Create Account</Text>
+            </Button>
           </View>
         </View>
       </View>
@@ -98,10 +93,17 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 40
   },
+  buttonSectionStyle: {
+    elevation: 5,
+    margin: wp("2%")
+  },
   h2: {
     color: "black",
-    fontSize: 18,
-    marginTop: 8
+    fontSize: 20,
+    marginTop: 8,
+    textAlign: "center",
+    marginLeft: wp("5%"),
+    marginRight: wp("5%")
   },
   image: {
     width: hp("35%"),

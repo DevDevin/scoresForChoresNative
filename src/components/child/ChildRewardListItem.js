@@ -35,13 +35,11 @@ class RewardListItem extends Component {
 
   componentDidMount() {
     loc(this);
-    // this.props.rewardsFetch();
     this.props.rewardRequestsFetch();
   }
 
   componentWillUnmount() {
     rol();
-    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   toggleModal = () => {
@@ -201,18 +199,14 @@ class RewardListItem extends Component {
 const styles = {
   stage: {
     backgroundColor: "#EFEFF4"
-    // paddingTop: 20
-    // paddingBottom: 20
   },
   choreNameStyle: {
     fontSize: wp("6%"),
-    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold"
-    // paddingBottom: 5
   },
   childStyle: {
     flex: 1,
@@ -225,15 +219,12 @@ const styles = {
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    // marginLeft: 5,
-    // marginRight: 5,
+
     marginTop: wp("2%"),
     backgroundColor: "powderblue"
-    // width: Dimensions.get("window").width
   },
   choreInfoStyle: {
     fontSize: wp("5%"),
-    // paddingLeft: 15,
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",

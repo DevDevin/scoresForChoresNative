@@ -46,10 +46,6 @@ class ChildRewardRequestsListItem extends Component {
     this.setState({ isModalVisible: !this.state.isModalVisible });
   };
 
-  onRowPress(activeUser) {
-    // actions.something
-  }
-
   spendReward(rid) {
     Alert.alert(
       "Spend Reward",
@@ -127,8 +123,6 @@ class ChildRewardRequestsListItem extends Component {
           text: "OK",
           onPress: () => {
             this.props.deleteRewardRequest(rid);
-
-            // this.props.setActiveUser(activeUserObject);
           }
         }
       ],
@@ -211,8 +205,6 @@ class ChildRewardRequestsListItem extends Component {
               borderRadius: 5,
               borderWidth: 1,
               borderColor: "#007aff",
-              // marginLeft: wp("2%"),
-              // marginRight: wp("2%"),
               flex: 1
             }}
           >

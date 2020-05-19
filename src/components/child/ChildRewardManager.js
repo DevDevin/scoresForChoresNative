@@ -36,9 +36,6 @@ class ChildRewardManager extends Component {
       this.props.userUpdate({ prop: "password2", value: password });
       this.props.userUpdate({ prop: "status", value: "child" });
       this.props.userUpdate({ prop: "earnedPoints", value: earnedPoints });
-
-      // this.props.loadingUsersEnd();
-      // this._start();
     }
   }
 
@@ -56,23 +53,18 @@ class ChildRewardManager extends Component {
 
   ///// back button example ////////
   componentDidMount() {
-    // this._start();
     loc(this);
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
     rol();
-    // BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   handleBackButton() {
-    // ToastAndroid.show("Back button is pressed", ToastAndroid.SHORT);
     Actions.childHome();
     return true;
   }
-
-  ////////////////////////////////////////
 
   render() {
     const { name } = this.props.activeUser;

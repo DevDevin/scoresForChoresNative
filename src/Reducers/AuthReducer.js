@@ -12,9 +12,9 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  email: "test@test.co",
-  password: "password",
-  password2: "password",
+  email: "",
+  password: "",
+  password2: "",
   user: null,
   error: "",
   loading: false,
