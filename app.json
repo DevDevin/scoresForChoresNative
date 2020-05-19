@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "scoresForChores",
-    "icon": "./Icon/mainIcon.jpg",
+    "icon": "./Icon/mainIcon.png",
     "description": "An application to help manager household chores",
-    "sdkVersion": "23.0.0",
+    "sdkVersion": "36.0.0",
     "version": "1.0.0",
     "ios": {
       "bundleIdentifier": "com.dbennett.choresmanager"
