@@ -1,2 +1,3 @@
 -- remove any unsecure keys to the database. replace with tokens or whatever is needed (vulnerabilities described in git)
 -- remove commented out code
+-- get a logo image
